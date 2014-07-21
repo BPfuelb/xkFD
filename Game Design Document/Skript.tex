@@ -1,0 +1,129 @@
+\documentclass[12pt,a4paper]{article} 
+\usepackage{subfiles}
+
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+\usepackage{geometry} 
+\usepackage{latexsym,alltt,graphicx, amssymb}
+\usepackage{acronym}
+\usepackage{wrapfig}
+\usepackage{listings}
+\usepackage{color}
+\usepackage[colorlinks=true,urlcolor=blue,linkcolor=black,breaklinks=true,citecolor=blue]{hyperref} 
+\usepackage{graphicx} 
+\usepackage{ulem}
+\usepackage{wrapfig}
+\usepackage{enumitem} 
+\usepackage[labelformat=empty]{caption}
+\usepackage[font=footnotesize]{caption}
+\usepackage{wallpaper}
+\usepackage[singlelinecheck=off]{caption}
+\usepackage{tikz}
+
+\newcommand{\rot}[2][red]{\textcolor{#1}{#2}}
+
+\newcommand{\gname}{XKCD  }
+
+\TileWallPaper{\paperwidth}{\paperheight}{Grafik/Hintergrund.png}
+
+
+%%% HEADERS & FOOTERS
+\usepackage{fancyhdr} % This should be set AFTER setting up the page geometry
+\pagestyle{fancy} % options: empty , plain , fancy
+\renewcommand{\headrulewidth}{0.5pt} % customise the layout...
+\lhead{\nouppercase{\rightmark}}\chead{}\rhead{}
+\lfoot{Hochschule Fulda}\cfoot{\thepage}\rfoot{Seite \thepage}
+% \lfoot{Hochschule Fulda}\cfoot{\thepage}\rfoot{Seite \thepage}
+\fancyfoot[C]{\bfseries \thepage} % except the center
+\renewcommand{\footrulewidth}{0.4pt}
+
+%\renewcommand{\subsectionmark}[1]{}
+\renewcommand{\sectionmark}[1]{\markright{\thesection.\ #1}}
+
+%    \lstset{language=SQL,frame=ltrb,framesep=5pt,basicstyle=\normalsize,
+%      keywordstyle=\ttfamily\color{OliveGreen},
+%     identifierstyle=\ttfamily\color{CadetBlue}\bfseries,
+%     commentstyle=\color{Brown},
+%     stringstyle=\ttfamily,
+%     showstringspaces=ture}
+
+\setcounter{tocdepth}{4}
+\setcounter{secnumdepth}{4}
+
+% \captionsetup[lstlisting]{format=listing,singlelinecheck=false, margin=0pt, font={sf},labelsep=space,labelfont=bf}
+
+% Eigen Farben
+\definecolor{grau}{gray}{0.9}
+\definecolor{javared}{rgb}{0.6,0,0} % for strings
+\definecolor{javagreen}{rgb}{0.25,0.5,0.35} % comments
+\definecolor{SQLblue}{rgb}{0.25,0.35,0.75} % keywords
+\definecolor{javapurple}{rgb}{0.5,0,0.35} % keywords
+\definecolor{javadocblue}{rgb}{0.25,0.35,0.75} % javadoc
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}
+ 
+% Für SQL Statements
+\lstset{language=SQL,
+basicstyle=\ttfamily,
+keywordstyle=\color{SQLblue}\bfseries,
+stringstyle=\color{javared},
+commentstyle=\color{javagreen},
+morecomment=[s][\color{javadocblue}]{/**}{*/},
+numbers=left,
+numberstyle=\tiny\color{black},
+stepnumber=2,
+numbersep=10pt,
+tabsize=4,
+showspaces=false,
+showstringspaces=false}
+
+% Für Umlaute innerhalb von Quellcode
+\lstset{literate=
+  {ä}{{\"a}}1 {ö}{{\"o}}1 {ü}{{\"u}}1
+  {Ä}{{\"A}}1 {Ö}{{\"O}}1 {Ü}{{\"U}}1
+  {ß}{{\ss}}1
+  {€}{{\EUR}}1 {£}{{\pounds}}1
+}
+
+\newcommand*\itemm{\item[]}
+ \cfoot{}
+
+\setdescription{font=\normalfont}
+
+\parindent0pt
+
+\let\origitemize\itemize
+\def\itemize{\origitemize\itemsep0pt}
+
+\title{Grundlagen von Datenbankensystemen}
+\author{Benedikt Pfülb \& Alexander Lorenz \thanks{Grafiken}}
+%\date{} 
+
+\definecolor{gray}{rgb}{0.4,0.4,0.4}
+\definecolor{darkblue}{rgb}{0.0,0.0,0.6}
+\definecolor{cyan}{rgb}{0.0,0.6,0.6}
+
+\lstdefinelanguage{XML}
+{
+  morestring=[b]",
+  morestring=[s]{>}{<},
+  morecomment=[s]{<?}{?>},
+  stringstyle=\color{black},
+  identifierstyle=\color{darkblue},
+  keywordstyle=\color{cyan},
+  morekeywords={xmlns,version,type}% list your attributes here
+}
+
+
+
+\begin{document}
+
+\subfile{Titel.tex}
+\subfile{Kapitel1.tex}
+% \subfile{Kapitel2.tex}
+% \subfile{Anhang.tex}
+
+
+
+\end{document}

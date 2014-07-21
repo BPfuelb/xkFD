@@ -1,0 +1,12 @@
+\select@language {ngerman}
+\contentsline {section}{\numberline {1}Aufbau}{3}{section.1}
+\contentsline {subsection}{\numberline {1.1}Spielbeschreibung}{3}{subsection.1.1}
+\contentsline {subsection}{\numberline {1.2}Visuelle Pr\IeC {\"a}sentation}{3}{subsection.1.2}
+\contentsline {subsection}{\numberline {1.3}Featureliste}{3}{subsection.1.3}
+\contentsline {subsection}{\numberline {1.4}Spielmodi}{3}{subsection.1.4}
+\contentsline {subsection}{\numberline {1.5}Spielbestandteile}{4}{subsection.1.5}
+\contentsline {subsection}{\numberline {1.6}Rewards}{4}{subsection.1.6}
+\contentsline {subsection}{\numberline {1.7}Technologie}{5}{subsection.1.7}
+\contentsline {subsubsection}{\numberline {1.7.1}Used Software}{5}{subsubsection.1.7.1}
+\contentsline {subsection}{\numberline {1.8}Unique Features}{5}{subsection.1.8}
+\contentsline {subsection}{\numberline {1.9}Gameplay-Beispiel}{5}{subsection.1.9}
