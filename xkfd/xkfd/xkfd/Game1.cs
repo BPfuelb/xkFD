@@ -19,7 +19,7 @@ namespace xkfd
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-        // Test Sebi zum Gedöns!
+        // Test Sebi zum Gedöns! Damit es kracht!!!
 
         public Game1()
         {
