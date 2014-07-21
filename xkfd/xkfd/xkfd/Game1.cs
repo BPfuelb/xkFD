@@ -19,11 +19,6 @@ namespace xkfd
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-<<<<<<< HEAD
-        // Test aenderung zu Benni zum Gedöns!
-=======
-        // Test Sebi zum Gedöns! Damit es kracht!!!
->>>>>>> origin/master
 
         public Game1()
         {
