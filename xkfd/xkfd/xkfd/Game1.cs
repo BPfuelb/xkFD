@@ -13,7 +13,6 @@ namespace xkfd
 {
     /// <summary>
     /// This is the main type for your game
-	// Kommentar Benni
     /// </summary>
     public class Game1 : Microsoft.Xna.Framework.Game
     {
