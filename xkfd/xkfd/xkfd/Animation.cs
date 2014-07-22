@@ -10,19 +10,19 @@ namespace xkfd
     class Animation
     {
 
-        Texture2D texture;
-        int col, row;
+        Texture2D textur;
+        int spalte, zeile;
         int index;
         int slowMoFactor;
         int slowMoTimer;
 
         Vector2 position;
 
-        public Animation(Texture2D tex, int col, int row, int slowMoFactor)
+        public Animation(Texture2D textur, int spalte, int zeile, int slowMoFactor)
         {
-            texture = tex;
-            this.col = col;
-            this.row = row;
+            this.textur = textur;
+            this.spalte = spalte;
+            this.zeile = zeile;
             this.slowMoFactor = slowMoFactor;
             this.slowMoTimer = slowMoFactor;
         }
@@ -35,21 +35,20 @@ namespace xkfd
                 slowMoTimer = slowMoFactor;
                 index++;
             }
-            if (index >= col * row) index = 0;
+            if (index >= spalte * zeile) index = 0;
         }
 
         public void Draw(SpriteBatch sb, Vector2 pos)
         {
-            int tileWidth = texture.Width / col;
-            int tileHeight = texture.Height / row;
+            int tileWidth = textur.Width / spalte;
+            int tileHeight = textur.Height / zeile;
 
             Rectangle rect = new Rectangle(0, 0, tileWidth, tileHeight);
 
-            rect.X = (index % col) * tileWidth;
-            rect.Y = (index / row) * tileHeight;
-            // if (index > col * row) return;
+            rect.X = (index % spalte) * tileWidth;
+            rect.Y = (index % zeile) * tileHeight;
 
-            sb.Draw(texture, pos, rect, Color.White);
+            sb.Draw(textur, pos, rect, Color.White);
         }
     }
 }

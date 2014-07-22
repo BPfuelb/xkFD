@@ -23,27 +23,35 @@ namespace xkfd
         public Texture2D exitTexture;
 
         // Animationen
-        Animation start_m_ani;
-        Animation option_m_ani;
-        Animation exit_m_ani;
+        public Animation start_m_ani;
+        public Animation option_m_ani;
+        public Animation exit_m_ani;
+
+        // Auswahl Cursor
+        public int auswahl;
 
         public Menue()
-        { 
-            startPosition = new Vector2(128,80);
-            optionenPosition = new Vector2(128,80+240+80);
-            exitPosition = new Vector2(128, 80 + 240 + 80 +240 +80);
+        {
+            auswahl = 0; 
 
+            startPosition = new Vector2(128, 80);
+            optionenPosition = new Vector2(128, 80 + 160);
+            exitPosition = new Vector2(128, 80 + 160 + 160);
+
+            /*
             start_m_ani = new Animation(startTextur, 1, 4, 4);
             option_m_ani = new Animation(optionenTexture, 1, 4, 4);
             exit_m_ani = new Animation(exitTexture, 1, 4, 4);
-
-            
+             */
         }
 
         public void Update()
         {
+            if(auswahl == 0)
             start_m_ani.Update();
+            if (auswahl == 1)
             option_m_ani.Update();
+            if (auswahl == 2)
             exit_m_ani.Update();
         }
 
@@ -52,6 +60,16 @@ namespace xkfd
             start_m_ani.Draw(sb, startPosition);
             option_m_ani.Draw(sb, optionenPosition);
             exit_m_ani.Draw(sb, exitPosition);
+        }
+
+        public void nextMenue()
+        {
+            auswahl = (auswahl + 1) % 3;
+        }
+
+        public void prevMenue()
+        {
+            auswahl = ((auswahl - 1 + 3) % 3);
         }
 
     }

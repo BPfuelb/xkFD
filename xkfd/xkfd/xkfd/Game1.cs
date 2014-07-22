@@ -19,7 +19,7 @@ namespace xkfd
 
         // Spiel Status
         enum Gamestate { running, menue };
-        Gamestate gamestate = Gamestate.running;
+        Gamestate gamestate = Gamestate.menue;
 
         // Spieler
         Spieler spieler;
@@ -29,6 +29,7 @@ namespace xkfd
 
         // Menü 
         Menue menue;
+        KeyboardState OldKeyState;
 
         public Game1()
         {
@@ -93,6 +94,9 @@ namespace xkfd
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 this.Exit();
 
+
+
+
             #region GamestateRunning
 
             if (gamestate == Gamestate.running)
@@ -108,14 +112,28 @@ namespace xkfd
             #endregion
 
             #region GamestateMenue
+
             if (gamestate == Gamestate.menue)
             {
-                if (Keyboard.GetState().IsKeyDown(Keys.Up)) ;
 
-                if (Keyboard.GetState().IsKeyDown(Keys.Down)) ;
+                if (menue.start_m_ani == null) menue.start_m_ani = new Animation(menue.startTextur, 1, 4, 6);
+                if (menue.option_m_ani == null) menue.option_m_ani = new Animation(menue.optionenTexture, 1, 4, 6);
+                if (menue.exit_m_ani == null) menue.exit_m_ani = new Animation(menue.exitTexture, 1, 4, 6);
+
+
+                // Auswahl im Menü ber Tastatur (Pfeiltasten)
+                KeyboardState NewKeyState = Keyboard.GetState();
+
+                if (Keyboard.GetState().IsKeyDown(Keys.Up) && OldKeyState.IsKeyUp(Keys.Up))
+                    menue.prevMenue(); 
+
+                if (Keyboard.GetState().IsKeyDown(Keys.Down) && OldKeyState.IsKeyUp(Keys.Down))
+                    menue.nextMenue();
 
                 if (Keyboard.GetState().IsKeyDown(Keys.Escape))
                     this.Exit();
+
+                OldKeyState = NewKeyState;
 
                 menue.Update();
             }
