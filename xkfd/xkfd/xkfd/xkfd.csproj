@@ -107,9 +107,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Ducken.cs" />
+    <Compile Include="Fallen.cs" />
+    <Compile Include="Gewinnen.cs" />
+    <Compile Include="Gleiten.cs" />
+    <Compile Include="Laufen.cs" />
+    <Compile Include="Spieler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Game1.cs" />
+    <Compile Include="Springen.cs" />
+    <Compile Include="Sterben.cs" />
+    <Compile Include="Zustand.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Game.ico" />

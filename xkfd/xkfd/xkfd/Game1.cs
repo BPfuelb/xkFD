@@ -19,10 +19,16 @@ namespace xkfd
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
+        // Spieler
+        Spieler spieler;
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+
+            // Spieler Initialisierung
+            spieler = new Spieler();
         }
 
         /// <summary>
@@ -48,6 +54,16 @@ namespace xkfd
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
+
+
+            // Initialisierung der Animationen 
+            spieler.laufen.animationTexture = Content.Load<Texture2D>("animation_laufen");
+            spieler.springen.animationTexture = Content.Load<Texture2D>("springen");
+            spieler.ducken.animationTexture = Content.Load<Texture2D>("animation_ducken");
+            spieler.gleiten.animationTexture = Content.Load<Texture2D>("animation_gleiten");
+            spieler.sterben.animationTexture = Content.Load<Texture2D>("animation_sterben");
+            spieler.gewinnen.animationTexture = Content.Load<Texture2D>("animation_gewinnen");
+            spieler.fallen.animationTexture = Content.Load<Texture2D>("animation_gewinnen");
         }
 
         /// <summary>
