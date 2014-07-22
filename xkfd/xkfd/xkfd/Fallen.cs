@@ -16,7 +16,6 @@ namespace xkfd
         {
             beschleunigung++;
             spieler.position.Y += beschleunigung*2;
-            
         }
 
         // Zustandsänderungen bei Aktionen
@@ -52,12 +51,8 @@ namespace xkfd
 
         public override void fallen()
         {
-
-
             // Setzte Zustand wieder auf Laufen
             spieler.setZustand(spieler.laufen);
-            spieler.doLaufen();
-
         }
     }
 }

@@ -33,7 +33,7 @@ namespace xkfd
         public Texture2D spielerTextur;
 
         // Konstruktor
-        public Spieler(Game1 game1)
+        public Spieler()
         {
             laufen = new Laufen(this);
             springen = new Springen(this);

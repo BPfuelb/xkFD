@@ -30,14 +30,13 @@ namespace xkfd
         // Menü 
         Menue menue;
 
-
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
 
             // Spieler Initialisierung
-            spieler = new Spieler(this);
+            spieler = new Spieler();
 
             // Menü Initialisierung
             menue = new Menue();
@@ -117,6 +116,8 @@ namespace xkfd
 
                 if (Keyboard.GetState().IsKeyDown(Keys.Escape))
                     this.Exit();
+
+                menue.Update();
             }
             #endregion
 
@@ -142,7 +143,10 @@ namespace xkfd
             #region GamestateMenue
             if (gamestate == Gamestate.menue)
             {
-            
+
+                // Malt alle Animationen des Menüs
+                menue.Draw(spriteBatch);
+                
             }
             #endregion
 

@@ -15,13 +15,11 @@ namespace xkfd
 
         public override void update()
         {
-
-
             spieler.position.Y -= sprungHoehe*2;
             sprungHoehe -= 1;
             if (sprungHoehe == 0)
             {
-                sprungHoehe = 5;
+                sprungHoehe = 10;
                 spieler.doFallen();
             }
         }
