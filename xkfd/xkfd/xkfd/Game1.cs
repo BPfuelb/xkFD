@@ -18,7 +18,7 @@ namespace xkfd
         SpriteBatch spriteBatch;
 
         // Spiel Status
-        enum Gamestate { running, menue };
+        enum Gamestate { running, menue, options};
         Gamestate gamestate = Gamestate.menue;
 
         // Spieler
@@ -104,6 +104,8 @@ namespace xkfd
                 // Leertaste zum Springen
                 if (Keyboard.GetState().IsKeyDown(Keys.Space)) spieler.doSpringen();
 
+                // Escape ins Menü zurück kehren
+                if (Keyboard.GetState().IsKeyDown(Keys.Escape)) gamestate = Gamestate.menue;
 
                 // Update spieler
                 //  if (gameTime.TotalGameTime.Milliseconds % 1 == 0)
@@ -125,15 +127,27 @@ namespace xkfd
                 KeyboardState NewKeyState = Keyboard.GetState();
 
                 if (Keyboard.GetState().IsKeyDown(Keys.Up) && OldKeyState.IsKeyUp(Keys.Up))
-                    menue.prevMenue(); 
+                    menue.prevMenue();
 
                 if (Keyboard.GetState().IsKeyDown(Keys.Down) && OldKeyState.IsKeyUp(Keys.Down))
                     menue.nextMenue();
 
-                if (Keyboard.GetState().IsKeyDown(Keys.Escape))
-                    this.Exit();
+               //  if (Keyboard.GetState().IsKeyDown(Keys.Escape))
+                 //    this.Exit();
 
                 OldKeyState = NewKeyState;
+
+                if (Keyboard.GetState().IsKeyDown(Keys.Enter))
+                {
+                    if (menue.auswahl == 0)
+                        gamestate = Gamestate.running;
+
+                    if (menue.auswahl == 1)
+                        gamestate = Gamestate.options;
+
+                    if (menue.auswahl == 2)
+                        this.Exit();
+                }
 
                 menue.Update();
             }
@@ -153,8 +167,8 @@ namespace xkfd
             if (gamestate == Gamestate.running)
             {
                 // Zeichne Spieler
-            spriteBatch.Draw(spieler.spielerTextur, spieler.position, Color.White);
-            
+                spriteBatch.Draw(spieler.spielerTextur, spieler.position, Color.White);
+
             }
             #endregion
 
@@ -164,7 +178,7 @@ namespace xkfd
 
                 // Malt alle Animationen des Menüs
                 menue.Draw(spriteBatch);
-                
+
             }
             #endregion
 

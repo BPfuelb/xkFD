@@ -26,7 +26,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\m_exit.xnb</Output>
-      <Time>2014-07-22T21:16:21.6005514+02:00</Time>
+      <Time>2014-07-22T21:47:50.7316035+02:00</Time>
     </Item>
     <Item>
       <Source>m_optionen.png</Source>
@@ -44,7 +44,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\m_start.xnb</Output>
-      <Time>2014-07-22T21:16:21.3505371+02:00</Time>
+      <Time>2014-07-22T21:47:50.7326035+02:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
