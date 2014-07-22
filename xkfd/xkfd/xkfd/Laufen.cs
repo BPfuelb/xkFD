@@ -27,6 +27,7 @@ namespace xkfd
         public override void springen()
         {
             // Gehe in Springen Zustand über
+            
             spieler.setZustand(spieler.springen);
         }
 

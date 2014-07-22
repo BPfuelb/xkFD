@@ -55,6 +55,24 @@
       <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\hintergrund.xnb</Output>
       <Time>2014-07-22T22:03:02.3777467+02:00</Time>
     </Item>
+    <Item>
+      <Source>m_continue.png</Source>
+      <Name>m_continue</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\m_continue.xnb</Output>
+      <Time>2014-07-22T22:48:32.2818882+02:00</Time>
+    </Item>
+    <Item>
+      <Source>m_new.png</Source>
+      <Name>m_new</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\m_new.xnb</Output>
+      <Time>2014-07-22T22:48:32.2808882+02:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <TargetPlatform>Windows</TargetPlatform>

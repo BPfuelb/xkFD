@@ -18,7 +18,7 @@ namespace xkfd
         SpriteBatch spriteBatch;
 
         // Spiel Status
-        enum Gamestate { running, menue, options};
+        enum Gamestate { running, menue, options };
         Gamestate gamestate = Gamestate.menue;
 
         // Spieler
@@ -83,6 +83,8 @@ namespace xkfd
 
             // Initialisiere Menü Animationen
             menue.startTextur = Content.Load<Texture2D>("m_start");
+            menue.neuTexture = Content.Load<Texture2D>("m_new");
+            menue.fortsetzenTexture = Content.Load<Texture2D>("m_continue");
             menue.optionenTexture = Content.Load<Texture2D>("m_optionen");
             menue.exitTexture = Content.Load<Texture2D>("m_exit");
 
@@ -103,7 +105,7 @@ namespace xkfd
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 this.Exit();
 
-            
+
 
 
             #region GamestateRunning
@@ -113,12 +115,16 @@ namespace xkfd
                 // Leertaste zum Springen
                 if (Keyboard.GetState().IsKeyDown(Keys.Space)) spieler.doSpringen();
 
-                // Escape ins Menü zurück kehren
-                if (Keyboard.GetState().IsKeyDown(Keys.Escape)) gamestate = Gamestate.menue;
 
                 // Update spieler
                 //  if (gameTime.TotalGameTime.Milliseconds % 1 == 0)
                 spieler.Update();
+
+
+                // Escape ins Menü zurück kehren
+                if (Keyboard.GetState().IsKeyDown(Keys.Escape) && OldKeyState.IsKeyUp(Keys.Escape))
+                    gamestate = Gamestate.menue;
+
             }
             #endregion
 
@@ -130,6 +136,8 @@ namespace xkfd
                 if (menue.start_m_ani == null) menue.start_m_ani = new Animation(menue.startTextur, 1, 4, 6);
                 if (menue.option_m_ani == null) menue.option_m_ani = new Animation(menue.optionenTexture, 1, 4, 6);
                 if (menue.exit_m_ani == null) menue.exit_m_ani = new Animation(menue.exitTexture, 1, 4, 6);
+                if (menue.neu_m_ani == null) menue.neu_m_ani = new Animation(menue.neuTexture, 1, 4, 6);
+                if (menue.fortsetzen_m_ani == null) menue.fortsetzen_m_ani = new Animation(menue.fortsetzenTexture, 1, 4, 6);
 
 
                 // Auswahl im Menü ber Tastatur (Pfeiltasten)
@@ -141,25 +149,64 @@ namespace xkfd
                 if (Keyboard.GetState().IsKeyDown(Keys.Down) && OldKeyState.IsKeyUp(Keys.Down))
                     menue.nextMenue();
 
-               //  if (Keyboard.GetState().IsKeyDown(Keys.Escape))
-                 //    this.Exit();
+                if (Keyboard.GetState().IsKeyDown(Keys.Right) && OldKeyState.IsKeyUp(Keys.Right))
+                    menue.rightMenue();
+
+                if (Keyboard.GetState().IsKeyDown(Keys.Left) && OldKeyState.IsKeyUp(Keys.Left))
+                    menue.leftMenue();
+
 
                 OldKeyState = NewKeyState;
 
                 if (Keyboard.GetState().IsKeyDown(Keys.Enter))
                 {
                     if (menue.auswahl == 0)
+                    {
                         gamestate = Gamestate.running;
+                        menue.spielAktiv = true;
+                    }
 
                     if (menue.auswahl == 1)
-                        gamestate = Gamestate.options;
+                    {
+                        if (!menue.spielAktiv)
+                            gamestate = Gamestate.options;
+                        else
+                        {
+                            gamestate = Gamestate.running;
+                            spieler.doLaufen();
+                            spieler.position.X = 1280 / 2 - 128;
+                            spieler.position.Y = 720 / 2;
+                        }
+                    }
 
                     if (menue.auswahl == 2)
-                        this.Exit();
+                    {
+                        if(!menue.spielAktiv)
+                            this.Exit();
+                        else
+                            gamestate = Gamestate.options;
+
+                    }
+                      if (menue.auswahl == 3)
+                    {
+                        if(!menue.spielAktiv)
+                            this.Exit();
+                    }
                 }
 
                 menue.Update();
             }
+            #endregion
+
+
+            #region GamestateOptions
+
+            if (gamestate == Gamestate.options)
+            {
+                if (Keyboard.GetState().IsKeyDown(Keys.Escape))
+                    gamestate = Gamestate.menue;
+            }
+
             #endregion
 
             // Weiterschieben des Hintergrunds
@@ -194,6 +241,10 @@ namespace xkfd
                 menue.Draw(spriteBatch);
 
             }
+            #endregion
+
+            #region GamestateOptions
+
             #endregion
 
             spriteBatch.End(); // End

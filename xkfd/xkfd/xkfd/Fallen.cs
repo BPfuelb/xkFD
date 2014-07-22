@@ -7,11 +7,13 @@ namespace xkfd
 {
     class Fallen : Zustand
     {
+        public int beschleunigung;
         public Fallen(Spieler spieler):base(spieler)
         {
+            beschleunigung = 0;
         }
 
-        int beschleunigung = 0;
+        
         public override void update()
         {
             beschleunigung++;
@@ -36,6 +38,7 @@ namespace xkfd
 
         public override void laufen()
         {
+            beschleunigung = 0;
             spieler.setZustand(spieler.laufen);
         }
 
