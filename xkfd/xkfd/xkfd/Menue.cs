@@ -37,12 +37,6 @@ namespace xkfd
             startPosition = new Vector2(128, 80);
             optionenPosition = new Vector2(128, 80 + 160);
             exitPosition = new Vector2(128, 80 + 160 + 160);
-
-            /*
-            start_m_ani = new Animation(startTextur, 1, 4, 4);
-            option_m_ani = new Animation(optionenTexture, 1, 4, 4);
-            exit_m_ani = new Animation(exitTexture, 1, 4, 4);
-             */
         }
 
         public void Update()

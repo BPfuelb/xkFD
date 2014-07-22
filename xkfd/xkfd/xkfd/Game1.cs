@@ -31,6 +31,9 @@ namespace xkfd
         Menue menue;
         KeyboardState OldKeyState;
 
+        // Hintergrund
+        Hintergrund hintergrund;
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -41,6 +44,9 @@ namespace xkfd
 
             // Menü Initialisierung
             menue = new Menue();
+
+            // Hintergrund Initialisierung
+            hintergrund = new Hintergrund();
 
         }
 
@@ -80,6 +86,9 @@ namespace xkfd
             menue.optionenTexture = Content.Load<Texture2D>("m_optionen");
             menue.exitTexture = Content.Load<Texture2D>("m_exit");
 
+
+            // Menü Hintergrund
+            hintergrund.hintergrundTextur = Content.Load<Texture2D>("hintergrund");
         }
 
 
@@ -94,7 +103,7 @@ namespace xkfd
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 this.Exit();
 
-
+            
 
 
             #region GamestateRunning
@@ -153,6 +162,9 @@ namespace xkfd
             }
             #endregion
 
+            // Weiterschieben des Hintergrunds
+            hintergrund.Update();
+
             base.Update(gameTime);
         }
 
@@ -161,6 +173,9 @@ namespace xkfd
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             spriteBatch.Begin(); // Begin
+
+            // Hintergunrd zeichnen
+            spriteBatch.Draw(hintergrund.hintergrundTextur, hintergrund.hintegrundPosition, Color.White);
 
             #region GamestateRunning
 
@@ -175,7 +190,6 @@ namespace xkfd
             #region GamestateMenue
             if (gamestate == Gamestate.menue)
             {
-
                 // Malt alle Animationen des Menüs
                 menue.Draw(spriteBatch);
 
