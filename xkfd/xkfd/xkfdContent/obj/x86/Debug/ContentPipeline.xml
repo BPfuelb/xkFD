@@ -11,15 +11,6 @@
       <Time>2014-07-22T16:03:57.4604479+02:00</Time>
     </Item>
     <Item>
-      <Source>SpriteFont1.spritefont</Source>
-      <Name>SpriteFont1</Name>
-      <Importer>FontDescriptionImporter</Importer>
-      <Processor>FontDescriptionProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\SpriteFont1.xnb</Output>
-      <Time>2014-07-22T19:20:31.5650321+02:00</Time>
-    </Item>
-    <Item>
       <Source>m_exit.png</Source>
       <Name>m_exit</Name>
       <Importer>TextureImporter</Importer>
@@ -53,7 +44,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\hintergrund.xnb</Output>
-      <Time>2014-07-22T22:03:02.3777467+02:00</Time>
+      <Time>2014-07-23T01:38:57.8727586+02:00</Time>
     </Item>
     <Item>
       <Source>m_continue.png</Source>
@@ -62,7 +53,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\m_continue.xnb</Output>
-      <Time>2014-07-22T22:48:32.2818882+02:00</Time>
+      <Time>2014-07-23T00:52:48.0163319+02:00</Time>
     </Item>
     <Item>
       <Source>m_new.png</Source>
@@ -71,7 +62,25 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\m_new.xnb</Output>
-      <Time>2014-07-22T22:48:32.2808882+02:00</Time>
+      <Time>2014-07-23T00:52:46.9102686+02:00</Time>
+    </Item>
+    <Item>
+      <Source>SpriteFont1.spritefont</Source>
+      <Name>SpriteFont1</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\SpriteFont1.xnb</Output>
+      <Time>2014-07-23T01:31:51.6723813+02:00</Time>
+    </Item>
+    <Item>
+      <Source>o_zurueck.png</Source>
+      <Name>o_zurueck</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\o_zurueck.xnb</Output>
+      <Time>2014-07-23T01:33:34.5102633+02:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>

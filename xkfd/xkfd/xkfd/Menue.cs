@@ -42,11 +42,11 @@ namespace xkfd
 
         public Menue()
         {
-            auswahl = 0;
+            auswahl = 2; // Initialisierung Auswahl
             spielAktiv = false;
 
+            // Positionen für Start/neuesSpiel/Forsetzen gleich
             startPosition = new Vector2(128, 80);
-
             neuPosition = new Vector2(128, 80);
             fortsetzenPosition = new Vector2(128, 80);
 
@@ -56,77 +56,61 @@ namespace xkfd
 
         public void Update()
         {
-            if (!spielAktiv)
-            {
-                if (auswahl == 0)
-                    start_m_ani.Update();
-                if (auswahl == 1)
-                    option_m_ani.Update();
-                if (auswahl == 2)
-                    exit_m_ani.Update();
-            }
-            else
-            {
-                if (auswahl == 1)
-                    neu_m_ani.Update();
-                if (auswahl == 0)
-                    fortsetzen_m_ani.Update();
-                if (auswahl == 2)
-                    option_m_ani.Update();
-                if (auswahl == 3)
-                    exit_m_ani.Update();
-            }
+            // Aktives Feld Updaten
+            if (auswahl == 0)
+                exit_m_ani.Update();
+            if (auswahl == 1)
+                option_m_ani.Update();
+            if (auswahl == 2 && !spielAktiv)
+                start_m_ani.Update();
+            if (auswahl == 2 && spielAktiv)
+                fortsetzen_m_ani.Update();
+            if (auswahl == 3 && spielAktiv)
+                neu_m_ani.Update();
+
         }
 
         public void Draw(SpriteBatch sb)
         {
+            // Wenn noch kein Spiel läuft nur Start anbieten
             if (!spielAktiv)
                 start_m_ani.Draw(sb, startPosition);
-            else
+            else        // Wenn ein Spiel läuft Neu und Fortsetzten anbieten
             {
-                if (auswahl == 0)
-                    fortsetzen_m_ani.Draw(sb, fortsetzenPosition);
-                else
+                if (auswahl == 3)
                     neu_m_ani.Draw(sb, neuPosition);
+                else
+                    fortsetzen_m_ani.Draw(sb, fortsetzenPosition);
             }
             option_m_ani.Draw(sb, optionenPosition);
             exit_m_ani.Draw(sb, exitPosition);
         }
 
-        public void nextMenue()
-        {
-            if (!spielAktiv)
-                auswahl = (auswahl + 1) % 3;
-            else
-            {
-                if (auswahl == 0)
-                    auswahl++;
-                auswahl = (auswahl + 1) % 4;
-            }
-        }
-
+        // Im Menü nach Oben 
         public void prevMenue()
         {
-            if (!spielAktiv)
-                auswahl = ((auswahl - 1 + 3) % 3);
-            else
-            {
-                if (auswahl == 1)
-                    auswahl--;
-                auswahl = ((auswahl - 1 + 4) % 4);
-            }
-        }
-
-        public  void leftMenue()
-        {
-            if (auswahl == 0)
-                auswahl++;
-        }
-
-         public  void rightMenue()
-        {
-            if (auswahl == 1)
+            if (auswahl == 3)
                 auswahl--;
+            auswahl = (auswahl + 1) % 3;
+        }
+        // Im Menü nach Unten
+        public void nextMenue()
+        {
+            if (auswahl == 3)
+                auswahl--;
+            auswahl = ((auswahl - 1 + 3) % 3);
+        }
+        // Im Menü wo möglich nach Links
+        public void leftMenue()
+        {
+            if (auswahl == 3)
+                auswahl--;
+        }
+        // Im Menü wo möglich nach Rechts
+        public void rightMenue()
+        {
+            if (auswahl == 2)
+                auswahl++;
         }
 
 

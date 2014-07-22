@@ -16,8 +16,6 @@ namespace xkfd
         int slowMoFactor;
         int slowMoTimer;
 
-        Vector2 position;
-
         public Animation(Texture2D textur, int spalte, int zeile, int slowMoFactor)
         {
             this.textur = textur;

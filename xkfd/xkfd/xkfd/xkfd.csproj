@@ -113,8 +113,10 @@
     <Compile Include="Gewinnen.cs" />
     <Compile Include="Gleiten.cs" />
     <Compile Include="Hintergrund.cs" />
+    <Compile Include="Hud.cs" />
     <Compile Include="Laufen.cs" />
     <Compile Include="Menue.cs" />
+    <Compile Include="Optionen.cs" />
     <Compile Include="Spieler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
