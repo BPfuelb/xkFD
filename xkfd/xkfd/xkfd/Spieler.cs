@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace xkfd
 {
@@ -23,13 +24,16 @@ namespace xkfd
         private int punkte;
 
         // Spieler Position
-        private Vector2 position;
+        public Vector2 position;
 
         // Hitbox
         private Rectangle hitbox;
 
+        // Spieler Textur zum Testen
+        public Texture2D spielerTextur;
+
         // Konstruktor
-        public Spieler()
+        public Spieler(Game1 game1)
         {
             laufen = new Laufen(this);
             springen = new Springen(this);
@@ -37,9 +41,13 @@ namespace xkfd
             gleiten = new Gleiten(this);
             sterben = new Sterben(this);
             gewinnen = new Gewinnen(this);
-            fallen = new Gewinnen(this);
+            fallen = new Fallen(this);
+
+            aktuellerZustand = laufen;
 
             punkte = 0; // Punktestand initialisieren
+
+            position = new Vector2(1280 / 2 - 128, 720 / 2);
         }
 
 
@@ -51,12 +59,13 @@ namespace xkfd
 
         // Rufe an Aktuellem Zustand Aktion auf
         #region AktionsAufrufe
+
         public void doLaufen()
         {
             aktuellerZustand.laufen();
         }
 
-        public void doSpringen() 
+        public void doSpringen()
         {
             aktuellerZustand.springen();
         }
@@ -86,5 +95,11 @@ namespace xkfd
             aktuellerZustand.gleiten();
         }
         #endregion
+
+
+        public void Update()
+        {
+            aktuellerZustand.update();
+        }
     }
 }

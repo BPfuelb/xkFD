@@ -7,9 +7,13 @@ namespace xkfd
 {
     class Gewinnen : Zustand
     {
-        public Gewinnen(Spieler spieler)
+        public Gewinnen(Spieler spieler):base(spieler)
         {
-            this.spieler = spieler;
+        }
+
+        public override void update()
+        {
+
         }
 
         // Zustandsänderungen bei Aktionen
@@ -40,7 +44,12 @@ namespace xkfd
 
         public override void sterben()
         {
-            throw new NotImplementedException();
+            // Tue nichts
+        }
+
+        public override void fallen()
+        {
+            // Tue nichts
         }
     }
 }

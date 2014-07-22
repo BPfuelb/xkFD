@@ -12,6 +12,12 @@ namespace xkfd
         public Spieler spieler;
         public Texture2D animationTexture;
 
+        public Zustand(Spieler spieler)
+        {
+            this.spieler = spieler;
+        }
+
+
         // Subklassen müssen alle Methoden Implementieren
         abstract public void springen();
         abstract public void ducken();
@@ -20,6 +26,8 @@ namespace xkfd
         abstract public void sterben();
         abstract public void laufen();
         abstract public void fallen();
+
+        abstract public void update();
     }
 
     

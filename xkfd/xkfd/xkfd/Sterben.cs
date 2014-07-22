@@ -7,9 +7,12 @@ namespace xkfd
 {
     class Sterben : Zustand
     {
-        public Sterben(Spieler spieler)
+        public Sterben(Spieler spieler):base(spieler)
         {
-            this.spieler = spieler;
+        }
+
+        public override void update()
+        {
         }
 
         // Zustandsänderungen bei Aktionen
@@ -39,6 +42,10 @@ namespace xkfd
         }
 
         public override void sterben()
+        {
+            // Tue nichts
+        }
+        public override void fallen()
         {
             // Tue nichts
         }

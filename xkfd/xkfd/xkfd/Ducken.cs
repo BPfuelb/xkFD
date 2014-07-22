@@ -7,9 +7,13 @@ namespace xkfd
 {
     class Ducken : Zustand
     {
-        public Ducken(Spieler spieler)
+        public Ducken(Spieler spieler):base(spieler)
         { 
-            this.spieler = spieler; 
+        }
+
+        public override void update()
+        {
+            
         }
 
         // Zustandsänderungen bei Aktionen
@@ -41,6 +45,11 @@ namespace xkfd
         public override void sterben()
         {
             spieler.setZustand(spieler.sterben);
+        }
+
+        public override void fallen()
+        {
+            spieler.setZustand(spieler.fallen);
         }
     }
 }

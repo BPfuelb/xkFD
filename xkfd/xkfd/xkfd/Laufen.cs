@@ -8,9 +8,13 @@ namespace xkfd
     class Laufen:Zustand
     {
 
-        public Laufen(Spieler spieler)
+        public Laufen(Spieler spieler):base(spieler)
         {
-            this.spieler = spieler;
+        }
+
+        public override void update()
+        {
+
         }
 
 
@@ -22,6 +26,7 @@ namespace xkfd
 
         public override void springen()
         {
+            // Gehe in Springen Zustand über
             spieler.setZustand(spieler.springen);
         }
 
@@ -45,5 +50,9 @@ namespace xkfd
             spieler.setZustand(spieler.sterben);
         }
 
+        public override void fallen()
+        {
+            spieler.setZustand(spieler.fallen);
+        }
     }
 }

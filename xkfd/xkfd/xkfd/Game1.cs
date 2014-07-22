@@ -11,16 +11,25 @@ using Microsoft.Xna.Framework.Media;
 
 namespace xkfd
 {
-    /// <summary>
-    /// This is the main type for your game
-    /// </summary>
+
     public class Game1 : Microsoft.Xna.Framework.Game
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
+        // Spiel Status
+        enum Gamestate { running, menue };
+        Gamestate gamestate = Gamestate.running;
+
         // Spieler
         Spieler spieler;
+
+        // Schriftart
+        SpriteFont schrift;
+
+        // Menü 
+        Menue menue;
+
 
         public Game1()
         {
@@ -28,78 +37,116 @@ namespace xkfd
             Content.RootDirectory = "Content";
 
             // Spieler Initialisierung
-            spieler = new Spieler();
+            spieler = new Spieler(this);
+
+            // Menü Initialisierung
+            menue = new Menue();
+
         }
 
-        /// <summary>
-        /// Allows the game to perform any initialization it needs to before starting to run.
-        /// This is where it can query for any required services and load any non-graphic
-        /// related content.  Calling base.Initialize will enumerate through any components
-        /// and initialize them as well.
-        /// </summary>
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
+            // Auflösung
+            graphics.PreferredBackBufferWidth = 1280;
+            graphics.PreferredBackBufferHeight = 720;
+            graphics.ApplyChanges();
 
             base.Initialize();
         }
 
-        /// <summary>
-        /// LoadContent will be called once per game and is the place to load
-        /// all of your content.
-        /// </summary>
         protected override void LoadContent()
         {
-            // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            // TODO: use this.Content to load your game content here
+            // Initialisierung der Test Textur für den Spieler
+            spieler.spielerTextur = Content.Load<Texture2D>("spieler_textur");
 
+            // Lade Schirftart
+            schrift = Content.Load<SpriteFont>("SpriteFont1");
 
             // Initialisierung der Animationen 
+            /* 
             spieler.laufen.animationTexture = Content.Load<Texture2D>("animation_laufen");
-            spieler.springen.animationTexture = Content.Load<Texture2D>("springen");
+            spieler.springen.animationTexture = Content.Load<Texture2D>("animation_springen");
             spieler.ducken.animationTexture = Content.Load<Texture2D>("animation_ducken");
             spieler.gleiten.animationTexture = Content.Load<Texture2D>("animation_gleiten");
             spieler.sterben.animationTexture = Content.Load<Texture2D>("animation_sterben");
             spieler.gewinnen.animationTexture = Content.Load<Texture2D>("animation_gewinnen");
             spieler.fallen.animationTexture = Content.Load<Texture2D>("animation_gewinnen");
+             */
+
+            // Initialisiere Menü Animationen
+            menue.startTextur = Content.Load<Texture2D>("m_start");
+            menue.optionenTexture = Content.Load<Texture2D>("m_optionen");
+            menue.exitTexture = Content.Load<Texture2D>("m_exit");
+
         }
 
-        /// <summary>
-        /// UnloadContent will be called once per game and is the place to unload
-        /// all content.
-        /// </summary>
+
         protected override void UnloadContent()
         {
-            // TODO: Unload any non ContentManager content here
+
         }
 
-        /// <summary>
-        /// Allows the game to run logic such as updating the world,
-        /// checking for collisions, gathering input, and playing audio.
-        /// </summary>
-        /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
             // Allows the game to exit
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 this.Exit();
 
-            // TODO: Add your update logic here
+            #region GamestateRunning
+
+            if (gamestate == Gamestate.running)
+            {
+                // Leertaste zum Springen
+                if (Keyboard.GetState().IsKeyDown(Keys.Space)) spieler.doSpringen();
+
+
+                // Update spieler
+                //  if (gameTime.TotalGameTime.Milliseconds % 1 == 0)
+                spieler.Update();
+            }
+            #endregion
+
+            #region GamestateMenue
+            if (gamestate == Gamestate.menue)
+            {
+                if (Keyboard.GetState().IsKeyDown(Keys.Up)) ;
+
+                if (Keyboard.GetState().IsKeyDown(Keys.Down)) ;
+
+                if (Keyboard.GetState().IsKeyDown(Keys.Escape))
+                    this.Exit();
+            }
+            #endregion
 
             base.Update(gameTime);
         }
 
-        /// <summary>
-        /// This is called when the game should draw itself.
-        /// </summary>
-        /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            // TODO: Add your drawing code here
+            spriteBatch.Begin(); // Begin
+
+            #region GamestateRunning
+
+            if (gamestate == Gamestate.running)
+            {
+                // Zeichne Spieler
+            spriteBatch.Draw(spieler.spielerTextur, spieler.position, Color.White);
+            
+            }
+            #endregion
+
+            #region GamestateMenue
+            if (gamestate == Gamestate.menue)
+            {
+            
+            }
+            #endregion
+
+            spriteBatch.End(); // End
 
             base.Draw(gameTime);
         }

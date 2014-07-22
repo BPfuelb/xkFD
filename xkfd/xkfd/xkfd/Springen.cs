@@ -7,10 +7,25 @@ namespace xkfd
 {
     class Springen :Zustand
     {
-        public Springen(Spieler spieler)
+        int sprungHoehe = 10;
+
+        public Springen(Spieler spieler):base(spieler)
         {
-            this.spieler = spieler;
         }
+
+        public override void update()
+        {
+
+
+            spieler.position.Y -= sprungHoehe*2;
+            sprungHoehe -= 1;
+            if (sprungHoehe == 0)
+            {
+                sprungHoehe = 5;
+                spieler.doFallen();
+            }
+        }
+
 
         // Zustandsänderungen bei Aktionen
         public override void ducken()
@@ -20,7 +35,7 @@ namespace xkfd
 
         public override void springen()
         {
-            // Tue nichts (Doppeltsprung?)
+              // Tue nichts
         }
 
         public override void gleiten()
@@ -41,6 +56,11 @@ namespace xkfd
         public override void sterben()
         {
             spieler.setZustand(spieler.sterben);
+        }
+
+        public override void fallen()
+        {
+            spieler.setZustand(spieler.fallen);
         }
     }
 }

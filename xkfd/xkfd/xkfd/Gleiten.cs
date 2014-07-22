@@ -7,9 +7,12 @@ namespace xkfd
 {
     class Gleiten : Zustand
     {
-        public Gleiten(Spieler spieler)
+        public Gleiten(Spieler spieler):base(spieler)
         {
-            this.spieler = spieler;
+        }
+
+        public override void update()
+        {
         }
 
 
@@ -42,6 +45,10 @@ namespace xkfd
         public override void sterben()
         {
             spieler.setZustand(spieler.sterben);
+        }
+        public override void fallen()
+        {
+            spieler.setZustand(spieler.fallen);
         }
     }
 }

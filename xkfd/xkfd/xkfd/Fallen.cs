@@ -7,9 +7,16 @@ namespace xkfd
 {
     class Fallen : Zustand
     {
-        public Fallen(Spieler spieler)
+        public Fallen(Spieler spieler):base(spieler)
         {
-            this.spieler = spieler;
+        }
+
+        int beschleunigung = 0;
+        public override void update()
+        {
+            beschleunigung++;
+            spieler.position.Y += beschleunigung*2;
+            
         }
 
         // Zustandsänderungen bei Aktionen
@@ -41,6 +48,16 @@ namespace xkfd
         public override void sterben()
         {
             spieler.setZustand(spieler.sterben);
+        }
+
+        public override void fallen()
+        {
+
+
+            // Setzte Zustand wieder auf Laufen
+            spieler.setZustand(spieler.laufen);
+            spieler.doLaufen();
+
         }
     }
 }
