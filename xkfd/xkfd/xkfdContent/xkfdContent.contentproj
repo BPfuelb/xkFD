@@ -100,15 +100,15 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="titel.wav">
-      <Name>titel</Name>
+    <Compile Include="jump.wav">
+      <Name>jump</Name>
       <Importer>WavImporter</Importer>
       <Processor>SoundEffectProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="jump.wav">
-      <Name>jump</Name>
+    <Compile Include="titel.wav">
+      <Name>titel</Name>
       <Importer>WavImporter</Importer>
       <Processor>SoundEffectProcessor</Processor>
     </Compile>

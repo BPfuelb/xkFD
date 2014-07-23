@@ -13,13 +13,6 @@ namespace xkfd
     class Laufen:Zustand
     {
 
-        Texture2D test;
-
-        protected override void LoadContent()
-        { 
-            test = Content.Load<2DTexture2D>("");
-        }
-
         public Laufen(Spieler spieler):base(spieler)
         {
         }
