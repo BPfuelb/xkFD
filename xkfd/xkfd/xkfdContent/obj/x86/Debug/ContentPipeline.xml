@@ -82,6 +82,24 @@
       <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\o_zurueck.xnb</Output>
       <Time>2014-07-23T01:33:34.5102633+02:00</Time>
     </Item>
+    <Item>
+      <Source>titel.wav</Source>
+      <Name>titel</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\titel.xnb</Output>
+      <Time>2014-07-23T02:21:13.8420753+02:00</Time>
+    </Item>
+    <Item>
+      <Source>jump.wav</Source>
+      <Name>jump</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\jump.xnb</Output>
+      <Time>2014-07-23T20:49:19.8097949+02:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <TargetPlatform>Windows</TargetPlatform>

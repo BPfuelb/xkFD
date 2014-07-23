@@ -2,15 +2,20 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
-
+using Microsoft.Xna.Framework.GamerServices;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Media;
 namespace xkfd
 {
     abstract class Zustand
     {
         public Spieler spieler;
         public Texture2D animationTexture;
+        public SoundEffect sound;
+        public SoundEffectInstance soundSoundInstance;
 
         public Zustand(Spieler spieler)
         {

@@ -35,8 +35,13 @@ namespace xkfd
         Hintergrund hintergrund;
 
         // Optionenmenü
-
         Optionen optionen;
+
+        // Sound
+        SoundEffect titel; 
+        SoundEffectInstance titelSoundInstance;
+
+
 
         public Game1()
         {
@@ -94,16 +99,25 @@ namespace xkfd
             menue.fortsetzenTexture = Content.Load<Texture2D>("m_continue");
             menue.optionenTexture = Content.Load<Texture2D>("m_optionen");
             menue.exitTexture = Content.Load<Texture2D>("m_exit");
+            // Sound
+            titel = Content.Load<SoundEffect>("titel");
+            titelSoundInstance = titel.CreateInstance();
 
-            // Menü Hintergrund
+
+            // Hintergrund
             hintergrund.hintergrundTextur = Content.Load<Texture2D>("hintergrund");
 
 
             // Optionen Texturen Laden
 
             // Optionen Zurück Knopf
-
             optionen.z_knopf_Textur = Content.Load<Texture2D>("o_zurueck");
+
+            // Spring Sounds
+            spieler.springen.sound= Content.Load<SoundEffect>("jump");
+            spieler.springen.soundSoundInstance = spieler.springen.sound.CreateInstance();
+
+            
 
         }
 
@@ -231,6 +245,9 @@ namespace xkfd
                 // Zeichne Spieler
                 spriteBatch.Draw(spieler.spielerTextur, spieler.position, Color.White);
 
+
+                // Titel sound aus
+                titelSoundInstance.Pause();
             }
             #endregion
 
@@ -239,6 +256,9 @@ namespace xkfd
             {
                 // Malt alle Animationen des Menüs
                 menue.Draw(spriteBatch);
+
+                // Titel Musik spielen
+                titelSoundInstance.Play(); 
 
             }
             #endregion

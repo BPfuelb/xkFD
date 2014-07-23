@@ -2,11 +2,23 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
+using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Media;
 
 namespace xkfd
 {
     class Laufen:Zustand
     {
+
+        Texture2D test;
+
+        protected override void LoadContent()
+        { 
+            test = Content.Load<2DTexture2D>("");
+        }
 
         public Laufen(Spieler spieler):base(spieler)
         {
@@ -27,7 +39,7 @@ namespace xkfd
         public override void springen()
         {
             // Gehe in Springen Zustand über
-            
+            spieler.springen.sound.Play(); 
             spieler.setZustand(spieler.springen);
         }
 
