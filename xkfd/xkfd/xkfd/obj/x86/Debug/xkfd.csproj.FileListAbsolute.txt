@@ -36,3 +36,9 @@ C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\obj\x86\Debug\Microsoft.Xna
 C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\obj\x86\Debug\xkfd.exe
 C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\obj\x86\Debug\xkfd.pdb
 D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\titel.wma
+D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\lineal.xnb
+D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\bleistift.xnb
+D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\geodreieck.xnb
+D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\irgendwas.xnb
+D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\klammer.xnb
+D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ziel.xnb

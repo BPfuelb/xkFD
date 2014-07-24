@@ -38,10 +38,18 @@ namespace xkfd
         Optionen optionen;
 
         // Sound
-        Song titel; 
+        Song titel;
         // SoundEffectInstance titelSoundInstance;
 
+        // Hindernis Liste
+        List<Hindernis> hindernisListe;
 
+        // Hindernis S Textur
+        Texture2D hindernisTexturS;
+        Texture2D hindernisTexturA;
+        Texture2D hindernisTexturB;
+        Texture2D hindernisTexturC;
+        Texture2D hindernisTexturZ;
 
         public Game1()
         {
@@ -100,7 +108,7 @@ namespace xkfd
             menue.fortsetzenTexture = Content.Load<Texture2D>("m_continue");
             menue.optionenTexture = Content.Load<Texture2D>("m_optionen");
             menue.exitTexture = Content.Load<Texture2D>("m_exit");
-            
+
             // Sound
             titel = Content.Load<Song>("titel");
             // titelSoundInstance = titel.CreateInstance();
@@ -116,10 +124,17 @@ namespace xkfd
             optionen.z_knopf_Textur = Content.Load<Texture2D>("o_zurueck");
 
             // Spring Sounds
-            spieler.springen.sound= Content.Load<SoundEffect>("jump");
+            spieler.springen.sound = Content.Load<SoundEffect>("jump");
             spieler.springen.soundSoundInstance = spieler.springen.sound.CreateInstance();
 
-            
+            // Textur für Hindernisse
+            hindernisTexturS = Content.Load<Texture2D>("lineal");
+            hindernisTexturA = Content.Load<Texture2D>("bleistift");
+            hindernisTexturB = Content.Load<Texture2D>("geodreieck");
+            hindernisTexturC = Content.Load<Texture2D>("klammer");
+            hindernisTexturZ = Content.Load<Texture2D>("ziel");
+
+            hindernisListe = Hindernis.generieHindernisse(1, hindernisTexturS, hindernisTexturA, hindernisTexturB, hindernisTexturC, hindernisTexturZ);
 
         }
 
@@ -138,14 +153,24 @@ namespace xkfd
 
             if (gamestate == Gamestate.running)
             {
-                
+
                 // Leertaste zum Springen
                 if (Keyboard.GetState().IsKeyDown(Keys.Space)) spieler.doSpringen();
-
 
                 // Update spieler
                 //  if (gameTime.TotalGameTime.Milliseconds % 1 == 0)
                 spieler.Update();
+
+
+                
+                if (hindernisListe[1] != null)
+                {
+                    hindernisListe[0].Update();
+                    hindernisListe[1].Update();
+                    if (hindernisListe[0].position.X == -1280)
+                        hindernisListe.RemoveAt(0);
+                }
+                
 
 
                 // Escape ins Menü zurück kehren
@@ -251,6 +276,12 @@ namespace xkfd
                 spieler.Draw(spriteBatch);
                 // spriteBatch.Draw(spieler.spielerTextur, spieler.position, Color.White);
 
+                if (hindernisListe[0]!= null)
+                    spriteBatch.Draw(hindernisListe[0].hindernisTextur, hindernisListe[0].position, Color.White);
+                if (hindernisListe[1] != null)
+                    spriteBatch.Draw(hindernisListe[1].hindernisTextur, hindernisListe[1].position, Color.White);
+                if (hindernisListe[2] != null)
+                    spriteBatch.Draw(hindernisListe[2].hindernisTextur, hindernisListe[2].position, Color.White);
 
                 // Titel sound aus
                 MediaPlayer.Pause();
@@ -264,8 +295,8 @@ namespace xkfd
                 menue.Draw(spriteBatch);
 
                 // Titel Musik spielen
-                if(MediaPlayer.State != MediaState.Playing)
-                MediaPlayer.Play(titel); 
+                if (MediaPlayer.State != MediaState.Playing)
+                    MediaPlayer.Play(titel);
 
             }
             #endregion

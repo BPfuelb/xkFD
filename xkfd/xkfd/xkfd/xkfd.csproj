@@ -112,6 +112,11 @@
     <Compile Include="Fallen.cs" />
     <Compile Include="Gewinnen.cs" />
     <Compile Include="Gleiten.cs" />
+    <Compile Include="Hindernis.cs" />
+    <Compile Include="HindernisA.cs" />
+    <Compile Include="HindernisB.cs" />
+    <Compile Include="HindernisC.cs" />
+    <Compile Include="HindernisS.cs" />
     <Compile Include="Hintergrund.cs" />
     <Compile Include="Hud.cs" />
     <Compile Include="Laufen.cs" />

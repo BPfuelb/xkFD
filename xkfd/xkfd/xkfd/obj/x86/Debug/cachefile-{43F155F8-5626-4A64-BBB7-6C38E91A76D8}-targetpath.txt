@@ -11,3 +11,9 @@ Content\SpriteFont1.xnb
 Content\jump.xnb
 Content\titel.xnb
 Content\titel.wma
+Content\lineal.xnb
+Content\bleistift.xnb
+Content\geodreieck.xnb
+Content\irgendwas.xnb
+Content\klammer.xnb
+Content\ziel.xnb
