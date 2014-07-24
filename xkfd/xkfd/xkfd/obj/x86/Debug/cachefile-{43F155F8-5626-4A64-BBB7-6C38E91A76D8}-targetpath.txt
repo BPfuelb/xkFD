@@ -7,6 +7,7 @@ Content\m_continue.xnb
 Content\m_new.xnb
 Content\SpriteFont1.xnb
 Content\o_zurueck.xnb
-Content\titel.xnb
 Content\jump.xnb
 Content\ani_laufen.xnb
+Content\titel.xnb
+Content\titel.wma

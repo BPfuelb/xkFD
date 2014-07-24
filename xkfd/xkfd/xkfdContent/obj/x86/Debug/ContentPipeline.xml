@@ -83,15 +83,6 @@
       <Time>2014-07-23T01:33:34.5102633+02:00</Time>
     </Item>
     <Item>
-      <Source>titel.wav</Source>
-      <Name>titel</Name>
-      <Importer>WavImporter</Importer>
-      <Processor>SoundEffectProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\titel.xnb</Output>
-      <Time>2014-07-24T16:20:23.6973616+02:00</Time>
-    </Item>
-    <Item>
       <Source>jump.wav</Source>
       <Name>jump</Name>
       <Importer>WavImporter</Importer>
@@ -108,6 +99,16 @@
       <Options>None</Options>
       <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_laufen.xnb</Output>
       <Time>2014-07-24T15:38:17.3268615+02:00</Time>
+    </Item>
+    <Item>
+      <Source>titel.mp3</Source>
+      <Name>titel</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SongProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\titel.xnb</Output>
+      <Extra>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\titel.wma</Extra>
+      <Time>2014-07-24T16:23:56.9105567+02:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>

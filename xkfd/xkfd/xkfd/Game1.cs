@@ -38,8 +38,8 @@ namespace xkfd
         Optionen optionen;
 
         // Sound
-        SoundEffect titel; 
-        SoundEffectInstance titelSoundInstance;
+        Song titel; 
+        // SoundEffectInstance titelSoundInstance;
 
 
 
@@ -100,9 +100,10 @@ namespace xkfd
             menue.fortsetzenTexture = Content.Load<Texture2D>("m_continue");
             menue.optionenTexture = Content.Load<Texture2D>("m_optionen");
             menue.exitTexture = Content.Load<Texture2D>("m_exit");
+            
             // Sound
-            titel = Content.Load<SoundEffect>("titel");
-            titelSoundInstance = titel.CreateInstance();
+            titel = Content.Load<Song>("titel");
+            // titelSoundInstance = titel.CreateInstance();
 
 
             // Hintergrund
@@ -252,7 +253,7 @@ namespace xkfd
 
 
                 // Titel sound aus
-                titelSoundInstance.Pause();
+                MediaPlayer.Pause();
             }
             #endregion
 
@@ -263,7 +264,8 @@ namespace xkfd
                 menue.Draw(spriteBatch);
 
                 // Titel Musik spielen
-                titelSoundInstance.Play(); 
+                if(MediaPlayer.State != MediaState.Playing)
+                MediaPlayer.Play(titel); 
 
             }
             #endregion
