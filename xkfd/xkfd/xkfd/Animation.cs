@@ -44,7 +44,7 @@ namespace xkfd
             Rectangle rect = new Rectangle(0, 0, tileWidth, tileHeight);
 
             rect.X = (index % spalte) * tileWidth;
-            rect.Y = (index % zeile) * tileHeight;
+            rect.Y = (index / spalte) * tileHeight;
 
             sb.Draw(textur, pos, rect, Color.White);
         }
