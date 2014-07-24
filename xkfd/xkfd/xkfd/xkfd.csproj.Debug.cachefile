@@ -5,8 +5,9 @@ Content\m_start.xnb
 Content\hintergrund.xnb
 Content\m_continue.xnb
 Content\m_new.xnb
-Content\SpriteFont1.xnb
 Content\o_zurueck.xnb
-Content\titel.xnb
-Content\jump.xnb
 Content\ani_laufen.xnb
+Content\ani_laufen_std.xnb
+Content\SpriteFont1.xnb
+Content\jump.xnb
+Content\titel.xnb

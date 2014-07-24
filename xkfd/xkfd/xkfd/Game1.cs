@@ -78,7 +78,7 @@ namespace xkfd
 
             // Initialisierung der Test Textur für den Spieler
             // spieler.spielerTextur = Content.Load<Texture2D>("spieler_textur");
-            spieler.laufen.animationTexture = Content.Load<Texture2D>("ani_laufen");
+            spieler.laufen.animationTexture = Content.Load<Texture2D>("ani_laufen_std");
 
             // Lade Schirftart
             schrift = Content.Load<SpriteFont>("SpriteFont1");

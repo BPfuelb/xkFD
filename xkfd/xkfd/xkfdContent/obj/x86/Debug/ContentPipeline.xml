@@ -7,8 +7,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\spieler_textur.xnb</Output>
-      <Time>2014-07-22T16:03:57.4604479+02:00</Time>
+      <Output>C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\spieler_textur.xnb</Output>
+      <Time>2014-07-22T19:33:03.3695211+02:00</Time>
     </Item>
     <Item>
       <Source>m_exit.png</Source>
@@ -16,8 +16,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\m_exit.xnb</Output>
-      <Time>2014-07-22T21:47:50.7316035+02:00</Time>
+      <Output>C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\m_exit.xnb</Output>
+      <Time>2014-07-22T21:58:28.3395609+02:00</Time>
     </Item>
     <Item>
       <Source>m_optionen.png</Source>
@@ -25,8 +25,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\m_optionen.xnb</Output>
-      <Time>2014-07-22T21:16:20.9385135+02:00</Time>
+      <Output>C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\m_optionen.xnb</Output>
+      <Time>2014-07-22T20:51:44.8985772+02:00</Time>
     </Item>
     <Item>
       <Source>m_start.png</Source>
@@ -34,8 +34,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\m_start.xnb</Output>
-      <Time>2014-07-22T21:47:50.7326035+02:00</Time>
+      <Output>C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\m_start.xnb</Output>
+      <Time>2014-07-22T21:58:28.3425611+02:00</Time>
     </Item>
     <Item>
       <Source>hintergrund.png</Source>
@@ -43,8 +43,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\hintergrund.xnb</Output>
-      <Time>2014-07-23T01:38:57.8727586+02:00</Time>
+      <Output>C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\hintergrund.xnb</Output>
+      <Time>2014-07-23T16:42:31.2809805+02:00</Time>
     </Item>
     <Item>
       <Source>m_continue.png</Source>
@@ -52,8 +52,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\m_continue.xnb</Output>
-      <Time>2014-07-23T00:52:48.0163319+02:00</Time>
+      <Output>C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\m_continue.xnb</Output>
+      <Time>2014-07-23T16:42:31.2869809+02:00</Time>
     </Item>
     <Item>
       <Source>m_new.png</Source>
@@ -61,17 +61,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\m_new.xnb</Output>
-      <Time>2014-07-23T00:52:46.9102686+02:00</Time>
-    </Item>
-    <Item>
-      <Source>SpriteFont1.spritefont</Source>
-      <Name>SpriteFont1</Name>
-      <Importer>FontDescriptionImporter</Importer>
-      <Processor>FontDescriptionProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\SpriteFont1.xnb</Output>
-      <Time>2014-07-23T01:31:51.6723813+02:00</Time>
+      <Output>C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\m_new.xnb</Output>
+      <Time>2014-07-23T16:42:31.2939813+02:00</Time>
     </Item>
     <Item>
       <Source>o_zurueck.png</Source>
@@ -79,26 +70,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\o_zurueck.xnb</Output>
-      <Time>2014-07-23T01:33:34.5102633+02:00</Time>
-    </Item>
-    <Item>
-      <Source>titel.wav</Source>
-      <Name>titel</Name>
-      <Importer>WavImporter</Importer>
-      <Processor>SoundEffectProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\titel.xnb</Output>
-      <Time>2014-07-24T16:20:23.6973616+02:00</Time>
-    </Item>
-    <Item>
-      <Source>jump.wav</Source>
-      <Name>jump</Name>
-      <Importer>WavImporter</Importer>
-      <Processor>SoundEffectProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\jump.xnb</Output>
-      <Time>2014-07-23T20:49:19.8097949+02:00</Time>
+      <Output>C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\o_zurueck.xnb</Output>
+      <Time>2014-07-23T16:42:31.2959814+02:00</Time>
     </Item>
     <Item>
       <Source>ani_laufen.png</Source>
@@ -106,8 +79,44 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_laufen.xnb</Output>
-      <Time>2014-07-24T15:38:17.3268615+02:00</Time>
+      <Output>C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_laufen.xnb</Output>
+      <Time>2014-07-24T16:14:31.3035045+02:00</Time>
+    </Item>
+    <Item>
+      <Source>ani_laufen_std.png</Source>
+      <Name>ani_laufen_std</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_laufen_std.xnb</Output>
+      <Time>2014-07-24T16:33:49.6750897+02:00</Time>
+    </Item>
+    <Item>
+      <Source>SpriteFont1.spritefont</Source>
+      <Name>SpriteFont1</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\SpriteFont1.xnb</Output>
+      <Time>2014-07-23T16:42:31.2649796+02:00</Time>
+    </Item>
+    <Item>
+      <Source>jump.wav</Source>
+      <Name>jump</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\jump.xnb</Output>
+      <Time>2014-07-24T09:51:32.2133969+02:00</Time>
+    </Item>
+    <Item>
+      <Source>titel.wav</Source>
+      <Name>titel</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\titel.xnb</Output>
+      <Time>2014-07-24T16:33:43.1327155+02:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
@@ -115,10 +124,10 @@
       <TargetProfile>HiDef</TargetProfile>
       <BuildConfiguration>Debug</BuildConfiguration>
       <CompressContent>false</CompressContent>
-      <RootDirectory>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfdContent\</RootDirectory>
-      <LoggerRootDirectory>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\</LoggerRootDirectory>
-      <IntermediateDirectory>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfdContent\obj\x86\Debug\</IntermediateDirectory>
-      <OutputDirectory>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\</OutputDirectory>
+      <RootDirectory>C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfdContent\</RootDirectory>
+      <LoggerRootDirectory>C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\</LoggerRootDirectory>
+      <IntermediateDirectory>C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfdContent\obj\x86\Debug\</IntermediateDirectory>
+      <OutputDirectory>C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\</OutputDirectory>
     </Settings>
     <Assemblies>
       <Assembly>
@@ -147,7 +156,7 @@
       </Assembly>
       <Assembly>
         <Key>C:\Windows\Microsoft.Net\assembly\GAC_32\Microsoft.Xna.Framework.Content.Pipeline\v4.0_4.0.0.0__842cf8be1de50553\Microsoft.Xna.Framework.Content.Pipeline.dll</Key>
-        <Value>2014-07-21T22:18:45.6327076+02:00</Value>
+        <Value>2014-05-06T00:13:32.0239032+02:00</Value>
       </Assembly>
     </Assemblies>
   </Asset>
