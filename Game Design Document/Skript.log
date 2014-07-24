@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2014.7.21)  21 JUL 2014 21:21
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2014.7.21)  24 JUL 2014 11:42
 entering extended mode
 **C:/Users/Sebtop/Documents/GitHub/xkFD/Game*Design*Document/Skript.tex
 ("C:/Users/Sebtop/Documents/GitHub/xkFD/Game Design Document/Skript.tex"
@@ -1013,14 +1013,14 @@ File: Grafik/FH_Logo.png Graphic file (type png)
 <use Grafik/FH_Logo.png>
 Package pdftex.def Info: Grafik/FH_Logo.png used on input line 8.
 (pdftex.def)             Requested size: 223.20836pt x 50.81471pt.
- <Grafik/logo.png, id=51, 33.42488pt x 14.99602pt>
+ <Grafik/logo.png, id=51, 185.69376pt x 83.31125pt>
 File: Grafik/logo.png Graphic file (type png)
 
 <use Grafik/logo.png>
 Package pdftex.def Info: Grafik/logo.png used on input line 35.
-(pdftex.def)             Requested size: 167.12387pt x 74.97978pt.
+(pdftex.def)             Requested size: 185.6933pt x 83.31104pt.
 
-<Grafik/Hintergrund.png, id=56, 597.73312pt x 845.40843pt>
+<Grafik/Hintergrund.png, id=57, 597.73312pt x 845.40843pt>
 File: Grafik/Hintergrund.png Graphic file (type png)
 
 <use Grafik/Hintergrund.png>
@@ -1041,10 +1041,10 @@ Package pdftex.def Info: Grafik/Hintergrund.png used on input line 65.
 (pdftex.def)             Requested size: 597.54924pt x 845.07095pt.
  [2])
 ("C:\Users\Sebtop\Documents\GitHub\xkFD\Game Design Document\Kapitel1.tex"
-<sketch/char.png, id=87, 52.39575pt x 127.37587pt>
-File: sketch/char.png Graphic file (type png)
- <use sketch/char.png>
-Package pdftex.def Info: sketch/char.png used on input line 24.
+<Grafik/char.png, id=89, 52.39575pt x 127.37587pt>
+File: Grafik/char.png Graphic file (type png)
+ <use Grafik/char.png>
+Package pdftex.def Info: Grafik/char.png used on input line 24.
 (pdftex.def)             Requested size: 47.15573pt x 114.63719pt.
 LaTeX Font Info:    Try loading font information for OMS+cmr on input line 46.
 
@@ -1064,7 +1064,7 @@ File: Grafik/Hintergrund.png Graphic file (type png)
 <use Grafik/Hintergrund.png>
 Package pdftex.def Info: Grafik/Hintergrund.png used on input line 60.
 (pdftex.def)             Requested size: 597.54924pt x 845.07095pt.
- [3 <C:/Users/Sebtop/Documents/GitHub/xkFD/Game Design Document/sketch/char.png
+ [3 <C:/Users/Sebtop/Documents/GitHub/xkFD/Game Design Document/Grafik/char.png
 >]
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -1099,9 +1099,9 @@ Package rerunfilecheck Info: File `Skript.out' has not changed.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 129.
  ) 
 Here is how much of TeX's memory you used:
- 19737 strings out of 493921
- 357421 string characters out of 3144873
- 449679 words of memory out of 3000000
+ 19736 strings out of 493921
+ 357414 string characters out of 3144873
+ 450679 words of memory out of 3000000
  22626 multiletter control sequences out of 15000+200000
  14612 words of font info for 61 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
@@ -1115,9 +1115,9 @@ iles (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Program Files
  (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files (
 x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti12.pfb><C:/Program Files (x8
 6)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on Skript.pdf (5 pages, 180523 bytes).
+Output written on Skript.pdf (5 pages, 179914 bytes).
 PDF statistics:
- 143 PDF objects out of 1000 (max. 8388607)
+ 145 PDF objects out of 1000 (max. 8388607)
  22 named destinations out of 1000 (max. 500000)
  121 words of extra memory for PDF output out of 10000 (max. 10000000)
 
