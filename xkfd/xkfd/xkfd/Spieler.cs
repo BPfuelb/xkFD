@@ -18,7 +18,7 @@ namespace xkfd
         public Zustand gewinnen;
         public Zustand fallen;
 
-        private Zustand aktuellerZustand;
+        public Zustand aktuellerZustand;
 
         // Punktestand
         private int punkte;
@@ -30,7 +30,7 @@ namespace xkfd
         private Rectangle hitbox;
 
         // Spieler Textur zum Testen
-        public Texture2D spielerTextur;
+        // public Texture2D spielerTextur;
 
         // Konstruktor
         public Spieler()
@@ -100,6 +100,11 @@ namespace xkfd
         public void Update()
         {
             aktuellerZustand.update();
+        }
+
+        public void Draw(SpriteBatch sb)
+        {
+            aktuellerZustand.Draw(sb);
         }
     }
 }

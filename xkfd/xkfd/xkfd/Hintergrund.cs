@@ -24,7 +24,7 @@ namespace xkfd
 
         public void Update()
         {
-            hintegrundPosition.X = hintegrundPosition.X - 1;
+            hintegrundPosition.X = hintegrundPosition.X - 2;
             if (hintegrundPosition.X == -282)
                 hintegrundPosition.X = 0;
         }

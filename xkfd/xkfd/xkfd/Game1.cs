@@ -77,7 +77,8 @@ namespace xkfd
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // Initialisierung der Test Textur für den Spieler
-            spieler.spielerTextur = Content.Load<Texture2D>("spieler_textur");
+            // spieler.spielerTextur = Content.Load<Texture2D>("spieler_textur");
+            spieler.laufen.animationTexture = Content.Load<Texture2D>("ani_laufen");
 
             // Lade Schirftart
             schrift = Content.Load<SpriteFont>("SpriteFont1");
@@ -129,11 +130,14 @@ namespace xkfd
 
         protected override void Update(GameTime gameTime)
         {
+            // Animation zum Laufen laden
+            if (spieler.laufen.animation == null) spieler.laufen.animation = new Animation(spieler.laufen.animationTexture, 4, 3, 6);
 
             #region GamestateRunning
 
             if (gamestate == Gamestate.running)
             {
+                
                 // Leertaste zum Springen
                 if (Keyboard.GetState().IsKeyDown(Keys.Space)) spieler.doSpringen();
 
@@ -243,7 +247,8 @@ namespace xkfd
             if (gamestate == Gamestate.running)
             {
                 // Zeichne Spieler
-                spriteBatch.Draw(spieler.spielerTextur, spieler.position, Color.White);
+                spieler.Draw(spriteBatch);
+                // spriteBatch.Draw(spieler.spielerTextur, spieler.position, Color.White);
 
 
                 // Titel sound aus

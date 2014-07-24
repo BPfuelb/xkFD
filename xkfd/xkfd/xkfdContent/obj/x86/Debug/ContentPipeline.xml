@@ -100,6 +100,15 @@
       <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\jump.xnb</Output>
       <Time>2014-07-23T20:49:19.8097949+02:00</Time>
     </Item>
+    <Item>
+      <Source>ani_laufen.png</Source>
+      <Name>ani_laufen</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_laufen.xnb</Output>
+      <Time>2014-07-24T15:38:17.3268615+02:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <TargetPlatform>Windows</TargetPlatform>

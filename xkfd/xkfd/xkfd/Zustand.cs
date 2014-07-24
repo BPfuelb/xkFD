@@ -14,6 +14,8 @@ namespace xkfd
     {
         public Spieler spieler;
         public Texture2D animationTexture;
+        public Animation animation;
+
         public SoundEffect sound;
         public SoundEffectInstance soundSoundInstance;
 
@@ -33,6 +35,7 @@ namespace xkfd
         abstract public void fallen();
 
         abstract public void update();
+        abstract public void Draw(SpriteBatch sb);
     }
 
     
