@@ -86,21 +86,19 @@ namespace xkfd
 
             // Initialisierung der Test Textur für den Spieler
             // spieler.spielerTextur = Content.Load<Texture2D>("spieler_textur");
-            spieler.laufen.animationTexture = Content.Load<Texture2D>("ani_laufen_std");
 
             // Lade Schirftart
             schrift = Content.Load<SpriteFont>("SpriteFont1");
 
             // Initialisierung der Animationen 
-            /* 
-            spieler.laufen.animationTexture = Content.Load<Texture2D>("animation_laufen");
-            spieler.springen.animationTexture = Content.Load<Texture2D>("animation_springen");
-            spieler.ducken.animationTexture = Content.Load<Texture2D>("animation_ducken");
-            spieler.gleiten.animationTexture = Content.Load<Texture2D>("animation_gleiten");
-            spieler.sterben.animationTexture = Content.Load<Texture2D>("animation_sterben");
-            spieler.gewinnen.animationTexture = Content.Load<Texture2D>("animation_gewinnen");
-            spieler.fallen.animationTexture = Content.Load<Texture2D>("animation_gewinnen");
-             */
+            spieler.ducken.animationTexture = Content.Load<Texture2D>("ani_ducken_std");
+            spieler.fallen.animationTexture = Content.Load<Texture2D>("ani_fallen_std");
+            spieler.gewinnen.animationTexture = Content.Load<Texture2D>("ani_gewinnen_std");
+            spieler.gleiten.animationTexture = Content.Load<Texture2D>("ani_gleiten_std");
+            spieler.laufen.animationTexture = Content.Load<Texture2D>("ani_laufen_std");
+            spieler.springen.animationTexture = Content.Load<Texture2D>("ani_springen_std");
+            spieler.sterben.animationTexture = Content.Load<Texture2D>("ani_sterben_std");
+            
 
             // Initialisiere Menü Animationen
             menue.startTextur = Content.Load<Texture2D>("m_start");
@@ -147,7 +145,13 @@ namespace xkfd
         protected override void Update(GameTime gameTime)
         {
             // Animation zum Laufen laden
+            if (spieler.ducken.animation == null) spieler.ducken.animation = new Animation(spieler.laufen.animationTexture, 4, 3, 6);
+            if (spieler.fallen.animation == null) spieler.fallen.animation = new Animation(spieler.fallen.animationTexture, 4, 3, 6);
+            if (spieler.gewinnen.animation == null) spieler.gewinnen.animation = new Animation(spieler.gewinnen.animationTexture, 4, 3, 6);
+            if (spieler.gleiten.animation == null) spieler.gleiten.animation = new Animation(spieler.gleiten.animationTexture, 4, 3, 6);
             if (spieler.laufen.animation == null) spieler.laufen.animation = new Animation(spieler.laufen.animationTexture, 4, 3, 6);
+            if (spieler.springen.animation == null) spieler.springen.animation = new Animation(spieler.springen.animationTexture, 4, 3, 6);
+            if (spieler.sterben.animation == null) spieler.sterben.animation = new Animation(spieler.sterben.animationTexture, 4, 3, 6);
 
             #region GamestateRunning
 

@@ -1,21 +1,29 @@
-D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
-D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\spieler_textur.xnb
-D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\xkfd.exe
-D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\xkfd.pdb
-D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\obj\x86\Debug\xkfd.exe
-D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\obj\x86\Debug\xkfd.pdb
-D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\SpriteFont1.xnb
-D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\m_exit.xnb
-D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\m_optionen.xnb
-D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\m_start.xnb
-D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\hintergrund.xnb
-D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\m_continue.xnb
-D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\m_new.xnb
-D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\o_zurueck.xnb
-D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\titel.xnb
-D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\obj\x86\Debug\xkfd.csprojResolveAssemblyReference.cache
-D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\jump.xnb
-D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_laufen.xnb
+xkfd\xkfd\bin\x86\Debug\Content\spieler_textur.xnb
+xkfd\xkfd\bin\x86\Debug\Content\m_exit.xnb
+xkfd\xkfd\bin\x86\Debug\Content\m_optionen.xnb
+xkfd\xkfd\bin\x86\Debug\Content\m_start.xnb
+xkfd\xkfd\bin\x86\Debug\Content\hintergrund.xnb
+xkfd\xkfd\bin\x86\Debug\Content\m_continue.xnb
+xkfd\xkfd\bin\x86\Debug\Content\m_new.xnb
+xkfd\xkfd\bin\x86\Debug\Content\o_zurueck.xnb
+xkfd\xkfd\bin\x86\Debug\Content\ani_laufen.xnb
+xkfd\xkfd\bin\x86\Debug\Content\SpriteFont1.xnb
+xkfd\xkfd\bin\x86\Debug\Content\jump.xnb
+xkfd\xkfd\bin\x86\Debug\Content\titel.xnb
+xkfd\xkfd\bin\x86\Debug\xkfd.exe
+xkfd\xkfd\bin\x86\Debug\xkfd.pdb
+xkfd\xkfd\obj\x86\Debug\xkfd.csprojResolveAssemblyReference.cache
+xkfd\xkfd\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+xkfd\xkfd\obj\x86\Debug\xkfd.exe
+xkfd\xkfd\obj\x86\Debug\xkfd.pdb
+xkfd\xkfd\bin\x86\Debug\Content\lineal.xnb
+xkfd\xkfd\bin\x86\Debug\Content\bleistift.xnb
+xkfd\xkfd\bin\x86\Debug\Content\geodreieck.xnb
+xkfd\xkfd\bin\x86\Debug\Content\irgendwas.xnb
+xkfd\xkfd\bin\x86\Debug\Content\klammer.xnb
+xkfd\xkfd\bin\x86\Debug\Content\ziel.xnb
+xkfd\xkfd\bin\x86\Debug\Content\titel.wma
+xkfd\xkfd\bin\x86\Debug\Content\ani_laufen_std.xnb
 C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\spieler_textur.xnb
 C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\m_exit.xnb
 C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\m_optionen.xnb
@@ -25,27 +33,26 @@ C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\m_con
 C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\m_new.xnb
 C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\o_zurueck.xnb
 C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_laufen.xnb
-C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\SpriteFont1.xnb
-C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\jump.xnb
-C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\titel.xnb
-C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\xkfd.exe
-C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\xkfd.pdb
-C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\obj\x86\Debug\xkfd.csprojResolveAssemblyReference.cache
-C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
-C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\obj\x86\Debug\xkfd.exe
-C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\obj\x86\Debug\xkfd.pdb
-D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\titel.wma
-D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\lineal.xnb
-D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\bleistift.xnb
-D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\geodreieck.xnb
-D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\irgendwas.xnb
-D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\klammer.xnb
-D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ziel.xnb
 C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\lineal.xnb
 C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\bleistift.xnb
 C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\geodreieck.xnb
 C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\irgendwas.xnb
 C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\klammer.xnb
 C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ziel.xnb
-C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\titel.wma
 C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_laufen_std.xnb
+C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\SpriteFont1.xnb
+C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\jump.xnb
+C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\titel.xnb
+C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\titel.wma
+C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\xkfd.exe
+C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\xkfd.pdb
+C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\obj\x86\Debug\xkfd.csprojResolveAssemblyReference.cache
+C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\obj\x86\Debug\xkfd.exe
+C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\obj\x86\Debug\xkfd.pdb
+C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_ducken_std.xnb
+C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_fallen_std.xnb
+C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_gewinnen_std.xnb
+C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_gleiten_std.xnb
+C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_springen_std.xnb
+C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_sterben_std.xnb

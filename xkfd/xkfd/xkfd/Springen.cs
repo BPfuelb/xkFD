@@ -8,10 +8,9 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Media;
 
-
 namespace xkfd
 {
-    class Springen :Zustand
+    class Springen:Zustand
     {
         int sprungHoehe = 10;
 
@@ -30,9 +29,10 @@ namespace xkfd
             }
         }
 
+        
         public override void Draw(SpriteBatch sb)
         {
-
+            animation.Draw(sb, this.spieler.position);
         }
 
 

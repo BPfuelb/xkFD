@@ -137,6 +137,15 @@
       <Time>2014-07-25T09:07:26.4651746+02:00</Time>
     </Item>
     <Item>
+      <Source>ani_laufen_std.png</Source>
+      <Name>ani_laufen_std</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_laufen_std.xnb</Output>
+      <Time>2014-07-24T16:47:01.3286065+02:00</Time>
+    </Item>
+    <Item>
       <Source>SpriteFont1.spritefont</Source>
       <Name>SpriteFont1</Name>
       <Importer>FontDescriptionImporter</Importer>
@@ -165,12 +174,57 @@
       <Time>2014-07-24T17:25:19.1824638+02:00</Time>
     </Item>
     <Item>
-      <Source>ani_laufen_std.png</Source>
-      <Name>ani_laufen_std</Name>
+      <Source>ani_ducken_std.png</Source>
+      <Name>ani_ducken_std</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_laufen_std.xnb</Output>
+      <Output>C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_ducken_std.xnb</Output>
+      <Time>2014-07-24T16:47:01.3286065+02:00</Time>
+    </Item>
+    <Item>
+      <Source>ani_fallen_std.png</Source>
+      <Name>ani_fallen_std</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_fallen_std.xnb</Output>
+      <Time>2014-07-24T16:47:01.3286065+02:00</Time>
+    </Item>
+    <Item>
+      <Source>ani_gewinnen_std.png</Source>
+      <Name>ani_gewinnen_std</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_gewinnen_std.xnb</Output>
+      <Time>2014-07-24T16:47:01.3286065+02:00</Time>
+    </Item>
+    <Item>
+      <Source>ani_gleiten_std.png</Source>
+      <Name>ani_gleiten_std</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_gleiten_std.xnb</Output>
+      <Time>2014-07-24T16:47:01.3286065+02:00</Time>
+    </Item>
+    <Item>
+      <Source>ani_springen_std.png</Source>
+      <Name>ani_springen_std</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_springen_std.xnb</Output>
+      <Time>2014-07-24T16:47:01.3286065+02:00</Time>
+    </Item>
+    <Item>
+      <Source>ani_sterben_std.png</Source>
+      <Name>ani_sterben_std</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_sterben_std.xnb</Output>
       <Time>2014-07-24T16:47:01.3286065+02:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>

@@ -13,21 +13,28 @@ namespace xkfd
     class Fallen : Zustand
     {
         public int beschleunigung;
+        public Rectangle hitbox;
+
         public Fallen(Spieler spieler):base(spieler)
         {
             beschleunigung = 0;
+            hitbox = new Rectangle(0, 0, animationTexture.Width, animationTexture.Height);
         }
 
         
         public override void update()
         {
+            /*if (hitbox.Intersects(aktuelleUmgebung.hitbox))
+            {
+                spieler.doLaufen();
+            }*/
             beschleunigung++;
             spieler.position.Y += beschleunigung*2;
         }
 
         public override void Draw(SpriteBatch sb)
         {
-
+            animation.Draw(sb, this.spieler.position);
         }
 
         // Zustandsänderungen bei Aktionen
