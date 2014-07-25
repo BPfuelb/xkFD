@@ -25,7 +25,6 @@ C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\m_con
 C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\m_new.xnb
 C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\o_zurueck.xnb
 C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_laufen.xnb
-C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_laufen_std.xnb
 C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\SpriteFont1.xnb
 C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\jump.xnb
 C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\titel.xnb
@@ -42,3 +41,11 @@ D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Cont
 D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\irgendwas.xnb
 D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\klammer.xnb
 D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ziel.xnb
+C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\lineal.xnb
+C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\bleistift.xnb
+C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\geodreieck.xnb
+C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\irgendwas.xnb
+C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\klammer.xnb
+C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ziel.xnb
+C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\titel.wma
+C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_laufen_std.xnb
