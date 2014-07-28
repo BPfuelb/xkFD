@@ -43,7 +43,7 @@ namespace xkfd
             }*/
             beschleunigung++;
             spieler.position.Y += beschleunigung*2;
-
+            // spieler.position.Y += 1;
             // Aktualisierung der Hitbox
             
         }

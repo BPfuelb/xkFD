@@ -211,7 +211,22 @@ namespace xkfd
 
                 // Kollisionserkennung
 
-                // hindernisListe[1].
+                
+                foreach(Hitbox hitbox in hindernisListe[3].gibHitboxen())
+                {
+                    if (spieler.aktuellerZustand.hitbox.Intersects(hitbox.hitbox))
+                    {
+
+                        spieler.position.Y = hitbox.hitbox.Y - 170;
+                        spieler.aktuellerZustand.hitbox.Y = hitbox.hitbox.Y - 170;
+                        spieler.doLaufen();
+                    }
+                    
+                }
+
+
+                
+                
 
 
             }
@@ -309,14 +324,14 @@ namespace xkfd
             if (gamestate == Gamestate.running)
             {
                 // Spieler Hitbox malen zum Testen
-                spriteBatch.Draw(dummyTexture, spieler.aktuellerZustand.hitbox, Color.Red);
+               //  spriteBatch.Draw(dummyTexture, spieler.aktuellerZustand.hitbox, Color.Red);
 
 
 
                 // Zeichne Spieler
                 spieler.Draw(spriteBatch);
                 // spriteBatch.Draw(spieler.spielerTextur, spieler.position, Color.White);
-
+                /*
                 foreach (Hindernis hindernis in hindernisListe)
                 {
                     foreach (Hitbox hitbox in hindernis.gibHitboxen())
@@ -324,7 +339,7 @@ namespace xkfd
                         spriteBatch.Draw(dummyTexture, hitbox.hitbox, Color.Red);
                     }
                 }
-
+                */
 
                 // if (hindernisListe[1] != null)
                 spriteBatch.Draw(hindernisListe[1].hindernisTextur, hindernisListe[1].position, Color.White);
