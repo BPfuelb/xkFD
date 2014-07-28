@@ -31,8 +31,7 @@ namespace xkfd
         // Spieler Position
         public Vector2 position;
 
-        // Hitbox
-        private Rectangle hitbox;
+
 
         // Spieler Textur zum Testen
         // public Texture2D spielerTextur;
@@ -40,6 +39,8 @@ namespace xkfd
         // Konstruktor
         public Spieler()
         {
+            position = new Vector2(1280 / 2 - 128, 720 / 2);
+
             laufen = new Laufen(this);
             springen = new Springen(this);
             ducken = new Ducken(this);
@@ -52,7 +53,9 @@ namespace xkfd
 
             punkte = 0; // Punktestand initialisieren
 
-            position = new Vector2(1280 / 2 - 128, 720 / 2);
+            
+
+            
         }
 
 
@@ -72,11 +75,15 @@ namespace xkfd
 
         public void doSpringen()
         {
+            springen.hitbox.X = (int)position.X + 42;
+            springen.hitbox.Y = (int)position.Y + 63;
             aktuellerZustand.springen();
         }
 
         public void doDucken()
         {
+            ducken.hitbox.X = (int)position.X + 42;
+            ducken.hitbox.Y = (int)position.Y + 63;
             aktuellerZustand.ducken();
         }
 
@@ -92,11 +99,16 @@ namespace xkfd
 
         public void doFallen()
         {
+            fallen.hitbox.X = (int)position.X + 42;
+            fallen.hitbox.Y = (int)position.Y + 63;
             aktuellerZustand.fallen();
         }
 
         public void doGleiten()
         {
+            gleiten.hitbox.X = (int)position.X + 42;
+            gleiten.hitbox.Y = (int)position.Y + 63;
+
             aktuellerZustand.gleiten();
         }
         #endregion
@@ -104,6 +116,9 @@ namespace xkfd
 
         public void Update()
         {
+
+            aktuellerZustand.hitbox.X = (int)position.X + 42;
+            aktuellerZustand.hitbox.Y = (int)position.Y + 63;
             aktuellerZustand.update();
         }
 

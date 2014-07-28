@@ -10,26 +10,42 @@ using Microsoft.Xna.Framework.Media;
 
 namespace xkfd
 {
-    class Fallen : Zustand
+    unsafe class Fallen : Zustand
     {
         public int beschleunigung;
-        public Rectangle hitbox;
+
+        float* hindernisPositionX;
+        float* hindernisPositionY;
 
         public Fallen(Spieler spieler):base(spieler)
         {
             beschleunigung = 0;
-            hitbox = new Rectangle(0, 0, animationTexture.Width, animationTexture.Height);
+
+            // Position der Hitbox vom Player null punkt aus(42,63)
+            // Größe der Hitbox 53 x 104 
+
+            
+            /*
+            hindernisPositionX = &spieler.position.X;
+            hindernisPositionY = &spieler.position.Y;
+            */
+              
+            hitbox = new Rectangle((int)spieler.position.X + 42, (int)spieler.position.Y + 63, 53, 104);
         }
 
         
         public override void update()
         {
+
             /*if (hitbox.Intersects(aktuelleUmgebung.hitbox))
             {
                 spieler.doLaufen();
             }*/
             beschleunigung++;
             spieler.position.Y += beschleunigung*2;
+
+            // Aktualisierung der Hitbox
+            
         }
 
         public override void Draw(SpriteBatch sb)

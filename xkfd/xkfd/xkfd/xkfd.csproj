@@ -46,6 +46,7 @@
     <UseVSHostingProcess>false</UseVSHostingProcess>
     <PlatformTarget>x86</PlatformTarget>
     <XnaCompressContent>false</XnaCompressContent>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <DebugType>pdbonly</DebugType>
@@ -116,8 +117,10 @@
     <Compile Include="HindernisA.cs" />
     <Compile Include="HindernisB.cs" />
     <Compile Include="HindernisC.cs" />
+    <Compile Include="HindernisD.cs" />
     <Compile Include="HindernisS.cs" />
     <Compile Include="Hintergrund.cs" />
+    <Compile Include="Hitbox.cs" />
     <Compile Include="Hud.cs" />
     <Compile Include="Laufen.cs" />
     <Compile Include="Menue.cs" />

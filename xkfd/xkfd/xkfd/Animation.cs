@@ -12,7 +12,7 @@ namespace xkfd
 
         Texture2D textur;
         int spalte, zeile;
-        int index;
+       public  int index;
         int slowMoFactor;
         int slowMoTimer;
 

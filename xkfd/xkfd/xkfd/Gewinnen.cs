@@ -18,13 +18,13 @@ namespace xkfd
 
         public override void update()
         {
-
+            animation.Update();
         }
 
 
         public override void Draw(SpriteBatch sb)
         {
-
+            animation.Draw(sb, this.spieler.position);
         }
 
         // Zustandsänderungen bei Aktionen

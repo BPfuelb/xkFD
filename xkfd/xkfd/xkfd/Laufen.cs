@@ -15,6 +15,9 @@ namespace xkfd
 
         public Laufen(Spieler spieler):base(spieler)
         {
+            // Position der Hitbox vom Player null punkt aus(42,63)
+            // Größe der Hitbox 53 x 104 
+            hitbox = new Rectangle((int)spieler.position.X + 42, (int)spieler.position.Y + 63, 53, 104);
         }
 
         public override void update()
@@ -36,9 +39,28 @@ namespace xkfd
 
         public override void springen()
         {
-            // Gehe in Springen Zustand über
-            spieler.springen.sound.Play(); 
-            spieler.setZustand(spieler.springen);
+            /* 
+            // Optimierung richtiger Absprung Animation
+            switch(animation.index)
+            {
+                case 0:
+                case 4:
+                case 5:
+                case 6:
+                case 10:
+                case 11:
+
+                    // Gehe in Springen Zustand über
+                    spieler.springen.sound.Play();
+                    spieler.setZustand(spieler.springen);
+                    break;
+            }
+             */
+
+
+                 // Gehe in Springen Zustand über
+                    spieler.springen.sound.Play();
+                    spieler.setZustand(spieler.springen);
         }
 
         public override void gleiten()

@@ -44,15 +44,23 @@ namespace xkfd
         // Hindernis Liste
         List<Hindernis> hindernisListe;
 
-        // Hindernis S Textur
+
+
+        // Hindernis Texturen
         Texture2D hindernisTexturS;
         Texture2D hindernisTexturA;
         Texture2D hindernisTexturB;
         Texture2D hindernisTexturC;
+        Texture2D hindernisTexturD;
         Texture2D hindernisTexturZ;
+
+        Texture2D dummyTexture;
+
 
         public Game1()
         {
+
+
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
 
@@ -67,6 +75,8 @@ namespace xkfd
 
             // Optionen Initialisieren
             optionen = new Optionen();
+
+
 
         }
 
@@ -98,7 +108,7 @@ namespace xkfd
             spieler.laufen.animationTexture = Content.Load<Texture2D>("ani_laufen_std");
             spieler.springen.animationTexture = Content.Load<Texture2D>("ani_springen_std");
             spieler.sterben.animationTexture = Content.Load<Texture2D>("ani_sterben_std");
-            
+
 
             // Initialisiere Menü Animationen
             menue.startTextur = Content.Load<Texture2D>("m_start");
@@ -126,14 +136,20 @@ namespace xkfd
             spieler.springen.soundSoundInstance = spieler.springen.sound.CreateInstance();
 
             // Textur für Hindernisse
-            hindernisTexturS = Content.Load<Texture2D>("lineal");
-            hindernisTexturA = Content.Load<Texture2D>("bleistift");
-            hindernisTexturB = Content.Load<Texture2D>("geodreieck");
-            hindernisTexturC = Content.Load<Texture2D>("klammer");
-            hindernisTexturZ = Content.Load<Texture2D>("ziel");
+            hindernisTexturS = Content.Load<Texture2D>("hindernisS");
+            hindernisTexturA = Content.Load<Texture2D>("hindernisA");
+            hindernisTexturB = Content.Load<Texture2D>("hindernisB");
+            hindernisTexturC = Content.Load<Texture2D>("hindernisC");
+            hindernisTexturD = Content.Load<Texture2D>("hindernisD");
+            hindernisTexturZ = Content.Load<Texture2D>("hindernisZ");
 
-            hindernisListe = Hindernis.generieHindernisse(1, hindernisTexturS, hindernisTexturA, hindernisTexturB, hindernisTexturC, hindernisTexturZ);
+            // Liste mit Hindernisse die generiert werden
+            hindernisListe = Hindernis.generieHindernisse(10, hindernisTexturS, hindernisTexturA, hindernisTexturB, hindernisTexturC, hindernisTexturD, hindernisTexturZ);
 
+
+            // Test textur
+            dummyTexture = new Texture2D(GraphicsDevice, 1, 1);
+            dummyTexture.SetData(new Color[] { Color.Red });
         }
 
 
@@ -149,7 +165,7 @@ namespace xkfd
             if (spieler.fallen.animation == null) spieler.fallen.animation = new Animation(spieler.fallen.animationTexture, 4, 3, 6);
             if (spieler.gewinnen.animation == null) spieler.gewinnen.animation = new Animation(spieler.gewinnen.animationTexture, 4, 3, 6);
             if (spieler.gleiten.animation == null) spieler.gleiten.animation = new Animation(spieler.gleiten.animationTexture, 4, 3, 6);
-            if (spieler.laufen.animation == null) spieler.laufen.animation = new Animation(spieler.laufen.animationTexture, 4, 3, 6);
+            if (spieler.laufen.animation == null) spieler.laufen.animation = new Animation(spieler.laufen.animationTexture, 4, 3, 3);
             if (spieler.springen.animation == null) spieler.springen.animation = new Animation(spieler.springen.animationTexture, 4, 3, 6);
             if (spieler.sterben.animation == null) spieler.sterben.animation = new Animation(spieler.sterben.animationTexture, 4, 3, 6);
 
@@ -166,15 +182,23 @@ namespace xkfd
                 spieler.Update();
 
 
-                
-                if (hindernisListe[1] != null)
+
+                if (hindernisListe.Count > 6)
                 {
                     hindernisListe[0].Update();
                     hindernisListe[1].Update();
-                    if (hindernisListe[0].position.X == -1280)
+                    hindernisListe[2].Update();
+                    hindernisListe[3].Update();
+                    hindernisListe[4].Update();
+                    hindernisListe[5].Update();
+                    if (hindernisListe[1].position.X <= -320)
                         hindernisListe.RemoveAt(0);
+                    hintergrund.Update();
                 }
-                
+                else
+                    spieler.doGewinnen();
+
+
 
 
                 // Escape ins Menü zurück kehren
@@ -184,7 +208,15 @@ namespace xkfd
                     gamestate = Gamestate.menue;
                 }
 
+
+                // Kollisionserkennung
+
+                // hindernisListe[1].
+
+
             }
+
+
             #endregion
 
             #region GamestateMenue
@@ -258,7 +290,7 @@ namespace xkfd
             #endregion
 
             // Weiterschieben des Hintergrunds
-            hintergrund.Update();
+
 
             base.Update(gameTime);
         }
@@ -276,16 +308,36 @@ namespace xkfd
 
             if (gamestate == Gamestate.running)
             {
+                // Spieler Hitbox malen zum Testen
+                spriteBatch.Draw(dummyTexture, spieler.aktuellerZustand.hitbox, Color.Red);
+
+
+
                 // Zeichne Spieler
                 spieler.Draw(spriteBatch);
                 // spriteBatch.Draw(spieler.spielerTextur, spieler.position, Color.White);
 
-                if (hindernisListe[0]!= null)
-                    spriteBatch.Draw(hindernisListe[0].hindernisTextur, hindernisListe[0].position, Color.White);
-                if (hindernisListe[1] != null)
-                    spriteBatch.Draw(hindernisListe[1].hindernisTextur, hindernisListe[1].position, Color.White);
-                if (hindernisListe[2] != null)
-                    spriteBatch.Draw(hindernisListe[2].hindernisTextur, hindernisListe[2].position, Color.White);
+
+                // if (hindernisListe[1] != null)
+                spriteBatch.Draw(hindernisListe[1].hindernisTextur, hindernisListe[1].position, Color.White);
+                // if (hindernisListe[2] != null)
+                spriteBatch.Draw(hindernisListe[2].hindernisTextur, hindernisListe[2].position, Color.White);
+                // if (hindernisListe[3] != null)
+                spriteBatch.Draw(hindernisListe[3].hindernisTextur, hindernisListe[3].position, Color.White);
+                // if (hindernisListe[4] != null)
+                spriteBatch.Draw(hindernisListe[4].hindernisTextur, hindernisListe[4].position, Color.White);
+                // if (hindernisListe[5] != null)
+                spriteBatch.Draw(hindernisListe[5].hindernisTextur, hindernisListe[5].position, Color.White);
+
+
+                foreach (Hindernis hindernis in hindernisListe)
+                {
+                    foreach (Hitbox hitbox in hindernis.gibHitboxen())
+                    {
+                        spriteBatch.Draw(dummyTexture, hitbox.hitbox, Color.Red);
+                    }
+                }
+
 
                 // Titel sound aus
                 MediaPlayer.Pause();

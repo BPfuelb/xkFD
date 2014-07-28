@@ -21,6 +21,8 @@ namespace xkfd
 
         }
 
-
+        public List<Rectangle> gibHitboxen() {
+        return new List<Rectangle>();
+        }
     }
 }

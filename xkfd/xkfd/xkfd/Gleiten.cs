@@ -14,6 +14,9 @@ namespace xkfd
     {
         public Gleiten(Spieler spieler):base(spieler)
         {
+            // Position der Hitbox vom Player null punkt aus(42,63)
+            // Größe der Hitbox 53 x 104 
+            hitbox = new Rectangle((int)spieler.position.X + 42, (int)spieler.position.Y + 63, 53, 104);
         }
 
         public override void update()
