@@ -15,9 +15,18 @@ namespace xkfd
     class HindernisC : Hindernis
     {
 
+        Hitbox bodenHitbox;
+        Hitbox stufeHitbox;
+
         public HindernisC(Texture2D textur, Vector2 position)
             : base(textur, position)
         {
+
+            bodenHitbox = new Hitbox((int)position.X, (int)position.Y + 488, 320, 30);
+            stufeHitbox = new Hitbox((int)position.X + 90, (int)position.Y + 458, 150, 30);
+
+            hitboxListe.Add(stufeHitbox);
+            hitboxListe.Add(bodenHitbox);
 
         }
 

@@ -41,7 +41,7 @@ namespace xkfd
             // Erzeuge mit Schleife Anzahl von zufälligen Hindernissen
             for (int i = 0; i < anzahl; i++)
             {
-                switch ((int)random.Next(3))
+                switch ((int)random.Next(4))
                 {
                     case 0:
                         liste.Add(new HindernisA(hindernisATextur, new Vector2(1280, 40)));

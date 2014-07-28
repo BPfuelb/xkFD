@@ -317,6 +317,14 @@ namespace xkfd
                 spieler.Draw(spriteBatch);
                 // spriteBatch.Draw(spieler.spielerTextur, spieler.position, Color.White);
 
+                foreach (Hindernis hindernis in hindernisListe)
+                {
+                    foreach (Hitbox hitbox in hindernis.gibHitboxen())
+                    {
+                        spriteBatch.Draw(dummyTexture, hitbox.hitbox, Color.Red);
+                    }
+                }
+
 
                 // if (hindernisListe[1] != null)
                 spriteBatch.Draw(hindernisListe[1].hindernisTextur, hindernisListe[1].position, Color.White);
@@ -330,13 +338,7 @@ namespace xkfd
                 spriteBatch.Draw(hindernisListe[5].hindernisTextur, hindernisListe[5].position, Color.White);
 
 
-                foreach (Hindernis hindernis in hindernisListe)
-                {
-                    foreach (Hitbox hitbox in hindernis.gibHitboxen())
-                    {
-                        spriteBatch.Draw(dummyTexture, hitbox.hitbox, Color.Red);
-                    }
-                }
+       
 
 
                 // Titel sound aus

@@ -15,28 +15,22 @@ namespace xkfd
     class HindernisD : Hindernis
     {
 
-        Rectangle hitboxBodenVorne;
-        Rectangle hitboxBodenHinten;
+        Hitbox hitboxBodenVorne;
+        Hitbox hitboxBodenHinten;
 
         public HindernisD(Texture2D textur, Vector2 position)
             : base(textur, position)
         {
 
-            hitboxBodenVorne = new Rectangle(100, 30, (int)this.position.X + 0, 488);
-            hitboxBodenHinten = new Rectangle(100, 30, (int)this.position.X + 220, 488);
+            hitboxBodenVorne = new Hitbox((int)position.X, (int)position.Y + 488, 50, 30);
+            hitboxBodenHinten = new Hitbox((int)position.X + 270, (int)position.Y + 488, 50, 30);
+
+
+            hitboxListe.Add(hitboxBodenVorne);
+            hitboxListe.Add(hitboxBodenHinten);
 
         }
 
-        public List<Rectangle> gibHitboxen()
-        {
-
-            List<Rectangle> liste = new List<Rectangle>();
-
-            // liste.Add(hitboxBodenHinten);
-            // liste.Add(hitboxBodenVorne);
-
-            return liste;
-        }
 
     }
 }
