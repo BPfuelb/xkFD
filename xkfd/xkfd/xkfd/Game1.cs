@@ -166,7 +166,7 @@ namespace xkfd
             if (spieler.gewinnen.animation == null) spieler.gewinnen.animation = new Animation(spieler.gewinnen.animationTexture, 4, 3, 6);
             if (spieler.gleiten.animation == null) spieler.gleiten.animation = new Animation(spieler.gleiten.animationTexture, 4, 3, 6);
             if (spieler.laufen.animation == null) spieler.laufen.animation = new Animation(spieler.laufen.animationTexture, 4, 3, 3);
-            if (spieler.springen.animation == null) spieler.springen.animation = new Animation(spieler.springen.animationTexture, 4, 3, 6);
+            if (spieler.springen.animation == null) spieler.springen.animation = new Animation(spieler.springen.animationTexture, 4, 2, 6);
             if (spieler.sterben.animation == null) spieler.sterben.animation = new Animation(spieler.sterben.animationTexture, 4, 3, 6);
 
             #region GamestateRunning

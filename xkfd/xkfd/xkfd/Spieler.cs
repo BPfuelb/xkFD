@@ -39,7 +39,8 @@ namespace xkfd
         // Konstruktor
         public Spieler()
         {
-            position = new Vector2(1280 / 2 - 128, 720 / 2);
+            /*                     x-Pos           y-Pos = Mitte + Hoehe der Laufen-Textur */
+            position = new Vector2(1280 / 2 - 128, 720 / 2 + 170);
 
             laufen = new Laufen(this);
             springen = new Springen(this);

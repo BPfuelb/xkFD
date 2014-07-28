@@ -24,17 +24,18 @@ namespace xkfd
 
         public override void update()
         {
-            spieler.position.Y -= sprungHoehe*2;
-            sprungHoehe -= 1;
+            //spieler.position.Y -= sprungHoehe*2;
+            //sprungHoehe -= 1;
             if (sprungHoehe == 0)
             {
                 sprungHoehe = 10;
                 spieler.doFallen();
             }
 
-
             hitbox.X = (int)spieler.position.X + 42;
             hitbox.Y = (int)spieler.position.Y + 63;
+
+            animation.Update(4);
         }
 
         

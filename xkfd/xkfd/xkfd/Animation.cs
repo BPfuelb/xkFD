@@ -12,9 +12,11 @@ namespace xkfd
 
         Texture2D textur;
         int spalte, zeile;
-       public  int index;
+        public int index;
         int slowMoFactor;
         int slowMoTimer;
+        public int tileWidth;
+        public int tileHeight;
 
         public Animation(Texture2D textur, int spalte, int zeile, int slowMoFactor)
         {
@@ -36,10 +38,21 @@ namespace xkfd
             if (index >= spalte * zeile) index = 0;
         }
 
+        public void Update(int loopFromToEnd)
+        {
+            slowMoTimer--;
+            if (slowMoTimer == 0)
+            {
+                slowMoTimer = slowMoFactor;
+                index++;
+            }
+            if (index >= spalte * zeile) index = loopFromToEnd;
+        }
+
         public void Draw(SpriteBatch sb, Vector2 pos)
         {
-            int tileWidth = textur.Width / spalte;
-            int tileHeight = textur.Height / zeile;
+            tileWidth = textur.Width / spalte;
+            tileHeight = textur.Height / zeile;
 
             Rectangle rect = new Rectangle(0, 0, tileWidth, tileHeight);
 
