@@ -21,6 +21,10 @@ namespace xkfd
 
         public override void update()
         {
+            // Gleiten Ressource hochzählen solange der Charakter läuft
+            if (spieler.gleitenResource < 30)
+                spieler.gleitenResource++;
+
             animation.Update();
         }
 
@@ -33,6 +37,7 @@ namespace xkfd
         // Zustandsänderungen bei Aktionen
         public override void ducken()
         {
+            spieler.hitboxKopf = new Rectangle((int)spieler.position.X + 100, (int)spieler.position.Y +180 , 10, 40);
             spieler.setZustand(spieler.ducken);
         }
 

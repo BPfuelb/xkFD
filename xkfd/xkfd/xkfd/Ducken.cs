@@ -16,7 +16,7 @@ namespace xkfd
         {
             // Position der Hitbox vom Player null punkt aus(42,63)
             // Größe der Hitbox 53 x 104 
-            hitbox = new Rectangle((int)spieler.position.X + 42, (int)spieler.position.Y + 63, 53, 104);
+            // hitbox = new Rectangle((int)spieler.position.X + 42, (int)spieler.position.Y + 63, 53, 104);
         }
 
         public override void update()
@@ -32,7 +32,7 @@ namespace xkfd
         // Zustandsänderungen bei Aktionen
         public override void ducken()
         {
-            // Tue nichts
+
         }
 
         public override void springen()
@@ -47,22 +47,23 @@ namespace xkfd
 
         public override void laufen()
         {
+            spieler.hitboxKopf = new Rectangle((int)spieler.position.X + 100, (int)spieler.position.Y + 70, 10, 90);
             spieler.setZustand(spieler.laufen);
         }
 
         public override void gewinnen()
         {
-            spieler.setZustand(spieler.gewinnen);
+            // tue nichts
         }
 
         public override void sterben()
         {
-            spieler.setZustand(spieler.sterben);
+            // tue nichts
         }
 
         public override void fallen()
         {
-            spieler.setZustand(spieler.fallen);
+            // spieler.setZustand(spieler.fallen);
         }
     }
 }

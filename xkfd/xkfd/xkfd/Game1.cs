@@ -177,17 +177,37 @@ namespace xkfd
 
             if (gamestate == Gamestate.running)
             {
+                
+                // Der Spieler kann nur Gleiten wenn er am Fallen ist.
+                if (spieler.aktuellerZustand == spieler.fallen && spieler.gleitenResource > 0)
+                {
+                    if (Keyboard.GetState().IsKeyDown(Keys.Space)) 
+                        spieler.doGleiten();
+                }
+
+                // Der Spieler kann nur Ducken wenn er Läuft.
+                
+                /*
+                if (spieler.aktuellerZustand == spieler.laufen)
+                {
+                    if (Keyboard.GetState().IsKeyDown(Keys.Down)) 
+                        spieler.doDucken();
+                }
+                else if (spieler.aktuellerZustand == spieler.ducken) // Wenn der Spieler geduckt ist kann er durch loslassen wieder Laufen.
+                {
+                    if (Keyboard.GetState().IsKeyUp(Keys.Down))
+                        spieler.doLaufen();
+                    }
+                */
 
                 // Leertaste zum Springen
                 if (Keyboard.GetState().IsKeyDown(Keys.Space)) spieler.doSpringen();
 
                 // Update spieler
-                //  if (gameTime.TotalGameTime.Milliseconds % 1 == 0)
                 spieler.Update();
 
-
-
-                if (hindernisListe.Count > 6)
+                // Aktualisiere Hindernisse (schiebe Hindernisse Weiter)
+                if (hindernisListe.Count > 6 && spieler.aktuellerZustand != spieler.sterben)
                 {
                     hindernisListe[0].Update();
                     hindernisListe[1].Update();
@@ -195,15 +215,13 @@ namespace xkfd
                     hindernisListe[3].Update();
                     hindernisListe[4].Update();
                     hindernisListe[5].Update();
+                    // Wenn das Hindernis an Position 1 Außerhalb des Bildes ist lösche das Hindernis an Position 0
                     if (hindernisListe[1].position.X <= -320)
                         hindernisListe.RemoveAt(0);
                     hintergrund.Update();
                 }
                 else
-                    spieler.doGewinnen();
-
-
-
+                    spieler.doGewinnen(); // Wenn weniger als 6 Hindernisse vorhanden sind gehe in den Gewinnenzustand über
 
                 // Escape ins Menü zurück kehren
                 if (Keyboard.GetState().IsKeyDown(Keys.Escape) && OldKeyState.IsKeyUp(Keys.Escape))
@@ -225,10 +243,10 @@ namespace xkfd
                 { kollisionsListe.Add(hitbox); }
 
 
-
+                // Boolean Werte für Kollisionserkennung (für Füße)
                 Boolean kollidiert = false;
 
-                // Kollisionserkennung mit allen Hitboxen
+                // Boden Kollisionserkennung mit allen Hitboxen
                 // Prüfe erst alle hitboxen ab ob eine Kollision entstanden ist
                 // siehe boolean kollidiert
                 foreach (Hitbox hitbox in kollisionsListe)
@@ -236,9 +254,11 @@ namespace xkfd
                     if (spieler.hitboxFussLinks.Intersects(hitbox.hitbox) )
                     {
                         kollidiert = true;
-                        spieler.doLaufen();
+                        if (Keyboard.GetState().IsKeyDown(Keys.Down))
+                            spieler.doDucken();
+                        else 
+                            spieler.doLaufen();
                         spieler.setPlayerPosition(hitbox.hitbox.Y - 160);
-                        
                     }
                 }
 
@@ -246,11 +266,22 @@ namespace xkfd
                 if (!kollidiert && spieler.aktuellerZustand != spieler.springen)
                     {
                         spieler.doFallen();
-                        // Console.WriteLine("weder springen noch kollision");
                     }
+
+
+                // Kopf Kollisionserkennung
+                foreach (Hitbox hitbox in kollisionsListe)
+                {
+                    if (spieler.hitboxKopf.Intersects(hitbox.hitbox))
+                    {
+                        spieler.doSterben();
+                    }
+                }
             }
 
-            if (spieler.position.X >= 720)
+
+
+            if (spieler.position.Y >= 720)
                 spieler.doSterben();
 
 
@@ -381,6 +412,21 @@ namespace xkfd
                //  spriteBatch.Draw(dummyTexture2, spieler.hitboxFussRechts, Color.Green);
                 spriteBatch.Draw(dummyTexture2, spieler.linksOben, Color.Green);
                 spriteBatch.Draw(dummyTexture2, spieler.hitboxFussLinks, Color.Green);
+                /* 
+                if (spieler.aktuellerZustand == spieler.ducken)
+                {
+                    spieler.hitboxKopf = new Rectangle((int)spieler.position.X + 100, (int)spieler.position.Y +100, 10, 40);
+                    spriteBatch.Draw(dummyTexture2, spieler.hitboxKopf, Color.Green);
+                }
+                 * */
+
+                // spriteBatch.Draw(dummyTexture2, spieler.hitboxKopf, Color.Blue);
+                spriteBatch.Draw(dummyTexture2, spieler.hitboxKopf, Color.Blue);
+
+
+                // Gleiten Ressource anzeigen
+                spriteBatch.DrawString(schrift, "Gleiten: " + spieler.gleitenResource, new Vector2(128 + 50, 20), Color.Gray);
+                
 
                 // Titel sound aus
                 MediaPlayer.Pause();

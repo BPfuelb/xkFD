@@ -65,9 +65,6 @@ namespace xkfd
 
         public override void fallen()
         {
-            // Setzte Zustand wieder auf Laufen
-            // spieler.setZustand(spieler.laufen);
-
             // Falle weiter...
         }
     }

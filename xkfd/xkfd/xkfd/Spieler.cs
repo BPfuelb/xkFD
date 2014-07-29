@@ -31,11 +31,14 @@ namespace xkfd
         // Spieler Position
         public Vector2 position;
 
+        // Gleitenresource
+        public int gleitenResource;
 
 
         public Rectangle hitboxFussRechts;
         public Rectangle hitboxFussLinks;
         public Rectangle linksOben;
+        public Rectangle hitboxKopf;
 
         // Spieler Textur zum Testen
         // public Texture2D spielerTextur;
@@ -58,10 +61,10 @@ namespace xkfd
 
             punkte = 0; // Punktestand initialisieren
 
-
+            hitboxKopf = new Rectangle((int)position.X + 100, (int)position.Y + 70, 10, 90);
             linksOben = new Rectangle((int)position.X, (int)position.Y, 10, 10);
             hitboxFussRechts = new Rectangle((int)position.X + 100, (int)position.Y + 170, 10, 10);
-            hitboxFussLinks = new Rectangle((int)position.X + 20, (int)position.Y + 170, 100, 10);
+            hitboxFussLinks = new Rectangle((int)position.X + 20, (int)position.Y + 170, 80, 10);
         }
 
 
@@ -75,6 +78,15 @@ namespace xkfd
 
             if (zustand == fallen)
                 Console.WriteLine("Zustand: Fallen");
+            
+            if (zustand == ducken)
+                Console.WriteLine("Zustand: Ducken");
+            
+            if (zustand == sterben)
+                Console.WriteLine("Zustand: Sterben");
+
+            if (zustand == gewinnen)
+                Console.WriteLine("Zustand: Gewinnen");
 
             this.aktuellerZustand = zustand;
         }
@@ -85,20 +97,19 @@ namespace xkfd
 
         public void doLaufen()
         {
-            Console.WriteLine("doLaufen");
+            // Console.WriteLine("doLaufen");
             aktuellerZustand.laufen();
         }
 
         public void doSpringen()
         {
-
-            Console.WriteLine("doSpringen");
+            // Console.WriteLine("doSpringen");
             aktuellerZustand.springen();
         }
 
         public void doDucken()
         {
-
+           //  Console.WriteLine("doDucken");
             aktuellerZustand.ducken();
         }
 
@@ -114,14 +125,12 @@ namespace xkfd
 
         public void doFallen()
         {
-            Console.WriteLine("doFallen");
+           //  Console.WriteLine("doFallen");
             aktuellerZustand.fallen();
         }
 
         public void doGleiten()
         {
-
-
             aktuellerZustand.gleiten();
         }
         #endregion
@@ -143,6 +152,7 @@ namespace xkfd
             position.Y -= y * faktor;
             linksOben.Y -= y * faktor;
 
+            hitboxKopf.Y -= y * faktor;
             hitboxFussRechts.Y -= y * faktor;
             hitboxFussLinks.Y -= y * faktor;
         }
@@ -153,6 +163,7 @@ namespace xkfd
             position.Y += y * faktor;
             linksOben.Y += y * faktor;
 
+            hitboxKopf.Y += y * faktor;
             hitboxFussRechts.Y += y * faktor;
             hitboxFussLinks.Y += y * faktor;
         }
@@ -162,6 +173,7 @@ namespace xkfd
             position.Y = y;
             linksOben.Y = y;
 
+            hitboxKopf.Y = (int)position.Y + 70;
             hitboxFussRechts.Y = (int)position.Y + 170;
             hitboxFussLinks.Y = (int)position.Y + 170;
         }

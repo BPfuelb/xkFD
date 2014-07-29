@@ -21,6 +21,11 @@ namespace xkfd
 
         public override void update()
         {
+
+            if (spieler.gleitenResource > 0)
+                spieler.gleitenResource--;
+            else
+                spieler.doFallen();
         }
 
         public override void Draw(SpriteBatch sb)

@@ -10,9 +10,13 @@ namespace xkfd
     {
 
         public Rectangle hitbox;
+        public Vector2 position;
 
         public Hitbox(int posX, int posY, int width, int height)
-        { hitbox = new Rectangle(posX, posY, width, height); }
+        { 
+            hitbox = new Rectangle(posX, posY, width, height);
+            position = new Vector2(posX, posY);
+        }
 
         public void move(int x)
         {
