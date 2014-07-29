@@ -14,38 +14,16 @@ namespace xkfd
     {
         public int beschleunigung;
 
-        float* hindernisPositionX;
-        float* hindernisPositionY;
-
         public Fallen(Spieler spieler):base(spieler)
         {
             beschleunigung = 0;
-
-            // Position der Hitbox vom Player null punkt aus(42,63)
-            // Größe der Hitbox 53 x 104 
-
-            
-            /*
-            hindernisPositionX = &spieler.position.X;
-            hindernisPositionY = &spieler.position.Y;
-            */
-              
-            hitbox = new Rectangle((int)spieler.position.X + 42, (int)spieler.position.Y + 63, 53, 104);
         }
 
         
         public override void update()
         {
-
-            /*if (hitbox.Intersects(aktuelleUmgebung.hitbox))
-            {
-                spieler.doLaufen();
-            }*/
             beschleunigung++;
-            spieler.position.Y += beschleunigung*2;
-            // spieler.position.Y += 1;
-            // Aktualisierung der Hitbox
-            
+            spieler.movePlayerDown(beschleunigung);
         }
 
         public override void Draw(SpriteBatch sb)
@@ -88,7 +66,9 @@ namespace xkfd
         public override void fallen()
         {
             // Setzte Zustand wieder auf Laufen
-            spieler.setZustand(spieler.laufen);
+            // spieler.setZustand(spieler.laufen);
+
+            // Falle weiter...
         }
     }
 }

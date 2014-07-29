@@ -17,24 +17,19 @@ namespace xkfd
         public Springen(Spieler spieler):base(spieler)
         {
 
-            // Position der Hitbox vom Player null punkt aus(42,63)
-            // Größe der Hitbox 53 x 104 
-            hitbox = new Rectangle((int)spieler.position.X + 42, (int)spieler.position.Y + 63, 53, 104);
         }
 
         public override void update()
         {
-            //spieler.position.Y -= sprungHoehe*2;
-            //sprungHoehe -= 1;
+
+            spieler.movePlayerUp(sprungHoehe);
+             sprungHoehe -= 1;
             if (sprungHoehe == 0)
             {
                 sprungHoehe = 10;
+                ((Fallen)spieler.fallen).beschleunigung = 0;
                 spieler.doFallen();
             }
-
-            hitbox.X = (int)spieler.position.X + 42;
-            hitbox.Y = (int)spieler.position.Y + 63;
-
             animation.Update(4);
         }
 

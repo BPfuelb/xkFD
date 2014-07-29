@@ -21,7 +21,7 @@ namespace xkfd
             : base(textur, position)
         {
 
-            bodenHitbox = new Hitbox((int)position.X, (int)position.Y + 488, 320, 30);
+            bodenHitbox = new Hitbox((int)position.X, (int)position.Y + 488, 320, 200);
             fliegendeHitbox = new Hitbox((int)position.X+84, (int)position.Y + 376, 150, 30);
 
             hitboxListe.Add(fliegendeHitbox);

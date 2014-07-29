@@ -22,8 +22,8 @@ namespace xkfd
             : base(textur, position)
         {
 
-            bodenHitbox = new Hitbox((int)position.X, (int)position.Y + 488, 320, 30);
-            stufeHitbox = new Hitbox((int)position.X + 90, (int)position.Y + 458, 150, 30);
+            bodenHitbox = new Hitbox((int)position.X, (int)position.Y + 488, 320, 200);
+            stufeHitbox = new Hitbox((int)position.X + 90, (int)position.Y + 458, 150, 200);
 
             hitboxListe.Add(stufeHitbox);
             hitboxListe.Add(bodenHitbox);

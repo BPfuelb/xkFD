@@ -55,6 +55,7 @@ namespace xkfd
         Texture2D hindernisTexturZ;
 
         Texture2D dummyTexture;
+        Texture2D dummyTexture2;
 
 
         public Game1()
@@ -150,6 +151,9 @@ namespace xkfd
             // Test textur
             dummyTexture = new Texture2D(GraphicsDevice, 1, 1);
             dummyTexture.SetData(new Color[] { Color.Red });
+
+            dummyTexture2 = new Texture2D(GraphicsDevice, 1, 1);
+            dummyTexture2.SetData(new Color[] { Color.Green });
         }
 
 
@@ -211,25 +215,43 @@ namespace xkfd
 
                 // Kollisionserkennung
 
-                
-                foreach(Hitbox hitbox in hindernisListe[3].gibHitboxen())
-                {
-                    if (spieler.aktuellerZustand.hitbox.Intersects(hitbox.hitbox))
-                    {
 
-                        spieler.position.Y = hitbox.hitbox.Y - 170;
-                        spieler.aktuellerZustand.hitbox.Y = hitbox.hitbox.Y - 170;
+                // Erstellen einer Liste mit Hitboxen aus Bereich 2 & 3
+                List<Hitbox> kollisionsListe = new List<Hitbox>();
+                foreach (Hitbox hitbox in hindernisListe[2].gibHitboxen())
+                { kollisionsListe.Add(hitbox); }
+
+                foreach (Hitbox hitbox in hindernisListe[3].gibHitboxen())
+                { kollisionsListe.Add(hitbox); }
+
+
+
+                Boolean kollidiert = false;
+
+                // Kollisionserkennung mit allen Hitboxen
+                // Prüfe erst alle hitboxen ab ob eine Kollision entstanden ist
+                // siehe boolean kollidiert
+                foreach (Hitbox hitbox in kollisionsListe)
+                {
+                    if (spieler.hitboxFussLinks.Intersects(hitbox.hitbox) )
+                    {
+                        kollidiert = true;
                         spieler.doLaufen();
+                        spieler.setPlayerPosition(hitbox.hitbox.Y - 160);
+                        
                     }
-                    
                 }
 
-
-                
-                
-
-
+                // wenn keine Kollision ist und er spieler nicht gerade am springen ist dann falle.
+                if (!kollidiert && spieler.aktuellerZustand != spieler.springen)
+                    {
+                        spieler.doFallen();
+                        // Console.WriteLine("weder springen noch kollision");
+                    }
             }
+
+            if (spieler.position.X >= 720)
+                spieler.doSterben();
 
 
             #endregion
@@ -323,15 +345,16 @@ namespace xkfd
 
             if (gamestate == Gamestate.running)
             {
-                // Spieler Hitbox malen zum Testen
-               //  spriteBatch.Draw(dummyTexture, spieler.aktuellerZustand.hitbox, Color.Red);
+
 
 
 
                 // Zeichne Spieler
                 spieler.Draw(spriteBatch);
                 // spriteBatch.Draw(spieler.spielerTextur, spieler.position, Color.White);
-                /*
+
+
+                // Zeichne Hitboxen der Hindernisse
                 foreach (Hindernis hindernis in hindernisListe)
                 {
                     foreach (Hitbox hitbox in hindernis.gibHitboxen())
@@ -339,7 +362,7 @@ namespace xkfd
                         spriteBatch.Draw(dummyTexture, hitbox.hitbox, Color.Red);
                     }
                 }
-                */
+
 
                 // if (hindernisListe[1] != null)
                 spriteBatch.Draw(hindernisListe[1].hindernisTextur, hindernisListe[1].position, Color.White);
@@ -353,8 +376,11 @@ namespace xkfd
                 spriteBatch.Draw(hindernisListe[5].hindernisTextur, hindernisListe[5].position, Color.White);
 
 
-       
 
+                // Spieler Hitbox malen zum Testen
+               //  spriteBatch.Draw(dummyTexture2, spieler.hitboxFussRechts, Color.Green);
+                spriteBatch.Draw(dummyTexture2, spieler.linksOben, Color.Green);
+                spriteBatch.Draw(dummyTexture2, spieler.hitboxFussLinks, Color.Green);
 
                 // Titel sound aus
                 MediaPlayer.Pause();
@@ -381,7 +407,6 @@ namespace xkfd
                 // Malt alle Animationen des Menüs
                 optionen.Draw(spriteBatch);
                 spriteBatch.DrawString(schrift, "Zurück", new Vector2(128 + 50, 590), Color.Gray);
-
             }
 
             #endregion

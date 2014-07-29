@@ -12,7 +12,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace xkfd
 {
-    class Spieler
+    unsafe class Spieler
     {
         // Zustände
         public Zustand laufen;
@@ -33,6 +33,10 @@ namespace xkfd
 
 
 
+        public Rectangle hitboxFussRechts;
+        public Rectangle hitboxFussLinks;
+        public Rectangle linksOben;
+
         // Spieler Textur zum Testen
         // public Texture2D spielerTextur;
 
@@ -40,7 +44,7 @@ namespace xkfd
         public Spieler()
         {
             /*                     x-Pos           y-Pos = Mitte + Hoehe der Laufen-Textur */
-            position = new Vector2(1280 / 2 - 128, 720 / 2 + 170);
+            position = new Vector2(1280 / 2 - 128, 720 / 2);
 
             laufen = new Laufen(this);
             springen = new Springen(this);
@@ -54,14 +58,24 @@ namespace xkfd
 
             punkte = 0; // Punktestand initialisieren
 
-            
 
-            
+            linksOben = new Rectangle((int)position.X, (int)position.Y, 10, 10);
+            hitboxFussRechts = new Rectangle((int)position.X + 100, (int)position.Y + 170, 10, 10);
+            hitboxFussLinks = new Rectangle((int)position.X + 20, (int)position.Y + 170, 100, 10);
         }
 
 
         public void setZustand(Zustand zustand)
         {
+            if (zustand == laufen)
+                Console.WriteLine("Zustand: Laufen");
+
+            if (zustand == springen)
+                Console.WriteLine("Zustand: Springen");
+
+            if (zustand == fallen)
+                Console.WriteLine("Zustand: Fallen");
+
             this.aktuellerZustand = zustand;
         }
 
@@ -71,20 +85,20 @@ namespace xkfd
 
         public void doLaufen()
         {
+            Console.WriteLine("doLaufen");
             aktuellerZustand.laufen();
         }
 
         public void doSpringen()
         {
-            springen.hitbox.X = (int)position.X + 42;
-            springen.hitbox.Y = (int)position.Y + 63;
+
+            Console.WriteLine("doSpringen");
             aktuellerZustand.springen();
         }
 
         public void doDucken()
         {
-            ducken.hitbox.X = (int)position.X + 42;
-            ducken.hitbox.Y = (int)position.Y + 63;
+
             aktuellerZustand.ducken();
         }
 
@@ -100,15 +114,13 @@ namespace xkfd
 
         public void doFallen()
         {
-            fallen.hitbox.X = (int)position.X + 42;
-            fallen.hitbox.Y = (int)position.Y + 63;
+            Console.WriteLine("doFallen");
             aktuellerZustand.fallen();
         }
 
         public void doGleiten()
         {
-            gleiten.hitbox.X = (int)position.X + 42;
-            gleiten.hitbox.Y = (int)position.Y + 63;
+
 
             aktuellerZustand.gleiten();
         }
@@ -117,15 +129,41 @@ namespace xkfd
 
         public void Update()
         {
-
-            aktuellerZustand.hitbox.X = (int)position.X + 42;
-            aktuellerZustand.hitbox.Y = (int)position.Y + 63;
             aktuellerZustand.update();
         }
 
         public void Draw(SpriteBatch sb)
         {
             aktuellerZustand.Draw(sb);
+        }
+
+        public void movePlayerUp(int y)
+        {
+            const int faktor = 2;
+            position.Y -= y * faktor;
+            linksOben.Y -= y * faktor;
+
+            hitboxFussRechts.Y -= y * faktor;
+            hitboxFussLinks.Y -= y * faktor;
+        }
+
+        public void movePlayerDown(int y)
+        {
+            const int faktor = 1;
+            position.Y += y * faktor;
+            linksOben.Y += y * faktor;
+
+            hitboxFussRechts.Y += y * faktor;
+            hitboxFussLinks.Y += y * faktor;
+        }
+
+        public void setPlayerPosition(int y)
+        {
+            position.Y = y;
+            linksOben.Y = y;
+
+            hitboxFussRechts.Y = (int)position.Y + 170;
+            hitboxFussLinks.Y = (int)position.Y + 170;
         }
     }
 }

@@ -28,8 +28,6 @@ namespace xkfd
         public Zustand(Spieler spieler)
         {
             this.spieler = spieler;
-
-            
         }
 
 

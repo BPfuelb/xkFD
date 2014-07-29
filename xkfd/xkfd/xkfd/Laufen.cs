@@ -10,14 +10,13 @@ using Microsoft.Xna.Framework.Media;
 
 namespace xkfd
 {
-    class Laufen:Zustand
+    class Laufen : Zustand
     {
 
-        public Laufen(Spieler spieler):base(spieler)
+        public Laufen(Spieler spieler)
+            : base(spieler)
         {
-            // Position der Hitbox vom Player null punkt aus(42,63)
-            // Größe der Hitbox 53 x 104 
-            hitbox = new Rectangle((int)spieler.position.X + 42, (int)spieler.position.Y + 63, 53, 104);
+
         }
 
         public override void update()
@@ -58,9 +57,9 @@ namespace xkfd
              */
 
 
-                 // Gehe in Springen Zustand über
-                    spieler.springen.sound.Play();
-                    spieler.setZustand(spieler.springen);
+            // Gehe in Springen Zustand über
+            spieler.springen.sound.Play();
+            spieler.setZustand(spieler.springen);
         }
 
         public override void gleiten()
