@@ -98,7 +98,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_laufen_std.xnb</Output>
-      <Time>2014-07-24T16:52:38.7350394+02:00</Time>
+      <Time>2014-07-29T20:21:27.6492844+02:00</Time>
     </Item>
     <Item>
       <Source>ani_ducken_std.png</Source>
@@ -116,7 +116,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_fallen_std.xnb</Output>
-      <Time>2014-07-28T16:40:59.3564871+02:00</Time>
+      <Time>2014-07-29T23:32:56.5895758+02:00</Time>
     </Item>
     <Item>
       <Source>ani_gewinnen_std.png</Source>
@@ -134,7 +134,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_gleiten_std.xnb</Output>
-      <Time>2014-07-28T16:40:59.3584872+02:00</Time>
+      <Time>2014-07-29T23:32:59.2996174+02:00</Time>
     </Item>
     <Item>
       <Source>ani_springen_std.png</Source>
@@ -143,7 +143,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_springen_std.xnb</Output>
-      <Time>2014-07-29T16:02:54.2065357+02:00</Time>
+      <Time>2014-07-29T21:08:06.7633846+02:00</Time>
     </Item>
     <Item>
       <Source>ani_sterben_std.png</Source>
@@ -153,34 +153,6 @@
       <Options>None</Options>
       <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_sterben_std.xnb</Output>
       <Time>2014-07-28T16:40:59.3604873+02:00</Time>
-    </Item>
-    <Item>
-      <Source>SpriteFont1.spritefont</Source>
-      <Name>SpriteFont1</Name>
-      <Importer>FontDescriptionImporter</Importer>
-      <Processor>FontDescriptionProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\SpriteFont1.xnb</Output>
-      <Time>2014-07-23T01:31:51.6723813+02:00</Time>
-    </Item>
-    <Item>
-      <Source>jump.wav</Source>
-      <Name>jump</Name>
-      <Importer>WavImporter</Importer>
-      <Processor>SoundEffectProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\jump.xnb</Output>
-      <Time>2014-07-23T20:49:19.8097949+02:00</Time>
-    </Item>
-    <Item>
-      <Source>titel.mp3</Source>
-      <Name>titel</Name>
-      <Importer>Mp3Importer</Importer>
-      <Processor>SongProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\titel.xnb</Output>
-      <Extra>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\titel.wma</Extra>
-      <Time>2014-07-24T16:47:48.4854381+02:00</Time>
     </Item>
     <Item>
       <Source>hindernisA.png</Source>
@@ -235,6 +207,34 @@
       <Options>None</Options>
       <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\hindernisD.xnb</Output>
       <Time>2014-07-28T19:42:37.4811824+02:00</Time>
+    </Item>
+    <Item>
+      <Source>SpriteFont1.spritefont</Source>
+      <Name>SpriteFont1</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\SpriteFont1.xnb</Output>
+      <Time>2014-07-23T01:31:51.6723813+02:00</Time>
+    </Item>
+    <Item>
+      <Source>jump.wav</Source>
+      <Name>jump</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\jump.xnb</Output>
+      <Time>2014-07-23T20:49:19.8097949+02:00</Time>
+    </Item>
+    <Item>
+      <Source>titel.mp3</Source>
+      <Name>titel</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SongProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\titel.xnb</Output>
+      <Extra>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\titel.wma</Extra>
+      <Time>2014-07-24T16:47:48.4854381+02:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>

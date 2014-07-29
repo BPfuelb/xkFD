@@ -12,7 +12,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace xkfd
 {
-    unsafe class Spieler
+    class Spieler
     {
         // Zustände
         public Zustand laufen;
@@ -36,9 +36,11 @@ namespace xkfd
 
 
         public Rectangle hitboxFussRechts;
-        public Rectangle hitboxFussLinks;
+        public Rectangle hitboxFuss;
         public Rectangle linksOben;
         public Rectangle hitboxKopf;
+
+        public Boolean teleport;
 
         // Spieler Textur zum Testen
         // public Texture2D spielerTextur;
@@ -47,7 +49,7 @@ namespace xkfd
         public Spieler()
         {
             /*                     x-Pos           y-Pos = Mitte + Hoehe der Laufen-Textur */
-            position = new Vector2(1280 / 2 - 128, 720 / 2);
+            position = new Vector2(1280 / 2 - 128, 720 / 2 + 60);
 
             laufen = new Laufen(this);
             springen = new Springen(this);
@@ -57,14 +59,18 @@ namespace xkfd
             gewinnen = new Gewinnen(this);
             fallen = new Fallen(this);
 
-            aktuellerZustand = laufen;
+            aktuellerZustand = laufen; // Startzustand
 
             punkte = 0; // Punktestand initialisieren
 
-            hitboxKopf = new Rectangle((int)position.X + 100, (int)position.Y + 70, 10, 90);
+            teleport = true;
+            
+            hitboxKopf = new Rectangle((int)position.X + 50, (int)position.Y, 10, 90);
             linksOben = new Rectangle((int)position.X, (int)position.Y, 10, 10);
-            hitboxFussRechts = new Rectangle((int)position.X + 100, (int)position.Y + 170, 10, 10);
-            hitboxFussLinks = new Rectangle((int)position.X + 20, (int)position.Y + 170, 80, 10);
+
+
+            // hitboxFussRechts = new Rectangle((int)position.X, (int)position.Y + 110 , 10, 10);
+            hitboxFuss = new Rectangle((int)position.X, (int)position.Y + 110, 50, 10);
         }
 
 
@@ -78,15 +84,18 @@ namespace xkfd
 
             if (zustand == fallen)
                 Console.WriteLine("Zustand: Fallen");
-            
+
             if (zustand == ducken)
                 Console.WriteLine("Zustand: Ducken");
-            
+
             if (zustand == sterben)
                 Console.WriteLine("Zustand: Sterben");
 
             if (zustand == gewinnen)
                 Console.WriteLine("Zustand: Gewinnen");
+
+            if (zustand == gleiten)
+                Console.WriteLine("Zustand: Gleiten");
 
             this.aktuellerZustand = zustand;
         }
@@ -109,7 +118,7 @@ namespace xkfd
 
         public void doDucken()
         {
-           //  Console.WriteLine("doDucken");
+            //  Console.WriteLine("doDucken");
             aktuellerZustand.ducken();
         }
 
@@ -125,7 +134,7 @@ namespace xkfd
 
         public void doFallen()
         {
-           //  Console.WriteLine("doFallen");
+            //  Console.WriteLine("doFallen");
             aktuellerZustand.fallen();
         }
 
@@ -138,7 +147,7 @@ namespace xkfd
 
         public void Update()
         {
-            aktuellerZustand.update();
+             aktuellerZustand.update();
         }
 
         public void Draw(SpriteBatch sb)
@@ -154,7 +163,7 @@ namespace xkfd
 
             hitboxKopf.Y -= y * faktor;
             hitboxFussRechts.Y -= y * faktor;
-            hitboxFussLinks.Y -= y * faktor;
+            hitboxFuss.Y -= y * faktor;
         }
 
         public void movePlayerDown(int y)
@@ -165,7 +174,7 @@ namespace xkfd
 
             hitboxKopf.Y += y * faktor;
             hitboxFussRechts.Y += y * faktor;
-            hitboxFussLinks.Y += y * faktor;
+            hitboxFuss.Y += y * faktor;
         }
 
         public void setPlayerPosition(int y)
@@ -173,9 +182,13 @@ namespace xkfd
             position.Y = y;
             linksOben.Y = y;
 
-            hitboxKopf.Y = (int)position.Y + 70;
-            hitboxFussRechts.Y = (int)position.Y + 170;
-            hitboxFussLinks.Y = (int)position.Y + 170;
+
+            if (aktuellerZustand != ducken)
+                hitboxKopf.Y = (int)position.Y ;
+            else
+                hitboxKopf.Y = (int)position.Y + 60;
+
+            hitboxFuss.Y = (int)position.Y + 110;
         }
     }
 }

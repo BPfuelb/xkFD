@@ -47,7 +47,7 @@ namespace xkfd
 
         public override void laufen()
         {
-            spieler.hitboxKopf = new Rectangle((int)spieler.position.X + 100, (int)spieler.position.Y + 70, 10, 90);
+            spieler.hitboxKopf = new Rectangle((int)spieler.position.X + 50, (int)spieler.position.Y  , 10, 90);
             spieler.setZustand(spieler.laufen);
         }
 
@@ -58,12 +58,12 @@ namespace xkfd
 
         public override void sterben()
         {
-            // tue nichts
+            spieler.setZustand(spieler.sterben);
         }
 
         public override void fallen()
         {
-            // spieler.setZustand(spieler.fallen);
+             spieler.setZustand(spieler.fallen);
         }
     }
 }

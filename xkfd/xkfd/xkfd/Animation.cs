@@ -36,6 +36,7 @@ namespace xkfd
                 index++;
             }
             if (index >= spalte * zeile) index = 0;
+            
         }
 
         public void Update(int loopFromToEnd)
@@ -46,7 +47,8 @@ namespace xkfd
                 slowMoTimer = slowMoFactor;
                 index++;
             }
-            if (index >= spalte * zeile) index = loopFromToEnd;
+            if (index >= spalte * zeile) 
+                index = loopFromToEnd;
         }
 
         public void Draw(SpriteBatch sb, Vector2 pos)
@@ -56,6 +58,7 @@ namespace xkfd
 
             Rectangle rect = new Rectangle(0, 0, tileWidth, tileHeight);
 
+            
             rect.X = (index % spalte) * tileWidth;
             rect.Y = (index / spalte) * tileHeight;
 

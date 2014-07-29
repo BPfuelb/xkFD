@@ -54,7 +54,7 @@ namespace xkfd
 
         public override void gleiten()
         {
-            spieler.setZustand(spieler.gleiten);
+            // Tue nichts
         }
 
         public override void laufen()

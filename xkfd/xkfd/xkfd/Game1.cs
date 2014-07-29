@@ -164,44 +164,27 @@ namespace xkfd
 
         protected override void Update(GameTime gameTime)
         {
-            // Animation zum Laufen laden
-            if (spieler.ducken.animation == null) spieler.ducken.animation = new Animation(spieler.laufen.animationTexture, 4, 3, 6);
-            if (spieler.fallen.animation == null) spieler.fallen.animation = new Animation(spieler.fallen.animationTexture, 4, 3, 6);
-            if (spieler.gewinnen.animation == null) spieler.gewinnen.animation = new Animation(spieler.gewinnen.animationTexture, 4, 3, 6);
-            if (spieler.gleiten.animation == null) spieler.gleiten.animation = new Animation(spieler.gleiten.animationTexture, 4, 3, 6);
-            if (spieler.laufen.animation == null) spieler.laufen.animation = new Animation(spieler.laufen.animationTexture, 4, 3, 3);
-            if (spieler.springen.animation == null) spieler.springen.animation = new Animation(spieler.springen.animationTexture, 4, 2, 6);
-            if (spieler.sterben.animation == null) spieler.sterben.animation = new Animation(spieler.sterben.animationTexture, 4, 3, 6);
+            loadAnimation();
 
             #region GamestateRunning
 
             if (gamestate == Gamestate.running)
             {
-                
-                // Der Spieler kann nur Gleiten wenn er am Fallen ist.
-                if (spieler.aktuellerZustand == spieler.fallen && spieler.gleitenResource > 0)
-                {
-                    if (Keyboard.GetState().IsKeyDown(Keys.Space)) 
-                        spieler.doGleiten();
-                }
 
-                // Der Spieler kann nur Ducken wenn er Läuft.
-                
-                /*
-                if (spieler.aktuellerZustand == spieler.laufen)
+                if (spieler.teleport == true && Keyboard.GetState().IsKeyDown(Keys.Up))
                 {
-                    if (Keyboard.GetState().IsKeyDown(Keys.Down)) 
-                        spieler.doDucken();
+                    spieler.teleport = false;
+                    ((Fallen)spieler.fallen).beschleunigung = 0;
+                    spieler.setPlayerPosition(10);
                 }
-                else if (spieler.aktuellerZustand == spieler.ducken) // Wenn der Spieler geduckt ist kann er durch loslassen wieder Laufen.
-                {
-                    if (Keyboard.GetState().IsKeyUp(Keys.Down))
-                        spieler.doLaufen();
-                    }
-                */
 
                 // Leertaste zum Springen
-                if (Keyboard.GetState().IsKeyDown(Keys.Space)) spieler.doSpringen();
+                if (Keyboard.GetState().IsKeyDown(Keys.Space))
+                    spieler.doSpringen();
+
+                if (spieler.aktuellerZustand == spieler.gleiten && Keyboard.GetState().IsKeyUp(Keys.Space))
+                    spieler.doFallen();
+
 
                 // Update spieler
                 spieler.Update();
@@ -251,22 +234,22 @@ namespace xkfd
                 // siehe boolean kollidiert
                 foreach (Hitbox hitbox in kollisionsListe)
                 {
-                    if (spieler.hitboxFussLinks.Intersects(hitbox.hitbox) )
+                    if (spieler.hitboxFuss.Intersects(hitbox.hitbox))
                     {
                         kollidiert = true;
                         if (Keyboard.GetState().IsKeyDown(Keys.Down))
                             spieler.doDucken();
-                        else 
+                        else
                             spieler.doLaufen();
-                        spieler.setPlayerPosition(hitbox.hitbox.Y - 160);
+                        spieler.setPlayerPosition(hitbox.hitbox.Y - 110); // HIER AUSKOMMENTIERT
                     }
                 }
 
                 // wenn keine Kollision ist und er spieler nicht gerade am springen ist dann falle.
-                if (!kollidiert && spieler.aktuellerZustand != spieler.springen)
-                    {
-                        spieler.doFallen();
-                    }
+                if (!kollidiert && spieler.aktuellerZustand != spieler.springen && spieler.aktuellerZustand != spieler.gleiten)
+                {
+                    spieler.doFallen();
+                }
 
 
                 // Kopf Kollisionserkennung
@@ -281,7 +264,7 @@ namespace xkfd
 
 
 
-            if (spieler.position.Y >= 720)
+            if (spieler.position.Y >= 1720)
                 spieler.doSterben();
 
 
@@ -332,11 +315,13 @@ namespace xkfd
                             menue.spielAktiv = true;
                             break;
                         case 3: // Spieler zurücksetzen (TODO)
+
+                            spieler = new Spieler();
+                            LoadContent();
+                            loadAnimation();
+                            hindernisListe = Hindernis.generieHindernisse(10, hindernisTexturS, hindernisTexturA, hindernisTexturB, hindernisTexturC, hindernisTexturD, hindernisTexturZ);
                             gamestate = Gamestate.running;
-                            spieler.doLaufen();
-                            spieler.setZustand(spieler.laufen);
-                            spieler.position.X = 1280 / 2 - 128;
-                            spieler.position.Y = 720 / 2;
+
                             break;
                     }
 
@@ -377,15 +362,13 @@ namespace xkfd
             if (gamestate == Gamestate.running)
             {
 
-
-
-
                 // Zeichne Spieler
                 spieler.Draw(spriteBatch);
                 // spriteBatch.Draw(spieler.spielerTextur, spieler.position, Color.White);
 
 
                 // Zeichne Hitboxen der Hindernisse
+                /*
                 foreach (Hindernis hindernis in hindernisListe)
                 {
                     foreach (Hitbox hitbox in hindernis.gibHitboxen())
@@ -393,6 +376,7 @@ namespace xkfd
                         spriteBatch.Draw(dummyTexture, hitbox.hitbox, Color.Red);
                     }
                 }
+                 * */
 
 
                 // if (hindernisListe[1] != null)
@@ -409,24 +393,18 @@ namespace xkfd
 
 
                 // Spieler Hitbox malen zum Testen
-               //  spriteBatch.Draw(dummyTexture2, spieler.hitboxFussRechts, Color.Green);
+                /*
+                //  spriteBatch.Draw(dummyTexture2, spieler.hitboxFussRechts, Color.Green);
                 spriteBatch.Draw(dummyTexture2, spieler.linksOben, Color.Green);
-                spriteBatch.Draw(dummyTexture2, spieler.hitboxFussLinks, Color.Green);
-                /* 
-                if (spieler.aktuellerZustand == spieler.ducken)
-                {
-                    spieler.hitboxKopf = new Rectangle((int)spieler.position.X + 100, (int)spieler.position.Y +100, 10, 40);
-                    spriteBatch.Draw(dummyTexture2, spieler.hitboxKopf, Color.Green);
-                }
-                 * */
+                spriteBatch.Draw(dummyTexture2, spieler.hitboxFuss, Color.Green);
 
                 // spriteBatch.Draw(dummyTexture2, spieler.hitboxKopf, Color.Blue);
-                spriteBatch.Draw(dummyTexture2, spieler.hitboxKopf, Color.Blue);
-
+                spriteBatch.Draw(dummyTexture2, spieler.hitboxKopf, Color.Green);
+                */
 
                 // Gleiten Ressource anzeigen
                 spriteBatch.DrawString(schrift, "Gleiten: " + spieler.gleitenResource, new Vector2(128 + 50, 20), Color.Gray);
-                
+
 
                 // Titel sound aus
                 MediaPlayer.Pause();
@@ -460,6 +438,20 @@ namespace xkfd
             spriteBatch.End(); // End
 
             base.Draw(gameTime);
+        }
+
+
+        public void loadAnimation()
+        {
+
+            // Animation zum Laufen laden
+            if (spieler.ducken.animation == null) spieler.ducken.animation = new Animation(spieler.laufen.animationTexture, 4, 3, 6);
+            if (spieler.fallen.animation == null) spieler.fallen.animation = new Animation(spieler.fallen.animationTexture, 2, 2, 6);
+            if (spieler.gewinnen.animation == null) spieler.gewinnen.animation = new Animation(spieler.gewinnen.animationTexture, 4, 3, 6);
+            if (spieler.gleiten.animation == null) spieler.gleiten.animation = new Animation(spieler.gleiten.animationTexture, 2, 2, 6);
+            if (spieler.laufen.animation == null) spieler.laufen.animation = new Animation(spieler.laufen.animationTexture, 4, 3, 3);
+            if (spieler.springen.animation == null) spieler.springen.animation = new Animation(spieler.springen.animationTexture, 4, 2, 6);
+            if (spieler.sterben.animation == null) spieler.sterben.animation = new Animation(spieler.sterben.animationTexture, 4, 3, 6);
         }
     }
 }

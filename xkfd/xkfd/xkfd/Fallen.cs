@@ -10,18 +10,20 @@ using Microsoft.Xna.Framework.Media;
 
 namespace xkfd
 {
-    unsafe class Fallen : Zustand
+    class Fallen : Zustand
     {
         public int beschleunigung;
 
-        public Fallen(Spieler spieler):base(spieler)
+        public Fallen(Spieler spieler)
+            : base(spieler)
         {
             beschleunigung = 0;
         }
 
-        
+
         public override void update()
         {
+            animation.Update();
             beschleunigung++;
             spieler.movePlayerDown(beschleunigung);
         }
@@ -39,7 +41,8 @@ namespace xkfd
 
         public override void springen()
         {
-            // Tue nichts
+            if (spieler.gleitenResource > 0)
+                spieler.setZustand(spieler.gleiten);
         }
 
         public override void gleiten()
@@ -49,7 +52,6 @@ namespace xkfd
 
         public override void laufen()
         {
-            beschleunigung = 0;
             spieler.setZustand(spieler.laufen);
         }
 

@@ -21,17 +21,20 @@ namespace xkfd
 
         public override void update()
         {
+            animation.Update();
 
             if (spieler.gleitenResource > 0)
                 spieler.gleitenResource--;
-            else
+            else{
                 spieler.doFallen();
+            }
         }
 
         public override void Draw(SpriteBatch sb)
         {
-
+            animation.Draw(sb, this.spieler.position);
         }
+
         // Zustandsänderungen bei Aktionen
         public override void ducken()
         {
