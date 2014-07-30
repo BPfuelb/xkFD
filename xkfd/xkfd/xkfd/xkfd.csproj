@@ -125,6 +125,7 @@
     <Compile Include="Laufen.cs" />
     <Compile Include="Menue.cs" />
     <Compile Include="Optionen.cs" />
+    <Compile Include="Skin.cs" />
     <Compile Include="Spieler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />

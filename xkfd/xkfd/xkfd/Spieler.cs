@@ -25,6 +25,10 @@ namespace xkfd
 
         public Zustand aktuellerZustand;
 
+        // Skin
+
+        public Skin skin; 
+
         // Punktestand
         private int punkte;
 
@@ -43,9 +47,7 @@ namespace xkfd
 
         public Boolean teleport;
 
-        // Spieler Textur zum Testen
-        // public Texture2D spielerTextur;
-
+        
         // Konstruktor
         public Spieler()
         {
@@ -69,7 +71,6 @@ namespace xkfd
             hitboxKopf = new Rectangle((int)position.X + 50, (int)position.Y, 10, 40);
             linksOben = new Rectangle((int)position.X, (int)position.Y, 10, 10);
             hitboxBeine = new Rectangle((int)position.X + 50, (int)position.Y +40 , 10, 40);
-
 
             // hitboxFussRechts = new Rectangle((int)position.X, (int)position.Y + 110 , 10, 10);
             hitboxFuss = new Rectangle((int)position.X, (int)position.Y + 110, 50, 10);

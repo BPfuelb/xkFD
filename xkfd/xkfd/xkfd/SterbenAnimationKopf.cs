@@ -30,5 +30,6 @@ namespace xkfd
         {
             animationTod.Draw(sb, this.sterben.spieler.position + new Vector2(0, 10));
         }
+
     }
 }

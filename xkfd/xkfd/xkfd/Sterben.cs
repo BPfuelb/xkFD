@@ -17,8 +17,6 @@ namespace xkfd
         public SterbenAnimation aktuell;
 
 
-        
-
         public Sterben(Spieler spieler):base(spieler)
         {
             // Position der Hitbox vom Player null punkt aus(42,63)

@@ -17,6 +17,9 @@ namespace xkfd
         public Animation animationTod;
 
 
+        public SoundEffect soundTod;
+        public SoundEffectInstance soundSoundInstance;
+
         public SterbenAnimation(Sterben sterben)
         {
             this.sterben = sterben;        

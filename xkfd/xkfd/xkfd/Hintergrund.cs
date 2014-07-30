@@ -28,5 +28,12 @@ namespace xkfd
             if (hintegrundPosition.X <= -282)
                 hintegrundPosition.X = 0;
         }
+
+        public void Update(int geschwindigkeit)
+        {
+            hintegrundPosition.X -= geschwindigkeit;
+            if (hintegrundPosition.X <= -282)
+                hintegrundPosition.X = 0;
+        }
     }
 }

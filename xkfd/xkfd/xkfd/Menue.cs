@@ -18,6 +18,7 @@ namespace xkfd
         Vector2 fortsetzenPosition;
         Vector2 optionenPosition;
         Vector2 exitPosition;
+        Vector2 radioPosition;
 
         // Texturen für Knöpfe
         public Texture2D startTextur;
@@ -26,6 +27,8 @@ namespace xkfd
         public Texture2D neuTexture;
         public Texture2D fortsetzenTexture;
 
+        // Textur Radio
+        public Texture2D radioTexture;
 
         // Animationen
         public Animation start_m_ani;
@@ -33,6 +36,8 @@ namespace xkfd
         public Animation exit_m_ani;
         public Animation neu_m_ani;
         public Animation fortsetzen_m_ani;
+
+        public Animation radio_m_ani;
 
         // Läuft bereits ein spiel?
         public Boolean spielAktiv;
@@ -52,6 +57,8 @@ namespace xkfd
 
             optionenPosition = new Vector2(128, 80 + 160);
             exitPosition = new Vector2(128, 80 + 160 + 160);
+
+            radioPosition = new Vector2(1100,720-68);
         }
 
         public void Update()
@@ -67,6 +74,8 @@ namespace xkfd
                 fortsetzen_m_ani.Update();
             if (auswahl == 3 && spielAktiv)
                 neu_m_ani.Update();
+
+            radio_m_ani.Update();
 
         }
 
@@ -84,6 +93,7 @@ namespace xkfd
             }
             option_m_ani.Draw(sb, optionenPosition);
             exit_m_ani.Draw(sb, exitPosition);
+            radio_m_ani.Draw(sb, radioPosition);
         }
 
         // Im Menü nach Oben 
@@ -103,13 +113,13 @@ namespace xkfd
         // Im Menü wo möglich nach Links
         public void leftMenue()
         {
-            if (auswahl == 3)
+            if (auswahl == 3 && spielAktiv)
                 auswahl--;
         }
         // Im Menü wo möglich nach Rechts
         public void rightMenue()
         {
-            if (auswahl == 2)
+            if (auswahl == 2 && spielAktiv)
                 auswahl++;
         }
 

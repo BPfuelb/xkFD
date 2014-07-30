@@ -64,7 +64,7 @@ namespace xkfd
 
         public override void sterben()
         {
-            spieler.sterben.sound.Play();
+            ((Sterben)spieler.sterben).aktuell.soundTod.Play();
             spieler.setZustand(spieler.sterben);
         }
 

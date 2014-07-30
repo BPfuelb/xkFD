@@ -29,7 +29,7 @@ namespace xkfd
 
         public override void Draw(SpriteBatch sb)
         {
-            animationTod.Draw(sb, this.sterben.spieler.position + new Vector2(0, 10));
+            animationTod.Draw(sb, this.sterben.spieler.position + new Vector2(16, 8));
         }
     }
 }

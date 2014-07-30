@@ -125,7 +125,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_gewinnen_std.xnb</Output>
-      <Time>2014-07-28T20:08:30.3343624+02:00</Time>
+      <Time>2014-07-30T19:43:37.1849118+02:00</Time>
     </Item>
     <Item>
       <Source>ani_gleiten_std.png</Source>
@@ -243,7 +243,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_tastatur.xnb</Output>
-      <Time>2014-07-30T02:02:43.2371899+02:00</Time>
+      <Time>2014-07-30T19:26:28.0950513+02:00</Time>
     </Item>
     <Item>
       <Source>logo.png</Source>
@@ -298,6 +298,33 @@
       <Options>None</Options>
       <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\dsslop.xnb</Output>
       <Time>2014-07-30T04:31:18.9410982+02:00</Time>
+    </Item>
+    <Item>
+      <Source>dsskedth.wav</Source>
+      <Name>dsskedth</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\dsskedth.xnb</Output>
+      <Time>2014-07-30T15:14:02.5327747+02:00</Time>
+    </Item>
+    <Item>
+      <Source>radio.png</Source>
+      <Name>radio</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\radio.xnb</Output>
+      <Time>2014-07-30T16:32:32.7181819+02:00</Time>
+    </Item>
+    <Item>
+      <Source>ani_sterben2_stolpern_std.png</Source>
+      <Name>ani_sterben2_stolpern_std</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_sterben2_stolpern_std.xnb</Output>
+      <Time>2014-07-30T17:36:59.0343225+02:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>

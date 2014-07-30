@@ -104,9 +104,6 @@ namespace xkfd
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            // Initialisierung der Test Textur für den Spieler
-            // spieler.spielerTextur = Content.Load<Texture2D>("spieler_textur");
-
             // Lade Schirftart
             schrift = Content.Load<SpriteFont>("SpriteFont1");
 
@@ -120,7 +117,7 @@ namespace xkfd
 
             // Sterben animationen
             ((Sterben)spieler.sterben).koepfen.textur = Content.Load<Texture2D>("ani_sterben1_koepfen_std");
-
+            ((Sterben)spieler.sterben).dagegen.textur = Content.Load<Texture2D>("ani_sterben2_stolpern_std");
 
             // Initialisiere Menü Animationen
             menue.startTextur = Content.Load<Texture2D>("m_start");
@@ -128,6 +125,8 @@ namespace xkfd
             menue.fortsetzenTexture = Content.Load<Texture2D>("m_continue");
             menue.optionenTexture = Content.Load<Texture2D>("m_optionen");
             menue.exitTexture = Content.Load<Texture2D>("m_exit");
+
+            menue.radioTexture = Content.Load<Texture2D>("radio");
 
             // Sound
             titel = Content.Load<Song>("titel");
@@ -148,8 +147,14 @@ namespace xkfd
             spieler.springen.soundSoundInstance = spieler.springen.sound.CreateInstance();
 
             // Sterben Sounds
-            spieler.sterben.sound = Content.Load<SoundEffect>("dsslop");
-            spieler.sterben.soundSoundInstance = spieler.sterben.sound.CreateInstance();
+
+            // Sterbe Sound beim Köpfen
+            ((Sterben)spieler.sterben).koepfen.soundTod = Content.Load<SoundEffect>("dsslop");
+            ((Sterben)spieler.sterben).koepfen.soundSoundInstance = ((Sterben)spieler.sterben).koepfen.soundTod.CreateInstance();
+
+            // Sterbe Sound beim dagegen laufen
+            ((Sterben)spieler.sterben).dagegen.soundTod = Content.Load<SoundEffect>("dsskedth");
+            ((Sterben)spieler.sterben).dagegen.soundSoundInstance = ((Sterben)spieler.sterben).dagegen.soundTod.CreateInstance();
 
             // Textur für Hindernisse
             hindernisTexturS = Content.Load<Texture2D>("hindernisS");
@@ -201,7 +206,7 @@ namespace xkfd
             #region GamestateLoading
             if (gamestate == Gamestate.ladebildschirm)
             {
-                hintergrund.Update();
+                
 
                 if (start)
                 {
@@ -210,10 +215,17 @@ namespace xkfd
                 }
 
                 if (spieler.position.X <= 512)
+                {
                     spieler.position.X++;
-
+                    hintergrund.Update(1);
+                }
+                else
+                {
+                    hintergrund.Update();
+                }
                 spieler.Update();
 
+                // nur die Tastenbelegung im Hud Updaten
                 hud.UpdateHelp();
 
                 NewKeyState = Keyboard.GetState();
@@ -221,6 +233,7 @@ namespace xkfd
                 if (Keyboard.GetState().IsKeyDown(Keys.Enter) && OldKeyState.IsKeyUp(Keys.Enter))
                 {
                     spieler.position.X = 512;
+                    start = true;
                     gamestate = Gamestate.running;
                 }
                 OldKeyState = NewKeyState;
@@ -232,13 +245,14 @@ namespace xkfd
 
             if (gamestate == Gamestate.running)
             {
-
+                // Hud Update
                 hud.Update();
 
-                if (spieler.teleport == true && Keyboard.GetState().IsKeyDown(Keys.Up) && spieler.aktuellerZustand != spieler.sterben)
+                // Teleport bei Curser Taste nach Oben
+                if (spieler.teleport == true && Keyboard.GetState().IsKeyDown(Keys.Up) && spieler.aktuellerZustand != spieler.sterben && spieler.aktuellerZustand != spieler.gewinnen)
                 {
-                    spieler.teleport = false;
-                    ((Fallen)spieler.fallen).beschleunigung = 0;
+                    spieler.teleport = false; // Teleportresource Verbrauchen
+                    ((Fallen)spieler.fallen).beschleunigung = 0; 
                     spieler.setPlayerPosition(10);
                 }
 
@@ -321,14 +335,16 @@ namespace xkfd
                 {
                     foreach (Hitbox hitbox in kollisionsListe)
                     {
-                        if (spieler.hitboxKopf.Intersects(hitbox.hitbox))
+                        if (spieler.hitboxKopf.Intersects(hitbox.hitbox)) // Wenn Kopf kollidiert
                         {
-                            ((Sterben)spieler.sterben).aktuell = ((Sterben)spieler.sterben).koepfen;
+                            ((Sterben)spieler.sterben).aktuell = ((Sterben)spieler.sterben).koepfen;// Passt den Todeszustand an
+                            menue.spielAktiv = false; // setzt Menü nach Tod wieder auf anfang
                             spieler.doSterben();
                         }
-                        if (spieler.hitboxBeine.Intersects(hitbox.hitbox))
+                        if (spieler.hitboxBeine.Intersects(hitbox.hitbox)) // Wenn Beine kollidiert
                         {
-                            ((Sterben)spieler.sterben).aktuell = ((Sterben)spieler.sterben).dagegen;
+                            ((Sterben)spieler.sterben).aktuell = ((Sterben)spieler.sterben).dagegen; // Passt den Todeszustand an
+                            menue.spielAktiv = false; // setzt Menü nach Tod wieder auf anfang
                             spieler.doSterben();
                         
                         }
@@ -336,10 +352,11 @@ namespace xkfd
                     }
                 }
 
-                foreach (Hitbox hitbox in kollisionsListe)
+                foreach (Hitbox hitbox in kollisionsListe) // für Sonstige Kollisionen in Zuständen die oben noch nicht abgefangen werden
                 {
                     if (spieler.hitboxKopf.Intersects(hitbox.hitbox))
                     {
+                        menue.spielAktiv = false;
                         spieler.doSterben();
                     }
                 }
@@ -357,7 +374,7 @@ namespace xkfd
 
             if (gamestate == Gamestate.menue)
             {
-                // Animationen erstellen
+                // Animationen erstellen 
                 if (menue.start_m_ani == null) menue.start_m_ani = new Animation(menue.startTextur, 1, 4, 6);
                 if (menue.option_m_ani == null) menue.option_m_ani = new Animation(menue.optionenTexture, 1, 4, 6);
                 if (menue.exit_m_ani == null) menue.exit_m_ani = new Animation(menue.exitTexture, 1, 4, 6);
@@ -394,18 +411,13 @@ namespace xkfd
                             gamestate = Gamestate.options;
                             break;
                         case 2: // Starten/Fortsetzen
+                            neustart();
                             gamestate = Gamestate.ladebildschirm;
                             menue.spielAktiv = true;
                             break;
                         case 3: // Spieler zurücksetzen (TODO)
-
-                            spieler = new Spieler();
-                            hud = new Hud(spieler, hudTextur);
-                            LoadContent();
-                            loadAnimation();
-                            hindernisListe = Hindernis.generieHindernisse(10, hindernisTexturS, hindernisTexturA, hindernisTexturB, hindernisTexturC, hindernisTexturD, hindernisTexturZ);
+                            neustart();
                             gamestate = Gamestate.ladebildschirm;
-
                             break;
                     }
 
@@ -488,7 +500,7 @@ namespace xkfd
 
 
 
-                /*
+                
                 // Spieler Hitbox malen zum Testen
 
                 //  spriteBatch.Draw(dummyTexture2, spieler.hitboxFussRechts, Color.Green);
@@ -498,7 +510,7 @@ namespace xkfd
                 // spriteBatch.Draw(dummyTexture2, spieler.hitboxKopf, Color.Blue);
                 spriteBatch.Draw(dummyTexture2, spieler.hitboxKopf, Color.Green);
                 spriteBatch.Draw(dummyTexture2, spieler.hitboxBeine, Color.Green);
-                */
+                
 
 
                 // Titel sound aus
@@ -543,18 +555,31 @@ namespace xkfd
             // Spieler zum Laufen laden
             if (spieler.ducken.animation == null) spieler.ducken.animation = new Animation(spieler.ducken.animationTexture, 4, 4, 4);
             if (spieler.fallen.animation == null) spieler.fallen.animation = new Animation(spieler.fallen.animationTexture, 2, 2, 6);
-            if (spieler.gewinnen.animation == null) spieler.gewinnen.animation = new Animation(spieler.gewinnen.animationTexture, 4, 3, 6);
+            if (spieler.gewinnen.animation == null) spieler.gewinnen.animation = new Animation(spieler.gewinnen.animationTexture, 5, 2, 6);
             if (spieler.gleiten.animation == null) spieler.gleiten.animation = new Animation(spieler.gleiten.animationTexture, 2, 2, 6);
             if (spieler.laufen.animation == null) spieler.laufen.animation = new Animation(spieler.laufen.animationTexture, 4, 3, 3);
             if (spieler.springen.animation == null) spieler.springen.animation = new Animation(spieler.springen.animationTexture, 4, 2, 6);
             
             // Sterben Animationen
             if (((Sterben)spieler.sterben).koepfen.animationTod == null) ((Sterben)spieler.sterben).koepfen.animationTod = new Animation(((Sterben)spieler.sterben).koepfen.textur, 2, 5, 6);
-            if (((Sterben)spieler.sterben).dagegen.animationTod == null) ((Sterben)spieler.sterben).dagegen.animationTod = new Animation(((Sterben)spieler.sterben).koepfen.textur, 2, 5, 6);
+            if (((Sterben)spieler.sterben).dagegen.animationTod == null) ((Sterben)spieler.sterben).dagegen.animationTod = new Animation(((Sterben)spieler.sterben).dagegen.textur, 2, 5, 6);
 
             // Hud Animation
+            // if (hud.tastaturAnimation == null) hud.tastaturAnimation = new Animation(hud.tastaturTextur, 2, 2, 6);
+            
+            // Menü Radio Animation
+            if (menue.radio_m_ani == null) menue.radio_m_ani = new Animation(menue.radioTexture, 2, 2, 6);
 
-            if (hud.tastaturAnimation == null) hud.tastaturAnimation = new Animation(hud.tastaturTextur, 2, 2, 6);
+            
+        }
+
+        public void neustart()
+        {
+            spieler = new Spieler();
+            hud = new Hud(spieler, hudTextur);
+            LoadContent();
+            loadAnimation();
+            hindernisListe = Hindernis.generieHindernisse(10, hindernisTexturS, hindernisTexturA, hindernisTexturB, hindernisTexturC, hindernisTexturD, hindernisTexturZ);
         }
     }
 }

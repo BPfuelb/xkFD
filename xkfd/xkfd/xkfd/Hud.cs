@@ -20,7 +20,7 @@ namespace xkfd
         String counter;
 
         public Texture2D tastaturTextur;
-        public Animation tastaturAnimation;
+        // public Animation tastaturAnimation;
 
 
         public Texture2D checkBox_check;
@@ -33,7 +33,7 @@ namespace xkfd
         {
             this.spieler = spieler;
             positionGleitenAnzeige = new Vector2(600,15);
-            positionTastaturbelegung = new Vector2(384,-20);
+            positionTastaturbelegung = new Vector2(100,-250);
             positionCheckbox = new Vector2(1150, -12);
 
             this.hudTextur = hudTextur;
@@ -54,7 +54,7 @@ namespace xkfd
 
         public void UpdateHelp()
         {
-            tastaturAnimation.Update();
+            // tastaturAnimation.Update();
         }
 
         public void Draw(SpriteBatch sb, SpriteFont schrift)
@@ -70,7 +70,7 @@ namespace xkfd
 
         public void DrawHelp(SpriteBatch sb, SpriteFont schrift)
         {
-            tastaturAnimation.Draw(sb, positionTastaturbelegung);
+            sb.Draw(tastaturTextur, positionTastaturbelegung, Color.White);
             sb.Draw(hudTextur, new Rectangle(0,530,1280,2), Color.Black);
             
             sb.DrawString(schrift, "Zum Starten Enter drücken", new Vector2(200, 650), Color.Gray);
