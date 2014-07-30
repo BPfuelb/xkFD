@@ -12,20 +12,34 @@ namespace xkfd
 {
     class Sterben : Zustand
     {
+        public  SterbenAnimation koepfen;
+        public SterbenAnimation dagegen;
+        public SterbenAnimation aktuell;
+
+
+        
+
         public Sterben(Spieler spieler):base(spieler)
         {
             // Position der Hitbox vom Player null punkt aus(42,63)
             // Größe der Hitbox 53 x 104 
+
+            koepfen = new SterbenAnimationKopf(this);
+            dagegen = new SterbenAnimationBeine(this);
+            aktuell = koepfen;
+
+
             hitbox = new Rectangle((int)spieler.position.X + 42, (int)spieler.position.Y + 63, 53, 104);
         }
 
         public override void update()
         {
+            aktuell.Update();
         }
 
         public override void Draw(SpriteBatch sb)
         {
-
+            aktuell.Draw(sb);
         }
         // Zustandsänderungen bei Aktionen
         public override void ducken()
@@ -55,7 +69,8 @@ namespace xkfd
 
         public override void sterben()
         {
-            // Tue nichts
+            
+            
         }
         public override void fallen()
         {

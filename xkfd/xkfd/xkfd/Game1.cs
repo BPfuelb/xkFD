@@ -147,6 +147,10 @@ namespace xkfd
             spieler.springen.sound = Content.Load<SoundEffect>("jump");
             spieler.springen.soundSoundInstance = spieler.springen.sound.CreateInstance();
 
+            // Sterben Sounds
+            spieler.sterben.sound = Content.Load<SoundEffect>("dsslop");
+            spieler.sterben.soundSoundInstance = spieler.sterben.sound.CreateInstance();
+
             // Textur für Hindernisse
             hindernisTexturS = Content.Load<Texture2D>("hindernisS");
             hindernisTexturA = Content.Load<Texture2D>("hindernisA");

@@ -12,7 +12,8 @@ namespace xkfd
 {
     class Ducken : Zustand
     {
-        public Ducken(Spieler spieler):base(spieler)
+        public Ducken(Spieler spieler)
+            : base(spieler)
         {
             // Position der Hitbox vom Player null punkt aus(42,63)
             // Größe der Hitbox 53 x 104 
@@ -21,12 +22,13 @@ namespace xkfd
 
         public override void update()
         {
-            
+            animation.Update(4);
+
         }
 
         public override void Draw(SpriteBatch sb)
         {
-
+            animation.Draw(sb, this.spieler.position);
         }
 
         // Zustandsänderungen bei Aktionen
@@ -47,7 +49,8 @@ namespace xkfd
 
         public override void laufen()
         {
-            spieler.hitboxKopf = new Rectangle((int)spieler.position.X + 50, (int)spieler.position.Y  , 10, 90);
+            animation.index = 0;
+            spieler.hitboxKopf = new Rectangle((int)spieler.position.X + 50, (int)spieler.position.Y, 10, 40);
             spieler.setZustand(spieler.laufen);
         }
 
@@ -63,7 +66,9 @@ namespace xkfd
 
         public override void fallen()
         {
-             spieler.setZustand(spieler.fallen);
+            animation.index = 0;
+            spieler.hitboxKopf = new Rectangle((int)spieler.position.X + 50, (int)spieler.position.Y, 10, 90);
+            spieler.setZustand(spieler.fallen);
         }
     }
 }

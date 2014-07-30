@@ -39,6 +39,7 @@ namespace xkfd
         public Rectangle hitboxFuss;
         public Rectangle linksOben;
         public Rectangle hitboxKopf;
+        public Rectangle hitboxBeine;
 
         public Boolean teleport;
 
@@ -65,8 +66,9 @@ namespace xkfd
 
             teleport = true;
             
-            hitboxKopf = new Rectangle((int)position.X + 50, (int)position.Y, 10, 90);
+            hitboxKopf = new Rectangle((int)position.X + 50, (int)position.Y, 10, 40);
             linksOben = new Rectangle((int)position.X, (int)position.Y, 10, 10);
+            hitboxBeine = new Rectangle((int)position.X + 50, (int)position.Y +40 , 10, 40);
 
 
             // hitboxFussRechts = new Rectangle((int)position.X, (int)position.Y + 110 , 10, 10);
@@ -164,6 +166,7 @@ namespace xkfd
             hitboxKopf.Y -= y * faktor;
             hitboxFussRechts.Y -= y * faktor;
             hitboxFuss.Y -= y * faktor;
+            hitboxBeine.Y -= y * faktor;
         }
 
         public void movePlayerDown(int y)
@@ -175,6 +178,7 @@ namespace xkfd
             hitboxKopf.Y += y * faktor;
             hitboxFussRechts.Y += y * faktor;
             hitboxFuss.Y += y * faktor;
+            hitboxBeine.Y += y * faktor;
         }
 
         public void setPlayerPosition(int y)
@@ -186,9 +190,10 @@ namespace xkfd
             if (aktuellerZustand != ducken)
                 hitboxKopf.Y = (int)position.Y ;
             else
-                hitboxKopf.Y = (int)position.Y + 60;
+                hitboxKopf.Y = (int)position.Y + 40;
 
             hitboxFuss.Y = (int)position.Y + 110;
+            hitboxBeine.Y = (int)position.Y + 60;
         }
     }
 }

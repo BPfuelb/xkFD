@@ -131,6 +131,9 @@
     <Compile Include="Game1.cs" />
     <Compile Include="Springen.cs" />
     <Compile Include="Sterben.cs" />
+    <Compile Include="SterbenAnimation.cs" />
+    <Compile Include="SterbenAnimationBeine.cs" />
+    <Compile Include="SterbenAnimationKopf.cs" />
     <Compile Include="Zustand.cs" />
   </ItemGroup>
   <ItemGroup>
