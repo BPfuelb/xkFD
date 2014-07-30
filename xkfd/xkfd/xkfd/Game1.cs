@@ -18,7 +18,7 @@ namespace xkfd
         SpriteBatch spriteBatch;
 
         // Spiel Status
-        enum Gamestate { running, menue, options };
+        enum Gamestate { running, menue, options, ladebildschirm };
         Gamestate gamestate = Gamestate.menue;
 
         // Spieler
@@ -44,7 +44,14 @@ namespace xkfd
         // Hindernis Liste
         List<Hindernis> hindernisListe;
 
+        // Hud
+        Hud hud;
 
+        // Tutorial starten
+        Boolean start = true;
+
+
+        KeyboardState NewKeyState;
 
         // Hindernis Texturen
         Texture2D hindernisTexturS;
@@ -54,9 +61,14 @@ namespace xkfd
         Texture2D hindernisTexturD;
         Texture2D hindernisTexturZ;
 
+        // Hud Texturen
+        Texture2D hudTextur;
         Texture2D dummyTexture;
         Texture2D dummyTexture2;
 
+
+        // Logo
+        Texture2D logo;
 
         public Game1()
         {
@@ -76,9 +88,6 @@ namespace xkfd
 
             // Optionen Initialisieren
             optionen = new Optionen();
-
-
-
         }
 
         protected override void Initialize()
@@ -108,7 +117,9 @@ namespace xkfd
             spieler.gleiten.animationTexture = Content.Load<Texture2D>("ani_gleiten_std");
             spieler.laufen.animationTexture = Content.Load<Texture2D>("ani_laufen_std");
             spieler.springen.animationTexture = Content.Load<Texture2D>("ani_springen_std");
-            spieler.sterben.animationTexture = Content.Load<Texture2D>("ani_sterben_std");
+
+            // Sterben animationen
+            ((Sterben)spieler.sterben).koepfen.textur = Content.Load<Texture2D>("ani_sterben1_koepfen_std");
 
 
             // Initialisiere Menü Animationen
@@ -148,6 +159,23 @@ namespace xkfd
             hindernisListe = Hindernis.generieHindernisse(10, hindernisTexturS, hindernisTexturA, hindernisTexturB, hindernisTexturC, hindernisTexturD, hindernisTexturZ);
 
 
+            // HudTextur
+            hudTextur = new Texture2D(GraphicsDevice, 1, 1);
+            hudTextur.SetData(new Color[] { Color.Gray });
+
+
+            // Logo
+            logo = Content.Load<Texture2D>("logo");
+
+            // Hud Initialisieren
+            hud = new Hud(spieler, hudTextur);
+
+            hud.teleport = Content.Load<Texture2D>("teleport");
+            hud.checkBox_check = Content.Load<Texture2D>("checkbox_check");
+            hud.checkBox_uncheck = Content.Load<Texture2D>("checkbox_uncheck");
+            hud.tastaturTextur = Content.Load<Texture2D>("ani_tastatur");
+
+
             // Test textur
             dummyTexture = new Texture2D(GraphicsDevice, 1, 1);
             dummyTexture.SetData(new Color[] { Color.Red });
@@ -166,12 +194,44 @@ namespace xkfd
         {
             loadAnimation();
 
+            #region GamestateLoading
+            if (gamestate == Gamestate.ladebildschirm)
+            {
+                hintergrund.Update();
+
+                if (start)
+                {
+                    spieler.position.X = -20;
+                    start = false;
+                }
+
+                if (spieler.position.X <= 512)
+                    spieler.position.X++;
+
+                spieler.Update();
+
+                hud.UpdateHelp();
+
+                NewKeyState = Keyboard.GetState();
+
+                if (Keyboard.GetState().IsKeyDown(Keys.Enter) && OldKeyState.IsKeyUp(Keys.Enter))
+                {
+                    spieler.position.X = 512;
+                    gamestate = Gamestate.running;
+                }
+                OldKeyState = NewKeyState;
+            }
+
+            #endregion
+
             #region GamestateRunning
 
             if (gamestate == Gamestate.running)
             {
 
-                if (spieler.teleport == true && Keyboard.GetState().IsKeyDown(Keys.Up))
+                hud.Update();
+
+                if (spieler.teleport == true && Keyboard.GetState().IsKeyDown(Keys.Up) && spieler.aktuellerZustand != spieler.sterben)
                 {
                     spieler.teleport = false;
                     ((Fallen)spieler.fallen).beschleunigung = 0;
@@ -237,7 +297,7 @@ namespace xkfd
                     if (spieler.hitboxFuss.Intersects(hitbox.hitbox))
                     {
                         kollidiert = true;
-                        if (Keyboard.GetState().IsKeyDown(Keys.Down))
+                        if (Keyboard.GetState().IsKeyDown(Keys.Down) && spieler.aktuellerZustand != spieler.fallen)
                             spieler.doDucken();
                         else
                             spieler.doLaufen();
@@ -253,6 +313,25 @@ namespace xkfd
 
 
                 // Kopf Kollisionserkennung
+                if (spieler.aktuellerZustand == spieler.laufen)
+                {
+                    foreach (Hitbox hitbox in kollisionsListe)
+                    {
+                        if (spieler.hitboxKopf.Intersects(hitbox.hitbox))
+                        {
+                            ((Sterben)spieler.sterben).aktuell = ((Sterben)spieler.sterben).koepfen;
+                            spieler.doSterben();
+                        }
+                        if (spieler.hitboxBeine.Intersects(hitbox.hitbox))
+                        {
+                            ((Sterben)spieler.sterben).aktuell = ((Sterben)spieler.sterben).dagegen;
+                            spieler.doSterben();
+                        
+                        }
+
+                    }
+                }
+
                 foreach (Hitbox hitbox in kollisionsListe)
                 {
                     if (spieler.hitboxKopf.Intersects(hitbox.hitbox))
@@ -283,7 +362,7 @@ namespace xkfd
 
 
                 // Auswahl im Menü ber Tastatur (Pfeiltasten)
-                KeyboardState NewKeyState = Keyboard.GetState();
+                NewKeyState = Keyboard.GetState();
 
                 if (Keyboard.GetState().IsKeyDown(Keys.Up) && OldKeyState.IsKeyUp(Keys.Up))
                     menue.prevMenue();
@@ -311,16 +390,17 @@ namespace xkfd
                             gamestate = Gamestate.options;
                             break;
                         case 2: // Starten/Fortsetzen
-                            gamestate = Gamestate.running;
+                            gamestate = Gamestate.ladebildschirm;
                             menue.spielAktiv = true;
                             break;
                         case 3: // Spieler zurücksetzen (TODO)
 
                             spieler = new Spieler();
+                            hud = new Hud(spieler, hudTextur);
                             LoadContent();
                             loadAnimation();
                             hindernisListe = Hindernis.generieHindernisse(10, hindernisTexturS, hindernisTexturA, hindernisTexturB, hindernisTexturC, hindernisTexturD, hindernisTexturZ);
-                            gamestate = Gamestate.running;
+                            gamestate = Gamestate.ladebildschirm;
 
                             break;
                     }
@@ -357,6 +437,16 @@ namespace xkfd
             // Hintergunrd zeichnen
             spriteBatch.Draw(hintergrund.hintergrundTextur, hintergrund.hintegrundPosition, Color.White);
 
+            #region GamestateLoading
+
+            if (gamestate == Gamestate.ladebildschirm)
+            {
+                hud.DrawHelp(spriteBatch, schrift);
+                spieler.Draw(spriteBatch);
+            }
+
+            #endregion
+
             #region GamestateRunning
 
             if (gamestate == Gamestate.running)
@@ -365,6 +455,8 @@ namespace xkfd
                 // Zeichne Spieler
                 spieler.Draw(spriteBatch);
                 // spriteBatch.Draw(spieler.spielerTextur, spieler.position, Color.White);
+
+                hud.Draw(spriteBatch, schrift);
 
 
                 // Zeichne Hitboxen der Hindernisse
@@ -392,18 +484,17 @@ namespace xkfd
 
 
 
-                // Spieler Hitbox malen zum Testen
                 /*
+                // Spieler Hitbox malen zum Testen
+
                 //  spriteBatch.Draw(dummyTexture2, spieler.hitboxFussRechts, Color.Green);
                 spriteBatch.Draw(dummyTexture2, spieler.linksOben, Color.Green);
                 spriteBatch.Draw(dummyTexture2, spieler.hitboxFuss, Color.Green);
 
                 // spriteBatch.Draw(dummyTexture2, spieler.hitboxKopf, Color.Blue);
                 spriteBatch.Draw(dummyTexture2, spieler.hitboxKopf, Color.Green);
+                spriteBatch.Draw(dummyTexture2, spieler.hitboxBeine, Color.Green);
                 */
-
-                // Gleiten Ressource anzeigen
-                spriteBatch.DrawString(schrift, "Gleiten: " + spieler.gleitenResource, new Vector2(128 + 50, 20), Color.Gray);
 
 
                 // Titel sound aus
@@ -435,6 +526,7 @@ namespace xkfd
 
             #endregion
 
+            spriteBatch.Draw(logo, new Vector2(0, 720 - 83), Color.White);
             spriteBatch.End(); // End
 
             base.Draw(gameTime);
@@ -444,14 +536,21 @@ namespace xkfd
         public void loadAnimation()
         {
 
-            // Animation zum Laufen laden
-            if (spieler.ducken.animation == null) spieler.ducken.animation = new Animation(spieler.laufen.animationTexture, 4, 3, 6);
+            // Spieler zum Laufen laden
+            if (spieler.ducken.animation == null) spieler.ducken.animation = new Animation(spieler.ducken.animationTexture, 4, 4, 4);
             if (spieler.fallen.animation == null) spieler.fallen.animation = new Animation(spieler.fallen.animationTexture, 2, 2, 6);
             if (spieler.gewinnen.animation == null) spieler.gewinnen.animation = new Animation(spieler.gewinnen.animationTexture, 4, 3, 6);
             if (spieler.gleiten.animation == null) spieler.gleiten.animation = new Animation(spieler.gleiten.animationTexture, 2, 2, 6);
             if (spieler.laufen.animation == null) spieler.laufen.animation = new Animation(spieler.laufen.animationTexture, 4, 3, 3);
             if (spieler.springen.animation == null) spieler.springen.animation = new Animation(spieler.springen.animationTexture, 4, 2, 6);
-            if (spieler.sterben.animation == null) spieler.sterben.animation = new Animation(spieler.sterben.animationTexture, 4, 3, 6);
+            
+            // Sterben Animationen
+            if (((Sterben)spieler.sterben).koepfen.animationTod == null) ((Sterben)spieler.sterben).koepfen.animationTod = new Animation(((Sterben)spieler.sterben).koepfen.textur, 2, 5, 6);
+            if (((Sterben)spieler.sterben).dagegen.animationTod == null) ((Sterben)spieler.sterben).dagegen.animationTod = new Animation(((Sterben)spieler.sterben).koepfen.textur, 2, 5, 6);
+
+            // Hud Animation
+
+            if (hud.tastaturAnimation == null) hud.tastaturAnimation = new Animation(hud.tastaturTextur, 2, 2, 6);
         }
     }
 }
