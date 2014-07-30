@@ -12,7 +12,7 @@ namespace xkfd
 {
     class Sterben : Zustand
     {
-        public  SterbenAnimation koepfen;
+        public SterbenAnimation koepfen;
         public SterbenAnimation dagegen;
         public SterbenAnimation aktuell;
 
@@ -25,7 +25,6 @@ namespace xkfd
             koepfen = new SterbenAnimationKopf(this);
             dagegen = new SterbenAnimationBeine(this);
             aktuell = koepfen;
-
 
             hitbox = new Rectangle((int)spieler.position.X + 42, (int)spieler.position.Y + 63, 53, 104);
         }

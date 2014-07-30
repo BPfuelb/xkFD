@@ -326,6 +326,51 @@
       <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_sterben2_stolpern_std.xnb</Output>
       <Time>2014-07-30T17:36:59.0343225+02:00</Time>
     </Item>
+    <Item>
+      <Source>ani_gleiten_frau.png</Source>
+      <Name>ani_gleiten_frau</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_gleiten_frau.xnb</Output>
+      <Time>2014-07-30T22:15:32.9596157+02:00</Time>
+    </Item>
+    <Item>
+      <Source>ani_laufen_frau.png</Source>
+      <Name>ani_laufen_frau</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_laufen_frau.xnb</Output>
+      <Time>2014-07-30T22:15:36.4818172+02:00</Time>
+    </Item>
+    <Item>
+      <Source>ani_fallen_frau.png</Source>
+      <Name>ani_fallen_frau</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_fallen_frau.xnb</Output>
+      <Time>2014-07-30T22:15:39.0589646+02:00</Time>
+    </Item>
+    <Item>
+      <Source>ani_springen_frau.png</Source>
+      <Name>ani_springen_frau</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_springen_frau.xnb</Output>
+      <Time>2014-07-30T22:17:09.1081151+02:00</Time>
+    </Item>
+    <Item>
+      <Source>ani_ducken_frau.png</Source>
+      <Name>ani_ducken_frau</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_ducken_frau.xnb</Output>
+      <Time>2014-07-30T22:53:02.1112598+02:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <TargetPlatform>Windows</TargetPlatform>

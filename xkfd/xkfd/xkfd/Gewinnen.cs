@@ -18,13 +18,15 @@ namespace xkfd
 
         public override void update()
         {
-            animation.Update();
+            spieler.aktuellerSkin.gewinnenAnimation.Update();
+            // ALT animation.Update();
         }
 
 
         public override void Draw(SpriteBatch sb)
         {
-            animation.Draw(sb, this.spieler.position);
+            spieler.aktuellerSkin.gewinnenAnimation.Draw(sb, spieler.position);
+            // ALT animation.Draw(sb, this.spieler.position);
         }
 
         // Zustandsänderungen bei Aktionen

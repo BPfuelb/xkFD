@@ -16,7 +16,6 @@ namespace xkfd
         public Texture2D textur;
         public Animation animationTod;
 
-
         public SoundEffect soundTod;
         public SoundEffectInstance soundSoundInstance;
 

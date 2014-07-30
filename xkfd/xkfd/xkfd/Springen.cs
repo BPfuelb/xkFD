@@ -30,13 +30,15 @@ namespace xkfd
                 ((Fallen)spieler.fallen).beschleunigung = 0;
                 spieler.doFallen();
             }
-            animation.Update(4);
+            spieler.aktuellerSkin.sprignenAnimation.Update(4);
+            // ALT animation.Update(4);
         }
 
         
         public override void Draw(SpriteBatch sb)
         {
-            animation.Draw(sb, this.spieler.position);
+            spieler.aktuellerSkin.sprignenAnimation.Draw(sb, this.spieler.position);
+            // ALT animation.Draw(sb, this.spieler.position);
         }
 
 

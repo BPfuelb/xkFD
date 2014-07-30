@@ -17,19 +17,18 @@ namespace xkfd
 
         public SterbenAnimationBeine(Sterben sterben)
             : base(sterben)
-        {
-
-
-        }
+        { }
 
         public override void Update()
         {
-            animationTod.UpdateNoLoop();
+            sterben.spieler.aktuellerSkin.sterbenAnimationStolpern.UpdateNoLoop();
+            // ALT animationTod.UpdateNoLoop();
         }
 
         public override void Draw(SpriteBatch sb)
         {
-            animationTod.Draw(sb, this.sterben.spieler.position + new Vector2(16, 8));
+            sterben.spieler.aktuellerSkin.sterbenAnimationStolpern.Draw(sb, this.sterben.spieler.position + new Vector2(16, 8));
+            // ALT animationTod.Draw(sb, this.sterben.spieler.position + new Vector2(16, 8));
         }
     }
 }

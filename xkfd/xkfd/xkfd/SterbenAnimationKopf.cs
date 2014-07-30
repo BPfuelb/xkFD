@@ -23,12 +23,14 @@ namespace xkfd
 
         public override void Update()
         {
-            animationTod.UpdateNoLoop();
+            sterben.spieler.aktuellerSkin.sterbenAnimationKoepfen.UpdateNoLoop();
+            // ALT animationTod.UpdateNoLoop();
         }
 
         public override void Draw(SpriteBatch sb)
         {
-            animationTod.Draw(sb, this.sterben.spieler.position + new Vector2(0, 10));
+            sterben.spieler.aktuellerSkin.sterbenAnimationKoepfen.Draw(sb, this.sterben.spieler.position + new Vector2(0, 10));
+            // ALT animationTod.Draw(sb, this.sterben.spieler.position + new Vector2(0, 10));
         }
 
     }

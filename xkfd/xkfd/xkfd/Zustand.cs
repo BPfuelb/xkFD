@@ -15,8 +15,6 @@ namespace xkfd
     abstract class Zustand
     {
         public Spieler spieler;
-        public Texture2D animationTexture;
-        public Animation animation;
 
         public SoundEffect sound;
         public SoundEffectInstance soundSoundInstance;

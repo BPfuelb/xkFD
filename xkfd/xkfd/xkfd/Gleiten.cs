@@ -21,7 +21,8 @@ namespace xkfd
 
         public override void update()
         {
-            animation.Update();
+            spieler.aktuellerSkin.gleitenAnimation.Update();
+            // ALT animation.Update();
 
             if (spieler.gleitenResource > 0)
                 spieler.gleitenResource--;
@@ -32,7 +33,8 @@ namespace xkfd
 
         public override void Draw(SpriteBatch sb)
         {
-            animation.Draw(sb, this.spieler.position);
+            spieler.aktuellerSkin.gleitenAnimation.Draw(sb, this.spieler.position);
+            // ALT animation.Draw(sb, this.spieler.position);
         }
 
         // Zustandsänderungen bei Aktionen

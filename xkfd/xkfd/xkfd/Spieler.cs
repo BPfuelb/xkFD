@@ -27,7 +27,7 @@ namespace xkfd
 
         // Skin
 
-        public Skin skin; 
+        public Skin aktuellerSkin; 
 
         // Punktestand
         private int punkte;

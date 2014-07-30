@@ -22,13 +22,15 @@ namespace xkfd
 
         public override void update()
         {
-            animation.Update(4);
+            spieler.aktuellerSkin.duckenAnimation.Update(4);
+            // ALT animation.Update(4);
 
         }
 
         public override void Draw(SpriteBatch sb)
         {
-            animation.Draw(sb, this.spieler.position);
+            spieler.aktuellerSkin.duckenAnimation.Draw(sb, this.spieler.position);
+            // ALT animation.Draw(sb, this.spieler.position);
         }
 
         // Zustandsänderungen bei Aktionen
@@ -49,7 +51,7 @@ namespace xkfd
 
         public override void laufen()
         {
-            animation.index = 0;
+            spieler.aktuellerSkin.duckenAnimation.index = 0;
             spieler.hitboxKopf = new Rectangle((int)spieler.position.X + 50, (int)spieler.position.Y, 10, 40);
             spieler.setZustand(spieler.laufen);
         }
@@ -67,7 +69,7 @@ namespace xkfd
 
         public override void fallen()
         {
-            animation.index = 0;
+            spieler.aktuellerSkin.duckenAnimation.index = 0;
             spieler.hitboxKopf = new Rectangle((int)spieler.position.X + 50, (int)spieler.position.Y, 10, 90);
             spieler.setZustand(spieler.fallen);
         }

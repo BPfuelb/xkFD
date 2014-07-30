@@ -15,22 +15,22 @@ namespace xkfd
 
         public Laufen(Spieler spieler)
             : base(spieler)
-        {
-
-        }
+        { }
 
         public override void update()
         {
-            // Gleiten Ressource hochzählen solange der Charakter läuft
+            // Gleiten Ressource hochzählen solange der Charakter läuft TODO auch bei Ducken!
             if (spieler.gleitenResource < 30)
                 spieler.gleitenResource += 1;
 
-            animation.Update();
+            // Update der Laufen Animation
+            spieler.aktuellerSkin.laufenAnimation.Update();
         }
 
         public override void Draw(SpriteBatch sb)
         {
-            animation.Draw(sb, this.spieler.position);
+            // Malen des aktuellen Zustands der Animation
+            spieler.aktuellerSkin.laufenAnimation.Draw(sb, this.spieler.position);
         }
 
 
