@@ -72,7 +72,7 @@ namespace xkfd
         // Logo
         Texture2D logo;
 
-        Boolean geladen = false;
+        Boolean standardCharLaden = true;
 
         public Game1()
         {
@@ -126,10 +126,10 @@ namespace xkfd
             standardSkin.sterbenTexturKoepfen = Content.Load<Texture2D>("ani_sterben1_koepfen_std");
             standardSkin.sterbenTexturStolpern = Content.Load<Texture2D>("ani_sterben2_stolpern_std");
 
-            
+
 
             // Frauen Skin
-            frauenSkin= new Skin();
+            frauenSkin = new Skin();
 
             frauenSkin.duckenTextur = Content.Load<Texture2D>("ani_ducken_frau");
             frauenSkin.fallenTextur = Content.Load<Texture2D>("ani_fallen_frau");
@@ -142,7 +142,7 @@ namespace xkfd
             frauenSkin.sterbenTexturStolpern = Content.Load<Texture2D>("ani_sterben2_stolpern_std");
 
             // Hut Skin
-            hutSkin= new Skin();
+            hutSkin = new Skin();
 
             hutSkin.duckenTextur = Content.Load<Texture2D>("ani_ducken_std");
             hutSkin.fallenTextur = Content.Load<Texture2D>("ani_fallen_std");
@@ -155,7 +155,7 @@ namespace xkfd
             hutSkin.sterbenTexturStolpern = Content.Load<Texture2D>("ani_sterben2_stolpern_std");
 
             // Einstein Skin
-            einsteinSkin= new Skin();
+            einsteinSkin = new Skin();
 
             einsteinSkin.duckenTextur = Content.Load<Texture2D>("ani_ducken_std");
             einsteinSkin.fallenTextur = Content.Load<Texture2D>("ani_fallen_std");
@@ -169,18 +169,19 @@ namespace xkfd
 
             #endregion
 
-            // Setzte standard Skin (evtl Datei auslesen)
-            spieler.aktuellerSkin = standardSkin;
-
+            // Skin Auswahl in Optionen hinzufügen
             optionen.skinHinzufuegen(standardSkin);
             optionen.skinHinzufuegen(frauenSkin);
             optionen.skinHinzufuegen(hutSkin);
             optionen.skinHinzufuegen(einsteinSkin);
 
 
+            // Setzte standard Skin (evtl Datei auslesen)
+            spieler.aktuellerSkin = optionen.skinListe[optionen.auswahl];
+
             // Sterben animationen
-            ((Sterben)spieler.sterben).koepfen.textur = Content.Load<Texture2D>("ani_sterben1_koepfen_std");
-            ((Sterben)spieler.sterben).dagegen.textur = Content.Load<Texture2D>("ani_sterben2_stolpern_std");
+            // ((Sterben)spieler.sterben).koepfen.textur = Content.Load<Texture2D>("ani_sterben1_koepfen_std");
+            // ((Sterben)spieler.sterben).dagegen.textur = Content.Load<Texture2D>("ani_sterben2_stolpern_std");
 
             // Initialisiere Menü Animationen
             menue.startTextur = Content.Load<Texture2D>("m_start");
@@ -269,7 +270,7 @@ namespace xkfd
             #region GamestateLoading
             if (gamestate == Gamestate.ladebildschirm)
             {
-                
+
 
                 if (start)
                 {
@@ -280,7 +281,7 @@ namespace xkfd
                 if (spieler.position.X <= 512)
                 {
                     spieler.position.X++;
-                    hintergrund.Update(1);
+                    hintergrund.Update(2);
                 }
                 else
                 {
@@ -309,13 +310,13 @@ namespace xkfd
             if (gamestate == Gamestate.running)
             {
                 // Hud Update
-               //  hud.Update();
+                hud.Update();
 
                 // Teleport bei Curser Taste nach Oben
                 if (spieler.teleport == true && Keyboard.GetState().IsKeyDown(Keys.Up) && spieler.aktuellerZustand != spieler.sterben && spieler.aktuellerZustand != spieler.gewinnen)
                 {
                     spieler.teleport = false; // Teleportresource Verbrauchen
-                    ((Fallen)spieler.fallen).beschleunigung = 0; 
+                    ((Fallen)spieler.fallen).beschleunigung = 0;
                     spieler.setPlayerPosition(10);
                 }
 
@@ -360,8 +361,8 @@ namespace xkfd
 
                 // Erstellen einer Liste mit Hitboxen aus Bereich 2 & 3
                 List<Hitbox> kollisionsListe = new List<Hitbox>();
-                
-                 foreach (Hitbox hitbox in hindernisListe[2].gibHitboxen())
+
+                foreach (Hitbox hitbox in hindernisListe[2].gibHitboxen())
                 { kollisionsListe.Add(hitbox); }
 
                 foreach (Hitbox hitbox in hindernisListe[3].gibHitboxen())
@@ -414,7 +415,7 @@ namespace xkfd
                     }
                 }
 
-                /*
+
                 foreach (Hitbox hitbox in kollisionsListe) // für Sonstige Kollisionen in Zuständen die oben noch nicht abgefangen werden
                 {
                     if (spieler.hitboxKopf.Intersects(hitbox.hitbox))
@@ -423,7 +424,6 @@ namespace xkfd
                         spieler.doSterben();
                     }
                 }
-                 */
             }
 
 
@@ -461,10 +461,10 @@ namespace xkfd
                 if (Keyboard.GetState().IsKeyDown(Keys.Left) && OldKeyState.IsKeyUp(Keys.Left))
                     menue.leftMenue();
 
-                OldKeyState = NewKeyState;
+                
 
                 // Auswahl ausführen
-                if (Keyboard.GetState().IsKeyDown(Keys.Enter))
+                if (Keyboard.GetState().IsKeyDown(Keys.Enter) && OldKeyState.IsKeyUp(Keys.Enter))
                 {
                     switch (menue.auswahl)
                     {
@@ -475,7 +475,6 @@ namespace xkfd
                             gamestate = Gamestate.options;
                             break;
                         case 2: // Starten/Fortsetzen
-                            geladen = false;
                             neustart();
                             gamestate = Gamestate.ladebildschirm;
                             menue.spielAktiv = true;
@@ -486,7 +485,10 @@ namespace xkfd
                             break;
                     }
 
+
                 }
+
+                OldKeyState = NewKeyState;
 
                 menue.Update();
             }
@@ -505,18 +507,21 @@ namespace xkfd
                     optionen.auswahl = (optionen.auswahl + 1) % optionen.skinListe.Count;
 
                 if (Keyboard.GetState().IsKeyDown(Keys.Up) && OldKeyState.IsKeyUp(Keys.Up))
-                    optionen.auswahl = (optionen.auswahl + optionen.skinListe.Count - 1) % optionen.skinListe.Count; 
+                    optionen.auswahl = (optionen.auswahl + optionen.skinListe.Count - 1) % optionen.skinListe.Count;
 
-               OldKeyState = NewKeyState;
+                if (Keyboard.GetState().IsKeyDown(Keys.Enter) && OldKeyState.IsKeyUp(Keys.Enter))
+                {
+                    spieler.aktuellerSkin = optionen.skinListe[optionen.auswahl +1];
+                    gamestate = Gamestate.menue;
+                }
+
+                OldKeyState = NewKeyState;
 
                 if (Keyboard.GetState().IsKeyDown(Keys.Escape))
                     gamestate = Gamestate.menue;
             }
 
             #endregion
-
-            // Weiterschieben des Hintergrunds
-
 
             base.Update(gameTime);
         }
@@ -629,9 +634,7 @@ namespace xkfd
         public void loadAnimation()
         {
 
-            if (!geladen)
-            {
-                Console.WriteLine("Hier wird geladen");
+
                 // Skin Animationen laden
 
                 // StandardSkin
@@ -681,11 +684,6 @@ namespace xkfd
 
                 // Menü Radio Animation
                 if (menue.radio_m_ani == null) menue.radio_m_ani = new Animation(menue.radioTexture, 2, 2, 6);
-
-                geladen = true;
-            }
-            // Console.WriteLine("laden");
-            
         }
 
         public void neustart()

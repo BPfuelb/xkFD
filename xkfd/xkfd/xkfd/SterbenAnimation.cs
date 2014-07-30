@@ -13,8 +13,8 @@ namespace xkfd
     abstract class SterbenAnimation
     {
         public Sterben sterben;
-        public Texture2D textur;
-        public Animation animationTod;
+        // public Texture2D textur;
+
 
         public SoundEffect soundTod;
         public SoundEffectInstance soundSoundInstance;
