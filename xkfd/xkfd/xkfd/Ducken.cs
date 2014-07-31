@@ -22,6 +22,9 @@ namespace xkfd
 
         public override void update()
         {
+            if (spieler.gleitenResource < 30)
+                spieler.gleitenResource += 1;
+
             spieler.aktuellerSkin.duckenAnimation.Update(4);
             // ALT animation.Update(4);
 
@@ -58,7 +61,7 @@ namespace xkfd
 
         public override void gewinnen()
         {
-            // tue nichts
+            spieler.setZustand(spieler.gewinnen);
         }
 
         public override void sterben()

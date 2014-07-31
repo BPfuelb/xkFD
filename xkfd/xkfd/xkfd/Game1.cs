@@ -18,7 +18,7 @@ namespace xkfd
         SpriteBatch spriteBatch;
 
         // Debug
-        Boolean debug = true;
+        Boolean debug = false;
 
         // Spiel Status
         enum Gamestate { running, menue, options, ladebildschirm };
@@ -28,7 +28,8 @@ namespace xkfd
         Spieler spieler;
 
         // Schriftart
-        SpriteFont schrift;
+        SpriteFont schrift_40;
+        SpriteFont schrift_20;
 
         // Menü 
         Menue menue;
@@ -79,8 +80,6 @@ namespace xkfd
 
         KonfigDatei konfig;
 
-        Boolean standardCharLaden = true;
-
         int gewonnen;
 
         public Game1()
@@ -124,7 +123,8 @@ namespace xkfd
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // Lade Schirftart
-            schrift = Content.Load<SpriteFont>("SpriteFont1");
+            schrift_40 = Content.Load<SpriteFont>("SpriteFont1");
+            schrift_20 = Content.Load<SpriteFont>("SpriteFont2");
 
             #region SkinsInitialisieren
             // Skin initialisieren
@@ -271,6 +271,10 @@ namespace xkfd
             hud.checkBox_uncheck = Content.Load<Texture2D>("checkbox_uncheck");
             hud.tastaturTextur = Content.Load<Texture2D>("ani_tastatur");
 
+            hud.skin_frau = Content.Load<Texture2D>("unlock_skin_frau");
+            hud.skin_hut = Content.Load<Texture2D>("unlock_skin_hut");
+            hud.skin_einstein = Content.Load<Texture2D>("unlock_skin_einstein");
+
 
             // Test textur
             dummyTexture = new Texture2D(GraphicsDevice, 1, 1);
@@ -376,6 +380,7 @@ namespace xkfd
                     {
                         menue.spielAktiv = false;
                         gewonnen++;
+                        hud.gewonnen = true;
                         konfig.WriteFile(gewonnen.ToString());
                     }
 
@@ -477,7 +482,7 @@ namespace xkfd
                         }
                         else if (spieler.hitboxBeine.Intersects(hitbox.hitbox) && !spieler.hitboxKopf.Intersects(hitbox.hitbox))
                         {
-                               spieler.setPlayerPosition(hitbox.hitbox.Top - 80);
+                            spieler.setPlayerPosition(hitbox.hitbox.Top - 80);
                             menue.spielAktiv = false;
                             ((Sterben)spieler.sterben).aktuell = ((Sterben)spieler.sterben).stolpern; // Passt den Todeszustand an
                             spieler.doSterben();
@@ -607,7 +612,7 @@ namespace xkfd
 
             if (gamestate == Gamestate.ladebildschirm)
             {
-                hud.DrawHelp(spriteBatch, schrift);
+                hud.DrawHelp(spriteBatch, schrift_40);
                 spieler.Draw(spriteBatch);
             }
 
@@ -622,7 +627,7 @@ namespace xkfd
                 spieler.Draw(spriteBatch);
                 // spriteBatch.Draw(spieler.spielerTextur, spieler.position, Color.White);
 
-                hud.Draw(spriteBatch, schrift);
+                hud.Draw(spriteBatch, schrift_40);
 
 
                 // if (hindernisListe[1] != null)
@@ -652,7 +657,7 @@ namespace xkfd
                     // Spieler Hitbox malen zum Testen
 
                     //  spriteBatch.Draw(dummyTexture2, spieler.hitboxFussRechts, Color.Green);
-                    spriteBatch.DrawString(schrift, "X: " + spieler.position.X + " Y: " + spieler.position.Y, new Vector2(0, 0), Color.Black);
+                    spriteBatch.DrawString(schrift_40, "X: " + spieler.position.X + " Y: " + spieler.position.Y, new Vector2(0, 0), Color.Black);
 
                     spriteBatch.Draw(dummyTexture2, spieler.linksOben, Color.Green);
                     spriteBatch.Draw(dummyTexture2, spieler.hitboxFuss, Color.Green);
@@ -664,7 +669,8 @@ namespace xkfd
                 }
 
 
-
+                if (hud.gewonnen)
+                    hud.DrawAchivment(spriteBatch,schrift_20,gewonnen);
 
 
 
@@ -692,10 +698,10 @@ namespace xkfd
             if (gamestate == Gamestate.options)
             {
                 // Malt alle Animationen des Menüs
-                optionen.Draw(spriteBatch, schrift,gewonnen);
-                spriteBatch.DrawString(schrift, "Zurück", new Vector2(128 + 50, 590), Color.Gray);
+                optionen.Draw(spriteBatch, schrift_40, gewonnen);
+                spriteBatch.DrawString(schrift_40, "Zurück", new Vector2(128 + 50, 590), Color.Gray);
 
-                spriteBatch.DrawString(schrift, "Gewonnen: " + gewonnen, new Vector2(600, 590), Color.Gray);
+                spriteBatch.DrawString(schrift_40, "Gewonnen: " + gewonnen, new Vector2(600, 590), Color.Gray);
             }
 
             #endregion
@@ -772,6 +778,7 @@ namespace xkfd
             hud = new Hud(spieler, hudTextur);
             LoadContent();
             loadAnimation();
+            hud.gewonnen = false;
 
             ((Fallen)spieler.fallen).beschleunigung = 0;
 

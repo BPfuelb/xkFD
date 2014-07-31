@@ -66,7 +66,8 @@ namespace xkfd
 
         public override void gewinnen()
         {
-            // Tue nichts
+            spieler.setZustand(spieler.gewinnen);
+
         }
 
         public override void sterben()

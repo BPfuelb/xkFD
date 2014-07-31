@@ -79,6 +79,7 @@ namespace xkfd
 
         public void setZustand(Zustand zustand)
         {
+            /*
             if (zustand == laufen)
                 Console.WriteLine("Zustand: Laufen");
 
@@ -99,6 +100,7 @@ namespace xkfd
 
             if (zustand == gleiten)
                 Console.WriteLine("Zustand: Gleiten");
+             */
 
             this.aktuellerZustand = zustand;
         }

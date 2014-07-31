@@ -405,7 +405,43 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_sterben3_klatscher_std.xnb</Output>
-      <Time>2014-07-31T03:25:13.5583652+02:00</Time>
+      <Time>2014-07-31T04:21:46.4744289+02:00</Time>
+    </Item>
+    <Item>
+      <Source>unlock_skin_frau.png</Source>
+      <Name>unlock_skin_frau</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\unlock_skin_frau.xnb</Output>
+      <Time>2014-07-31T04:07:33.6096478+02:00</Time>
+    </Item>
+    <Item>
+      <Source>unlock_skin_hut.png</Source>
+      <Name>unlock_skin_hut</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\unlock_skin_hut.xnb</Output>
+      <Time>2014-07-31T04:13:43.9208284+02:00</Time>
+    </Item>
+    <Item>
+      <Source>unlock_skin_einstein.png</Source>
+      <Name>unlock_skin_einstein</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\unlock_skin_einstein.xnb</Output>
+      <Time>2014-07-31T04:13:46.7629909+02:00</Time>
+    </Item>
+    <Item>
+      <Source>SpriteFont2.spritefont</Source>
+      <Name>SpriteFont2</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\SpriteFont2.xnb</Output>
+      <Time>2014-07-31T04:31:00.3461085+02:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
