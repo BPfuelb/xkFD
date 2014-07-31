@@ -10,31 +10,19 @@ namespace xkfd
     {
 
         public Rectangle hitbox;
-        public Vector2 position;
-        public int wertigkeit;
-
-        // Zugehöriges Hindernis (evlt. Object?)
-        public Hindernis hindernis;
-        public Punkt note;
+        public Vector2 hitboxPosition;
 
         public Hitbox(int posX, int posY, int width, int height)
         { 
             hitbox = new Rectangle(posX, posY, width, height);
-            position = new Vector2(posX, posY);
+            hitboxPosition = new Vector2(posX, posY);
         }
 
-        public Hitbox(Hindernis hindernis,int wertigkeit,int posX, int posY, int width, int height)
-        {
-            this.hindernis = hindernis;
 
-            hitbox = new Rectangle(posX, posY, width, height);
-            position = new Vector2(posX, posY);
-            this.wertigkeit = wertigkeit;
-
-        }
 
         public void move(int x)
         {
+            hitboxPosition.X -= x;
             hitbox.X -= x;
         }
     }

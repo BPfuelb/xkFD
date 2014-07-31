@@ -15,14 +15,14 @@ namespace xkfd
     class HindernisC : Hindernis
     {
 
-        public HindernisC(Texture2D textur, Vector2 position)
+        public HindernisC(Texture2D textur, Vector2 position, Punkt p1, Punkt p2, Punkt p5, Punkt p10)
             : base(textur, position)
         {
             hitboxListe.Add(new Hitbox((int)position.X, (int)position.Y + 488, 320, 200));
             hitboxListe.Add(new Hitbox((int)position.X + 90, (int)position.Y + 458, 150, 200));
 
-            punkteListe.Add(new Hitbox(this,5, (int)position.X + 50, (int)position.Y + 450, 32, 32));
-            punkteListe.Add(new Hitbox(this,1, (int)position.X + 270, (int)position.Y + 280, 32, 32));
+            punkteListe.Add(new NotenHitbox(p1, this, (int)position.X + 50, (int)position.Y + 450, 32, 32));
+            punkteListe.Add(new NotenHitbox(p5, this, (int)position.X + 270, (int)position.Y + 280, 32, 32));
 
         }
 

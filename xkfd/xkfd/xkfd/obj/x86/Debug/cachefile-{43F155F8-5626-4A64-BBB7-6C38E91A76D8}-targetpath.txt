@@ -54,3 +54,6 @@ Content\ani_ducken_hut.xnb
 Content\ani_laufen_hut.xnb
 Content\ani_gleiten_hut.xnb
 Content\note1.xnb
+Content\note2.xnb
+Content\note5.xnb
+Content\note10.xnb

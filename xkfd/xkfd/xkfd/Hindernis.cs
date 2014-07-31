@@ -15,13 +15,14 @@ namespace xkfd
     class Hindernis
     {
         public Texture2D hindernisTextur;
-        public Vector2 position;
+        public Vector2 hindernisPosition;
 
         public List<Hitbox> hitboxListe;
-        public List<Hitbox> punkteListe;
-        
+        public List<NotenHitbox> punkteListe;
+
+       
         // Generiert eine beliebige lange Liste von Hindernissen
-        public static List<Hindernis> generieHindernisse(int anzahl, Texture2D hindernisSTextur, Texture2D hindernisATextur, Texture2D hindernisBTextur, Texture2D hindernisCTextur, Texture2D hindernisDTextur, Texture2D hindernisZTextur, Punkt punkt)
+        public static List<Hindernis> generieHindernisse(int anzahl, Texture2D hindernisSTextur, Texture2D hindernisATextur, Texture2D hindernisBTextur, Texture2D hindernisCTextur, Texture2D hindernisDTextur, Texture2D hindernisZTextur, Punkt p1, Punkt p2, Punkt p5, Punkt p10)
         {
             // Init zufallsgenerator
             Random random = new Random();
@@ -44,16 +45,16 @@ namespace xkfd
                 switch ((int)random.Next(4))
                 {
                     case 0:
-                        liste.Add(new HindernisA(hindernisATextur, new Vector2(1280, 40)));
+                        liste.Add(new HindernisA(hindernisATextur, new Vector2(1280, 40),p1,p2,p5,p10));
                         break;
                     case 1:
-                        liste.Add(new HindernisB(hindernisBTextur, new Vector2(1280, 40)));
+                        liste.Add(new HindernisB(hindernisBTextur, new Vector2(1280, 40), p1, p2, p5, p10));
                         break;
                     case 2:
-                        liste.Add(new HindernisC(hindernisCTextur, new Vector2(1280, 40)));
+                        liste.Add(new HindernisC(hindernisCTextur, new Vector2(1280, 40), p1, p2, p5, p10));
                         break;
                     case 3:
-                        liste.Add(new HindernisD(hindernisDTextur, new Vector2(1280, 40)));
+                        liste.Add(new HindernisD(hindernisDTextur, new Vector2(1280, 40), p1, p2, p5, p10));
                         break;
                 }
             }
@@ -74,16 +75,16 @@ namespace xkfd
         {
             this.hitboxListe = new List<Hitbox>();
             this.hindernisTextur = textur;
-            this.position = position;
+            this.hindernisPosition = position;
 
-            this.punkteListe = new List<Hitbox>();
+            this.punkteListe = new List<NotenHitbox>();
         }
 
-        // Schiebt Hindernisse nach Linkts
+        // Schiebt Hindernisse nach Links
         public void Update()
         {
             // Hindernis Position Updaten
-            position.X -= 4;
+            hindernisPosition.X -= 4;
 
             // Hitboxen zur Kollisionserkennung aktualisieren
             foreach (Hitbox hitbox in hitboxListe)
@@ -92,7 +93,7 @@ namespace xkfd
             }
 
             // Punkte Hitboxen aktualisieren
-            foreach (Hitbox punkt in punkteListe)
+            foreach (NotenHitbox punkt in punkteListe)
             {
                 punkt.move(4);
             }
@@ -103,14 +104,14 @@ namespace xkfd
             return hitboxListe;
         }
 
-        public virtual List<Hitbox> gibPunkte()
+        public virtual List<NotenHitbox> gibPunkte()
         {
             return punkteListe;
         }
 
-        public virtual void loescheHitboxPunkt(Hitbox hitbox)
+        public virtual void loescheHitboxPunkt(NotenHitbox notenhitbox)
         {
-            punkteListe.Remove(hitbox);
+            punkteListe.Remove(notenhitbox);
         }
     }
 }

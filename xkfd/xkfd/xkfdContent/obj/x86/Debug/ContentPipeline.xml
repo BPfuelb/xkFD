@@ -324,7 +324,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_sterben2_stolpern_std.xnb</Output>
-      <Time>2014-07-30T17:36:59.0343225+02:00</Time>
+      <Time>2014-07-31T23:09:30.0732078+02:00</Time>
     </Item>
     <Item>
       <Source>ani_gleiten_frau.png</Source>
@@ -378,7 +378,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_sterben1_koepfen_frau.xnb</Output>
-      <Time>2014-07-31T01:13:57.335871+02:00</Time>
+      <Time>2014-07-31T23:09:30.0712077+02:00</Time>
     </Item>
     <Item>
       <Source>ani_sterben2_stolpern_frau.png</Source>
@@ -495,7 +495,34 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\note1.xnb</Output>
-      <Time>2014-07-31T22:09:44.8968967+02:00</Time>
+      <Time>2014-07-31T23:09:30.0742079+02:00</Time>
+    </Item>
+    <Item>
+      <Source>note2.png</Source>
+      <Name>note2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\note2.xnb</Output>
+      <Time>2014-07-31T23:09:30.0752079+02:00</Time>
+    </Item>
+    <Item>
+      <Source>note5.png</Source>
+      <Name>note5</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\note5.xnb</Output>
+      <Time>2014-07-31T23:09:30.076208+02:00</Time>
+    </Item>
+    <Item>
+      <Source>note10.png</Source>
+      <Name>note10</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\note10.xnb</Output>
+      <Time>2014-07-31T23:09:30.0742079+02:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
