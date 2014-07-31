@@ -371,6 +371,33 @@
       <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_ducken_frau.xnb</Output>
       <Time>2014-07-30T22:53:02.1112598+02:00</Time>
     </Item>
+    <Item>
+      <Source>ani_sterben1_koepfen_frau.png</Source>
+      <Name>ani_sterben1_koepfen_frau</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_sterben1_koepfen_frau.xnb</Output>
+      <Time>2014-07-31T01:13:57.335871+02:00</Time>
+    </Item>
+    <Item>
+      <Source>ani_sterben2_stolpern_frau.png</Source>
+      <Name>ani_sterben2_stolpern_frau</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_sterben2_stolpern_frau.xnb</Output>
+      <Time>2014-07-31T01:33:25.6936972+02:00</Time>
+    </Item>
+    <Item>
+      <Source>ani_gewinnen_frau.png</Source>
+      <Name>ani_gewinnen_frau</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_gewinnen_frau.xnb</Output>
+      <Time>2014-07-31T02:36:19.6665561+02:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <TargetPlatform>Windows</TargetPlatform>

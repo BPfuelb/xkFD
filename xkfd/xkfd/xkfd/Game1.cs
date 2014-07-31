@@ -17,6 +17,9 @@ namespace xkfd
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
+        // Debug
+        Boolean debug = true;
+
         // Spiel Status
         enum Gamestate { running, menue, options, ladebildschirm };
         Gamestate gamestate = Gamestate.menue;
@@ -125,6 +128,7 @@ namespace xkfd
 
             standardSkin.sterbenTexturKoepfen = Content.Load<Texture2D>("ani_sterben1_koepfen_std");
             standardSkin.sterbenTexturStolpern = Content.Load<Texture2D>("ani_sterben2_stolpern_std");
+            standardSkin.sterbenTexturKlatscher = Content.Load<Texture2D>("ani_sterben2_stolpern_std");
 
 
 
@@ -133,13 +137,14 @@ namespace xkfd
 
             frauenSkin.duckenTextur = Content.Load<Texture2D>("ani_ducken_frau");
             frauenSkin.fallenTextur = Content.Load<Texture2D>("ani_fallen_frau");
-            frauenSkin.gewinnenTextur = Content.Load<Texture2D>("ani_gewinnen_std");
+            frauenSkin.gewinnenTextur = Content.Load<Texture2D>("ani_gewinnen_frau");
             frauenSkin.gleitenTextur = Content.Load<Texture2D>("ani_gleiten_frau");
             frauenSkin.laufenTextur = Content.Load<Texture2D>("ani_laufen_frau");
             frauenSkin.sprignenTextur = Content.Load<Texture2D>("ani_springen_frau");
 
-            frauenSkin.sterbenTexturKoepfen = Content.Load<Texture2D>("ani_sterben1_koepfen_std");
-            frauenSkin.sterbenTexturStolpern = Content.Load<Texture2D>("ani_sterben2_stolpern_std");
+            frauenSkin.sterbenTexturKoepfen = Content.Load<Texture2D>("ani_sterben1_koepfen_frau");
+            frauenSkin.sterbenTexturStolpern = Content.Load<Texture2D>("ani_sterben2_stolpern_frau");
+            frauenSkin.sterbenTexturKlatscher = Content.Load<Texture2D>("ani_sterben2_stolpern_std");
 
             // Hut Skin
             hutSkin = new Skin();
@@ -153,6 +158,7 @@ namespace xkfd
 
             hutSkin.sterbenTexturKoepfen = Content.Load<Texture2D>("ani_sterben1_koepfen_std");
             hutSkin.sterbenTexturStolpern = Content.Load<Texture2D>("ani_sterben2_stolpern_std");
+            hutSkin.sterbenTexturKlatscher = Content.Load<Texture2D>("ani_sterben2_stolpern_std");
 
             // Einstein Skin
             einsteinSkin = new Skin();
@@ -166,6 +172,7 @@ namespace xkfd
 
             einsteinSkin.sterbenTexturKoepfen = Content.Load<Texture2D>("ani_sterben1_koepfen_std");
             einsteinSkin.sterbenTexturStolpern = Content.Load<Texture2D>("ani_sterben2_stolpern_std");
+            einsteinSkin.sterbenTexturKlatscher = Content.Load<Texture2D>("ani_sterben2_stolpern_std");
 
             #endregion
 
@@ -217,8 +224,8 @@ namespace xkfd
             ((Sterben)spieler.sterben).koepfen.soundSoundInstance = ((Sterben)spieler.sterben).koepfen.soundTod.CreateInstance();
 
             // Sterbe Sound beim dagegen laufen
-            ((Sterben)spieler.sterben).dagegen.soundTod = Content.Load<SoundEffect>("dsskedth");
-            ((Sterben)spieler.sterben).dagegen.soundSoundInstance = ((Sterben)spieler.sterben).dagegen.soundTod.CreateInstance();
+            ((Sterben)spieler.sterben).stolpern.soundTod = Content.Load<SoundEffect>("dsskedth");
+            ((Sterben)spieler.sterben).stolpern.soundSoundInstance = ((Sterben)spieler.sterben).stolpern.soundTod.CreateInstance();
 
             // Textur für Hindernisse
             hindernisTexturS = Content.Load<Texture2D>("hindernisS");
@@ -396,7 +403,7 @@ namespace xkfd
 
 
                 // Kopf Kollisionserkennung
-                if (spieler.aktuellerZustand == spieler.laufen)
+                if (menue.spielAktiv && spieler.aktuellerZustand == spieler.laufen)
                 {
                     foreach (Hitbox hitbox in kollisionsListe)
                     {
@@ -405,23 +412,56 @@ namespace xkfd
                             ((Sterben)spieler.sterben).aktuell = ((Sterben)spieler.sterben).koepfen;// Passt den Todeszustand an
                             menue.spielAktiv = false; // setzt Menü nach Tod wieder auf anfang
                             spieler.doSterben();
+                            Console.WriteLine("Im laufen gestorben Kopf");
                         }
                         if (spieler.hitboxBeine.Intersects(hitbox.hitbox)) // Wenn Beine kollidiert
                         {
-                            ((Sterben)spieler.sterben).aktuell = ((Sterben)spieler.sterben).dagegen; // Passt den Todeszustand an
+                            ((Sterben)spieler.sterben).aktuell = ((Sterben)spieler.sterben).stolpern; // Passt den Todeszustand an
                             menue.spielAktiv = false; // setzt Menü nach Tod wieder auf anfang
                             spieler.doSterben();
+                            Console.WriteLine("Im laufen gestorben Beine");
                         }
+                        
                     }
                 }
-
-
-                foreach (Hitbox hitbox in kollisionsListe) // für Sonstige Kollisionen in Zuständen die oben noch nicht abgefangen werden
+                else if(menue.spielAktiv) // Kollisionerkennung im Flug/Fallen/Gleiten
                 {
-                    if (spieler.hitboxKopf.Intersects(hitbox.hitbox))
+                    foreach (Hitbox hitbox in kollisionsListe) // für Sonstige Kollisionen in Zuständen die oben noch nicht abgefangen werden
                     {
-                        menue.spielAktiv = false;
-                        spieler.doSterben();
+                       /* if (spieler.position.Y > 500 && spieler.hitboxKopf.Intersects(hitbox.hitbox) && spieler.hitboxBeine.Intersects(hitbox.hitbox))
+                        {
+                            menue.spielAktiv = false;
+                            ((Sterben)spieler.sterben).aktuell = ((Sterben)spieler.sterben).klatscher; // Passt den Todeszustand an
+                            spieler.doSterben();
+                        }
+                        */
+                        if (spieler.hitboxKopf.Intersects(hitbox.hitbox))
+                        {
+                            menue.spielAktiv = false;
+                            Boolean kollidiertBoden = false;
+                            while (!kollidiertBoden)
+                            {
+                                foreach (Hitbox hb in kollisionsListe)
+                                {
+                                    if (spieler.hitboxFuss.Intersects(hb.hitbox) || spieler.position.Y > 720)
+                                    { kollidiertBoden = true; }
+                                }
+                                spieler.movePlayerDown(1);
+                            }
+                            ((Sterben)spieler.sterben).aktuell = ((Sterben)spieler.sterben).koepfen; // Passt den Todeszustand an
+                            spieler.doSterben();
+                            Console.WriteLine("Irgendwo gestorben mit Kopf");
+                        }
+
+                        if (spieler.hitboxBeine.Intersects(hitbox.hitbox))
+                        {
+                            spieler.setPlayerPosition(hitbox.hitbox.Top - 80);
+                            menue.spielAktiv = false;
+                            ((Sterben)spieler.sterben).aktuell = ((Sterben)spieler.sterben).stolpern; // Passt den Todeszustand an
+                            spieler.doSterben();
+                            Console.WriteLine("Irgendwo gestorben mit Beinen");
+                        }
+
                     }
                 }
             }
@@ -461,7 +501,7 @@ namespace xkfd
                 if (Keyboard.GetState().IsKeyDown(Keys.Left) && OldKeyState.IsKeyUp(Keys.Left))
                     menue.leftMenue();
 
-                
+
 
                 // Auswahl ausführen
                 if (Keyboard.GetState().IsKeyDown(Keys.Enter) && OldKeyState.IsKeyUp(Keys.Enter))
@@ -511,7 +551,7 @@ namespace xkfd
 
                 if (Keyboard.GetState().IsKeyDown(Keys.Enter) && OldKeyState.IsKeyUp(Keys.Enter))
                 {
-                    spieler.aktuellerSkin = optionen.skinListe[optionen.auswahl +1];
+                    spieler.aktuellerSkin = optionen.skinListe[optionen.auswahl + 1];
                     gamestate = Gamestate.menue;
                 }
 
@@ -557,18 +597,6 @@ namespace xkfd
                 hud.Draw(spriteBatch, schrift);
 
 
-                // Zeichne Hitboxen der Hindernisse
-                /*
-                foreach (Hindernis hindernis in hindernisListe)
-                {
-                    foreach (Hitbox hitbox in hindernis.gibHitboxen())
-                    {
-                        spriteBatch.Draw(dummyTexture, hitbox.hitbox, Color.Red);
-                    }
-                }
-                 * */
-
-
                 // if (hindernisListe[1] != null)
                 spriteBatch.Draw(hindernisListe[1].hindernisTextur, hindernisListe[1].position, Color.White);
                 // if (hindernisListe[2] != null)
@@ -582,17 +610,35 @@ namespace xkfd
 
 
 
-                /*
-                // Spieler Hitbox malen zum Testen
+                // Zeichne Hitboxen der Hindernisse
+                if (debug)
+                {
+                    foreach (Hindernis hindernis in hindernisListe)
+                    {
+                        foreach (Hitbox hitbox in hindernis.gibHitboxen())
+                        {
+                            spriteBatch.Draw(dummyTexture, hitbox.hitbox, Color.Red);
+                        }
 
-                //  spriteBatch.Draw(dummyTexture2, spieler.hitboxFussRechts, Color.Green);
-                spriteBatch.Draw(dummyTexture2, spieler.linksOben, Color.Green);
-                spriteBatch.Draw(dummyTexture2, spieler.hitboxFuss, Color.Green);
+                    }
+                    // Spieler Hitbox malen zum Testen
 
-                // spriteBatch.Draw(dummyTexture2, spieler.hitboxKopf, Color.Blue);
-                spriteBatch.Draw(dummyTexture2, spieler.hitboxKopf, Color.Green);
-                spriteBatch.Draw(dummyTexture2, spieler.hitboxBeine, Color.Green);
-                */
+                    //  spriteBatch.Draw(dummyTexture2, spieler.hitboxFussRechts, Color.Green);
+                    spriteBatch.DrawString(schrift, "X: " + spieler.position.X + " Y: " + spieler.position.Y, new Vector2(0, 0), Color.Black);
+
+                    spriteBatch.Draw(dummyTexture2, spieler.linksOben, Color.Green);
+                    spriteBatch.Draw(dummyTexture2, spieler.hitboxFuss, Color.Green);
+
+                    // spriteBatch.Draw(dummyTexture2, spieler.hitboxKopf, Color.Blue);
+                    spriteBatch.Draw(dummyTexture2, spieler.hitboxKopf, Color.Green);
+                    spriteBatch.Draw(dummyTexture2, spieler.hitboxBeine, Color.Green);
+
+                }
+
+
+
+
+
 
 
                 // Titel sound aus
@@ -635,55 +681,59 @@ namespace xkfd
         {
 
 
-                // Skin Animationen laden
+            // Skin Animationen laden
 
-                // StandardSkin
-                if (standardSkin.duckenAnimation == null) standardSkin.duckenAnimation = new Animation(standardSkin.duckenTextur, 4, 4, 4);
-                if (standardSkin.fallenAnimation == null) standardSkin.fallenAnimation = new Animation(standardSkin.fallenTextur, 2, 2, 6);
-                if (standardSkin.gewinnenAnimation == null) standardSkin.gewinnenAnimation = new Animation(standardSkin.gewinnenTextur, 5, 2, 6);
-                if (standardSkin.gleitenAnimation == null) standardSkin.gleitenAnimation = new Animation(standardSkin.gleitenTextur, 2, 2, 6);
-                if (standardSkin.laufenAnimation == null) standardSkin.laufenAnimation = new Animation(standardSkin.laufenTextur, 4, 3, 3);
-                if (standardSkin.sprignenAnimation == null) standardSkin.sprignenAnimation = new Animation(standardSkin.sprignenTextur, 4, 2, 6);
+            // StandardSkin
+            if (standardSkin.duckenAnimation == null) standardSkin.duckenAnimation = new Animation(standardSkin.duckenTextur, 4, 4, 4);
+            if (standardSkin.fallenAnimation == null) standardSkin.fallenAnimation = new Animation(standardSkin.fallenTextur, 2, 2, 6);
+            if (standardSkin.gewinnenAnimation == null) standardSkin.gewinnenAnimation = new Animation(standardSkin.gewinnenTextur, 5, 2, 6);
+            if (standardSkin.gleitenAnimation == null) standardSkin.gleitenAnimation = new Animation(standardSkin.gleitenTextur, 2, 2, 6);
+            if (standardSkin.laufenAnimation == null) standardSkin.laufenAnimation = new Animation(standardSkin.laufenTextur, 4, 3, 3);
+            if (standardSkin.sprignenAnimation == null) standardSkin.sprignenAnimation = new Animation(standardSkin.sprignenTextur, 4, 2, 6);
 
-                if (standardSkin.sterbenAnimationKoepfen == null) standardSkin.sterbenAnimationKoepfen = new Animation(standardSkin.sterbenTexturKoepfen, 2, 5, 6);
-                if (standardSkin.sterbenAnimationStolpern == null) standardSkin.sterbenAnimationStolpern = new Animation(standardSkin.sterbenTexturStolpern, 2, 5, 6);
+            if (standardSkin.sterbenAnimationKoepfen == null) standardSkin.sterbenAnimationKoepfen = new Animation(standardSkin.sterbenTexturKoepfen, 2, 5, 6);
+            if (standardSkin.sterbenAnimationStolpern == null) standardSkin.sterbenAnimationStolpern = new Animation(standardSkin.sterbenTexturStolpern, 2, 5, 6);
+            if (standardSkin.sterbenAnimationKlatscher == null) standardSkin.sterbenAnimationKlatscher = new Animation(standardSkin.sterbenTexturKlatscher, 2, 5, 6);
 
-                // Fraud Skin
-                if (frauenSkin.duckenAnimation == null) frauenSkin.duckenAnimation = new Animation(frauenSkin.duckenTextur, 4, 4, 4);
-                if (frauenSkin.fallenAnimation == null) frauenSkin.fallenAnimation = new Animation(frauenSkin.fallenTextur, 2, 2, 6);
-                if (frauenSkin.gewinnenAnimation == null) frauenSkin.gewinnenAnimation = new Animation(frauenSkin.gewinnenTextur, 5, 2, 6);
-                if (frauenSkin.gleitenAnimation == null) frauenSkin.gleitenAnimation = new Animation(frauenSkin.gleitenTextur, 2, 2, 6);
-                if (frauenSkin.laufenAnimation == null) frauenSkin.laufenAnimation = new Animation(frauenSkin.laufenTextur, 4, 3, 3);
-                if (frauenSkin.sprignenAnimation == null) frauenSkin.sprignenAnimation = new Animation(frauenSkin.sprignenTextur, 4, 2, 6);
+            // Fraud Skin
+            if (frauenSkin.duckenAnimation == null) frauenSkin.duckenAnimation = new Animation(frauenSkin.duckenTextur, 4, 4, 4);
+            if (frauenSkin.fallenAnimation == null) frauenSkin.fallenAnimation = new Animation(frauenSkin.fallenTextur, 2, 2, 6);
+            if (frauenSkin.gewinnenAnimation == null) frauenSkin.gewinnenAnimation = new Animation(frauenSkin.gewinnenTextur, 5, 2, 6);
+            if (frauenSkin.gleitenAnimation == null) frauenSkin.gleitenAnimation = new Animation(frauenSkin.gleitenTextur, 2, 2, 6);
+            if (frauenSkin.laufenAnimation == null) frauenSkin.laufenAnimation = new Animation(frauenSkin.laufenTextur, 4, 3, 3);
+            if (frauenSkin.sprignenAnimation == null) frauenSkin.sprignenAnimation = new Animation(frauenSkin.sprignenTextur, 4, 2, 6);
 
-                if (frauenSkin.sterbenAnimationKoepfen == null) frauenSkin.sterbenAnimationKoepfen = new Animation(frauenSkin.sterbenTexturKoepfen, 2, 5, 6);
-                if (frauenSkin.sterbenAnimationStolpern == null) frauenSkin.sterbenAnimationStolpern = new Animation(frauenSkin.sterbenTexturStolpern, 2, 5, 6);
+            if (frauenSkin.sterbenAnimationKoepfen == null) frauenSkin.sterbenAnimationKoepfen = new Animation(frauenSkin.sterbenTexturKoepfen, 2, 5, 6);
+            if (frauenSkin.sterbenAnimationStolpern == null) frauenSkin.sterbenAnimationStolpern = new Animation(frauenSkin.sterbenTexturStolpern, 2, 5, 6);
+            if (frauenSkin.sterbenAnimationKlatscher == null) frauenSkin.sterbenAnimationKlatscher = new Animation(frauenSkin.sterbenTexturKlatscher, 2, 5, 6);
 
-                // Hut Skin
-                if (hutSkin.duckenAnimation == null) hutSkin.duckenAnimation = new Animation(hutSkin.duckenTextur, 4, 4, 4);
-                if (hutSkin.fallenAnimation == null) hutSkin.fallenAnimation = new Animation(hutSkin.fallenTextur, 2, 2, 6);
-                if (hutSkin.gewinnenAnimation == null) hutSkin.gewinnenAnimation = new Animation(hutSkin.gewinnenTextur, 5, 2, 6);
-                if (hutSkin.gleitenAnimation == null) hutSkin.gleitenAnimation = new Animation(hutSkin.gleitenTextur, 2, 2, 6);
-                if (hutSkin.laufenAnimation == null) hutSkin.laufenAnimation = new Animation(hutSkin.laufenTextur, 4, 3, 3);
-                if (hutSkin.sprignenAnimation == null) hutSkin.sprignenAnimation = new Animation(hutSkin.sprignenTextur, 4, 2, 6);
+            // Hut Skin
+            if (hutSkin.duckenAnimation == null) hutSkin.duckenAnimation = new Animation(hutSkin.duckenTextur, 4, 4, 4);
+            if (hutSkin.fallenAnimation == null) hutSkin.fallenAnimation = new Animation(hutSkin.fallenTextur, 2, 2, 6);
+            if (hutSkin.gewinnenAnimation == null) hutSkin.gewinnenAnimation = new Animation(hutSkin.gewinnenTextur, 5, 2, 6);
+            if (hutSkin.gleitenAnimation == null) hutSkin.gleitenAnimation = new Animation(hutSkin.gleitenTextur, 2, 2, 6);
+            if (hutSkin.laufenAnimation == null) hutSkin.laufenAnimation = new Animation(hutSkin.laufenTextur, 4, 3, 3);
+            if (hutSkin.sprignenAnimation == null) hutSkin.sprignenAnimation = new Animation(hutSkin.sprignenTextur, 4, 2, 6);
 
-                if (hutSkin.sterbenAnimationKoepfen == null) hutSkin.sterbenAnimationKoepfen = new Animation(hutSkin.sterbenTexturKoepfen, 2, 5, 6);
-                if (hutSkin.sterbenAnimationStolpern == null) hutSkin.sterbenAnimationStolpern = new Animation(hutSkin.sterbenTexturStolpern, 2, 5, 6);
+            if (hutSkin.sterbenAnimationKoepfen == null) hutSkin.sterbenAnimationKoepfen = new Animation(hutSkin.sterbenTexturKoepfen, 2, 5, 6);
+            if (hutSkin.sterbenAnimationStolpern == null) hutSkin.sterbenAnimationStolpern = new Animation(hutSkin.sterbenTexturStolpern, 2, 5, 6);
+            if (hutSkin.sterbenAnimationKlatscher == null) hutSkin.sterbenAnimationKlatscher = new Animation(hutSkin.sterbenTexturKlatscher, 2, 5, 6);
 
 
-                // Einstein Skin
-                if (einsteinSkin.duckenAnimation == null) einsteinSkin.duckenAnimation = new Animation(einsteinSkin.duckenTextur, 4, 4, 4);
-                if (einsteinSkin.fallenAnimation == null) einsteinSkin.fallenAnimation = new Animation(einsteinSkin.fallenTextur, 2, 2, 6);
-                if (einsteinSkin.gewinnenAnimation == null) einsteinSkin.gewinnenAnimation = new Animation(einsteinSkin.gewinnenTextur, 5, 2, 6);
-                if (einsteinSkin.gleitenAnimation == null) einsteinSkin.gleitenAnimation = new Animation(einsteinSkin.gleitenTextur, 2, 2, 6);
-                if (einsteinSkin.laufenAnimation == null) einsteinSkin.laufenAnimation = new Animation(einsteinSkin.laufenTextur, 4, 3, 3);
-                if (einsteinSkin.sprignenAnimation == null) einsteinSkin.sprignenAnimation = new Animation(einsteinSkin.sprignenTextur, 4, 2, 6);
+            // Einstein Skin
+            if (einsteinSkin.duckenAnimation == null) einsteinSkin.duckenAnimation = new Animation(einsteinSkin.duckenTextur, 4, 4, 4);
+            if (einsteinSkin.fallenAnimation == null) einsteinSkin.fallenAnimation = new Animation(einsteinSkin.fallenTextur, 2, 2, 6);
+            if (einsteinSkin.gewinnenAnimation == null) einsteinSkin.gewinnenAnimation = new Animation(einsteinSkin.gewinnenTextur, 5, 2, 6);
+            if (einsteinSkin.gleitenAnimation == null) einsteinSkin.gleitenAnimation = new Animation(einsteinSkin.gleitenTextur, 2, 2, 6);
+            if (einsteinSkin.laufenAnimation == null) einsteinSkin.laufenAnimation = new Animation(einsteinSkin.laufenTextur, 4, 3, 3);
+            if (einsteinSkin.sprignenAnimation == null) einsteinSkin.sprignenAnimation = new Animation(einsteinSkin.sprignenTextur, 4, 2, 6);
 
-                if (einsteinSkin.sterbenAnimationKoepfen == null) einsteinSkin.sterbenAnimationKoepfen = new Animation(einsteinSkin.sterbenTexturKoepfen, 2, 5, 6);
-                if (einsteinSkin.sterbenAnimationStolpern == null) einsteinSkin.sterbenAnimationStolpern = new Animation(einsteinSkin.sterbenTexturStolpern, 2, 5, 6);
+            if (einsteinSkin.sterbenAnimationKoepfen == null) einsteinSkin.sterbenAnimationKoepfen = new Animation(einsteinSkin.sterbenTexturKoepfen, 2, 5, 6);
+            if (einsteinSkin.sterbenAnimationStolpern == null) einsteinSkin.sterbenAnimationStolpern = new Animation(einsteinSkin.sterbenTexturStolpern, 2, 5, 6);
+            if (einsteinSkin.sterbenAnimationKlatscher == null) einsteinSkin.sterbenAnimationKlatscher = new Animation(einsteinSkin.sterbenTexturKlatscher, 2, 5, 6);
 
-                // Menü Radio Animation
-                if (menue.radio_m_ani == null) menue.radio_m_ani = new Animation(menue.radioTexture, 2, 2, 6);
+            // Menü Radio Animation
+            if (menue.radio_m_ani == null) menue.radio_m_ani = new Animation(menue.radioTexture, 2, 2, 6);
         }
 
         public void neustart()
@@ -692,6 +742,13 @@ namespace xkfd
             hud = new Hud(spieler, hudTextur);
             LoadContent();
             loadAnimation();
+
+            spieler.aktuellerSkin = optionen.skinListe[optionen.auswahl];
+
+            spieler.aktuellerSkin.sterbenAnimationKlatscher.index = 0;
+            spieler.aktuellerSkin.sterbenAnimationKoepfen.index = 0;
+            spieler.aktuellerSkin.sterbenAnimationStolpern.index = 0;
+
             hindernisListe = Hindernis.generieHindernisse(10, hindernisTexturS, hindernisTexturA, hindernisTexturB, hindernisTexturC, hindernisTexturD, hindernisTexturZ);
         }
     }

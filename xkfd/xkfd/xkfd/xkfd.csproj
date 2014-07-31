@@ -134,6 +134,7 @@
     <Compile Include="Sterben.cs" />
     <Compile Include="SterbenAnimation.cs" />
     <Compile Include="SterbenAnimationBeine.cs" />
+    <Compile Include="SterbenAnimationKlatscher.cs" />
     <Compile Include="SterbenAnimationKopf.cs" />
     <Compile Include="Zustand.cs" />
   </ItemGroup>

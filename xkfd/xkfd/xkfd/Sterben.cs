@@ -13,7 +13,10 @@ namespace xkfd
     class Sterben : Zustand
     {
         public SterbenAnimation koepfen;
-        public SterbenAnimation dagegen;
+        public SterbenAnimation stolpern;
+        public SterbenAnimation klatscher;
+
+
         public SterbenAnimation aktuell;
 
 
@@ -23,7 +26,8 @@ namespace xkfd
             // Größe der Hitbox 53 x 104 
 
             koepfen = new SterbenAnimationKopf(this);
-            dagegen = new SterbenAnimationBeine(this);
+            stolpern = new SterbenAnimationBeine(this);
+            klatscher = new SterbenAnimationKlatscher(this);
             aktuell = koepfen;
 
             hitbox = new Rectangle((int)spieler.position.X + 42, (int)spieler.position.Y + 63, 53, 104);
@@ -66,8 +70,7 @@ namespace xkfd
 
         public override void sterben()
         {
-            
-            
+            // Todes Animationen zurücksetzten
         }
         public override void fallen()
         {

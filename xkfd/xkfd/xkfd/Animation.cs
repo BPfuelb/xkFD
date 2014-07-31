@@ -20,6 +20,7 @@ namespace xkfd
 
         public Animation(Texture2D textur, int spalte, int zeile, int slowMoFactor)
         {
+            index = 0;
             this.textur = textur;
             this.spalte = spalte;
             this.zeile = zeile;
@@ -47,6 +48,7 @@ namespace xkfd
                 slowMoTimer = slowMoFactor;
                 index++;
             }
+            if (slowMoFactor != slowMoTimer && index >= spalte * zeile -1) slowMoTimer = slowMoFactor;
         }
 
         public void Update(int loopFromToEnd)

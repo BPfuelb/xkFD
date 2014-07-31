@@ -40,3 +40,6 @@ Content\ani_laufen_frau.xnb
 Content\ani_fallen_frau.xnb
 Content\ani_springen_frau.xnb
 Content\ani_ducken_frau.xnb
+Content\ani_sterben1_koepfen_frau.xnb
+Content\ani_sterben2_stolpern_frau.xnb
+Content\ani_gewinnen_frau.xnb
