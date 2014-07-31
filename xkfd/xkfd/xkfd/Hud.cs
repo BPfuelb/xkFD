@@ -31,20 +31,29 @@ namespace xkfd
         public Texture2D skin_hut;
         public Texture2D skin_einstein;
 
-        Rectangle balken;
+        public Texture2D aktuellerUnlock;
+
+        public Vector2 unlockPosition;
 
         public Boolean gewonnen = false;
+
+        public Boolean updateAchievement;
+        public Boolean achievementOben;
+        private int achievementDauer;
 
         public Hud(Spieler spieler, Texture2D hudTextur)
         {
             this.spieler = spieler;
+            this.hudTextur = hudTextur;
+
             positionGleitenAnzeige = new Vector2(600, 15);
             positionTastaturbelegung = new Vector2(100, -250);
             positionCheckbox = new Vector2(1150, -12);
 
-            this.hudTextur = hudTextur;
-
-            balken = new Rectangle(800, 30, 20, 30);
+            unlockPosition = new Vector2(1000, 720);
+            updateAchievement = false;
+            achievementOben = false;
+            achievementDauer = 0;
         }
 
 
@@ -66,7 +75,7 @@ namespace xkfd
         public void Draw(SpriteBatch sb, SpriteFont schrift)
         {
             sb.DrawString(schrift, "Gleiten: " + counter, positionGleitenAnzeige, Color.Black);
-            // sb.Draw(hudTextur, balken, Color.Gray);
+
             sb.Draw(teleport, positionCheckbox + new Vector2(-10, 25), Color.White);
             if (spieler.teleport)
                 sb.Draw(checkBox_check, positionCheckbox, Color.White);
@@ -74,31 +83,41 @@ namespace xkfd
                 sb.Draw(checkBox_uncheck, positionCheckbox, Color.White);
         }
 
-        public void DrawAchivment(SpriteBatch sb, SpriteFont schrift, int gewonnen)
+        public void UpdateAchievment()
         {
-            if (gewonnen == 1)
+            if (unlockPosition.Y > 720 - 123 && !updateAchievement && !achievementOben)
             {
-                sb.Draw(skin_frau, new Vector2(900, 650), Color.White);
-                sb.DrawString(schrift, "Skin freigeschaltet", new Vector2(950, 650), Color.Black);
+                unlockPosition.Y--;
             }
-            else if (gewonnen == 5)
+            else if (unlockPosition.Y < 720 && !updateAchievement)
             {
-                sb.Draw(skin_hut, new Vector2(900, 650), Color.White);
-                sb.DrawString(schrift, "Skin freigeschaltet", new Vector2(950, 650), Color.Black);
+                achievementOben = true;
+                if (achievementDauer > 100)
+                    unlockPosition.Y++;
+                else
+                    achievementDauer++;
             }
-            else if (gewonnen == 10)
-            {
-                sb.Draw(skin_einstein, new Vector2(900, 650), Color.White);
-                sb.DrawString(schrift, "Skin freigeschaltet", new Vector2(950, 650), Color.Black);
-            }
+            else
+                updateAchievement = true;
         }
+
+
+        public void DrawAchivment(SpriteBatch sb)
+        {
+            sb.Draw(aktuellerUnlock, unlockPosition, Color.White);
+        }
+
 
         public void DrawHelp(SpriteBatch sb, SpriteFont schrift)
         {
+            // Tastenbelegung
             sb.Draw(tastaturTextur, positionTastaturbelegung, Color.White);
+
+            // Strich auf dem Gelaufen wird (TODO vllt etwas anderes?)
             sb.Draw(hudTextur, new Rectangle(0, 530, 1280, 2), Color.Black);
 
-            sb.DrawString(schrift, "Zum Starten Enter drücken", new Vector2(200, 650), Color.Gray);
+            // Text zum starten
+            sb.DrawString(schrift, "Zum Starten Enter drücken", new Vector2(300, 600), Color.Gray);
         }
 
     }

@@ -342,7 +342,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_laufen_frau.xnb</Output>
-      <Time>2014-07-30T22:15:36.4818172+02:00</Time>
+      <Time>2014-07-31T17:23:40.6954284+02:00</Time>
     </Item>
     <Item>
       <Source>ani_fallen_frau.png</Source>
@@ -414,7 +414,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\unlock_skin_frau.xnb</Output>
-      <Time>2014-07-31T04:07:33.6096478+02:00</Time>
+      <Time>2014-07-31T15:48:06.2457355+02:00</Time>
     </Item>
     <Item>
       <Source>unlock_skin_hut.png</Source>
@@ -423,7 +423,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\unlock_skin_hut.xnb</Output>
-      <Time>2014-07-31T04:13:43.9208284+02:00</Time>
+      <Time>2014-07-31T17:21:19.1447679+02:00</Time>
     </Item>
     <Item>
       <Source>unlock_skin_einstein.png</Source>
@@ -450,7 +450,43 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_sterben3_klatscher_frau.xnb</Output>
-      <Time>2014-07-31T05:11:28.2197976+02:00</Time>
+      <Time>2014-07-31T05:19:06.9742216+02:00</Time>
+    </Item>
+    <Item>
+      <Source>ani_springen_hut.png</Source>
+      <Name>ani_springen_hut</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_springen_hut.xnb</Output>
+      <Time>2014-07-31T17:22:35.06524+02:00</Time>
+    </Item>
+    <Item>
+      <Source>ani_ducken_hut.png</Source>
+      <Name>ani_ducken_hut</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_ducken_hut.xnb</Output>
+      <Time>2014-07-31T17:21:42.4146229+02:00</Time>
+    </Item>
+    <Item>
+      <Source>ani_laufen_hut.png</Source>
+      <Name>ani_laufen_hut</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_laufen_hut.xnb</Output>
+      <Time>2014-07-31T17:21:45.0659247+02:00</Time>
+    </Item>
+    <Item>
+      <Source>ani_gleiten_hut.png</Source>
+      <Name>ani_gleiten_hut</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_gleiten_hut.xnb</Output>
+      <Time>2014-07-31T17:22:18.6629765+02:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>

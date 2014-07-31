@@ -51,6 +51,7 @@ namespace xkfd
             if (slowMoFactor != slowMoTimer && index >= spalte * zeile -1) slowMoTimer = slowMoFactor;
         }
 
+
         public void Update(int loopFromToEnd)
         {
             slowMoTimer--;
