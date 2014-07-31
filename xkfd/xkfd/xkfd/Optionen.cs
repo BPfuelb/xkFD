@@ -47,12 +47,26 @@ namespace xkfd
             sb.Draw(z_knopf_Textur, z_knopf_position, Color.White);
 
             skinListe[0].laufenAnimation.Draw(sb, new Vector2(100, 50));
-            sb.DrawString(schrift, "Standard Skin", new Vector2(300, 50), Color.Gray);
-            skinListe[1].laufenAnimation.Draw(sb, new Vector2(100, 50 + 120 ));
+            sb.DrawString(schrift, "Standard Skin", new Vector2(300, 55), Color.Gray);
+            
+            skinListe[1].laufenAnimation.Draw(sb, new Vector2(100, 170 ));
+            if(gewonnen >= 1)
+                sb.DrawString(schrift, "Weiblicher Skin", new Vector2(300, 175), Color.Gray);
+            else
+                sb.DrawString(schrift, "noch 1 mal Gewinnen", new Vector2(300, 175), Color.Gray);
 
-            skinListe[2].laufenAnimation.Draw(sb, new Vector2(100, 50 + 120 + 120 ));
+            skinListe[2].laufenAnimation.Draw(sb, new Vector2(100, 290 ));
+            if (gewonnen >= 5)
+                sb.DrawString(schrift, "Hut Skin", new Vector2(300, 295), Color.Gray);
+            else
+                sb.DrawString(schrift, "noch " + (5 - gewonnen) + " mal Gewinnen", new Vector2(300, 295), Color.Gray);
 
-            skinListe[3].laufenAnimation.Draw(sb, new Vector2(100, 50 + 120  + 120 + 120));
+            skinListe[3].laufenAnimation.Draw(sb, new Vector2(100, 410));
+            
+            if (gewonnen >= 10)
+                sb.DrawString(schrift, "Hut Skin", new Vector2(300, 415), Color.Gray);
+            else
+                sb.DrawString(schrift, "noch " + (10 - gewonnen) + " mal Gewinnen", new Vector2(300, 415), Color.Gray);
         }
     }
 
