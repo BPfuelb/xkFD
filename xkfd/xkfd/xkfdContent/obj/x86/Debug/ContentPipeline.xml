@@ -489,13 +489,13 @@
       <Time>2014-07-31T17:22:18.6629765+02:00</Time>
     </Item>
     <Item>
-      <Source>note.png</Source>
-      <Name>note</Name>
+      <Source>note1.png</Source>
+      <Name>note1</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\note.xnb</Output>
-      <Time>2014-07-31T18:03:48.4598071+02:00</Time>
+      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\note1.xnb</Output>
+      <Time>2014-07-31T22:09:44.8968967+02:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>

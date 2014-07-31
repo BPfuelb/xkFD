@@ -406,8 +406,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="note.png">
-      <Name>note</Name>
+    <Compile Include="note1.png">
+      <Name>note1</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>

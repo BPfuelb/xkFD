@@ -30,21 +30,24 @@ namespace xkfd
         public Skin aktuellerSkin; 
 
         // Punktestand
-        private int punkte;
+        public int punkte;
 
         // Spieler Position
         public Vector2 position;
+        
+        // Spieler Position Visualisierung
+        public Rectangle spielerPosition;
 
         // Gleitenresource
         public int gleitenResource;
 
-
-        public Rectangle hitboxFussRechts;
+        // Spieler Hitboxen
         public Rectangle hitboxFuss;
-        public Rectangle linksOben;
         public Rectangle hitboxKopf;
         public Rectangle hitboxBeine;
+        public Rectangle hitboxKoerper;
 
+        // Teleport Resource
         public Boolean teleport;
 
         
@@ -69,11 +72,10 @@ namespace xkfd
             teleport = true;
             
             hitboxKopf = new Rectangle((int)position.X + 50, (int)position.Y, 10, 40);
-            linksOben = new Rectangle((int)position.X, (int)position.Y, 10, 10);
+            spielerPosition = new Rectangle((int)position.X, (int)position.Y, 10, 10);
             hitboxBeine = new Rectangle((int)position.X + 50, (int)position.Y +40 , 10, 40);
-
-            // hitboxFussRechts = new Rectangle((int)position.X, (int)position.Y + 110 , 10, 10);
             hitboxFuss = new Rectangle((int)position.X, (int)position.Y + 110, 50, 10);
+            hitboxKoerper = new Rectangle((int)position.X +10, (int)position.Y, 40, 100);
         }
 
 
@@ -164,30 +166,30 @@ namespace xkfd
         {
             const int faktor = 2;
             position.Y -= y * faktor;
-            linksOben.Y -= y * faktor;
+            spielerPosition.Y -= y * faktor;
 
             hitboxKopf.Y -= y * faktor;
-            hitboxFussRechts.Y -= y * faktor;
             hitboxFuss.Y -= y * faktor;
             hitboxBeine.Y -= y * faktor;
+            hitboxKoerper.Y -= y * faktor;
         }
 
         public void movePlayerDown(int y)
         {
             const int faktor = 1;
             position.Y += y * faktor;
-            linksOben.Y += y * faktor;
+            spielerPosition.Y += y * faktor;
 
             hitboxKopf.Y += y * faktor;
-            hitboxFussRechts.Y += y * faktor;
             hitboxFuss.Y += y * faktor;
             hitboxBeine.Y += y * faktor;
+            hitboxKoerper.Y += y * faktor;
         }
 
         public void setPlayerPosition(int y)
         {
             position.Y = y;
-            linksOben.Y = y;
+            spielerPosition.Y = y;
 
 
             if (aktuellerZustand != ducken)
@@ -197,6 +199,7 @@ namespace xkfd
 
             hitboxFuss.Y = (int)position.Y + 110;
             hitboxBeine.Y = (int)position.Y + 60;
+            hitboxKoerper.Y = (int)position.Y +5;
         }
     }
 }

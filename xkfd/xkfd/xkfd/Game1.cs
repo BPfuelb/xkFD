@@ -48,6 +48,8 @@ namespace xkfd
         // Hindernis Liste
         List<Hindernis> hindernisListe;
 
+
+
         // Hud
         Hud hud;
 
@@ -82,7 +84,12 @@ namespace xkfd
         // Anzal der Gewonnen spiele
         int gewonnen;
 
-        Punkt punkt;
+        // Punkte / Noten
+        Punkt punkt1, punkt2, punkt5, punkt10;
+
+        // Punkte Liste
+        List<Hitbox> punkteListeDraw = new List<Hitbox>();
+        List<Hitbox> punkteListeKollisionen = new List<Hitbox>();
 
         public Game1()
         {
@@ -108,7 +115,10 @@ namespace xkfd
             gewonnen = int.Parse(konfig.ReadFile());
 
             // Punkte Initialisierung
-            punkt = new Punkt();
+            punkt1 = new Punkt();
+            punkt2 = new Punkt();
+            punkt5 = new Punkt();
+            punkt10 = new Punkt();
         }
 
         protected override void Initialize()
@@ -257,7 +267,7 @@ namespace xkfd
             hindernisTexturZ = Content.Load<Texture2D>("hindernisZ");
 
             // Liste mit Hindernisse die generiert werden
-            hindernisListe = Hindernis.generieHindernisse(10, hindernisTexturS, hindernisTexturA, hindernisTexturB, hindernisTexturC, hindernisTexturD, hindernisTexturZ);
+            hindernisListe = Hindernis.generieHindernisse(10, hindernisTexturS, hindernisTexturA, hindernisTexturB, hindernisTexturC, hindernisTexturD, hindernisTexturZ, punkt1);
 
 
             // HudTextur
@@ -282,7 +292,10 @@ namespace xkfd
 
 
             // Punkt Textur
-            punkt.punktTextur = Content.Load<Texture2D>("note");
+            punkt1.punktTextur = Content.Load<Texture2D>("note1");
+            punkt2.punktTextur = Content.Load<Texture2D>("note1");
+            punkt5.punktTextur = Content.Load<Texture2D>("note1");
+            punkt10.punktTextur = Content.Load<Texture2D>("note1");
 
             // Test textur
             dummyTexture = new Texture2D(GraphicsDevice, 1, 1);
@@ -379,15 +392,28 @@ namespace xkfd
 
 
                 #region Aktualisierung_Hindernisse
+
+                
+
                 // Aktualisiere Hindernisse (schiebe Hindernisse Weiter)
                 if (hindernisListe.Count > 6 && spieler.aktuellerZustand != spieler.sterben)
                 {
+                    // Listen mit Punkten Clearen
+                    punkteListeDraw.Clear();
+                    punkteListeKollisionen.Clear();
+
                     hindernisListe[0].Update();
+                    punkteListeDraw.AddRange(hindernisListe[0].gibPunkte());
                     hindernisListe[1].Update();
+                    punkteListeDraw.AddRange(hindernisListe[1].gibPunkte());
                     hindernisListe[2].Update();
+                    punkteListeKollisionen.AddRange(hindernisListe[2].gibPunkte());
                     hindernisListe[3].Update();
+                    punkteListeKollisionen.AddRange(hindernisListe[3].gibPunkte());
                     hindernisListe[4].Update();
+                    punkteListeDraw.AddRange(hindernisListe[4].gibPunkte());
                     hindernisListe[5].Update();
+                    punkteListeDraw.AddRange(hindernisListe[5].gibPunkte());
                     // Wenn das Hindernis an Position 1 Außerhalb des Bildes ist lösche das Hindernis an Position 0
                     if (hindernisListe[1].position.X <= -320)
                         hindernisListe.RemoveAt(0);
@@ -409,8 +435,20 @@ namespace xkfd
                         hud.UpdateAchievment();
                 }
 
-                
 
+                #region PunkteKollisionen
+
+                foreach (Hitbox hitbox in punkteListeKollisionen)
+                {
+                    if (spieler.hitboxKoerper.Intersects(hitbox.hitbox))
+                    {
+                        hitbox.hindernis.loescheHitboxPunkt(hitbox);
+                        spieler.punkte+= hitbox.wertigkeit;
+
+                    }
+                }
+
+                #endregion
 
                 #region Kollisionserkennung
 
@@ -641,7 +679,7 @@ namespace xkfd
             {
 
                 // Zeichne Spieler
-                spieler.Draw(spriteBatch);
+               spieler.Draw(spriteBatch);
                 // spriteBatch.Draw(spieler.spielerTextur, spieler.position, Color.White);
 
                 hud.Draw(spriteBatch, schrift_40);
@@ -655,6 +693,16 @@ namespace xkfd
                 spriteBatch.Draw(hindernisListe[5].hindernisTextur, hindernisListe[5].position, Color.White);
 
 
+                // Punkte/Noten Zeichnen
+                foreach (Hitbox note in punkteListeKollisionen)
+                {
+                    spriteBatch.Draw(punkt1.punktTextur, note.hitbox, Color.Red);
+                }
+
+                foreach (Hitbox note in punkteListeDraw)
+                {
+                    spriteBatch.Draw(punkt1.punktTextur, note.hitbox, Color.Red);
+                }
 
 
                 #region Debugsection
@@ -666,19 +714,33 @@ namespace xkfd
                         {
                             spriteBatch.Draw(dummyTexture, hitbox.hitbox, Color.Red);
                         }
-
                     }
-                    // Spieler Hitbox malen zum Testen
 
+
+                    // Punkte/Noten Zeichnen
+                    foreach (Hitbox note in punkteListeDraw)
+                    {
+                            spriteBatch.Draw(dummyTexture, note.hitbox, Color.Red);
+                    }
+
+                    foreach (Hitbox note in punkteListeKollisionen)
+                    {
+                        spriteBatch.Draw(dummyTexture, note.hitbox, Color.Red);
+                    }
+
+
+                    // Spieler Hitbox malen zum Testen
                     //  spriteBatch.Draw(dummyTexture2, spieler.hitboxFussRechts, Color.Green);
                     spriteBatch.DrawString(schrift_40, "X: " + spieler.position.X + " Y: " + spieler.position.Y, new Vector2(0, 0), Color.Black);
 
-                    spriteBatch.Draw(dummyTexture2, spieler.linksOben, Color.Green);
+                    spriteBatch.Draw(dummyTexture2, spieler.spielerPosition, Color.Green);
                     spriteBatch.Draw(dummyTexture2, spieler.hitboxFuss, Color.Green);
 
                     // spriteBatch.Draw(dummyTexture2, spieler.hitboxKopf, Color.Blue);
                     spriteBatch.Draw(dummyTexture2, spieler.hitboxKopf, Color.Green);
                     spriteBatch.Draw(dummyTexture2, spieler.hitboxBeine, Color.Green);
+
+                    spriteBatch.Draw(dummyTexture2, spieler.hitboxKoerper, Color.Blue);
 
                 }
                 #endregion
@@ -800,7 +862,7 @@ namespace xkfd
             if (menue.radio_m_ani == null) menue.radio_m_ani = new Animation(menue.radioTexture, 2, 2, 6);
 
             // Punkte Animation
-            if (punkt.punktAnimation == null) punkt.punktAnimation = new Animation(punkt.punktTextur, 1, 1, 6);
+            if (punkt1.punktAnimation == null) punkt1.punktAnimation = new Animation(punkt1.punktTextur, 1, 1, 6);
         }
 
         public void neustart()
@@ -819,7 +881,8 @@ namespace xkfd
             spieler.aktuellerSkin.sterbenAnimationKoepfen.index = 0;
             spieler.aktuellerSkin.sterbenAnimationStolpern.index = 0;
 
-            hindernisListe = Hindernis.generieHindernisse(10, hindernisTexturS, hindernisTexturA, hindernisTexturB, hindernisTexturC, hindernisTexturD, hindernisTexturZ);
+            hindernisListe = Hindernis.generieHindernisse(10, hindernisTexturS, hindernisTexturA, hindernisTexturB, hindernisTexturC, hindernisTexturD, hindernisTexturZ, punkt1);
+
         }
     }
 }

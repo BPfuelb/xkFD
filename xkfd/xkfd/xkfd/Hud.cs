@@ -13,6 +13,7 @@ namespace xkfd
         public Vector2 positionGleitenAnzeige;
         public Vector2 positionTastaturbelegung;
         public Vector2 positionCheckbox;
+        public Vector2 positionPunkte;
 
         Spieler spieler;
 
@@ -49,6 +50,7 @@ namespace xkfd
             positionGleitenAnzeige = new Vector2(600, 15);
             positionTastaturbelegung = new Vector2(100, -250);
             positionCheckbox = new Vector2(1150, -12);
+            positionPunkte = new Vector2(200, 15);
 
             unlockPosition = new Vector2(1000, 720);
             updateAchievement = false;
@@ -75,6 +77,7 @@ namespace xkfd
         public void Draw(SpriteBatch sb, SpriteFont schrift)
         {
             sb.DrawString(schrift, "Gleiten: " + counter, positionGleitenAnzeige, Color.Black);
+            sb.DrawString(schrift, "Punkte: " + spieler.punkte, positionPunkte, Color.Black);
 
             sb.Draw(teleport, positionCheckbox + new Vector2(-10, 25), Color.White);
             if (spieler.teleport)
