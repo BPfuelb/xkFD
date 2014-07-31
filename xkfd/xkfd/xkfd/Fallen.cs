@@ -26,6 +26,7 @@ namespace xkfd
             spieler.aktuellerSkin.fallenAnimation.Update();
             // ALT animation.Update();
             beschleunigung++;
+            Console.WriteLine(beschleunigung);
             spieler.movePlayerDown(beschleunigung);
         }
 

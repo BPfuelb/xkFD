@@ -70,6 +70,7 @@ namespace xkfd
 
         public override void fallen()
         {
+            ((Fallen)spieler.fallen).beschleunigung = 0;
             spieler.setZustand(spieler.fallen);
         }
     }

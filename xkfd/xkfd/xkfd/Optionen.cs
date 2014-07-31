@@ -41,14 +41,17 @@ namespace xkfd
             skinListe[auswahl].laufenAnimation.Update();
         }
 
-        public void Draw(SpriteBatch sb)
+        public void Draw(SpriteBatch sb, SpriteFont schrift, int gewonnen)
         {
             // Zurück Knopf
             sb.Draw(z_knopf_Textur, z_knopf_position, Color.White);
 
             skinListe[0].laufenAnimation.Draw(sb, new Vector2(100, 50));
+            sb.DrawString(schrift, "Standard Skin", new Vector2(300, 50), Color.Gray);
             skinListe[1].laufenAnimation.Draw(sb, new Vector2(100, 50 + 120 ));
+
             skinListe[2].laufenAnimation.Draw(sb, new Vector2(100, 50 + 120 + 120 ));
+
             skinListe[3].laufenAnimation.Draw(sb, new Vector2(100, 50 + 120  + 120 + 120));
         }
     }

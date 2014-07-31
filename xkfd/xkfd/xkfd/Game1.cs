@@ -75,7 +75,13 @@ namespace xkfd
         // Logo
         Texture2D logo;
 
+        // Konfig Datei
+
+        KonfigDatei konfig;
+
         Boolean standardCharLaden = true;
+
+        int gewonnen;
 
         public Game1()
         {
@@ -95,6 +101,10 @@ namespace xkfd
 
             // Optionen Initialisieren
             optionen = new Optionen();
+
+            // Konfig Datei;
+            konfig = new KonfigDatei();
+            gewonnen = int.Parse(konfig.ReadFile());
         }
 
         protected override void Initialize()
@@ -105,6 +115,8 @@ namespace xkfd
             graphics.ApplyChanges();
 
             base.Initialize();
+
+            konfig.ReadFile();
         }
 
         protected override void LoadContent()
@@ -128,7 +140,7 @@ namespace xkfd
 
             standardSkin.sterbenTexturKoepfen = Content.Load<Texture2D>("ani_sterben1_koepfen_std");
             standardSkin.sterbenTexturStolpern = Content.Load<Texture2D>("ani_sterben2_stolpern_std");
-            standardSkin.sterbenTexturKlatscher = Content.Load<Texture2D>("ani_sterben2_stolpern_std");
+            standardSkin.sterbenTexturKlatscher = Content.Load<Texture2D>("ani_sterben3_klatscher_std");
 
 
 
@@ -226,6 +238,10 @@ namespace xkfd
             // Sterbe Sound beim dagegen laufen
             ((Sterben)spieler.sterben).stolpern.soundTod = Content.Load<SoundEffect>("dsskedth");
             ((Sterben)spieler.sterben).stolpern.soundSoundInstance = ((Sterben)spieler.sterben).stolpern.soundTod.CreateInstance();
+
+            // Sterben Sound beim klatschen
+            ((Sterben)spieler.sterben).klatscher.soundTod = Content.Load<SoundEffect>("dsskedth");
+            ((Sterben)spieler.sterben).klatscher.soundSoundInstance = ((Sterben)spieler.sterben).klatscher.soundTod.CreateInstance();
 
             // Textur für Hindernisse
             hindernisTexturS = Content.Load<Texture2D>("hindernisS");
@@ -354,7 +370,16 @@ namespace xkfd
                     hintergrund.Update();
                 }
                 else
+                {
                     spieler.doGewinnen(); // Wenn weniger als 6 Hindernisse vorhanden sind gehe in den Gewinnenzustand über
+                    if (menue.spielAktiv)
+                    {
+                        menue.spielAktiv = false;
+                        gewonnen++;
+                        konfig.WriteFile(gewonnen.ToString());
+                    }
+
+                }
 
                 // Escape ins Menü zurück kehren
                 if (Keyboard.GetState().IsKeyDown(Keys.Escape) && OldKeyState.IsKeyUp(Keys.Escape))
@@ -421,21 +446,20 @@ namespace xkfd
                             spieler.doSterben();
                             Console.WriteLine("Im laufen gestorben Beine");
                         }
-                        
+
                     }
                 }
-                else if(menue.spielAktiv) // Kollisionerkennung im Flug/Fallen/Gleiten
+                else if (menue.spielAktiv) // Kollisionerkennung im Flug/Fallen/Gleiten
                 {
                     foreach (Hitbox hitbox in kollisionsListe) // für Sonstige Kollisionen in Zuständen die oben noch nicht abgefangen werden
                     {
-                       /* if (spieler.position.Y > 500 && spieler.hitboxKopf.Intersects(hitbox.hitbox) && spieler.hitboxBeine.Intersects(hitbox.hitbox))
+                        if (spieler.position.Y > 500 && spieler.hitboxKopf.Intersects(hitbox.hitbox) && spieler.hitboxBeine.Intersects(hitbox.hitbox))
                         {
                             menue.spielAktiv = false;
                             ((Sterben)spieler.sterben).aktuell = ((Sterben)spieler.sterben).klatscher; // Passt den Todeszustand an
                             spieler.doSterben();
                         }
-                        */
-                        if (spieler.hitboxKopf.Intersects(hitbox.hitbox))
+                        else if (spieler.hitboxKopf.Intersects(hitbox.hitbox) && !spieler.hitboxBeine.Intersects(hitbox.hitbox))
                         {
                             menue.spielAktiv = false;
                             Boolean kollidiertBoden = false;
@@ -450,16 +474,13 @@ namespace xkfd
                             }
                             ((Sterben)spieler.sterben).aktuell = ((Sterben)spieler.sterben).koepfen; // Passt den Todeszustand an
                             spieler.doSterben();
-                            Console.WriteLine("Irgendwo gestorben mit Kopf");
                         }
-
-                        if (spieler.hitboxBeine.Intersects(hitbox.hitbox))
+                        else if (spieler.hitboxBeine.Intersects(hitbox.hitbox) && !spieler.hitboxKopf.Intersects(hitbox.hitbox))
                         {
-                            spieler.setPlayerPosition(hitbox.hitbox.Top - 80);
+                               spieler.setPlayerPosition(hitbox.hitbox.Top - 80);
                             menue.spielAktiv = false;
                             ((Sterben)spieler.sterben).aktuell = ((Sterben)spieler.sterben).stolpern; // Passt den Todeszustand an
                             spieler.doSterben();
-                            Console.WriteLine("Irgendwo gestorben mit Beinen");
                         }
 
                     }
@@ -542,12 +563,19 @@ namespace xkfd
                 optionen.Update();
 
                 NewKeyState = Keyboard.GetState();
+                int freischalten = 1;
+                if (gewonnen >= 1)
+                    freischalten++;
+                if (gewonnen >= 5)
+                    freischalten++;
+                if (gewonnen >= 10)
+                    freischalten++;
 
                 if (Keyboard.GetState().IsKeyDown(Keys.Down) && OldKeyState.IsKeyUp(Keys.Down))
-                    optionen.auswahl = (optionen.auswahl + 1) % optionen.skinListe.Count;
+                    optionen.auswahl = (optionen.auswahl + 1) % freischalten;
 
                 if (Keyboard.GetState().IsKeyDown(Keys.Up) && OldKeyState.IsKeyUp(Keys.Up))
-                    optionen.auswahl = (optionen.auswahl + optionen.skinListe.Count - 1) % optionen.skinListe.Count;
+                    optionen.auswahl = (optionen.auswahl + freischalten - 1) % freischalten;
 
                 if (Keyboard.GetState().IsKeyDown(Keys.Enter) && OldKeyState.IsKeyUp(Keys.Enter))
                 {
@@ -664,8 +692,10 @@ namespace xkfd
             if (gamestate == Gamestate.options)
             {
                 // Malt alle Animationen des Menüs
-                optionen.Draw(spriteBatch);
+                optionen.Draw(spriteBatch, schrift,gewonnen);
                 spriteBatch.DrawString(schrift, "Zurück", new Vector2(128 + 50, 590), Color.Gray);
+
+                spriteBatch.DrawString(schrift, "Gewonnen: " + gewonnen, new Vector2(600, 590), Color.Gray);
             }
 
             #endregion
@@ -693,7 +723,7 @@ namespace xkfd
 
             if (standardSkin.sterbenAnimationKoepfen == null) standardSkin.sterbenAnimationKoepfen = new Animation(standardSkin.sterbenTexturKoepfen, 2, 5, 6);
             if (standardSkin.sterbenAnimationStolpern == null) standardSkin.sterbenAnimationStolpern = new Animation(standardSkin.sterbenTexturStolpern, 2, 5, 6);
-            if (standardSkin.sterbenAnimationKlatscher == null) standardSkin.sterbenAnimationKlatscher = new Animation(standardSkin.sterbenTexturKlatscher, 2, 5, 6);
+            if (standardSkin.sterbenAnimationKlatscher == null) standardSkin.sterbenAnimationKlatscher = new Animation(standardSkin.sterbenTexturKlatscher, 12, 1, 6);
 
             // Fraud Skin
             if (frauenSkin.duckenAnimation == null) frauenSkin.duckenAnimation = new Animation(frauenSkin.duckenTextur, 4, 4, 4);
@@ -742,6 +772,8 @@ namespace xkfd
             hud = new Hud(spieler, hudTextur);
             LoadContent();
             loadAnimation();
+
+            ((Fallen)spieler.fallen).beschleunigung = 0;
 
             spieler.aktuellerSkin = optionen.skinListe[optionen.auswahl];
 

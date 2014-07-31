@@ -122,6 +122,7 @@
     <Compile Include="Hintergrund.cs" />
     <Compile Include="Hitbox.cs" />
     <Compile Include="Hud.cs" />
+    <Compile Include="KonfigDatei.cs" />
     <Compile Include="Laufen.cs" />
     <Compile Include="Menue.cs" />
     <Compile Include="Optionen.cs" />
