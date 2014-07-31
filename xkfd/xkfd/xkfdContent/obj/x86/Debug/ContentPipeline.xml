@@ -405,7 +405,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_sterben3_klatscher_std.xnb</Output>
-      <Time>2014-07-31T04:43:46.3029187+02:00</Time>
+      <Time>2014-07-31T17:26:02.2744193+02:00</Time>
     </Item>
     <Item>
       <Source>unlock_skin_frau.png</Source>
@@ -450,7 +450,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_sterben3_klatscher_frau.xnb</Output>
-      <Time>2014-07-31T05:19:06.9742216+02:00</Time>
+      <Time>2014-07-31T17:26:02.2734193+02:00</Time>
     </Item>
     <Item>
       <Source>ani_springen_hut.png</Source>
@@ -487,6 +487,15 @@
       <Options>None</Options>
       <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_gleiten_hut.xnb</Output>
       <Time>2014-07-31T17:22:18.6629765+02:00</Time>
+    </Item>
+    <Item>
+      <Source>note.png</Source>
+      <Name>note</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\note.xnb</Output>
+      <Time>2014-07-31T18:03:48.4598071+02:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>

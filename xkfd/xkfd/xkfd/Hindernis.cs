@@ -17,11 +17,23 @@ namespace xkfd
         public Texture2D hindernisTextur;
         public Vector2 position;
 
+        public Punkt punkt1;
+        public Rectangle punktPosition1;
+
+        public Punkt punkt2;
+        public Rectangle punktPosition2;
+
+        public Punkt punkt3;
+        public Rectangle punktPosition3;
+
+        public Punkt powerUp;
+        public Rectangle punktPowerUp;
 
         public List<Hitbox> hitboxListe;
+        public List<Punkt> punkteListe;
 
         // Generiert eine beliebige lange Liste von Hindernissen
-        public static List<Hindernis> generieHindernisse(int anzahl, Texture2D hindernisSTextur, Texture2D hindernisATextur, Texture2D hindernisBTextur, Texture2D hindernisCTextur, Texture2D hindernisDTextur, Texture2D hindernisZTextur)
+        public static List<Hindernis> generieHindernisse(int anzahl, Texture2D hindernisSTextur, Texture2D hindernisATextur, Texture2D hindernisBTextur, Texture2D hindernisCTextur, Texture2D hindernisDTextur, Texture2D hindernisZTextur, Punkt punkt)
         {
             // Init zufallsgenerator
             Random random = new Random();
@@ -77,6 +89,15 @@ namespace xkfd
             this.position = position;
         }
 
+        public Hindernis(Texture2D textur, Vector2 position, Punkt p1, Punkt p2, Punkt p3)
+        {
+            this.punkt1 = p1;
+            this.punkt2 = p2;
+            this.punkt3 = p3;
+            this.hitboxListe = new List<Hitbox>();
+            this.hindernisTextur = textur;
+            this.position = position;
+        }
 
         // Schiebt Hindernisse nach Linkts
         public void Update()
@@ -93,6 +114,11 @@ namespace xkfd
         public virtual List<Hitbox> gibHitboxen()
         {
             return hitboxListe;
+        }
+
+        public virtual List<Punkt> gibPunkte()
+        {
+            return punkteListe;
         }
     }
 }

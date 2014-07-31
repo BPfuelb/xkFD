@@ -54,7 +54,7 @@ namespace xkfd
         // Tutorial starten
         Boolean start = true;
 
-
+        // Entprellen der Tastatur
         KeyboardState NewKeyState;
 
         // Hindernis Texturen
@@ -77,10 +77,12 @@ namespace xkfd
         Texture2D logo;
 
         // Konfig Datei
-
         KonfigDatei konfig;
 
+        // Anzal der Gewonnen spiele
         int gewonnen;
+
+        Punkt punkt;
 
         public Game1()
         {
@@ -104,6 +106,9 @@ namespace xkfd
             // Konfig Datei;
             konfig = new KonfigDatei();
             gewonnen = int.Parse(konfig.ReadFile());
+
+            // Punkte Initialisierung
+            punkt = new Punkt();
         }
 
         protected override void Initialize()
@@ -161,12 +166,12 @@ namespace xkfd
             // Hut Skin
             hutSkin = new Skin();
 
-            hutSkin.duckenTextur = Content.Load<Texture2D>("ani_ducken_std");
+            hutSkin.duckenTextur = Content.Load<Texture2D>("ani_ducken_hut");
             hutSkin.fallenTextur = Content.Load<Texture2D>("ani_fallen_std");
             hutSkin.gewinnenTextur = Content.Load<Texture2D>("ani_gewinnen_std");
-            hutSkin.gleitenTextur = Content.Load<Texture2D>("ani_gleiten_std");
-            hutSkin.laufenTextur = Content.Load<Texture2D>("ani_laufen_std");
-            hutSkin.sprignenTextur = Content.Load<Texture2D>("ani_springen_std");
+            hutSkin.gleitenTextur = Content.Load<Texture2D>("ani_gleiten_hut");
+            hutSkin.laufenTextur = Content.Load<Texture2D>("ani_laufen_hut");
+            hutSkin.sprignenTextur = Content.Load<Texture2D>("ani_springen_hut");
 
             hutSkin.sterbenTexturKoepfen = Content.Load<Texture2D>("ani_sterben1_koepfen_std");
             hutSkin.sterbenTexturStolpern = Content.Load<Texture2D>("ani_sterben2_stolpern_std");
@@ -276,6 +281,9 @@ namespace xkfd
             hud.skin_einstein = Content.Load<Texture2D>("unlock_skin_einstein");
 
 
+            // Punkt Textur
+            punkt.punktTextur = Content.Load<Texture2D>("note");
+
             // Test textur
             dummyTexture = new Texture2D(GraphicsDevice, 1, 1);
             dummyTexture.SetData(new Color[] { Color.Red });
@@ -308,7 +316,7 @@ namespace xkfd
                 if (spieler.position.X <= 512)
                 {
                     spieler.position.X++;
-                    hintergrund.Update(2);
+                    hintergrund.Update(3);
                 }
                 else
                 {
@@ -336,9 +344,15 @@ namespace xkfd
 
             if (gamestate == Gamestate.running)
             {
+
+
                 // Hud Update
                 hud.Update();
 
+                // Update spieler
+                spieler.Update();
+
+                #region Tastaturabfrage
                 // Teleport bei Curser Taste nach Oben
                 if (spieler.teleport == true && Keyboard.GetState().IsKeyDown(Keys.Up) && spieler.aktuellerZustand != spieler.sterben && spieler.aktuellerZustand != spieler.gewinnen)
                 {
@@ -355,10 +369,16 @@ namespace xkfd
                 if (spieler.aktuellerZustand == spieler.gleiten && Keyboard.GetState().IsKeyUp(Keys.Space))
                     spieler.doFallen();
 
+                // Escape ins Menü zurück kehren
+                if (Keyboard.GetState().IsKeyDown(Keys.Escape) && OldKeyState.IsKeyUp(Keys.Escape))
+                {
+                    menue.auswahl = 2; // Auswahl auf Forsetzen bzw. Starten setzten
+                    gamestate = Gamestate.menue;
+                }
+                #endregion
 
-                // Update spieler
-                spieler.Update();
 
+                #region Aktualisierung_Hindernisse
                 // Aktualisiere Hindernisse (schiebe Hindernisse Weiter)
                 if (hindernisListe.Count > 6 && spieler.aktuellerZustand != spieler.sterben)
                 {
@@ -373,7 +393,9 @@ namespace xkfd
                         hindernisListe.RemoveAt(0);
                     hintergrund.Update();
                 }
-                else
+                #endregion
+
+                if (hindernisListe.Count == 6)
                 {
                     spieler.doGewinnen(); // Wenn weniger als 6 Hindernisse vorhanden sind gehe in den Gewinnenzustand über
                     if (menue.spielAktiv)
@@ -383,18 +405,14 @@ namespace xkfd
                         hud.gewonnen = true;
                         konfig.WriteFile(gewonnen.ToString());
                     }
-
+                    if (hud.gewonnen)
+                        hud.UpdateAchievment();
                 }
 
-                // Escape ins Menü zurück kehren
-                if (Keyboard.GetState().IsKeyDown(Keys.Escape) && OldKeyState.IsKeyUp(Keys.Escape))
-                {
-                    menue.auswahl = 2; // Auswahl auf Forsetzen bzw. Starten setzten
-                    gamestate = Gamestate.menue;
-                }
+                
 
 
-                // Kollisionserkennung
+                #region Kollisionserkennung
 
                 // Erstellen einer Liste mit Hitboxen aus Bereich 2 & 3
                 List<Hitbox> kollisionsListe = new List<Hitbox>();
@@ -490,9 +508,8 @@ namespace xkfd
 
                     }
                 }
+                #endregion
             }
-
-
 
             if (spieler.position.Y >= 1720)
                 spieler.doSterben();
@@ -605,7 +622,7 @@ namespace xkfd
 
             spriteBatch.Begin(); // Begin
 
-            // Hintergunrd zeichnen
+            // Hintergrund zeichnen
             spriteBatch.Draw(hintergrund.hintergrundTextur, hintergrund.hintegrundPosition, Color.White);
 
             #region GamestateLoading
@@ -630,20 +647,17 @@ namespace xkfd
                 hud.Draw(spriteBatch, schrift_40);
 
 
-                // if (hindernisListe[1] != null)
+                // Hindernisse zeichnen
                 spriteBatch.Draw(hindernisListe[1].hindernisTextur, hindernisListe[1].position, Color.White);
-                // if (hindernisListe[2] != null)
                 spriteBatch.Draw(hindernisListe[2].hindernisTextur, hindernisListe[2].position, Color.White);
-                // if (hindernisListe[3] != null)
                 spriteBatch.Draw(hindernisListe[3].hindernisTextur, hindernisListe[3].position, Color.White);
-                // if (hindernisListe[4] != null)
                 spriteBatch.Draw(hindernisListe[4].hindernisTextur, hindernisListe[4].position, Color.White);
-                // if (hindernisListe[5] != null)
                 spriteBatch.Draw(hindernisListe[5].hindernisTextur, hindernisListe[5].position, Color.White);
 
 
 
-                // Zeichne Hitboxen der Hindernisse
+
+                #region Debugsection
                 if (debug)
                 {
                     foreach (Hindernis hindernis in hindernisListe)
@@ -667,12 +681,26 @@ namespace xkfd
                     spriteBatch.Draw(dummyTexture2, spieler.hitboxBeine, Color.Green);
 
                 }
+                #endregion
 
 
-                if (hud.gewonnen)
-                    hud.DrawAchivment(spriteBatch,schrift_20,gewonnen);
-
-
+                #region AchievmentAnzeigen
+                if (gewonnen == 1)
+                {
+                    hud.aktuellerUnlock = hud.skin_frau;
+                    hud.DrawAchivment(spriteBatch);
+                }
+                else if (gewonnen == 5)
+                {
+                    hud.aktuellerUnlock = hud.skin_hut;
+                    hud.DrawAchivment(spriteBatch);
+                }
+                else if (gewonnen == 10)
+                {
+                    hud.aktuellerUnlock = hud.skin_einstein;
+                    hud.DrawAchivment(spriteBatch);
+                }
+                #endregion
 
 
                 // Titel sound aus
@@ -770,6 +798,9 @@ namespace xkfd
 
             // Menü Radio Animation
             if (menue.radio_m_ani == null) menue.radio_m_ani = new Animation(menue.radioTexture, 2, 2, 6);
+
+            // Punkte Animation
+            if (punkt.punktAnimation == null) punkt.punktAnimation = new Animation(punkt.punktTextur, 1, 1, 6);
         }
 
         public void neustart()
