@@ -48,3 +48,4 @@ Content\unlock_skin_frau.xnb
 Content\unlock_skin_hut.xnb
 Content\unlock_skin_einstein.xnb
 Content\SpriteFont2.xnb
+Content\ani_sterben3_klatscher_frau.xnb
