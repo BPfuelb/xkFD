@@ -48,8 +48,6 @@ namespace xkfd
         // Hindernis Liste
         List<Hindernis> hindernisListe;
 
-
-
         // Hud
         Hud hud;
 
@@ -88,6 +86,7 @@ namespace xkfd
         Punkt punkt1, punkt2, punkt5, punkt10;
         Texture2D notenPlatzerTextur;
         Animation notenPlatzerAnimation;
+        Vector2 notenPlatzerPosition;
 
         // Punkte Liste
         List<NotenHitbox> punkteListeDraw = new List<NotenHitbox>();
@@ -119,6 +118,8 @@ namespace xkfd
             punkt2 = new Punkt(2);
             punkt5 = new Punkt(5);
             punkt10 = new Punkt(10);
+
+            // Noten Platzer Größe init
         }
 
         protected override void Initialize()
@@ -297,7 +298,8 @@ namespace xkfd
             punkt5.punktTextur = Content.Load<Texture2D>("note5");
             punkt10.punktTextur = Content.Load<Texture2D>("note10");
 
-            
+            // Punkte Platzer Textur
+            notenPlatzerTextur = Content.Load<Texture2D>("noten_platzer");
 
             // Test textur
             dummyTexture = new Texture2D(GraphicsDevice, 1, 1);
@@ -436,6 +438,8 @@ namespace xkfd
                 punkt10.punktAnimation.Update();
                 #endregion
 
+
+                #region GewonnenAktionen
                 if (hindernisListe.Count == 6)
                 {
 
@@ -451,16 +455,19 @@ namespace xkfd
                         hud.UpdateAchievment();
                 }
 
+                #endregion
+
 
                 #region PunkteKollisionen
 
                 foreach (NotenHitbox hitbox in punkteListeKollisionen)
                 {
-                    if (spieler.hitboxKoerper.Intersects(hitbox.hitbox))
+                    if (spieler.hitboxKoerper.Intersects(hitbox.hitboxRect))
                     {
+                        notenPlatzerAnimation.index = 0;
+                        notenPlatzerPosition = hitbox.hitboxPosition - new Vector2(16,16);
                         hitbox.hindernis.loescheHitboxPunkt(hitbox);
-                        // spieler.punkte+= hitbox.wertigkeit;
-
+                        spieler.punkte+= hitbox.punkt.wertigkeit;
                     }
                 }
 
@@ -485,7 +492,7 @@ namespace xkfd
                 // siehe boolean kollidiert
                 foreach (Hitbox hitbox in kollisionsListe)
                 {
-                    if (spieler.hitboxFuss.Intersects(hitbox.hitbox))
+                    if (spieler.hitboxFuss.Intersects(hitbox.hitboxRect))
                     {
                         kollidiert = true;
                         // Spieler kann sich nur ducken wenn er Läuft
@@ -493,7 +500,7 @@ namespace xkfd
                             spieler.doDucken();
                         else
                             spieler.doLaufen();
-                        spieler.setPlayerPosition(hitbox.hitbox.Y - 110);
+                        spieler.setPlayerPosition(hitbox.hitboxRect.Y - 110);
                     }
                 }
 
@@ -509,14 +516,14 @@ namespace xkfd
                 {
                     foreach (Hitbox hitbox in kollisionsListe)
                     {
-                        if (spieler.hitboxKopf.Intersects(hitbox.hitbox)) // Wenn Kopf kollidiert
+                        if (spieler.hitboxKopf.Intersects(hitbox.hitboxRect)) // Wenn Kopf kollidiert
                         {
                             ((Sterben)spieler.sterben).aktuell = ((Sterben)spieler.sterben).koepfen;// Passt den Todeszustand an
                             menue.spielAktiv = false; // setzt Menü nach Tod wieder auf anfang
                             spieler.doSterben();
                             Console.WriteLine("Im laufen gestorben Kopf");
                         }
-                        if (spieler.hitboxBeine.Intersects(hitbox.hitbox)) // Wenn Beine kollidiert
+                        if (spieler.hitboxBeine.Intersects(hitbox.hitboxRect)) // Wenn Beine kollidiert
                         {
                             ((Sterben)spieler.sterben).aktuell = ((Sterben)spieler.sterben).stolpern; // Passt den Todeszustand an
                             menue.spielAktiv = false; // setzt Menü nach Tod wieder auf anfang
@@ -530,13 +537,13 @@ namespace xkfd
                 {
                     foreach (Hitbox hitbox in kollisionsListe) // für Sonstige Kollisionen in Zuständen die oben noch nicht abgefangen werden
                     {
-                        if (spieler.position.Y > 500 && spieler.hitboxKopf.Intersects(hitbox.hitbox) && spieler.hitboxBeine.Intersects(hitbox.hitbox))
+                        if (spieler.position.Y > 500 && spieler.hitboxKopf.Intersects(hitbox.hitboxRect) && spieler.hitboxBeine.Intersects(hitbox.hitboxRect))
                         {
                             menue.spielAktiv = false;
                             ((Sterben)spieler.sterben).aktuell = ((Sterben)spieler.sterben).klatscher; // Passt den Todeszustand an
                             spieler.doSterben();
                         }
-                        else if (spieler.hitboxKopf.Intersects(hitbox.hitbox) && !spieler.hitboxBeine.Intersects(hitbox.hitbox))
+                        else if (spieler.hitboxKopf.Intersects(hitbox.hitboxRect) && !spieler.hitboxBeine.Intersects(hitbox.hitboxRect))
                         {
                             menue.spielAktiv = false;
                             Boolean kollidiertBoden = false;
@@ -544,7 +551,7 @@ namespace xkfd
                             {
                                 foreach (Hitbox hb in kollisionsListe)
                                 {
-                                    if (spieler.hitboxFuss.Intersects(hb.hitbox) || spieler.position.Y > 720)
+                                    if (spieler.hitboxFuss.Intersects(hb.hitboxRect) || spieler.position.Y > 720)
                                     { kollidiertBoden = true; }
                                 }
                                 spieler.movePlayerDown(1);
@@ -552,9 +559,9 @@ namespace xkfd
                             ((Sterben)spieler.sterben).aktuell = ((Sterben)spieler.sterben).koepfen; // Passt den Todeszustand an
                             spieler.doSterben();
                         }
-                        else if (spieler.hitboxBeine.Intersects(hitbox.hitbox) && !spieler.hitboxKopf.Intersects(hitbox.hitbox))
+                        else if (spieler.hitboxBeine.Intersects(hitbox.hitboxRect) && !spieler.hitboxKopf.Intersects(hitbox.hitboxRect))
                         {
-                            spieler.setPlayerPosition(hitbox.hitbox.Top - 80);
+                            spieler.setPlayerPosition(hitbox.hitboxRect.Top - 80);
                             menue.spielAktiv = false;
                             ((Sterben)spieler.sterben).aktuell = ((Sterben)spieler.sterben).stolpern; // Passt den Todeszustand an
                             spieler.doSterben();
@@ -567,6 +574,41 @@ namespace xkfd
 
             if (spieler.position.Y >= 1720)
                 spieler.doSterben();
+
+            if (spieler.aktuellerZustand == spieler.sterben)
+            {
+                foreach (NotenHitbox notenhitbox in punkteListeDraw)
+                {
+                    foreach (Hitbox bodenHitbox in notenhitbox.hindernis.gibHitboxen())
+                    {
+                        if (!notenhitbox.hitboxRect.Intersects(bodenHitbox.hitboxRect) && notenhitbox.faellt)
+                        {
+                            notenhitbox.moveY(-1);
+                        }
+                        else
+                            notenhitbox.faellt = false;
+
+                    }
+                }
+
+                foreach (NotenHitbox notenhitbox in punkteListeKollisionen)
+                {
+                    foreach (Hitbox bodenHitbox in notenhitbox.hindernis.gibHitboxen())
+                    {
+                        if (!notenhitbox.hitboxRect.Intersects(bodenHitbox.hitboxRect) && notenhitbox.faellt)
+                        {
+                            notenhitbox.moveY(-1);
+                        }
+                        else
+                            notenhitbox.faellt = false;
+
+
+                    }
+                }
+            }
+
+            notenPlatzerPosition.X -= 4;
+            notenPlatzerAnimation.UpdateNoLoop();
 
 
             #endregion
@@ -721,6 +763,9 @@ namespace xkfd
                 }
 
 
+                notenPlatzerAnimation.Draw(spriteBatch, notenPlatzerPosition);
+
+
                 #region Debugsection
                 if (debug)
                 {
@@ -728,7 +773,7 @@ namespace xkfd
                     {
                         foreach (Hitbox hitbox in hindernis.gibHitboxen())
                         {
-                            spriteBatch.Draw(dummyTexture, hitbox.hitbox, Color.Red);
+                            spriteBatch.Draw(dummyTexture, hitbox.hitboxRect, Color.Red);
                         }
                     }
 
@@ -736,12 +781,12 @@ namespace xkfd
                     // Punkte/Noten Zeichnen
                     foreach (NotenHitbox note in punkteListeDraw)
                     {
-                        spriteBatch.Draw(dummyTexture, note.hitbox, Color.Red);
+                        spriteBatch.Draw(dummyTexture, note.hitboxRect, Color.Red);
                     }
 
                     foreach (NotenHitbox note in punkteListeKollisionen)
                     {
-                        spriteBatch.Draw(dummyTexture, note.hitbox, Color.Red);
+                        spriteBatch.Draw(dummyTexture, note.hitboxRect, Color.Red);
                     }
 
 
@@ -882,6 +927,9 @@ namespace xkfd
             if (punkt2.punktAnimation == null) punkt2.punktAnimation = new Animation(punkt2.punktTextur, 2, 2, 4);
             if (punkt5.punktAnimation == null) punkt5.punktAnimation = new Animation(punkt5.punktTextur, 2, 2, 4);
             if (punkt10.punktAnimation == null) punkt10.punktAnimation = new Animation(punkt10.punktTextur, 2, 2, 4);
+
+            // Notenplatzer Animation
+            if (notenPlatzerAnimation == null) notenPlatzerAnimation = new Animation(notenPlatzerTextur, 2, 2, 5);
         }
 
         public void neustart()

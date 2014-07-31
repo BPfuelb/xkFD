@@ -9,21 +9,26 @@ namespace xkfd
     class Hitbox
     {
 
-        public Rectangle hitbox;
+        public Rectangle hitboxRect;
         public Vector2 hitboxPosition;
 
         public Hitbox(int posX, int posY, int width, int height)
         { 
-            hitbox = new Rectangle(posX, posY, width, height);
+            hitboxRect = new Rectangle(posX, posY, width, height);
             hitboxPosition = new Vector2(posX, posY);
         }
 
 
 
-        public void move(int x)
+        public void moveX(int x)
         {
             hitboxPosition.X -= x;
-            hitbox.X -= x;
+            hitboxRect.X -= x;
+        }
+        public void moveY(int y)
+        {
+            hitboxPosition.Y -= y;
+            hitboxRect.Y -= y;
         }
     }
 }

@@ -89,13 +89,13 @@ namespace xkfd
             // Hitboxen zur Kollisionserkennung aktualisieren
             foreach (Hitbox hitbox in hitboxListe)
             {
-                hitbox.move(4);
+                hitbox.moveX(4);
             }
 
             // Punkte Hitboxen aktualisieren
             foreach (NotenHitbox punkt in punkteListe)
             {
-                punkt.move(4);
+                punkt.moveX(4);
             }
         }
 
