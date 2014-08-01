@@ -19,6 +19,11 @@ namespace xkfd
         }
 
 
+        public void setPositionY(int y)
+        {
+            hitboxPosition.Y = y;
+            hitboxRect.Y = y;
+        }
 
         public void moveX(int x)
         {

@@ -88,6 +88,8 @@ namespace xkfd
         Animation notenPlatzerAnimation;
         Vector2 notenPlatzerPosition;
 
+        int notenFallSchrittweite = 0;
+
         // Punkte Liste
         List<NotenHitbox> punkteListeDraw = new List<NotenHitbox>();
         List<NotenHitbox> punkteListeKollisionen = new List<NotenHitbox>();
@@ -294,12 +296,19 @@ namespace xkfd
 
             // Punkt Textur
             punkt1.punktTextur = Content.Load<Texture2D>("note1");
+            punkt1.punktTexturHaufen = Content.Load<Texture2D>("note1_haufen");
+
             punkt2.punktTextur = Content.Load<Texture2D>("note2");
+            punkt2.punktTexturHaufen = Content.Load<Texture2D>("note2_haufen");
+
             punkt5.punktTextur = Content.Load<Texture2D>("note5");
+            punkt5.punktTexturHaufen = Content.Load<Texture2D>("note5_haufen");
+
             punkt10.punktTextur = Content.Load<Texture2D>("note10");
+            punkt10.punktTexturHaufen = Content.Load<Texture2D>("note10_haufen");
 
             // Punkte Platzer Textur
-            notenPlatzerTextur = Content.Load<Texture2D>("noten_platzer");
+            notenPlatzerTextur = Content.Load<Texture2D>("ani_notenpuff");
 
             // Test textur
             dummyTexture = new Texture2D(GraphicsDevice, 1, 1);
@@ -465,9 +474,9 @@ namespace xkfd
                     if (spieler.hitboxKoerper.Intersects(hitbox.hitboxRect))
                     {
                         notenPlatzerAnimation.index = 0;
-                        notenPlatzerPosition = hitbox.hitboxPosition - new Vector2(16,16);
+                        notenPlatzerPosition = hitbox.hitboxPosition - new Vector2(16, 16);
                         hitbox.hindernis.loescheHitboxPunkt(hitbox);
-                        spieler.punkte+= hitbox.punkt.wertigkeit;
+                        spieler.punkte += hitbox.punkt.wertigkeit;
                     }
                 }
 
@@ -577,32 +586,44 @@ namespace xkfd
 
             if (spieler.aktuellerZustand == spieler.sterben)
             {
+                if (gameTime.TotalGameTime.Milliseconds % 10 == 0)
+                    notenFallSchrittweite++;
+
                 foreach (NotenHitbox notenhitbox in punkteListeDraw)
                 {
-                    foreach (Hitbox bodenHitbox in notenhitbox.hindernis.gibHitboxen())
+                    if (notenhitbox.faellt)
                     {
-                        if (!notenhitbox.hitboxRect.Intersects(bodenHitbox.hitboxRect) && notenhitbox.faellt)
+                        foreach (Hitbox bodenHitbox in notenhitbox.hindernis.gibHitboxen())
                         {
-                            notenhitbox.moveY(-1);
+                            if ( notenhitbox.faellt && notenhitbox.hitboxRect.Y < 800 &&  !notenhitbox.hitboxRect.Intersects(bodenHitbox.hitboxRect) )
+                            {
+                                notenhitbox.moveY(-(1 + notenFallSchrittweite));
+                            }
+                            else if(notenhitbox.faellt)
+                            {
+                                notenhitbox.faellt = false;
+                                notenhitbox.setPositionY((int)bodenHitbox.hitboxPosition.Y -30);
+                            }
                         }
-                        else
-                            notenhitbox.faellt = false;
-
                     }
                 }
 
                 foreach (NotenHitbox notenhitbox in punkteListeKollisionen)
                 {
-                    foreach (Hitbox bodenHitbox in notenhitbox.hindernis.gibHitboxen())
+                    if (notenhitbox.faellt)
                     {
-                        if (!notenhitbox.hitboxRect.Intersects(bodenHitbox.hitboxRect) && notenhitbox.faellt)
+                        foreach (Hitbox bodenHitbox in notenhitbox.hindernis.gibHitboxen())
                         {
-                            notenhitbox.moveY(-1);
+                            if (notenhitbox.faellt && notenhitbox.hitboxRect.Y < 800 && !notenhitbox.hitboxRect.Intersects(bodenHitbox.hitboxRect))
+                            {
+                                notenhitbox.moveY(-(1 + notenFallSchrittweite));
+                            }
+                            else if(notenhitbox.faellt)
+                            {
+                                notenhitbox.setPositionY((int)bodenHitbox.hitboxPosition.Y - 30);
+                                notenhitbox.faellt = false;
+                            }
                         }
-                        else
-                            notenhitbox.faellt = false;
-
-
                     }
                 }
             }
@@ -924,9 +945,16 @@ namespace xkfd
 
             // Punkte Animation
             if (punkt1.punktAnimation == null) punkt1.punktAnimation = new Animation(punkt1.punktTextur, 2, 2, 4);
+            if (punkt1.punktAnimationHaufen == null) punkt1.punktAnimationHaufen = new Animation(punkt1.punktTexturHaufen, 2, 2, 4);
+
             if (punkt2.punktAnimation == null) punkt2.punktAnimation = new Animation(punkt2.punktTextur, 2, 2, 4);
+            if (punkt2.punktAnimationHaufen == null) punkt2.punktAnimationHaufen = new Animation(punkt2.punktTexturHaufen, 2, 2, 4);
+
             if (punkt5.punktAnimation == null) punkt5.punktAnimation = new Animation(punkt5.punktTextur, 2, 2, 4);
+            if (punkt5.punktAnimationHaufen == null) punkt5.punktAnimationHaufen = new Animation(punkt5.punktTexturHaufen, 2, 2, 4);
+
             if (punkt10.punktAnimation == null) punkt10.punktAnimation = new Animation(punkt10.punktTextur, 2, 2, 4);
+            if (punkt10.punktAnimationHaufen == null) punkt10.punktAnimationHaufen = new Animation(punkt10.punktTexturHaufen, 2, 2, 4);
 
             // Notenplatzer Animation
             if (notenPlatzerAnimation == null) notenPlatzerAnimation = new Animation(notenPlatzerTextur, 2, 2, 5);
@@ -939,7 +967,7 @@ namespace xkfd
             LoadContent();
             loadAnimation();
             hud.gewonnen = false;
-
+            notenFallSchrittweite = 0;
             ((Fallen)spieler.fallen).beschleunigung = 0;
 
             spieler.aktuellerSkin = optionen.skinListe[optionen.auswahl];

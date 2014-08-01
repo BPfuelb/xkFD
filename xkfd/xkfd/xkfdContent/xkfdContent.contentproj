@@ -434,8 +434,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="noten_platzer.png">
-      <Name>noten_platzer</Name>
+    <Compile Include="ani_notenpuff.png">
+      <Name>ani_notenpuff</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>

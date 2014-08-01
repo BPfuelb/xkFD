@@ -525,13 +525,13 @@
       <Time>2014-07-31T23:09:30.0742079+02:00</Time>
     </Item>
     <Item>
-      <Source>noten_platzer.png</Source>
-      <Name>noten_platzer</Name>
+      <Source>ani_notenpuff.png</Source>
+      <Name>ani_notenpuff</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\noten_platzer.xnb</Output>
-      <Time>2014-08-01T00:59:46.1037178+02:00</Time>
+      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_notenpuff.xnb</Output>
+      <Time>2014-08-01T01:40:47.908525+02:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>

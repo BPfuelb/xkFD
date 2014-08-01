@@ -13,6 +13,10 @@ namespace xkfd
         public Texture2D punktTextur;
         public Animation punktAnimation;
 
+        public Texture2D punktTexturHaufen;
+        public Animation punktAnimationHaufen;
+
+
         public int wertigkeit;
 
         public Punkt(int wertigkeit)
