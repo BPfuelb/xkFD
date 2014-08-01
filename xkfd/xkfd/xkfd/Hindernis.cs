@@ -24,7 +24,7 @@ namespace xkfd
         public static int punkteAnzahl = 0;
 
         // Generiert eine beliebige lange Liste von Hindernissen
-        public static List<Hindernis> generieHindernisse(int anzahl, Texture2D hindernisSTextur, Texture2D hindernisATextur, Texture2D hindernisBTextur, Texture2D hindernisCTextur, Texture2D hindernisDTextur, Texture2D hindernisETextur, Texture2D hindernisZTextur, Punkt p1, Punkt p2, Punkt p5, Punkt p10)
+        public static List<Hindernis> generieHindernisse(int anzahl, Texture2D hindernisSTextur, Texture2D hindernisATextur, Texture2D hindernisBTextur, Texture2D hindernisCTextur, Texture2D hindernisDTextur, Texture2D hindernisETextur, Texture2D hindernisZTextur, Punkt p1, Punkt p2, Punkt p5, Punkt p10, PowerUp powerUp)
         {
             // Init zufallsgenerator
             Random random = new Random();
@@ -48,22 +48,22 @@ namespace xkfd
                 switch ((int)random.Next(anzahlVerschiedenerHindernisse))
                 {
                     case 0:
-                        liste.Add(new HindernisA(hindernisATextur, new Vector2(1280, 40), p1, p2, p5, p10));
+                        liste.Add(new HindernisA(hindernisATextur, new Vector2(1280, 40), p1, p2, p5, p10, powerUp));
                         break;
                     case 1:
-                        liste.Add(new HindernisB(hindernisBTextur, new Vector2(1280, 40), p1, p2, p5, p10));
+                        liste.Add(new HindernisB(hindernisBTextur, new Vector2(1280, 40), p1, p2, p5, p10, powerUp));
                         break;
                     case 2:
-                        liste.Add(new HindernisC(hindernisCTextur, new Vector2(1280, 40), p1, p2, p5, p10));
+                        liste.Add(new HindernisC(hindernisCTextur, new Vector2(1280, 40), p1, p2, p5, p10, powerUp));
                         break;
                     case 3:
-                        liste.Add(new HindernisD(hindernisDTextur, new Vector2(1280, 40), p1, p2, p5, p10));
+                        liste.Add(new HindernisD(hindernisDTextur, new Vector2(1280, 40), p1, p2, p5, p10, powerUp));
                         break;
                     case 4:
-                        liste.Add(new HindernisE(hindernisDTextur, new Vector2(1280, 40), p1, p2, p5, p10));
+                        liste.Add(new HindernisE(hindernisDTextur, new Vector2(1280, 40), p1, p2, p5, p10, powerUp));
                         break;
                     case 5:
-                        liste.Add(new HindernisE(hindernisETextur, new Vector2(1280, 40), p1, p2, p5, p10));
+                        liste.Add(new HindernisE(hindernisETextur, new Vector2(1280, 40), p1, p2, p5, p10, powerUp));
                         break;
                 }
             }

@@ -659,6 +659,24 @@
       <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_sterben4_pieksen_std.xnb</Output>
       <Time>2014-08-01T18:22:29.6364482+02:00</Time>
     </Item>
+    <Item>
+      <Source>powerUp.png</Source>
+      <Name>powerUp</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\powerUp.xnb</Output>
+      <Time>2014-08-01T19:48:21.8621386+02:00</Time>
+    </Item>
+    <Item>
+      <Source>teleportAufladen.wav</Source>
+      <Name>teleportAufladen</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\teleportAufladen.xnb</Output>
+      <Time>2014-08-01T19:55:04.0731438+02:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <TargetPlatform>Windows</TargetPlatform>

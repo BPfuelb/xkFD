@@ -72,3 +72,5 @@ Content\ani_springen_einstein.xnb
 Content\pop.xnb
 Content\hindernisE.xnb
 Content\ani_sterben4_pieksen_std.xnb
+Content\powerUp.xnb
+Content\teleportAufladen.xnb

@@ -136,3 +136,5 @@ D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Cont
 D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\pop.xnb
 D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\hindernisE.xnb
 D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_sterben4_pieksen_std.xnb
+D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\powerUp.xnb
+D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\teleportAufladen.xnb

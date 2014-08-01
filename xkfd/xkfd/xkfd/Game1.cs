@@ -89,6 +89,8 @@ namespace xkfd
         Animation notenPlatzerAnimation;
         Vector2 notenPlatzerPosition;
 
+        PowerUp powerUp;
+
         int notenFallSchrittweite = 0;
 
         // Punkte Liste
@@ -121,17 +123,22 @@ namespace xkfd
             punkt2 = new Punkt(2);
             punkt5 = new Punkt(5);
             punkt10 = new Punkt(10);
+            
+            // Powerup
+            powerUp = new PowerUp();
 
             // Noten Platzer Größe init
         }
 
         int getRandomNumber()
         {
+            // RFC 1149.5 specifies 4 as the standard IEEE-vetted random number.
+            // www.xkcd.com/221
+
             return 4;   // chosen by fair dice roll.
                         // guaranteed to be random.
         }
-        // RFC 1149.5 specifies 4 as the standard IEEE-vetted random number.
-        // www.xkcd.com/221
+
 
 
         
@@ -245,30 +252,27 @@ namespace xkfd
 
             menue.radioTexture = Content.Load<Texture2D>("radio");
 
-            // Sound
-            titel = Content.Load<Song>("titel");
-            // titelSoundInstance = titel.CreateInstance();
-
 
             // Hintergrund
             hintergrund.hintergrundTextur = Content.Load<Texture2D>("hintergrund");
 
-
-            // Optionen Texturen Laden
-
             // Optionen Zurück Knopf
             optionen.z_knopf_Textur = Content.Load<Texture2D>("o_zurueck");
+
+            // Sound
+            titel = Content.Load<Song>("titel");
 
             // Spring Sounds
             spieler.springen.sound = Content.Load<SoundEffect>("jump");
             spieler.springen.soundSoundInstance = spieler.springen.sound.CreateInstance();
 
             // Einsammel Sound
-
             punkt1.initSound(Content.Load<SoundEffect>("pop"));
             punkt2.initSound(Content.Load<SoundEffect>("pop"));
             punkt5.initSound(Content.Load<SoundEffect>("pop"));
             punkt10.initSound(Content.Load<SoundEffect>("pop"));
+
+            powerUp.initSound(Content.Load<SoundEffect>("teleportAufladen"));
 
             // Sterben Sounds
 
@@ -300,7 +304,7 @@ namespace xkfd
             hindernisTexturZ = Content.Load<Texture2D>("hindernisZ");
 
             // Liste mit Hindernisse die generiert werden
-            hindernisListe = Hindernis.generieHindernisse(10, hindernisTexturS, hindernisTexturA, hindernisTexturB, hindernisTexturC, hindernisTexturD, hindernisTexturE, hindernisTexturZ, punkt1, punkt2, punkt5, punkt10);
+            hindernisListe = Hindernis.generieHindernisse(10, hindernisTexturS, hindernisTexturA, hindernisTexturB, hindernisTexturC, hindernisTexturD, hindernisTexturE, hindernisTexturZ, punkt1, punkt2, punkt5, punkt10, powerUp);
 
 
             // HudTextur
@@ -339,6 +343,10 @@ namespace xkfd
 
             // Punkte Platzer Textur
             notenPlatzerTextur = Content.Load<Texture2D>("ani_notenpuff");
+
+            // PowerUp Textur
+
+            powerUp.punktTextur = Content.Load<Texture2D>("powerup");
 
             // Test textur
             dummyTexture = new Texture2D(GraphicsDevice, 1, 1);
@@ -473,11 +481,12 @@ namespace xkfd
                 }
                 #endregion
 
-                #region NotenAnimation aktualisierung
+                #region Noten/Powerup Animation  aktualisierung
                 punkt1.punktAnimation.Update();
                 punkt2.punktAnimation.Update();
                 punkt5.punktAnimation.Update();
                 punkt10.punktAnimation.Update();
+                powerUp.punktAnimation.Update();
                 #endregion
 
 
@@ -511,7 +520,10 @@ namespace xkfd
                         notenPlatzerAnimation.index = 0;
                         notenPlatzerPosition = hitbox.hitboxPosition - new Vector2(16, 16);
                         hitbox.hindernis.loescheHitboxPunkt(hitbox);
-                        spieler.punkte += hitbox.punkt.wertigkeit;
+                        if (hitbox.punkt.wertigkeit != 0)
+                            spieler.punkte += hitbox.punkt.wertigkeit;
+                        else
+                            spieler.teleport = true;
                         hitbox.punkt.playSound();
                     }
                 }
@@ -652,22 +664,25 @@ namespace xkfd
                 foreach (NotenHitbox notenhitbox in punkteListeDraw)
                 {
                     notenhitbox.Update();
-                    if (notenhitbox.faellt)
+                    if (notenhitbox.punkt.wertigkeit != 0)
                     {
-                        foreach (Hitbox bodenHitbox in notenhitbox.hindernis.gibHitboxen())
+                        if (notenhitbox.faellt)
                         {
-                            if (notenhitbox.faellt && notenhitbox.hitboxRect.Y < 800 && !notenhitbox.hitboxRect.Intersects(bodenHitbox.hitboxRect))
+                            foreach (Hitbox bodenHitbox in notenhitbox.hindernis.gibHitboxen())
                             {
-                                notenhitbox.moveY(-(1 + notenFallSchrittweite));
-                            }
-                            else if (notenhitbox.hitboxRect.Y >= 800)
-                            {
-                                notenhitbox.faellt = false;
-                            }
-                            else if (notenhitbox.faellt)
-                            {
-                                notenhitbox.faellt = false;
-                                notenhitbox.setPositionY((int)bodenHitbox.hitboxPosition.Y - 30);
+                                if (notenhitbox.faellt && notenhitbox.hitboxRect.Y < 800 && !notenhitbox.hitboxRect.Intersects(bodenHitbox.hitboxRect))
+                                {
+                                    notenhitbox.moveY(-(1 + notenFallSchrittweite));
+                                }
+                                else if (notenhitbox.hitboxRect.Y >= 800)
+                                {
+                                    notenhitbox.faellt = false;
+                                }
+                                else if (notenhitbox.faellt)
+                                {
+                                    notenhitbox.faellt = false;
+                                    notenhitbox.setPositionY((int)bodenHitbox.hitboxPosition.Y - 30);
+                                }
                             }
                         }
                     }
@@ -676,22 +691,25 @@ namespace xkfd
                 foreach (NotenHitbox notenhitbox in punkteListeKollisionen)
                 {
                     notenhitbox.Update();
-                    if (notenhitbox.faellt)
+                    if (notenhitbox.punkt.wertigkeit != 0)
                     {
-                        foreach (Hitbox bodenHitbox in notenhitbox.hindernis.gibHitboxen())
+                        if (notenhitbox.faellt)
                         {
-                            if (notenhitbox.faellt && notenhitbox.hitboxRect.Y < 800 && !notenhitbox.hitboxRect.Intersects(bodenHitbox.hitboxRect))
+                            foreach (Hitbox bodenHitbox in notenhitbox.hindernis.gibHitboxen())
                             {
-                                notenhitbox.moveY(-(1 + notenFallSchrittweite));
-                            }
-                            else if (notenhitbox.hitboxRect.Y >= 800)
-                            {
-                                notenhitbox.faellt = false;
-                            }
-                            else if (notenhitbox.faellt)
-                            {
-                                notenhitbox.faellt = false;
-                                notenhitbox.setPositionY((int)bodenHitbox.hitboxPosition.Y - 30);
+                                if (notenhitbox.faellt && notenhitbox.hitboxRect.Y < 800 && !notenhitbox.hitboxRect.Intersects(bodenHitbox.hitboxRect))
+                                {
+                                    notenhitbox.moveY(-(1 + notenFallSchrittweite));
+                                }
+                                else if (notenhitbox.hitboxRect.Y >= 800)
+                                {
+                                    notenhitbox.faellt = false;
+                                }
+                                else if (notenhitbox.faellt)
+                                {
+                                    notenhitbox.faellt = false;
+                                    notenhitbox.setPositionY((int)bodenHitbox.hitboxPosition.Y - 30);
+                                }
                             }
                         }
                     }
@@ -1058,6 +1076,10 @@ namespace xkfd
 
             // Notenplatzer Animation
             if (notenPlatzerAnimation == null) notenPlatzerAnimation = new Animation(notenPlatzerTextur, 2, 2, 5);
+
+            // Powerup/Atom Animation
+
+            if (powerUp.punktAnimation == null) powerUp.punktAnimation = new Animation(powerUp.punktTextur, 4, 4, 4);
         }
 
         public void neustart()
@@ -1077,7 +1099,7 @@ namespace xkfd
             spieler.aktuellerSkin.sterbenAnimationKoepfen.index = 0;
             spieler.aktuellerSkin.sterbenAnimationStolpern.index = 0;
 
-            hindernisListe = Hindernis.generieHindernisse(10, hindernisTexturS, hindernisTexturA, hindernisTexturB, hindernisTexturC, hindernisTexturD, hindernisTexturE, hindernisTexturZ, punkt1, punkt2, punkt5, punkt10);
+            hindernisListe = Hindernis.generieHindernisse(10, hindernisTexturS, hindernisTexturA, hindernisTexturB, hindernisTexturC, hindernisTexturD, hindernisTexturE, hindernisTexturZ, punkt1, punkt2, punkt5, punkt10, powerUp);
 
         }
     }
