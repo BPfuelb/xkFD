@@ -20,6 +20,7 @@ namespace xkfd
         public List<Hitbox> hitboxListe;
         public List<NotenHitbox> punkteListe;
 
+        public static int punkteAnzahl = 0;
        
         // Generiert eine beliebige lange Liste von Hindernissen
         public static List<Hindernis> generieHindernisse(int anzahl, Texture2D hindernisSTextur, Texture2D hindernisATextur, Texture2D hindernisBTextur, Texture2D hindernisCTextur, Texture2D hindernisDTextur, Texture2D hindernisZTextur, Punkt p1, Punkt p2, Punkt p5, Punkt p10)
@@ -45,7 +46,7 @@ namespace xkfd
                 switch ((int)random.Next(4))
                 {
                     case 0:
-                        liste.Add(new HindernisA(hindernisATextur, new Vector2(1280, 40),p1,null,p5,p10));
+                        liste.Add(new HindernisA(hindernisATextur, new Vector2(1280, 40),p1,p2,p5,p10));
                         break;
                     case 1:
                         liste.Add(new HindernisB(hindernisBTextur, new Vector2(1280, 40), p1, p2, p5, p10));

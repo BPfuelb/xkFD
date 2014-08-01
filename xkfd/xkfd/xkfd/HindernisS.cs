@@ -23,6 +23,8 @@ namespace xkfd
 
             bodenHitbox = new Hitbox((int)position.X, (int)position.Y + 488, 320, 200);
             hitboxListe.Add(bodenHitbox);
+
+            
         }
 
     }

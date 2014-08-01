@@ -24,6 +24,11 @@ namespace xkfd
             punkteListe.Add(new NotenHitbox(p1, this, (int)position.X + 50, (int)position.Y + 450, 32, 32));
             punkteListe.Add(new NotenHitbox(p5, this, (int)position.X + 270, (int)position.Y + 280, 32, 32));
 
+
+            foreach (NotenHitbox noteHitbox in punkteListe)
+            {
+                punkteAnzahl += noteHitbox.punkt.wertigkeit;
+            }
         }
 
 

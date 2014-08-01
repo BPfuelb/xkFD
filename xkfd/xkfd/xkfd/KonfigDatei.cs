@@ -13,12 +13,20 @@ namespace xkfd
 
         public string ReadFile()
         {
-
             if (File.Exists(fileName))
             {
                 StreamReader myFile = new StreamReader(fileName, System.Text.Encoding.Default);
                 inhalt = myFile.ReadToEnd();
                 myFile.Close();
+            }
+            else
+            {
+                File.Create(fileName).Dispose();
+                StreamWriter myFile = new StreamWriter(fileName);
+                myFile.Write("0");
+                myFile.Close();
+                inhalt = "0";
+                
             }
             return inhalt;
         }

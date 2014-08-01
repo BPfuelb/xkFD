@@ -74,10 +74,10 @@ namespace xkfd
             // tastaturAnimation.Update();
         }
 
-        public void Draw(SpriteBatch sb, SpriteFont schrift)
+        public void Draw(SpriteBatch sb, SpriteFont schrift, int maxPunkte)
         {
             sb.DrawString(schrift, "Gleiten: " + counter, positionGleitenAnzeige, Color.Black);
-            sb.DrawString(schrift, "Punkte: " + spieler.punkte, positionPunkte, Color.Black);
+            sb.DrawString(schrift, "Punkte: " + spieler.punkte + "/" + maxPunkte, positionPunkte, Color.Black);
 
             sb.Draw(teleport, positionCheckbox + new Vector2(-10, 25), Color.White);
             if (spieler.teleport)

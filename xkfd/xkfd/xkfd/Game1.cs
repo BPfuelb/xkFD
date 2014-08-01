@@ -789,7 +789,7 @@ namespace xkfd
                 spieler.Draw(spriteBatch);
                 // spriteBatch.Draw(spieler.spielerTextur, spieler.position, Color.White);
 
-                hud.Draw(spriteBatch, schrift_40);
+                hud.Draw(spriteBatch, schrift_40,Hindernis.punkteAnzahl);
 
 
                 // Hindernisse zeichnen
@@ -824,20 +824,6 @@ namespace xkfd
                 {
                     notenHitbox.Draw(spriteBatch);
                 }
-
-                /*
-                // Punkte/Noten Zeichnen
-                foreach (NotenHitbox note in punkteListeKollisionen)
-                {
-                    note.Draw(spriteBatch);
-                }
-
-                foreach (NotenHitbox note in punkteListeDraw)
-                {
-                    note.Draw(spriteBatch);
-                }
-                 * */
-
 
                 notenPlatzerAnimation.Draw(spriteBatch, notenPlatzerPosition);
 
@@ -902,6 +888,8 @@ namespace xkfd
                 #endregion
 
 
+                
+
                 // Titel sound aus
                 MediaPlayer.Pause();
             }
@@ -926,9 +914,7 @@ namespace xkfd
             {
                 // Malt alle Animationen des Menüs
                 optionen.Draw(spriteBatch, schrift_40, gewonnen);
-                spriteBatch.DrawString(schrift_40, "Zurück", new Vector2(128 + 50, 590), Color.Gray);
-
-                spriteBatch.DrawString(schrift_40, "Gewonnen: " + gewonnen, new Vector2(600, 590), Color.Gray);
+                
             }
 
             #endregion
