@@ -18,10 +18,10 @@ namespace xkfd
         public Vector2 hindernisPosition;
 
         public List<Hitbox> hitboxListe;
-        public List<NotenHitbox> punkteListe;
+        public List<NotenHitbox> notenListe;
 
         public static int punkteAnzahl = 0;
-       
+
         // Generiert eine beliebige lange Liste von Hindernissen
         public static List<Hindernis> generieHindernisse(int anzahl, Texture2D hindernisSTextur, Texture2D hindernisATextur, Texture2D hindernisBTextur, Texture2D hindernisCTextur, Texture2D hindernisDTextur, Texture2D hindernisZTextur, Punkt p1, Punkt p2, Punkt p5, Punkt p10)
         {
@@ -46,7 +46,7 @@ namespace xkfd
                 switch ((int)random.Next(4))
                 {
                     case 0:
-                        liste.Add(new HindernisA(hindernisATextur, new Vector2(1280, 40),p1,p2,p5,p10));
+                        liste.Add(new HindernisA(hindernisATextur, new Vector2(1280, 40), p1, p2, p5, p10));
                         break;
                     case 1:
                         liste.Add(new HindernisB(hindernisBTextur, new Vector2(1280, 40), p1, p2, p5, p10));
@@ -78,7 +78,7 @@ namespace xkfd
             this.hindernisTextur = textur;
             this.hindernisPosition = position;
 
-            this.punkteListe = new List<NotenHitbox>();
+            this.notenListe = new List<NotenHitbox>();
         }
 
         // Schiebt Hindernisse nach Links
@@ -94,7 +94,7 @@ namespace xkfd
             }
 
             // Punkte Hitboxen aktualisieren
-            foreach (NotenHitbox punkt in punkteListe)
+            foreach (NotenHitbox punkt in notenListe)
             {
                 punkt.moveX(4);
             }
@@ -107,12 +107,12 @@ namespace xkfd
 
         public virtual List<NotenHitbox> gibPunkte()
         {
-            return punkteListe;
+            return notenListe;
         }
 
         public virtual void loescheHitboxPunkt(NotenHitbox notenhitbox)
         {
-            punkteListe.Remove(notenhitbox);
+            notenListe.Remove(notenhitbox);
         }
     }
 }

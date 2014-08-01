@@ -614,6 +614,33 @@
       <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_sterben3_klatscher_hut.xnb</Output>
       <Time>2014-08-01T03:41:39.2882802+02:00</Time>
     </Item>
+    <Item>
+      <Source>ani_laufen_einstein.png</Source>
+      <Name>ani_laufen_einstein</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_laufen_einstein.xnb</Output>
+      <Time>2014-08-01T04:34:01.4680026+02:00</Time>
+    </Item>
+    <Item>
+      <Source>ani_springen_einstein.png</Source>
+      <Name>ani_springen_einstein</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_springen_einstein.xnb</Output>
+      <Time>2014-08-01T04:34:16.3048512+02:00</Time>
+    </Item>
+    <Item>
+      <Source>pop.wav</Source>
+      <Name>pop</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\pop.xnb</Output>
+      <Time>2014-08-01T04:59:52.0451182+02:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <TargetPlatform>Windows</TargetPlatform>

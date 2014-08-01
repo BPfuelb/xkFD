@@ -22,10 +22,10 @@ namespace xkfd
             hitboxListe.Add(new Hitbox((int)position.X, (int)position.Y + 488, 50, 200));
             hitboxListe.Add(new Hitbox((int)position.X + 270, (int)position.Y + 488, 50, 200));
 
-            punkteListe.Add(new NotenHitbox(p5,this, (int)position.X + 130, (int)position.Y + 450, 32, 32));
-            punkteListe.Add(new NotenHitbox(p2,this, (int)position.X + 150, (int)position.Y + 580, 32, 32));
+            notenListe.Add(new NotenHitbox(p5,this, (int)position.X + 130, (int)position.Y + 450, 32, 32));
+            notenListe.Add(new NotenHitbox(p2,this, (int)position.X + 150, (int)position.Y + 580, 32, 32));
            
-            foreach (NotenHitbox noteHitbox in punkteListe)
+            foreach (NotenHitbox noteHitbox in notenListe)
             {
                 punkteAnzahl += noteHitbox.punkt.wertigkeit;
             }

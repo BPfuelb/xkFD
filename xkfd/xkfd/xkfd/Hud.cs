@@ -50,7 +50,7 @@ namespace xkfd
             positionGleitenAnzeige = new Vector2(600, 15);
             positionTastaturbelegung = new Vector2(100, -250);
             positionCheckbox = new Vector2(1150, -12);
-            positionPunkte = new Vector2(200, 15);
+            positionPunkte = new Vector2(100, 15);
 
             unlockPosition = new Vector2(1000, 720);
             updateAchievement = false;
@@ -111,7 +111,7 @@ namespace xkfd
         }
 
 
-        public void DrawHelp(SpriteBatch sb, SpriteFont schrift)
+        public void DrawHelp(SpriteBatch sb, SpriteFont schrift, GameTime gt)
         {
             // Tastenbelegung
             sb.Draw(tastaturTextur, positionTastaturbelegung, Color.White);
@@ -120,7 +120,10 @@ namespace xkfd
             sb.Draw(hudTextur, new Rectangle(0, 530, 1280, 2), Color.Black);
 
             // Text zum starten
-            sb.DrawString(schrift, "Zum Starten Enter drücken", new Vector2(300, 600), Color.Gray);
+            if (gt.TotalGameTime.Milliseconds % 500 <= 150)
+                sb.DrawString(schrift, "Zum Starten Enter drücken", new Vector2(300, 600), Color.Black);
+            else
+                sb.DrawString(schrift, "Zum Starten Enter drücken", new Vector2(300, 600), Color.Gray);
         }
 
     }

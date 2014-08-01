@@ -197,8 +197,8 @@ namespace xkfd
             einsteinSkin.fallenTextur = Content.Load<Texture2D>("ani_fallen_std");
             einsteinSkin.gewinnenTextur = Content.Load<Texture2D>("ani_gewinnen_std");
             einsteinSkin.gleitenTextur = Content.Load<Texture2D>("ani_gleiten_std");
-            einsteinSkin.laufenTextur = Content.Load<Texture2D>("ani_laufen_std");
-            einsteinSkin.sprignenTextur = Content.Load<Texture2D>("ani_springen_std");
+            einsteinSkin.laufenTextur = Content.Load<Texture2D>("ani_laufen_einstein");
+            einsteinSkin.sprignenTextur = Content.Load<Texture2D>("ani_springen_einstein");
 
             einsteinSkin.sterbenTexturKoepfen = Content.Load<Texture2D>("ani_sterben1_koepfen_std");
             einsteinSkin.sterbenTexturStolpern = Content.Load<Texture2D>("ani_sterben2_stolpern_std");
@@ -246,6 +246,13 @@ namespace xkfd
             // Spring Sounds
             spieler.springen.sound = Content.Load<SoundEffect>("jump");
             spieler.springen.soundSoundInstance = spieler.springen.sound.CreateInstance();
+
+            // Einsammel Sound
+
+            punkt1.initSound(Content.Load<SoundEffect>("pop"));
+            punkt2.initSound(Content.Load<SoundEffect>("pop"));
+            punkt5.initSound(Content.Load<SoundEffect>("pop"));
+            punkt10.initSound(Content.Load<SoundEffect>("pop"));
 
             // Sterben Sounds
 
@@ -482,6 +489,7 @@ namespace xkfd
                         notenPlatzerPosition = hitbox.hitboxPosition - new Vector2(16, 16);
                         hitbox.hindernis.loescheHitboxPunkt(hitbox);
                         spieler.punkte += hitbox.punkt.wertigkeit;
+                        hitbox.punkt.playSound();
                     }
                 }
 
@@ -774,7 +782,7 @@ namespace xkfd
 
             if (gamestate == Gamestate.ladebildschirm)
             {
-                hud.DrawHelp(spriteBatch, schrift_40);
+                hud.DrawHelp(spriteBatch, schrift_40, gameTime);
                 spieler.Draw(spriteBatch);
             }
 
@@ -914,12 +922,13 @@ namespace xkfd
             {
                 // Malt alle Animationen des Menüs
                 optionen.Draw(spriteBatch, schrift_40, gewonnen);
-                
             }
 
             #endregion
 
+            // Logo Zeichnen
             spriteBatch.Draw(logo, new Vector2(0, 720 - 83), Color.White);
+
             spriteBatch.End(); // End
 
             base.Draw(gameTime);
@@ -1008,6 +1017,7 @@ namespace xkfd
             LoadContent();
             loadAnimation();
             hud.gewonnen = false;
+            Hindernis.punkteAnzahl = 0;
             notenFallSchrittweite = 0;
             ((Fallen)spieler.fallen).beschleunigung = 0;
 
