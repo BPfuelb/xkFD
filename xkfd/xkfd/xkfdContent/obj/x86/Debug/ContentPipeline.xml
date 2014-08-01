@@ -585,7 +585,34 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_sterben1_koepfen_hut.xnb</Output>
-      <Time>2014-08-01T02:34:54.1622001+02:00</Time>
+      <Time>2014-08-01T03:34:06.9984107+02:00</Time>
+    </Item>
+    <Item>
+      <Source>ani_fallen_hut.png</Source>
+      <Name>ani_fallen_hut</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_fallen_hut.xnb</Output>
+      <Time>2014-08-01T03:37:17.942332+02:00</Time>
+    </Item>
+    <Item>
+      <Source>ani_gewinnen_hut.png</Source>
+      <Name>ani_gewinnen_hut</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_gewinnen_hut.xnb</Output>
+      <Time>2014-08-01T03:41:25.4264873+02:00</Time>
+    </Item>
+    <Item>
+      <Source>ani_sterben3_klatscher_hut.png</Source>
+      <Name>ani_sterben3_klatscher_hut</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_sterben3_klatscher_hut.xnb</Output>
+      <Time>2014-08-01T03:41:39.2882802+02:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>

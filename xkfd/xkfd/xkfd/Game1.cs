@@ -180,15 +180,15 @@ namespace xkfd
             hutSkin = new Skin();
 
             hutSkin.duckenTextur = Content.Load<Texture2D>("ani_ducken_hut");
-            hutSkin.fallenTextur = Content.Load<Texture2D>("ani_fallen_std");
-            hutSkin.gewinnenTextur = Content.Load<Texture2D>("ani_gewinnen_std");
+            hutSkin.fallenTextur = Content.Load<Texture2D>("ani_fallen_hut");
+            hutSkin.gewinnenTextur = Content.Load<Texture2D>("ani_gewinnen_hut");
             hutSkin.gleitenTextur = Content.Load<Texture2D>("ani_gleiten_hut");
             hutSkin.laufenTextur = Content.Load<Texture2D>("ani_laufen_hut");
             hutSkin.sprignenTextur = Content.Load<Texture2D>("ani_springen_hut");
 
             hutSkin.sterbenTexturKoepfen = Content.Load<Texture2D>("ani_sterben1_koepfen_hut");
             hutSkin.sterbenTexturStolpern = Content.Load<Texture2D>("ani_sterben2_stolpern_hut");
-            hutSkin.sterbenTexturKlatscher = Content.Load<Texture2D>("ani_sterben3_klatscher_std");
+            hutSkin.sterbenTexturKlatscher = Content.Load<Texture2D>("ani_sterben3_klatscher_hut");
 
             // Einstein Skin
             einsteinSkin = new Skin();
@@ -332,7 +332,6 @@ namespace xkfd
             if (gamestate == Gamestate.ladebildschirm)
             {
 
-
                 if (start)
                 {
                     spieler.position.X = -20;
@@ -361,6 +360,12 @@ namespace xkfd
                     start = true;
                     gamestate = Gamestate.running;
                 }
+
+                if (Keyboard.GetState().IsKeyDown(Keys.Escape) && OldKeyState.IsKeyUp(Keys.Escape))
+                {
+                    gamestate = Gamestate.menue;
+                }
+
                 OldKeyState = NewKeyState;
             }
 
@@ -404,9 +409,7 @@ namespace xkfd
                 #endregion
 
 
-                #region Aktualisierung_Hindernisse
-
-
+                #region Aktualisierung_Hindernisse_Punkte
 
                 // Aktualisiere Hindernisse (schiebe Hindernisse Weiter)
                 if (hindernisListe.Count > 6 && spieler.aktuellerZustand != spieler.sterben)
@@ -451,7 +454,7 @@ namespace xkfd
                 #region GewonnenAktionen
                 if (hindernisListe.Count == 6)
                 {
-                    if (spieler.aktuellerZustand != spieler.laufen)
+                    if (spieler.aktuellerZustand == spieler.laufen)
                     {
                         spieler.doGewinnen(); // Wenn weniger als 6 Hindernisse vorhanden sind gehe in den Gewinnenzustand über
                         if (menue.spielAktiv)
@@ -532,14 +535,12 @@ namespace xkfd
                             ((Sterben)spieler.sterben).aktuell = ((Sterben)spieler.sterben).koepfen;// Passt den Todeszustand an
                             menue.spielAktiv = false; // setzt Menü nach Tod wieder auf anfang
                             spieler.doSterben();
-                            Console.WriteLine("Im laufen gestorben Kopf");
                         }
                         if (spieler.hitboxBeine.Intersects(hitbox.hitboxRect)) // Wenn Beine kollidiert
                         {
                             ((Sterben)spieler.sterben).aktuell = ((Sterben)spieler.sterben).stolpern; // Passt den Todeszustand an
                             menue.spielAktiv = false; // setzt Menü nach Tod wieder auf anfang
                             spieler.doSterben();
-                            Console.WriteLine("Im laufen gestorben Beine");
                         }
 
                     }
@@ -580,12 +581,17 @@ namespace xkfd
 
                     }
                 }
-                #endregion
             }
+                #endregion
 
+
+
+            // Sterben wenn der Spieler auserhalb des Bildschirms ist
             if (spieler.position.Y >= 1720)
                 spieler.doSterben();
 
+
+            #region Noten/Punkte_Animation
             if (spieler.aktuellerZustand == spieler.sterben)
             {
                 if (gameTime.TotalGameTime.Milliseconds % 10 == 0)
@@ -644,6 +650,7 @@ namespace xkfd
             notenPlatzerAnimation.UpdateNoLoop();
 
 
+            #endregion
 
             #endregion
 
@@ -651,7 +658,7 @@ namespace xkfd
 
             if (gamestate == Gamestate.menue)
             {
-                // Animationen erstellen 
+                // Menü Animationen laden
                 if (menue.start_m_ani == null) menue.start_m_ani = new Animation(menue.startTextur, 1, 4, 6);
                 if (menue.option_m_ani == null) menue.option_m_ani = new Animation(menue.optionenTexture, 1, 4, 6);
                 if (menue.exit_m_ani == null) menue.exit_m_ani = new Animation(menue.exitTexture, 1, 4, 6);
@@ -688,14 +695,21 @@ namespace xkfd
                             gamestate = Gamestate.options;
                             break;
                         case 2: // Starten/Fortsetzen
-                            neustart();
-                            gamestate = Gamestate.ladebildschirm;
+                            if (!menue.spielAktiv)
+                            {
+                                neustart();
+                                gamestate = Gamestate.ladebildschirm;
+                            }
+                            else
+                                gamestate = Gamestate.running;
                             menue.spielAktiv = true;
                             break;
                         case 3: // Spieler zurücksetzen (TODO)
                             neustart();
                             gamestate = Gamestate.ladebildschirm;
+                            menue.spielAktiv = true;
                             break;
+
                     }
 
 
@@ -731,7 +745,8 @@ namespace xkfd
 
                 if (Keyboard.GetState().IsKeyDown(Keys.Enter) && OldKeyState.IsKeyUp(Keys.Enter))
                 {
-                    spieler.aktuellerSkin = optionen.skinListe[optionen.auswahl + 1];
+                    spieler.aktuellerSkin = optionen.skinListe[optionen.auswahl];
+                    menue.auswahl = 2;
                     gamestate = Gamestate.menue;
                 }
 
@@ -965,7 +980,7 @@ namespace xkfd
 
             if (hutSkin.sterbenAnimationKoepfen == null) hutSkin.sterbenAnimationKoepfen = new Animation(hutSkin.sterbenTexturKoepfen, 2, 5, 6);
             if (hutSkin.sterbenAnimationStolpern == null) hutSkin.sterbenAnimationStolpern = new Animation(hutSkin.sterbenTexturStolpern, 2, 5, 6);
-            if (hutSkin.sterbenAnimationKlatscher == null) hutSkin.sterbenAnimationKlatscher = new Animation(hutSkin.sterbenTexturKlatscher, 2, 5, 6);
+            if (hutSkin.sterbenAnimationKlatscher == null) hutSkin.sterbenAnimationKlatscher = new Animation(hutSkin.sterbenTexturKlatscher, 12, 1, 7);
 
 
             // Einstein Skin
@@ -978,7 +993,7 @@ namespace xkfd
 
             if (einsteinSkin.sterbenAnimationKoepfen == null) einsteinSkin.sterbenAnimationKoepfen = new Animation(einsteinSkin.sterbenTexturKoepfen, 2, 5, 6);
             if (einsteinSkin.sterbenAnimationStolpern == null) einsteinSkin.sterbenAnimationStolpern = new Animation(einsteinSkin.sterbenTexturStolpern, 2, 5, 6);
-            if (einsteinSkin.sterbenAnimationKlatscher == null) einsteinSkin.sterbenAnimationKlatscher = new Animation(einsteinSkin.sterbenTexturKlatscher, 2, 5, 6);
+            if (einsteinSkin.sterbenAnimationKlatscher == null) einsteinSkin.sterbenAnimationKlatscher = new Animation(einsteinSkin.sterbenTexturKlatscher, 12, 1, 7);
 
             // Menü Radio Animation
             if (menue.radio_m_ani == null) menue.radio_m_ani = new Animation(menue.radioTexture, 2, 2, 6);

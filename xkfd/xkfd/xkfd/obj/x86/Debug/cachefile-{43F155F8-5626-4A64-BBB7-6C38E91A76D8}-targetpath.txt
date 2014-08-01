@@ -64,3 +64,6 @@ Content\note5_haufen.xnb
 Content\note10_haufen.xnb
 Content\ani_sterben2_stolpern_hut.xnb
 Content\ani_sterben1_koepfen_hut.xnb
+Content\ani_fallen_hut.xnb
+Content\ani_gewinnen_hut.xnb
+Content\ani_sterben3_klatscher_hut.xnb

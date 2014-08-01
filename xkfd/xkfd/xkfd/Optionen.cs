@@ -64,7 +64,7 @@ namespace xkfd
             skinListe[3].laufenAnimation.Draw(sb, new Vector2(100, 410));
             
             if (gewonnen >= 10)
-                sb.DrawString(schrift, "Hut Skin", new Vector2(300, 415), Color.Gray);
+                sb.DrawString(schrift, "Einstein Skin", new Vector2(300, 415), Color.Gray);
             else
                 sb.DrawString(schrift, "noch " + (10 - gewonnen) + " mal Gewinnen", new Vector2(300, 415), Color.Gray);
         }
