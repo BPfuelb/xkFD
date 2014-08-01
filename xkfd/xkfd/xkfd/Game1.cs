@@ -178,7 +178,7 @@ namespace xkfd
             standardSkin.sterbenTexturKoepfen = Content.Load<Texture2D>("ani_sterben1_koepfen_std");
             standardSkin.sterbenTexturStolpern = Content.Load<Texture2D>("ani_sterben2_stolpern_std");
             standardSkin.sterbenTexturKlatscher = Content.Load<Texture2D>("ani_sterben3_klatscher_std");
-            standardSkin.sterbenTexturPieksen = Content.Load<Texture2D>("ani_sterben4_pieksen_std");
+            standardSkin.sterbenTexturPieksen = Content.Load<Texture2D>("ani_sterben2_stolpern_std");
 
 
 
@@ -249,6 +249,7 @@ namespace xkfd
             menue.fortsetzenTexture = Content.Load<Texture2D>("m_continue");
             menue.optionenTexture = Content.Load<Texture2D>("m_optionen");
             menue.exitTexture = Content.Load<Texture2D>("m_exit");
+            
 
             menue.radioTexture = Content.Load<Texture2D>("radio");
 
@@ -294,6 +295,8 @@ namespace xkfd
             ((Sterben)spieler.sterben).pieksen.soundSoundInstance = ((Sterben)spieler.sterben).pieksen.soundTod.CreateInstance();
 
 
+
+
             // Textur für Hindernisse
             hindernisTexturS = Content.Load<Texture2D>("hindernisS");
             hindernisTexturA = Content.Load<Texture2D>("hindernisA");
@@ -311,6 +314,7 @@ namespace xkfd
             hudTextur = new Texture2D(GraphicsDevice, 1, 1);
             hudTextur.SetData(new Color[] { Color.Gray });
 
+            
 
             // Logo
             logo = Content.Load<Texture2D>("logo");
@@ -326,6 +330,12 @@ namespace xkfd
             hud.skin_frau = Content.Load<Texture2D>("unlock_skin_frau");
             hud.skin_hut = Content.Load<Texture2D>("unlock_skin_hut");
             hud.skin_einstein = Content.Load<Texture2D>("unlock_skin_einstein");
+
+            hud.gameOverTextur = Content.Load<Texture2D>("GameOver");
+            // Game Over Sound Ohh
+
+            hud.soundGameOver = Content.Load<SoundEffect>("ooh");
+            hud.soundGameOverSoundInstance = hud.soundGameOver.CreateInstance();
 
 
             // Punkt Textur
@@ -442,6 +452,11 @@ namespace xkfd
                 if (Keyboard.GetState().IsKeyDown(Keys.Escape) && OldKeyState.IsKeyUp(Keys.Escape))
                 {
                     menue.auswahl = 2; // Auswahl auf Forsetzen bzw. Starten setzten
+                    gamestate = Gamestate.menue;
+                }
+
+                if (spieler.aktuellerZustand == spieler.sterben && Keyboard.GetState().IsKeyDown(Keys.Enter))
+                {
                     gamestate = Gamestate.menue;
                 }
                 #endregion
@@ -578,6 +593,8 @@ namespace xkfd
                     {
                         ((Sterben)spieler.sterben).aktuell = ((Sterben)spieler.sterben).pieksen;// Passt den Todeszustand an
                         menue.spielAktiv = false; // setzt Menü nach Tod wieder auf anfang
+                        spieler.setPlayerPosition((int)hitbox.hitboxPosition.Y - 80);
+                        hud.soundGameOverSoundInstance.Play();
                         spieler.doSterben();
                     }
                 }
@@ -598,12 +615,14 @@ namespace xkfd
                         {
                             ((Sterben)spieler.sterben).aktuell = ((Sterben)spieler.sterben).koepfen;// Passt den Todeszustand an
                             menue.spielAktiv = false; // setzt Menü nach Tod wieder auf anfang
+                            hud.soundGameOverSoundInstance.Play();
                             spieler.doSterben();
                         }
                         if (spieler.hitboxBeine.Intersects(hitbox.hitboxRect)) // Wenn Beine kollidiert
                         {
                             ((Sterben)spieler.sterben).aktuell = ((Sterben)spieler.sterben).stolpern; // Passt den Todeszustand an
                             menue.spielAktiv = false; // setzt Menü nach Tod wieder auf anfang
+                            hud.soundGameOverSoundInstance.Play();
                             spieler.doSterben();
                         }
 
@@ -617,9 +636,10 @@ namespace xkfd
                         {
                             menue.spielAktiv = false;
                             ((Sterben)spieler.sterben).aktuell = ((Sterben)spieler.sterben).klatscher; // Passt den Todeszustand an
+                            hud.soundGameOverSoundInstance.Play();
                             spieler.doSterben();
                         }
-                        else if (spieler.hitboxKopf.Intersects(hitbox.hitboxRect) && !spieler.hitboxBeine.Intersects(hitbox.hitboxRect))
+                        else if (spieler.hitboxKopf.Intersects(hitbox.hitboxRect) )//  && !spieler.hitboxBeine.Intersects(hitbox.hitboxRect))
                         {
                             menue.spielAktiv = false;
                             Boolean kollidiertBoden = false;
@@ -633,9 +653,11 @@ namespace xkfd
                                 spieler.movePlayerDown(1);
                             }
                             ((Sterben)spieler.sterben).aktuell = ((Sterben)spieler.sterben).koepfen; // Passt den Todeszustand an
+                            hud.soundGameOverSoundInstance.Play();
+                            menue.spielAktiv = false;
                             spieler.doSterben();
                         }
-                        else if (spieler.hitboxBeine.Intersects(hitbox.hitboxRect) && !spieler.hitboxKopf.Intersects(hitbox.hitboxRect))
+                        else if (spieler.hitboxBeine.Intersects(hitbox.hitboxRect) ) //&& !spieler.hitboxKopf.Intersects(hitbox.hitboxRect))
                         {
                             spieler.setPlayerPosition(hitbox.hitboxRect.Top - 80);
                             menue.spielAktiv = false;
@@ -855,8 +877,7 @@ namespace xkfd
             if (gamestate == Gamestate.running)
             {
 
-                // Zeichne Spieler
-                spieler.Draw(spriteBatch);
+
                 // spriteBatch.Draw(spieler.spielerTextur, spieler.position, Color.White);
 
                 hud.Draw(spriteBatch, schrift_40,Hindernis.punkteAnzahl, gameTime);
@@ -868,6 +889,9 @@ namespace xkfd
                 spriteBatch.Draw(hindernisListe[3].hindernisTextur, hindernisListe[3].hindernisPosition, Color.White);
                 spriteBatch.Draw(hindernisListe[4].hindernisTextur, hindernisListe[4].hindernisPosition, Color.White);
                 spriteBatch.Draw(hindernisListe[5].hindernisTextur, hindernisListe[5].hindernisPosition, Color.White);
+
+
+
 
 
                 foreach (NotenHitbox notenHitbox in hindernisListe[1].gibPunkte())
@@ -943,6 +967,9 @@ namespace xkfd
                 }
                 #endregion
 
+
+                // Zeichne Spieler
+                spieler.Draw(spriteBatch);
 
                 #region AchievmentAnzeigen
                 if (gewonnen == 1)
@@ -1080,6 +1107,10 @@ namespace xkfd
             // Powerup/Atom Animation
 
             if (powerUp.punktAnimation == null) powerUp.punktAnimation = new Animation(powerUp.punktTextur, 4, 4, 4);
+
+
+            // Game Over Animation
+            if (hud.gameOverAnimation == null) hud.gameOverAnimation = new Animation(hud.gameOverTextur, 1, 4, 4);
         }
 
         public void neustart()
@@ -1098,6 +1129,7 @@ namespace xkfd
             spieler.aktuellerSkin.sterbenAnimationKlatscher.index = 0;
             spieler.aktuellerSkin.sterbenAnimationKoepfen.index = 0;
             spieler.aktuellerSkin.sterbenAnimationStolpern.index = 0;
+            spieler.aktuellerSkin.sterbenAnimationPieksen.index = 0;
 
             hindernisListe = Hindernis.generieHindernisse(10, hindernisTexturS, hindernisTexturA, hindernisTexturB, hindernisTexturC, hindernisTexturD, hindernisTexturE, hindernisTexturZ, punkt1, punkt2, punkt5, punkt10, powerUp);
 

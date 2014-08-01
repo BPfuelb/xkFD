@@ -20,8 +20,10 @@ namespace xkfd
             hitboxListe.Add(new Hitbox((int)position.X, (int)position.Y + 488, 100, 200));
             hitboxListe.Add(new Hitbox((int)position.X + 220, (int)position.Y + 488, 100, 200));
 
+            // Stacheln Hitbox
             hitboxListeStacheln.Add(new Hitbox((int)position.X + 100, (int)position.Y + 488, 100, 200));
 
+            // Noten
             notenListe.Add(new NotenHitbox(p1, this, (int)position.X + 40, (int)position.Y + 300, 32, 32));
 
 

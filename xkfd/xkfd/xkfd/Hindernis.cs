@@ -41,7 +41,7 @@ namespace xkfd
             liste.Add(new HindernisS(hindernisSTextur, new Vector2(2 * 320, 40)));
             liste.Add(new HindernisS(hindernisSTextur, new Vector2(3 * 320, 40)));
 
-            int anzahlVerschiedenerHindernisse = 6;
+            int anzahlVerschiedenerHindernisse = 5;
             // Erzeuge mit Schleife Anzahl von zufälligen Hindernissen
             for (int i = 0; i < anzahl; i++)
             {
@@ -60,11 +60,9 @@ namespace xkfd
                         liste.Add(new HindernisD(hindernisDTextur, new Vector2(1280, 40), p1, p2, p5, p10, powerUp));
                         break;
                     case 4:
-                        liste.Add(new HindernisE(hindernisDTextur, new Vector2(1280, 40), p1, p2, p5, p10, powerUp));
-                        break;
-                    case 5:
                         liste.Add(new HindernisE(hindernisETextur, new Vector2(1280, 40), p1, p2, p5, p10, powerUp));
                         break;
+                    
                 }
             }
 

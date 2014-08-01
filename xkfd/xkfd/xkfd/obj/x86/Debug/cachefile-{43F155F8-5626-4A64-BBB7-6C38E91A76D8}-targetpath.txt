@@ -74,3 +74,5 @@ Content\hindernisE.xnb
 Content\ani_sterben4_pieksen_std.xnb
 Content\powerUp.xnb
 Content\teleportAufladen.xnb
+Content\GameOver.xnb
+Content\ooh.xnb

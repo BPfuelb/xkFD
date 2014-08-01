@@ -21,8 +21,8 @@ namespace xkfd
             hitboxListe.Add(new Hitbox((int)position.X + 220, (int)position.Y + 488, 100, 200));
 
 
+            // Noten
             notenListe.Add(new NotenHitbox(powerUp, this, (int)position.X + 150, (int)position.Y + 550, 32, 32));
-
             notenListe.Add(new NotenHitbox(p1, this,(int)position.X + 40, (int)position.Y + 300, 32, 32));
 
 
