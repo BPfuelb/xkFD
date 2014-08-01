@@ -58,3 +58,9 @@ Content\note2.xnb
 Content\note5.xnb
 Content\note10.xnb
 Content\ani_notenpuff.xnb
+Content\note1_haufen.xnb
+Content\note2_haufen.xnb
+Content\note5_haufen.xnb
+Content\note10_haufen.xnb
+Content\ani_sterben2_stolpern_hut.xnb
+Content\ani_sterben1_koepfen_hut.xnb

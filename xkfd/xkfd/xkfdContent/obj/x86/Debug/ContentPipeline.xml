@@ -533,6 +533,60 @@
       <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_notenpuff.xnb</Output>
       <Time>2014-08-01T01:40:47.908525+02:00</Time>
     </Item>
+    <Item>
+      <Source>note1_haufen.png</Source>
+      <Name>note1_haufen</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\note1_haufen.xnb</Output>
+      <Time>2014-08-01T02:33:14.7105117+02:00</Time>
+    </Item>
+    <Item>
+      <Source>note2_haufen.png</Source>
+      <Name>note2_haufen</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\note2_haufen.xnb</Output>
+      <Time>2014-08-01T02:33:18.7737442+02:00</Time>
+    </Item>
+    <Item>
+      <Source>note5_haufen.png</Source>
+      <Name>note5_haufen</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\note5_haufen.xnb</Output>
+      <Time>2014-08-01T02:33:21.5809047+02:00</Time>
+    </Item>
+    <Item>
+      <Source>note10_haufen.png</Source>
+      <Name>note10_haufen</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\note10_haufen.xnb</Output>
+      <Time>2014-08-01T02:33:24.4490688+02:00</Time>
+    </Item>
+    <Item>
+      <Source>ani_sterben2_stolpern_hut.png</Source>
+      <Name>ani_sterben2_stolpern_hut</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_sterben2_stolpern_hut.xnb</Output>
+      <Time>2014-08-01T02:33:35.799718+02:00</Time>
+    </Item>
+    <Item>
+      <Source>ani_sterben1_koepfen_hut.png</Source>
+      <Name>ani_sterben1_koepfen_hut</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_sterben1_koepfen_hut.xnb</Output>
+      <Time>2014-08-01T02:34:54.1622001+02:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <TargetPlatform>Windows</TargetPlatform>

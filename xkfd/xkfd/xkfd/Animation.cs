@@ -77,5 +77,11 @@ namespace xkfd
 
             sb.Draw(textur, pos, rect, Color.White);
         }
+
+        public Texture2D gibTextur()
+        {
+            return textur;
+        }
+
     }
 }

@@ -16,11 +16,13 @@ namespace xkfd
         public Texture2D punktTexturHaufen;
         public Animation punktAnimationHaufen;
 
+        public Animation aktuelleAnimation;
 
         public int wertigkeit;
 
         public Punkt(int wertigkeit)
         {
+            aktuelleAnimation = punktAnimation;
             this.wertigkeit = wertigkeit;
         }
     }

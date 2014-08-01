@@ -186,9 +186,9 @@ namespace xkfd
             hutSkin.laufenTextur = Content.Load<Texture2D>("ani_laufen_hut");
             hutSkin.sprignenTextur = Content.Load<Texture2D>("ani_springen_hut");
 
-            hutSkin.sterbenTexturKoepfen = Content.Load<Texture2D>("ani_sterben1_koepfen_std");
-            hutSkin.sterbenTexturStolpern = Content.Load<Texture2D>("ani_sterben2_stolpern_std");
-            hutSkin.sterbenTexturKlatscher = Content.Load<Texture2D>("ani_sterben2_stolpern_std");
+            hutSkin.sterbenTexturKoepfen = Content.Load<Texture2D>("ani_sterben1_koepfen_hut");
+            hutSkin.sterbenTexturStolpern = Content.Load<Texture2D>("ani_sterben2_stolpern_hut");
+            hutSkin.sterbenTexturKlatscher = Content.Load<Texture2D>("ani_sterben3_klatscher_std");
 
             // Einstein Skin
             einsteinSkin = new Skin();
@@ -451,17 +451,19 @@ namespace xkfd
                 #region GewonnenAktionen
                 if (hindernisListe.Count == 6)
                 {
-
-                    spieler.doGewinnen(); // Wenn weniger als 6 Hindernisse vorhanden sind gehe in den Gewinnenzustand über
-                    if (menue.spielAktiv)
+                    if (spieler.aktuellerZustand != spieler.laufen)
                     {
-                        menue.spielAktiv = false;
-                        gewonnen++;
-                        hud.gewonnen = true;
-                        konfig.WriteFile(gewonnen.ToString());
+                        spieler.doGewinnen(); // Wenn weniger als 6 Hindernisse vorhanden sind gehe in den Gewinnenzustand über
+                        if (menue.spielAktiv)
+                        {
+                            menue.spielAktiv = false;
+                            gewonnen++;
+                            hud.gewonnen = true;
+                            konfig.WriteFile(gewonnen.ToString());
+                        }
+                        if (hud.gewonnen)
+                            hud.UpdateAchievment();
                     }
-                    if (hud.gewonnen)
-                        hud.UpdateAchievment();
                 }
 
                 #endregion
@@ -591,25 +593,7 @@ namespace xkfd
 
                 foreach (NotenHitbox notenhitbox in punkteListeDraw)
                 {
-                    if (notenhitbox.faellt)
-                    {
-                        foreach (Hitbox bodenHitbox in notenhitbox.hindernis.gibHitboxen())
-                        {
-                            if ( notenhitbox.faellt && notenhitbox.hitboxRect.Y < 800 &&  !notenhitbox.hitboxRect.Intersects(bodenHitbox.hitboxRect) )
-                            {
-                                notenhitbox.moveY(-(1 + notenFallSchrittweite));
-                            }
-                            else if(notenhitbox.faellt)
-                            {
-                                notenhitbox.faellt = false;
-                                notenhitbox.setPositionY((int)bodenHitbox.hitboxPosition.Y -30);
-                            }
-                        }
-                    }
-                }
-
-                foreach (NotenHitbox notenhitbox in punkteListeKollisionen)
-                {
+                    notenhitbox.Update();
                     if (notenhitbox.faellt)
                     {
                         foreach (Hitbox bodenHitbox in notenhitbox.hindernis.gibHitboxen())
@@ -618,10 +602,38 @@ namespace xkfd
                             {
                                 notenhitbox.moveY(-(1 + notenFallSchrittweite));
                             }
-                            else if(notenhitbox.faellt)
+                            else if (notenhitbox.hitboxRect.Y >= 800)
                             {
-                                notenhitbox.setPositionY((int)bodenHitbox.hitboxPosition.Y - 30);
                                 notenhitbox.faellt = false;
+                            }
+                            else if (notenhitbox.faellt)
+                            {
+                                notenhitbox.faellt = false;
+                                notenhitbox.setPositionY((int)bodenHitbox.hitboxPosition.Y - 30);
+                            }
+                        }
+                    }
+                }
+
+                foreach (NotenHitbox notenhitbox in punkteListeKollisionen)
+                {
+                    notenhitbox.Update();
+                    if (notenhitbox.faellt)
+                    {
+                        foreach (Hitbox bodenHitbox in notenhitbox.hindernis.gibHitboxen())
+                        {
+                            if (notenhitbox.faellt && notenhitbox.hitboxRect.Y < 800 && !notenhitbox.hitboxRect.Intersects(bodenHitbox.hitboxRect))
+                            {
+                                notenhitbox.moveY(-(1 + notenFallSchrittweite));
+                            }
+                            else if (notenhitbox.hitboxRect.Y >= 800)
+                            {
+                                notenhitbox.faellt = false;
+                            }
+                            else if (notenhitbox.faellt)
+                            {
+                                notenhitbox.faellt = false;
+                                notenhitbox.setPositionY((int)bodenHitbox.hitboxPosition.Y - 30);
                             }
                         }
                     }
@@ -630,6 +642,7 @@ namespace xkfd
 
             notenPlatzerPosition.X -= 4;
             notenPlatzerAnimation.UpdateNoLoop();
+
 
 
             #endregion
@@ -772,16 +785,43 @@ namespace xkfd
                 spriteBatch.Draw(hindernisListe[5].hindernisTextur, hindernisListe[5].hindernisPosition, Color.White);
 
 
+                foreach (NotenHitbox notenHitbox in hindernisListe[1].gibPunkte())
+                {
+                    notenHitbox.Draw(spriteBatch);
+                }
+
+                foreach (NotenHitbox notenHitbox in hindernisListe[2].gibPunkte())
+                {
+                    notenHitbox.Draw(spriteBatch);
+                }
+
+                foreach (NotenHitbox notenHitbox in hindernisListe[3].gibPunkte())
+                {
+                    notenHitbox.Draw(spriteBatch);
+                }
+
+                foreach (NotenHitbox notenHitbox in hindernisListe[4].gibPunkte())
+                {
+                    notenHitbox.Draw(spriteBatch);
+                }
+
+                foreach (NotenHitbox notenHitbox in hindernisListe[5].gibPunkte())
+                {
+                    notenHitbox.Draw(spriteBatch);
+                }
+
+                /*
                 // Punkte/Noten Zeichnen
                 foreach (NotenHitbox note in punkteListeKollisionen)
                 {
-                    note.punkt.punktAnimation.Draw(spriteBatch, note.hitboxPosition);
+                    note.Draw(spriteBatch);
                 }
 
                 foreach (NotenHitbox note in punkteListeDraw)
                 {
-                    note.punkt.punktAnimation.Draw(spriteBatch, note.hitboxPosition);
+                    note.Draw(spriteBatch);
                 }
+                 * */
 
 
                 notenPlatzerAnimation.Draw(spriteBatch, notenPlatzerPosition);

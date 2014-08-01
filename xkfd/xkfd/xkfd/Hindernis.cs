@@ -45,7 +45,7 @@ namespace xkfd
                 switch ((int)random.Next(4))
                 {
                     case 0:
-                        liste.Add(new HindernisA(hindernisATextur, new Vector2(1280, 40),p1,p2,p5,p10));
+                        liste.Add(new HindernisA(hindernisATextur, new Vector2(1280, 40),p1,null,p5,p10));
                         break;
                     case 1:
                         liste.Add(new HindernisB(hindernisBTextur, new Vector2(1280, 40), p1, p2, p5, p10));
