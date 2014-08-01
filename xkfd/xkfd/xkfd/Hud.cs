@@ -51,6 +51,7 @@ namespace xkfd
             positionTastaturbelegung = new Vector2(100, -250);
             positionCheckbox = new Vector2(1150, -12);
             positionPunkte = new Vector2(200, 15);
+            positionTimer = new Vector2(1150, 700);
 
             unlockPosition = new Vector2(1000, 720);
             updateAchievement = false;
@@ -84,6 +85,9 @@ namespace xkfd
                 sb.Draw(checkBox_check, positionCheckbox, Color.White);
             else
                 sb.Draw(checkBox_uncheck, positionCheckbox, Color.White);
+			
+			// Timer in Trialsystem anzeigen
+            sb.DrawString(schrift, CalcTrial((int)(gameTime.TotalGameTime.Milliseconds/1000)), positionTimer, Color.Black);
         }
 
         public void UpdateAchievment()
@@ -123,5 +127,9 @@ namespace xkfd
             sb.DrawString(schrift, "Zum Starten Enter drücken", new Vector2(300, 600), Color.Gray);
         }
 
+		public string CalcTrial(int zahl)
+		{
+			return "" + CalcTrial(zahl/3) + zahl%3;
+		}
     }
 }
