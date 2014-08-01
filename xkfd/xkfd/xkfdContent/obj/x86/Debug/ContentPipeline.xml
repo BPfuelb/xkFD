@@ -432,7 +432,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\unlock_skin_einstein.xnb</Output>
-      <Time>2014-08-01T23:52:43.5286213+02:00</Time>
+      <Time>2014-08-02T00:03:47.9662432+02:00</Time>
     </Item>
     <Item>
       <Source>SpriteFont2.spritefont</Source>
@@ -621,7 +621,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_laufen_einstein.xnb</Output>
-      <Time>2014-08-01T04:34:01.4680026+02:00</Time>
+      <Time>2014-08-02T00:18:42.4883832+02:00</Time>
     </Item>
     <Item>
       <Source>ani_springen_einstein.png</Source>
@@ -775,6 +775,15 @@
       <Options>None</Options>
       <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_ducken_einstein.xnb</Output>
       <Time>2014-08-01T23:09:59.0183007+02:00</Time>
+    </Item>
+    <Item>
+      <Source>ani_gewinnen_einstein.png</Source>
+      <Name>ani_gewinnen_einstein</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_gewinnen_einstein.xnb</Output>
+      <Time>2014-08-02T00:03:45.3160916+02:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>

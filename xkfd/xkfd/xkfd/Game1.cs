@@ -212,7 +212,7 @@ namespace xkfd
 
             einsteinSkin.duckenTextur = Content.Load<Texture2D>("ani_ducken_einstein");
             einsteinSkin.fallenTextur = Content.Load<Texture2D>("ani_fallen_einstein");
-            einsteinSkin.gewinnenTextur = Content.Load<Texture2D>("ani_gewinnen_std");
+            einsteinSkin.gewinnenTextur = Content.Load<Texture2D>("ani_gewinnen_einstein");
             einsteinSkin.gleitenTextur = Content.Load<Texture2D>("ani_gleiten_einstein");
             einsteinSkin.laufenTextur = Content.Load<Texture2D>("ani_laufen_einstein");
             einsteinSkin.sprignenTextur = Content.Load<Texture2D>("ani_springen_einstein");
@@ -396,11 +396,6 @@ namespace xkfd
                     spieler.position.X = 512;
                     start = true;
                     gamestate = Gamestate.running;
-                }
-
-                if (Keyboard.GetState().IsKeyDown(Keys.Escape) && OldKeyState.IsKeyUp(Keys.Escape))
-                {
-                    gamestate = Gamestate.menue;
                 }
 
                 OldKeyState = NewKeyState;
@@ -663,8 +658,12 @@ namespace xkfd
 
 
             // Sterben wenn der Spieler auserhalb des Bildschirms ist
-            if (spieler.position.Y >= 1720)
+            if (spieler.position.Y >= 1720 && menue.spielAktiv)
+            {
+                menue.spielAktiv = false; // setzt Menü nach Tod wieder auf anfang
+                hud.soundGameOverSoundInstance.Play();
                 spieler.doSterben();
+            }
 
 
             #region Noten/Punkte_Animation
