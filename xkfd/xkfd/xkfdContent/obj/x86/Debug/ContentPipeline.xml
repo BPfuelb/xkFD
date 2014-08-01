@@ -116,7 +116,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_fallen_std.xnb</Output>
-      <Time>2014-07-29T23:32:56.5895758+02:00</Time>
+      <Time>2014-08-01T23:05:35.5662064+02:00</Time>
     </Item>
     <Item>
       <Source>ani_gewinnen_std.png</Source>
@@ -134,7 +134,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_gleiten_std.xnb</Output>
-      <Time>2014-07-29T23:32:59.2996174+02:00</Time>
+      <Time>2014-08-01T23:05:35.5702066+02:00</Time>
     </Item>
     <Item>
       <Source>ani_springen_std.png</Source>
@@ -324,7 +324,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_sterben2_stolpern_std.xnb</Output>
-      <Time>2014-07-31T23:09:30.0732078+02:00</Time>
+      <Time>2014-08-01T23:05:35.577207+02:00</Time>
     </Item>
     <Item>
       <Source>ani_gleiten_frau.png</Source>
@@ -333,7 +333,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_gleiten_frau.xnb</Output>
-      <Time>2014-07-30T22:15:32.9596157+02:00</Time>
+      <Time>2014-08-01T23:05:35.5682065+02:00</Time>
     </Item>
     <Item>
       <Source>ani_laufen_frau.png</Source>
@@ -351,7 +351,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_fallen_frau.xnb</Output>
-      <Time>2014-07-30T22:15:39.0589646+02:00</Time>
+      <Time>2014-08-01T23:05:35.5482054+02:00</Time>
     </Item>
     <Item>
       <Source>ani_springen_frau.png</Source>
@@ -387,7 +387,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_sterben2_stolpern_frau.xnb</Output>
-      <Time>2014-07-31T01:33:25.6936972+02:00</Time>
+      <Time>2014-08-01T23:05:35.5742068+02:00</Time>
     </Item>
     <Item>
       <Source>ani_gewinnen_frau.png</Source>
@@ -432,7 +432,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\unlock_skin_einstein.xnb</Output>
-      <Time>2014-07-31T04:13:46.7629909+02:00</Time>
+      <Time>2014-08-01T23:52:43.5286213+02:00</Time>
     </Item>
     <Item>
       <Source>SpriteFont2.spritefont</Source>
@@ -486,7 +486,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_gleiten_hut.xnb</Output>
-      <Time>2014-07-31T17:22:18.6629765+02:00</Time>
+      <Time>2014-08-01T23:05:35.5692066+02:00</Time>
     </Item>
     <Item>
       <Source>note1.png</Source>
@@ -576,7 +576,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_sterben2_stolpern_hut.xnb</Output>
-      <Time>2014-08-01T02:33:35.799718+02:00</Time>
+      <Time>2014-08-01T23:05:35.576207+02:00</Time>
     </Item>
     <Item>
       <Source>ani_sterben1_koepfen_hut.png</Source>
@@ -594,7 +594,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_fallen_hut.xnb</Output>
-      <Time>2014-08-01T03:37:17.942332+02:00</Time>
+      <Time>2014-08-01T23:05:35.5492054+02:00</Time>
     </Item>
     <Item>
       <Source>ani_gewinnen_hut.png</Source>
@@ -657,7 +657,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_sterben4_pieksen_std.xnb</Output>
-      <Time>2014-08-01T18:22:29.6364482+02:00</Time>
+      <Time>2014-08-01T23:05:35.5852075+02:00</Time>
     </Item>
     <Item>
       <Source>powerUp.png</Source>
@@ -694,6 +694,87 @@
       <Options>None</Options>
       <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ooh.xnb</Output>
       <Time>2014-08-01T20:36:48.2964607+02:00</Time>
+    </Item>
+    <Item>
+      <Source>ani_sterben1_koepfen_einstein.png</Source>
+      <Name>ani_sterben1_koepfen_einstein</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_sterben1_koepfen_einstein.xnb</Output>
+      <Time>2014-08-01T23:05:35.5712067+02:00</Time>
+    </Item>
+    <Item>
+      <Source>ani_sterben2_stolpern_einstein.png</Source>
+      <Name>ani_sterben2_stolpern_einstein</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_sterben2_stolpern_einstein.xnb</Output>
+      <Time>2014-08-01T23:05:35.5732068+02:00</Time>
+    </Item>
+    <Item>
+      <Source>ani_fallen_einstein.png</Source>
+      <Name>ani_fallen_einstein</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_fallen_einstein.xnb</Output>
+      <Time>2014-08-01T23:05:35.5322044+02:00</Time>
+    </Item>
+    <Item>
+      <Source>ani_gleiten_einstein.png</Source>
+      <Name>ani_gleiten_einstein</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_gleiten_einstein.xnb</Output>
+      <Time>2014-08-01T23:05:35.5672064+02:00</Time>
+    </Item>
+    <Item>
+      <Source>ani_sterben3_klatscher_einstein.png</Source>
+      <Name>ani_sterben3_klatscher_einstein</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_sterben3_klatscher_einstein.xnb</Output>
+      <Time>2014-08-01T23:05:35.5792071+02:00</Time>
+    </Item>
+    <Item>
+      <Source>ani_sterben4_pieksen_einstein.png</Source>
+      <Name>ani_sterben4_pieksen_einstein</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_sterben4_pieksen_einstein.xnb</Output>
+      <Time>2014-08-01T23:05:35.5812072+02:00</Time>
+    </Item>
+    <Item>
+      <Source>ani_sterben4_pieksen_frau.png</Source>
+      <Name>ani_sterben4_pieksen_frau</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_sterben4_pieksen_frau.xnb</Output>
+      <Time>2014-08-01T23:05:35.5822073+02:00</Time>
+    </Item>
+    <Item>
+      <Source>ani_sterben4_pieksen_hut.png</Source>
+      <Name>ani_sterben4_pieksen_hut</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_sterben4_pieksen_hut.xnb</Output>
+      <Time>2014-08-01T23:05:35.5842074+02:00</Time>
+    </Item>
+    <Item>
+      <Source>ani_ducken_einstein.png</Source>
+      <Name>ani_ducken_einstein</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_ducken_einstein.xnb</Output>
+      <Time>2014-08-01T23:09:59.0183007+02:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>

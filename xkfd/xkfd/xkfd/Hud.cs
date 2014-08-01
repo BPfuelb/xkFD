@@ -56,6 +56,10 @@ namespace xkfd
         public Boolean achievementOben;
         private int achievementDauer;
 
+        // Zeit zähler
+        int timer = 0;
+        int gameTimeTmp = 0;
+
 
         float transparence = 0;
 
@@ -81,8 +85,14 @@ namespace xkfd
         }
 
 
-        public void Update()
+        public void Update(GameTime gt)
         {
+            if (gt.TotalGameTime.Seconds != gameTimeTmp)
+            {
+                timer++;
+                gameTimeTmp = gt.TotalGameTime.Seconds;
+            }
+
             counter = "";
             for (int i = 0; i < spieler.gleitenResource / 2; i++)
             {
@@ -114,7 +124,8 @@ namespace xkfd
                 sb.Draw(checkBox_uncheck, positionCheckbox, Color.White);
 			
 			// Timer in Trialsystem anzeigen
-            sb.DrawString(schrift, CalcTrial((int)(gt.TotalGameTime.Seconds)), positionTimer, Color.Black);
+            // sb.DrawString(schrift, CalcTrial(timer), new Vector2(sb.Viewport.Width / 2 - mFont.MeasureString("YourText").Length() / 2, 0), Color.White, 0, new Vector2(0, 0), 1f, SpriteEffects.None, 0f);
+            sb.DrawString(schrift, CalcTrial(timer), positionTimer, Color.Black);
         }
 
         public void UpdateAchievment()
@@ -142,7 +153,7 @@ namespace xkfd
         }
 
 
-        public void DrawHelp(SpriteBatch sb, SpriteFont schrift, GameTime gt)
+        public void DrawHelp(SpriteBatch sb, SpriteFont schrift)
         {
             // Tastenbelegung
             sb.Draw(tastaturTextur, positionTastaturbelegung, Color.White);

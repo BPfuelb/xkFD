@@ -43,7 +43,6 @@ namespace xkfd
 
         // Sound
         Song titel;
-        // SoundEffectInstance titelSoundInstance;
 
         // Hindernis Liste
         List<Hindernis> hindernisListe;
@@ -139,10 +138,6 @@ namespace xkfd
                         // guaranteed to be random.
         }
 
-
-
-        
-
         protected override void Initialize()
         {
             // Auflösung
@@ -178,7 +173,7 @@ namespace xkfd
             standardSkin.sterbenTexturKoepfen = Content.Load<Texture2D>("ani_sterben1_koepfen_std");
             standardSkin.sterbenTexturStolpern = Content.Load<Texture2D>("ani_sterben2_stolpern_std");
             standardSkin.sterbenTexturKlatscher = Content.Load<Texture2D>("ani_sterben3_klatscher_std");
-            standardSkin.sterbenTexturPieksen = Content.Load<Texture2D>("ani_sterben2_stolpern_std");
+            standardSkin.sterbenTexturPieksen = Content.Load<Texture2D>("ani_sterben4_pieksen_std");
 
 
 
@@ -195,7 +190,7 @@ namespace xkfd
             frauenSkin.sterbenTexturKoepfen = Content.Load<Texture2D>("ani_sterben1_koepfen_frau");
             frauenSkin.sterbenTexturStolpern = Content.Load<Texture2D>("ani_sterben2_stolpern_frau");
             frauenSkin.sterbenTexturKlatscher = Content.Load<Texture2D>("ani_sterben3_klatscher_frau");
-            frauenSkin.sterbenTexturPieksen = Content.Load<Texture2D>("ani_sterben4_pieksen_std");
+            frauenSkin.sterbenTexturPieksen = Content.Load<Texture2D>("ani_sterben4_pieksen_frau");
 
             // Hut Skin
             hutSkin = new Skin();
@@ -210,22 +205,22 @@ namespace xkfd
             hutSkin.sterbenTexturKoepfen = Content.Load<Texture2D>("ani_sterben1_koepfen_hut");
             hutSkin.sterbenTexturStolpern = Content.Load<Texture2D>("ani_sterben2_stolpern_hut");
             hutSkin.sterbenTexturKlatscher = Content.Load<Texture2D>("ani_sterben3_klatscher_hut");
-            hutSkin.sterbenTexturPieksen = Content.Load<Texture2D>("ani_sterben4_pieksen_std");
+            hutSkin.sterbenTexturPieksen = Content.Load<Texture2D>("ani_sterben4_pieksen_hut");
 
             // Einstein Skin
             einsteinSkin = new Skin();
 
-            einsteinSkin.duckenTextur = Content.Load<Texture2D>("ani_ducken_std");
-            einsteinSkin.fallenTextur = Content.Load<Texture2D>("ani_fallen_std");
+            einsteinSkin.duckenTextur = Content.Load<Texture2D>("ani_ducken_einstein");
+            einsteinSkin.fallenTextur = Content.Load<Texture2D>("ani_fallen_einstein");
             einsteinSkin.gewinnenTextur = Content.Load<Texture2D>("ani_gewinnen_std");
-            einsteinSkin.gleitenTextur = Content.Load<Texture2D>("ani_gleiten_std");
+            einsteinSkin.gleitenTextur = Content.Load<Texture2D>("ani_gleiten_einstein");
             einsteinSkin.laufenTextur = Content.Load<Texture2D>("ani_laufen_einstein");
             einsteinSkin.sprignenTextur = Content.Load<Texture2D>("ani_springen_einstein");
 
-            einsteinSkin.sterbenTexturKoepfen = Content.Load<Texture2D>("ani_sterben1_koepfen_std");
-            einsteinSkin.sterbenTexturStolpern = Content.Load<Texture2D>("ani_sterben2_stolpern_std");
-            einsteinSkin.sterbenTexturKlatscher = Content.Load<Texture2D>("ani_sterben2_stolpern_std");
-            einsteinSkin.sterbenTexturPieksen = Content.Load<Texture2D>("ani_sterben4_pieksen_std");
+            einsteinSkin.sterbenTexturKoepfen = Content.Load<Texture2D>("ani_sterben1_koepfen_einstein");
+            einsteinSkin.sterbenTexturStolpern = Content.Load<Texture2D>("ani_sterben2_stolpern_einstein");
+            einsteinSkin.sterbenTexturKlatscher = Content.Load<Texture2D>("ani_sterben3_klatscher_einstein");
+            einsteinSkin.sterbenTexturPieksen = Content.Load<Texture2D>("ani_sterben4_pieksen_einstein");
 
             #endregion
 
@@ -239,20 +234,14 @@ namespace xkfd
             // Setzte standard Skin (evtl Datei auslesen)
             spieler.aktuellerSkin = optionen.skinListe[optionen.auswahl];
 
-            // Sterben animationen
-            // ((Sterben)spieler.sterben).koepfen.textur = Content.Load<Texture2D>("ani_sterben1_koepfen_std");
-            // ((Sterben)spieler.sterben).dagegen.textur = Content.Load<Texture2D>("ani_sterben2_stolpern_std");
-
             // Initialisiere Menü Animationen
             menue.startTextur = Content.Load<Texture2D>("m_start");
             menue.neuTexture = Content.Load<Texture2D>("m_new");
             menue.fortsetzenTexture = Content.Load<Texture2D>("m_continue");
             menue.optionenTexture = Content.Load<Texture2D>("m_optionen");
             menue.exitTexture = Content.Load<Texture2D>("m_exit");
-            
 
             menue.radioTexture = Content.Load<Texture2D>("radio");
-
 
             // Hintergrund
             hintergrund.hintergrundTextur = Content.Load<Texture2D>("hintergrund");
@@ -426,7 +415,7 @@ namespace xkfd
 
 
                 // Hud Update
-                hud.Update();
+                hud.Update(gameTime);
 
                 // Update spieler
                 spieler.Update();
@@ -455,7 +444,7 @@ namespace xkfd
                     gamestate = Gamestate.menue;
                 }
 
-                if (spieler.aktuellerZustand == spieler.sterben && Keyboard.GetState().IsKeyDown(Keys.Enter))
+                if ((spieler.aktuellerZustand == spieler.sterben || spieler.aktuellerZustand == spieler.gewinnen) && Keyboard.GetState().IsKeyDown(Keys.Enter))
                 {
                     gamestate = Gamestate.menue;
                 }
@@ -518,9 +507,10 @@ namespace xkfd
                             hud.gewonnen = true;
                             konfig.WriteFile(gewonnen.ToString());
                         }
-                        if (hud.gewonnen)
-                            hud.UpdateAchievment();
+
                     }
+                    if (hud.gewonnen)
+                        hud.UpdateAchievment();
                 }
 
                 #endregion
@@ -866,7 +856,7 @@ namespace xkfd
 
             if (gamestate == Gamestate.ladebildschirm)
             {
-                hud.DrawHelp(spriteBatch, schrift_40, gameTime);
+                hud.DrawHelp(spriteBatch, schrift_40);
                 spieler.Draw(spriteBatch);
             }
 
@@ -1046,7 +1036,7 @@ namespace xkfd
             if (standardSkin.sterbenAnimationKoepfen == null) standardSkin.sterbenAnimationKoepfen = new Animation(standardSkin.sterbenTexturKoepfen, 2, 5, 6);
             if (standardSkin.sterbenAnimationStolpern == null) standardSkin.sterbenAnimationStolpern = new Animation(standardSkin.sterbenTexturStolpern, 2, 5, 6);
             if (standardSkin.sterbenAnimationKlatscher == null) standardSkin.sterbenAnimationKlatscher = new Animation(standardSkin.sterbenTexturKlatscher, 12, 1, 7);
-            if (standardSkin.sterbenAnimationPieksen == null) standardSkin.sterbenAnimationPieksen= new Animation(standardSkin.sterbenTexturPieksen, 2, 5, 7);
+            if (standardSkin.sterbenAnimationPieksen == null) standardSkin.sterbenAnimationPieksen= new Animation(standardSkin.sterbenTexturPieksen, 2, 5, 6);
 
             // Fraud Skin
             if (frauenSkin.duckenAnimation == null) frauenSkin.duckenAnimation = new Animation(frauenSkin.duckenTextur, 4, 4, 4);
@@ -1059,6 +1049,7 @@ namespace xkfd
             if (frauenSkin.sterbenAnimationKoepfen == null) frauenSkin.sterbenAnimationKoepfen = new Animation(frauenSkin.sterbenTexturKoepfen, 2, 5, 6);
             if (frauenSkin.sterbenAnimationStolpern == null) frauenSkin.sterbenAnimationStolpern = new Animation(frauenSkin.sterbenTexturStolpern, 2, 5, 6);
             if (frauenSkin.sterbenAnimationKlatscher == null) frauenSkin.sterbenAnimationKlatscher = new Animation(frauenSkin.sterbenTexturKlatscher, 12, 1, 7);
+            if (frauenSkin.sterbenAnimationPieksen == null) frauenSkin.sterbenAnimationPieksen = new Animation(frauenSkin.sterbenTexturPieksen, 2, 5, 6);
 
             // Hut Skin
             if (hutSkin.duckenAnimation == null) hutSkin.duckenAnimation = new Animation(hutSkin.duckenTextur, 4, 4, 4);
@@ -1071,7 +1062,7 @@ namespace xkfd
             if (hutSkin.sterbenAnimationKoepfen == null) hutSkin.sterbenAnimationKoepfen = new Animation(hutSkin.sterbenTexturKoepfen, 2, 5, 6);
             if (hutSkin.sterbenAnimationStolpern == null) hutSkin.sterbenAnimationStolpern = new Animation(hutSkin.sterbenTexturStolpern, 2, 5, 6);
             if (hutSkin.sterbenAnimationKlatscher == null) hutSkin.sterbenAnimationKlatscher = new Animation(hutSkin.sterbenTexturKlatscher, 12, 1, 7);
-
+            if (hutSkin.sterbenAnimationPieksen == null) hutSkin.sterbenAnimationPieksen = new Animation(hutSkin.sterbenTexturPieksen, 2, 5, 6);
 
             // Einstein Skin
             if (einsteinSkin.duckenAnimation == null) einsteinSkin.duckenAnimation = new Animation(einsteinSkin.duckenTextur, 4, 4, 4);
@@ -1084,6 +1075,7 @@ namespace xkfd
             if (einsteinSkin.sterbenAnimationKoepfen == null) einsteinSkin.sterbenAnimationKoepfen = new Animation(einsteinSkin.sterbenTexturKoepfen, 2, 5, 6);
             if (einsteinSkin.sterbenAnimationStolpern == null) einsteinSkin.sterbenAnimationStolpern = new Animation(einsteinSkin.sterbenTexturStolpern, 2, 5, 6);
             if (einsteinSkin.sterbenAnimationKlatscher == null) einsteinSkin.sterbenAnimationKlatscher = new Animation(einsteinSkin.sterbenTexturKlatscher, 12, 1, 7);
+            if (einsteinSkin.sterbenAnimationPieksen == null) einsteinSkin.sterbenAnimationPieksen = new Animation(einsteinSkin.sterbenTexturPieksen, 2, 5, 6);
 
             // Menü Radio Animation
             if (menue.radio_m_ani == null) menue.radio_m_ani = new Animation(menue.radioTexture, 2, 2, 6);
@@ -1123,6 +1115,7 @@ namespace xkfd
             Hindernis.punkteAnzahl = 0;
             notenFallSchrittweite = 0;
             ((Fallen)spieler.fallen).beschleunigung = 0;
+            
 
             spieler.aktuellerSkin = optionen.skinListe[optionen.auswahl];
 
