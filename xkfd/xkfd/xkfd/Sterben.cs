@@ -15,6 +15,7 @@ namespace xkfd
         public SterbenAnimation koepfen;
         public SterbenAnimation stolpern;
         public SterbenAnimation klatscher;
+        public SterbenAnimation pieksen;
 
 
         public SterbenAnimation aktuell;
@@ -28,6 +29,7 @@ namespace xkfd
             koepfen = new SterbenAnimationKopf(this);
             stolpern = new SterbenAnimationBeine(this);
             klatscher = new SterbenAnimationKlatscher(this);
+            pieksen = new SterbenAnimationPieksen(this);
             aktuell = koepfen;
 
             hitbox = new Rectangle((int)spieler.position.X + 42, (int)spieler.position.Y + 63, 53, 104);

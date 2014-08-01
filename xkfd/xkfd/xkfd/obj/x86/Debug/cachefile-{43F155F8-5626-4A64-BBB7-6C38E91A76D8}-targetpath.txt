@@ -70,3 +70,5 @@ Content\ani_sterben3_klatscher_hut.xnb
 Content\ani_laufen_einstein.xnb
 Content\ani_springen_einstein.xnb
 Content\pop.xnb
+Content\hindernisE.xnb
+Content\ani_sterben4_pieksen_std.xnb

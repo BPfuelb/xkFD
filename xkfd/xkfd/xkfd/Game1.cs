@@ -63,6 +63,7 @@ namespace xkfd
         Texture2D hindernisTexturB;
         Texture2D hindernisTexturC;
         Texture2D hindernisTexturD;
+        Texture2D hindernisTexturE;
         Texture2D hindernisTexturZ;
 
         // Hud Texturen
@@ -124,6 +125,17 @@ namespace xkfd
             // Noten Platzer Größe init
         }
 
+        int getRandomNumber()
+        {
+            return 4;   // chosen by fair dice roll.
+                        // guaranteed to be random.
+        }
+        // RFC 1149.5 specifies 4 as the standard IEEE-vetted random number.
+        // www.xkcd.com/221
+
+
+        
+
         protected override void Initialize()
         {
             // Auflösung
@@ -159,6 +171,7 @@ namespace xkfd
             standardSkin.sterbenTexturKoepfen = Content.Load<Texture2D>("ani_sterben1_koepfen_std");
             standardSkin.sterbenTexturStolpern = Content.Load<Texture2D>("ani_sterben2_stolpern_std");
             standardSkin.sterbenTexturKlatscher = Content.Load<Texture2D>("ani_sterben3_klatscher_std");
+            standardSkin.sterbenTexturPieksen = Content.Load<Texture2D>("ani_sterben4_pieksen_std");
 
 
 
@@ -175,6 +188,7 @@ namespace xkfd
             frauenSkin.sterbenTexturKoepfen = Content.Load<Texture2D>("ani_sterben1_koepfen_frau");
             frauenSkin.sterbenTexturStolpern = Content.Load<Texture2D>("ani_sterben2_stolpern_frau");
             frauenSkin.sterbenTexturKlatscher = Content.Load<Texture2D>("ani_sterben3_klatscher_frau");
+            frauenSkin.sterbenTexturPieksen = Content.Load<Texture2D>("ani_sterben4_pieksen_std");
 
             // Hut Skin
             hutSkin = new Skin();
@@ -189,6 +203,7 @@ namespace xkfd
             hutSkin.sterbenTexturKoepfen = Content.Load<Texture2D>("ani_sterben1_koepfen_hut");
             hutSkin.sterbenTexturStolpern = Content.Load<Texture2D>("ani_sterben2_stolpern_hut");
             hutSkin.sterbenTexturKlatscher = Content.Load<Texture2D>("ani_sterben3_klatscher_hut");
+            hutSkin.sterbenTexturPieksen = Content.Load<Texture2D>("ani_sterben4_pieksen_std");
 
             // Einstein Skin
             einsteinSkin = new Skin();
@@ -203,6 +218,7 @@ namespace xkfd
             einsteinSkin.sterbenTexturKoepfen = Content.Load<Texture2D>("ani_sterben1_koepfen_std");
             einsteinSkin.sterbenTexturStolpern = Content.Load<Texture2D>("ani_sterben2_stolpern_std");
             einsteinSkin.sterbenTexturKlatscher = Content.Load<Texture2D>("ani_sterben2_stolpern_std");
+            einsteinSkin.sterbenTexturPieksen = Content.Load<Texture2D>("ani_sterben4_pieksen_std");
 
             #endregion
 
@@ -268,16 +284,23 @@ namespace xkfd
             ((Sterben)spieler.sterben).klatscher.soundTod = Content.Load<SoundEffect>("dsskedth");
             ((Sterben)spieler.sterben).klatscher.soundSoundInstance = ((Sterben)spieler.sterben).klatscher.soundTod.CreateInstance();
 
+
+            // Sterben Sound beim pieksen
+            ((Sterben)spieler.sterben).pieksen.soundTod = Content.Load<SoundEffect>("dsskedth");
+            ((Sterben)spieler.sterben).pieksen.soundSoundInstance = ((Sterben)spieler.sterben).pieksen.soundTod.CreateInstance();
+
+
             // Textur für Hindernisse
             hindernisTexturS = Content.Load<Texture2D>("hindernisS");
             hindernisTexturA = Content.Load<Texture2D>("hindernisA");
             hindernisTexturB = Content.Load<Texture2D>("hindernisB");
             hindernisTexturC = Content.Load<Texture2D>("hindernisC");
             hindernisTexturD = Content.Load<Texture2D>("hindernisD");
+            hindernisTexturE = Content.Load<Texture2D>("hindernisE");
             hindernisTexturZ = Content.Load<Texture2D>("hindernisZ");
 
             // Liste mit Hindernisse die generiert werden
-            hindernisListe = Hindernis.generieHindernisse(10, hindernisTexturS, hindernisTexturA, hindernisTexturB, hindernisTexturC, hindernisTexturD, hindernisTexturZ, punkt1, punkt2, punkt5, punkt10);
+            hindernisListe = Hindernis.generieHindernisse(10, hindernisTexturS, hindernisTexturA, hindernisTexturB, hindernisTexturC, hindernisTexturD, hindernisTexturE, hindernisTexturZ, punkt1, punkt2, punkt5, punkt10);
 
 
             // HudTextur
@@ -499,12 +522,21 @@ namespace xkfd
 
                 // Erstellen einer Liste mit Hitboxen aus Bereich 2 & 3
                 List<Hitbox> kollisionsListe = new List<Hitbox>();
+                List<Hitbox> kollisionsListeStacheln = new List<Hitbox>();
 
+                //Boden Liste erstellen
                 foreach (Hitbox hitbox in hindernisListe[2].gibHitboxen())
                 { kollisionsListe.Add(hitbox); }
 
                 foreach (Hitbox hitbox in hindernisListe[3].gibHitboxen())
                 { kollisionsListe.Add(hitbox); }
+
+                // Stacheln Liste erstellen
+                foreach (Hitbox hitbox in hindernisListe[2].gibSterben())
+                { kollisionsListeStacheln.Add(hitbox); }
+
+                foreach (Hitbox hitbox in hindernisListe[3].gibSterben())
+                { kollisionsListeStacheln.Add(hitbox); }
 
                 // Boolean Werte für Kollisionserkennung (für Füße)
                 Boolean kollidiert = false;
@@ -523,6 +555,18 @@ namespace xkfd
                         else
                             spieler.doLaufen();
                         spieler.setPlayerPosition(hitbox.hitboxRect.Y - 110);
+                    }
+                }
+
+
+                // Prüfe auf Stacheln
+                foreach (Hitbox hitbox in kollisionsListeStacheln)
+                {
+                    if (menue.spielAktiv && spieler.hitboxBeine.Intersects(hitbox.hitboxRect))
+                    {
+                        ((Sterben)spieler.sterben).aktuell = ((Sterben)spieler.sterben).pieksen;// Passt den Todeszustand an
+                        menue.spielAktiv = false; // setzt Menü nach Tod wieder auf anfang
+                        spieler.doSterben();
                     }
                 }
 
@@ -845,10 +889,15 @@ namespace xkfd
                         {
                             spriteBatch.Draw(dummyTexture, hitbox.hitboxRect, Color.Red);
                         }
+
+                        foreach (Hitbox hitbox in hindernis.gibSterben())
+                        {
+                            spriteBatch.Draw(dummyTexture2, hitbox.hitboxRect, Color.Green);
+                        }
                     }
 
-
                     // Punkte/Noten Zeichnen
+
                     foreach (NotenHitbox note in punkteListeDraw)
                     {
                         spriteBatch.Draw(dummyTexture, note.hitboxRect, Color.Red);
@@ -952,6 +1001,7 @@ namespace xkfd
             if (standardSkin.sterbenAnimationKoepfen == null) standardSkin.sterbenAnimationKoepfen = new Animation(standardSkin.sterbenTexturKoepfen, 2, 5, 6);
             if (standardSkin.sterbenAnimationStolpern == null) standardSkin.sterbenAnimationStolpern = new Animation(standardSkin.sterbenTexturStolpern, 2, 5, 6);
             if (standardSkin.sterbenAnimationKlatscher == null) standardSkin.sterbenAnimationKlatscher = new Animation(standardSkin.sterbenTexturKlatscher, 12, 1, 7);
+            if (standardSkin.sterbenAnimationPieksen == null) standardSkin.sterbenAnimationPieksen= new Animation(standardSkin.sterbenTexturPieksen, 2, 5, 7);
 
             // Fraud Skin
             if (frauenSkin.duckenAnimation == null) frauenSkin.duckenAnimation = new Animation(frauenSkin.duckenTextur, 4, 4, 4);
@@ -1027,7 +1077,7 @@ namespace xkfd
             spieler.aktuellerSkin.sterbenAnimationKoepfen.index = 0;
             spieler.aktuellerSkin.sterbenAnimationStolpern.index = 0;
 
-            hindernisListe = Hindernis.generieHindernisse(10, hindernisTexturS, hindernisTexturA, hindernisTexturB, hindernisTexturC, hindernisTexturD, hindernisTexturZ, punkt1, punkt2, punkt5, punkt10);
+            hindernisListe = Hindernis.generieHindernisse(10, hindernisTexturS, hindernisTexturA, hindernisTexturB, hindernisTexturC, hindernisTexturD, hindernisTexturE, hindernisTexturZ, punkt1, punkt2, punkt5, punkt10);
 
         }
     }
