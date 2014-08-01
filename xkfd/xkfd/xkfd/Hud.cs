@@ -35,6 +35,7 @@ namespace xkfd
         public Texture2D aktuellerUnlock;
 
         public Vector2 unlockPosition;
+        public Vector2 positionTimer;
 
         public Boolean gewonnen = false;
 
@@ -52,7 +53,7 @@ namespace xkfd
             positionCheckbox = new Vector2(1150, -12);
 
             positionPunkte = new Vector2(200, 15);
-            positionTimer = new Vector2(1150, 700);
+            positionTimer = new Vector2(1000, 640);
 
 
             unlockPosition = new Vector2(1000, 720);
@@ -77,7 +78,7 @@ namespace xkfd
             // tastaturAnimation.Update();
         }
 
-        public void Draw(SpriteBatch sb, SpriteFont schrift, int maxPunkte)
+        public void Draw(SpriteBatch sb, SpriteFont schrift, int maxPunkte, GameTime gt)
         {
             sb.DrawString(schrift, "Gleiten: " + counter, positionGleitenAnzeige, Color.Black);
             sb.DrawString(schrift, "Punkte: " + spieler.punkte + "/" + maxPunkte, positionPunkte, Color.Black);
@@ -89,7 +90,7 @@ namespace xkfd
                 sb.Draw(checkBox_uncheck, positionCheckbox, Color.White);
 			
 			// Timer in Trialsystem anzeigen
-            sb.DrawString(schrift, CalcTrial((int)(gameTime.TotalGameTime.Milliseconds/1000)), positionTimer, Color.Black);
+            sb.DrawString(schrift, CalcTrial((int)(gt.TotalGameTime.Seconds)), positionTimer, Color.Black);
         }
 
         public void UpdateAchievment()
@@ -134,6 +135,8 @@ namespace xkfd
 
 		public string CalcTrial(int zahl)
 		{
+            if (zahl == 0)
+                return "";
 			return "" + CalcTrial(zahl/3) + zahl%3;
 		}
     }

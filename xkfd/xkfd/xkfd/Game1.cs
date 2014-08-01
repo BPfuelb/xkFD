@@ -797,7 +797,7 @@ namespace xkfd
                 spieler.Draw(spriteBatch);
                 // spriteBatch.Draw(spieler.spielerTextur, spieler.position, Color.White);
 
-                hud.Draw(spriteBatch, schrift_40,Hindernis.punkteAnzahl);
+                hud.Draw(spriteBatch, schrift_40,Hindernis.punkteAnzahl, gameTime);
 
 
                 // Hindernisse zeichnen
