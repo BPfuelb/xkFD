@@ -5,6 +5,7 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Media;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Audio;
 
 namespace xkfd
 {
@@ -28,10 +29,22 @@ namespace xkfd
         public Texture2D checkBox_uncheck;
         public Texture2D teleport;
 
+        // Game Over Anzeige
+        public Texture2D gameOverTextur;
+        public Animation gameOverAnimation;
+        public Vector2 gameOverPosition;
+
+        // Game Over Sound 
+
+        public SoundEffect soundGameOver;
+        public SoundEffectInstance soundGameOverSoundInstance;
+
+        // Skins
         public Texture2D skin_frau;
         public Texture2D skin_hut;
         public Texture2D skin_einstein;
 
+        // Akuteller Unlock Skin
         public Texture2D aktuellerUnlock;
 
         public Vector2 unlockPosition;
@@ -42,6 +55,9 @@ namespace xkfd
         public Boolean updateAchievement;
         public Boolean achievementOben;
         private int achievementDauer;
+
+
+        float transparence = 0;
 
         public Hud(Spieler spieler, Texture2D hudTextur)
         {
@@ -60,6 +76,8 @@ namespace xkfd
             updateAchievement = false;
             achievementOben = false;
             achievementDauer = 0;
+
+            gameOverPosition = new Vector2(100,100);
         }
 
 
@@ -71,6 +89,7 @@ namespace xkfd
                 counter += "|";
             }
 
+            gameOverAnimation.Update();
         }
 
         public void UpdateHelp()
@@ -82,6 +101,11 @@ namespace xkfd
         {
             sb.DrawString(schrift, "Gleiten: " + counter, positionGleitenAnzeige, Color.Black);
             sb.DrawString(schrift, "Punkte: " + spieler.punkte + "/" + maxPunkte, positionPunkte, Color.Black);
+
+            if (spieler.aktuellerZustand == spieler.sterben)
+            {
+                gameOverAnimation.DrawTransparent(sb, gameOverPosition);
+            }
 
             sb.Draw(teleport, positionCheckbox + new Vector2(-10, 25), Color.White);
             if (spieler.teleport)
@@ -127,10 +151,12 @@ namespace xkfd
             sb.Draw(hudTextur, new Rectangle(0, 530, 1280, 2), Color.Black);
 
             // Text zum starten
-            if (gt.TotalGameTime.Milliseconds % 500 <= 150)
-                sb.DrawString(schrift, "Zum Starten Enter drücken", new Vector2(300, 600), Color.Black);
-            else
-                sb.DrawString(schrift, "Zum Starten Enter drücken", new Vector2(300, 600), Color.Gray);
+            transparence = transparence + (float)0.15 % (float)(Math.PI * 2);
+
+            float trans = ((float)Math.Sin(transparence)) / 2 + 0.5f;
+
+            sb.DrawString(schrift, "Zum Starten Enter drücken", new Vector2(300, 600), Color.Black * trans );
+
         }
 
 		public string CalcTrial(int zahl)

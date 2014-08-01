@@ -63,6 +63,7 @@ namespace xkfd
         Texture2D hindernisTexturB;
         Texture2D hindernisTexturC;
         Texture2D hindernisTexturD;
+        Texture2D hindernisTexturE;
         Texture2D hindernisTexturZ;
 
         // Hud Texturen
@@ -87,6 +88,8 @@ namespace xkfd
         Texture2D notenPlatzerTextur;
         Animation notenPlatzerAnimation;
         Vector2 notenPlatzerPosition;
+
+        PowerUp powerUp;
 
         int notenFallSchrittweite = 0;
 
@@ -120,9 +123,25 @@ namespace xkfd
             punkt2 = new Punkt(2);
             punkt5 = new Punkt(5);
             punkt10 = new Punkt(10);
+            
+            // Powerup
+            powerUp = new PowerUp();
 
             // Noten Platzer Größe init
         }
+
+        int getRandomNumber()
+        {
+            // RFC 1149.5 specifies 4 as the standard IEEE-vetted random number.
+            // www.xkcd.com/221
+
+            return 4;   // chosen by fair dice roll.
+                        // guaranteed to be random.
+        }
+
+
+
+        
 
         protected override void Initialize()
         {
@@ -159,6 +178,7 @@ namespace xkfd
             standardSkin.sterbenTexturKoepfen = Content.Load<Texture2D>("ani_sterben1_koepfen_std");
             standardSkin.sterbenTexturStolpern = Content.Load<Texture2D>("ani_sterben2_stolpern_std");
             standardSkin.sterbenTexturKlatscher = Content.Load<Texture2D>("ani_sterben3_klatscher_std");
+            standardSkin.sterbenTexturPieksen = Content.Load<Texture2D>("ani_sterben2_stolpern_std");
 
 
 
@@ -175,6 +195,7 @@ namespace xkfd
             frauenSkin.sterbenTexturKoepfen = Content.Load<Texture2D>("ani_sterben1_koepfen_frau");
             frauenSkin.sterbenTexturStolpern = Content.Load<Texture2D>("ani_sterben2_stolpern_frau");
             frauenSkin.sterbenTexturKlatscher = Content.Load<Texture2D>("ani_sterben3_klatscher_frau");
+            frauenSkin.sterbenTexturPieksen = Content.Load<Texture2D>("ani_sterben4_pieksen_std");
 
             // Hut Skin
             hutSkin = new Skin();
@@ -189,6 +210,7 @@ namespace xkfd
             hutSkin.sterbenTexturKoepfen = Content.Load<Texture2D>("ani_sterben1_koepfen_hut");
             hutSkin.sterbenTexturStolpern = Content.Load<Texture2D>("ani_sterben2_stolpern_hut");
             hutSkin.sterbenTexturKlatscher = Content.Load<Texture2D>("ani_sterben3_klatscher_hut");
+            hutSkin.sterbenTexturPieksen = Content.Load<Texture2D>("ani_sterben4_pieksen_std");
 
             // Einstein Skin
             einsteinSkin = new Skin();
@@ -203,6 +225,7 @@ namespace xkfd
             einsteinSkin.sterbenTexturKoepfen = Content.Load<Texture2D>("ani_sterben1_koepfen_std");
             einsteinSkin.sterbenTexturStolpern = Content.Load<Texture2D>("ani_sterben2_stolpern_std");
             einsteinSkin.sterbenTexturKlatscher = Content.Load<Texture2D>("ani_sterben2_stolpern_std");
+            einsteinSkin.sterbenTexturPieksen = Content.Load<Texture2D>("ani_sterben4_pieksen_std");
 
             #endregion
 
@@ -226,33 +249,31 @@ namespace xkfd
             menue.fortsetzenTexture = Content.Load<Texture2D>("m_continue");
             menue.optionenTexture = Content.Load<Texture2D>("m_optionen");
             menue.exitTexture = Content.Load<Texture2D>("m_exit");
+            
 
             menue.radioTexture = Content.Load<Texture2D>("radio");
-
-            // Sound
-            titel = Content.Load<Song>("titel");
-            // titelSoundInstance = titel.CreateInstance();
 
 
             // Hintergrund
             hintergrund.hintergrundTextur = Content.Load<Texture2D>("hintergrund");
 
-
-            // Optionen Texturen Laden
-
             // Optionen Zurück Knopf
             optionen.z_knopf_Textur = Content.Load<Texture2D>("o_zurueck");
+
+            // Sound
+            titel = Content.Load<Song>("titel");
 
             // Spring Sounds
             spieler.springen.sound = Content.Load<SoundEffect>("jump");
             spieler.springen.soundSoundInstance = spieler.springen.sound.CreateInstance();
 
             // Einsammel Sound
-
             punkt1.initSound(Content.Load<SoundEffect>("pop"));
             punkt2.initSound(Content.Load<SoundEffect>("pop"));
             punkt5.initSound(Content.Load<SoundEffect>("pop"));
             punkt10.initSound(Content.Load<SoundEffect>("pop"));
+
+            powerUp.initSound(Content.Load<SoundEffect>("teleportAufladen"));
 
             // Sterben Sounds
 
@@ -268,22 +289,32 @@ namespace xkfd
             ((Sterben)spieler.sterben).klatscher.soundTod = Content.Load<SoundEffect>("dsskedth");
             ((Sterben)spieler.sterben).klatscher.soundSoundInstance = ((Sterben)spieler.sterben).klatscher.soundTod.CreateInstance();
 
+
+            // Sterben Sound beim pieksen
+            ((Sterben)spieler.sterben).pieksen.soundTod = Content.Load<SoundEffect>("dsskedth");
+            ((Sterben)spieler.sterben).pieksen.soundSoundInstance = ((Sterben)spieler.sterben).pieksen.soundTod.CreateInstance();
+
+
+
+
             // Textur für Hindernisse
             hindernisTexturS = Content.Load<Texture2D>("hindernisS");
             hindernisTexturA = Content.Load<Texture2D>("hindernisA");
             hindernisTexturB = Content.Load<Texture2D>("hindernisB");
             hindernisTexturC = Content.Load<Texture2D>("hindernisC");
             hindernisTexturD = Content.Load<Texture2D>("hindernisD");
+            hindernisTexturE = Content.Load<Texture2D>("hindernisE");
             hindernisTexturZ = Content.Load<Texture2D>("hindernisZ");
 
             // Liste mit Hindernisse die generiert werden
-            hindernisListe = Hindernis.generieHindernisse(10, hindernisTexturS, hindernisTexturA, hindernisTexturB, hindernisTexturC, hindernisTexturD, hindernisTexturZ, punkt1, punkt2, punkt5, punkt10);
+            hindernisListe = Hindernis.generieHindernisse(10, hindernisTexturS, hindernisTexturA, hindernisTexturB, hindernisTexturC, hindernisTexturD, hindernisTexturE, hindernisTexturZ, punkt1, punkt2, punkt5, punkt10, powerUp);
 
 
             // HudTextur
             hudTextur = new Texture2D(GraphicsDevice, 1, 1);
             hudTextur.SetData(new Color[] { Color.Gray });
 
+            
 
             // Logo
             logo = Content.Load<Texture2D>("logo");
@@ -299,6 +330,12 @@ namespace xkfd
             hud.skin_frau = Content.Load<Texture2D>("unlock_skin_frau");
             hud.skin_hut = Content.Load<Texture2D>("unlock_skin_hut");
             hud.skin_einstein = Content.Load<Texture2D>("unlock_skin_einstein");
+
+            hud.gameOverTextur = Content.Load<Texture2D>("GameOver");
+            // Game Over Sound Ohh
+
+            hud.soundGameOver = Content.Load<SoundEffect>("ooh");
+            hud.soundGameOverSoundInstance = hud.soundGameOver.CreateInstance();
 
 
             // Punkt Textur
@@ -316,6 +353,10 @@ namespace xkfd
 
             // Punkte Platzer Textur
             notenPlatzerTextur = Content.Load<Texture2D>("ani_notenpuff");
+
+            // PowerUp Textur
+
+            powerUp.punktTextur = Content.Load<Texture2D>("powerup");
 
             // Test textur
             dummyTexture = new Texture2D(GraphicsDevice, 1, 1);
@@ -413,6 +454,11 @@ namespace xkfd
                     menue.auswahl = 2; // Auswahl auf Forsetzen bzw. Starten setzten
                     gamestate = Gamestate.menue;
                 }
+
+                if (spieler.aktuellerZustand == spieler.sterben && Keyboard.GetState().IsKeyDown(Keys.Enter))
+                {
+                    gamestate = Gamestate.menue;
+                }
                 #endregion
 
 
@@ -450,11 +496,12 @@ namespace xkfd
                 }
                 #endregion
 
-                #region NotenAnimation aktualisierung
+                #region Noten/Powerup Animation  aktualisierung
                 punkt1.punktAnimation.Update();
                 punkt2.punktAnimation.Update();
                 punkt5.punktAnimation.Update();
                 punkt10.punktAnimation.Update();
+                powerUp.punktAnimation.Update();
                 #endregion
 
 
@@ -488,7 +535,10 @@ namespace xkfd
                         notenPlatzerAnimation.index = 0;
                         notenPlatzerPosition = hitbox.hitboxPosition - new Vector2(16, 16);
                         hitbox.hindernis.loescheHitboxPunkt(hitbox);
-                        spieler.punkte += hitbox.punkt.wertigkeit;
+                        if (hitbox.punkt.wertigkeit != 0)
+                            spieler.punkte += hitbox.punkt.wertigkeit;
+                        else
+                            spieler.teleport = true;
                         hitbox.punkt.playSound();
                     }
                 }
@@ -499,12 +549,21 @@ namespace xkfd
 
                 // Erstellen einer Liste mit Hitboxen aus Bereich 2 & 3
                 List<Hitbox> kollisionsListe = new List<Hitbox>();
+                List<Hitbox> kollisionsListeStacheln = new List<Hitbox>();
 
+                //Boden Liste erstellen
                 foreach (Hitbox hitbox in hindernisListe[2].gibHitboxen())
                 { kollisionsListe.Add(hitbox); }
 
                 foreach (Hitbox hitbox in hindernisListe[3].gibHitboxen())
                 { kollisionsListe.Add(hitbox); }
+
+                // Stacheln Liste erstellen
+                foreach (Hitbox hitbox in hindernisListe[2].gibSterben())
+                { kollisionsListeStacheln.Add(hitbox); }
+
+                foreach (Hitbox hitbox in hindernisListe[3].gibSterben())
+                { kollisionsListeStacheln.Add(hitbox); }
 
                 // Boolean Werte für Kollisionserkennung (für Füße)
                 Boolean kollidiert = false;
@@ -526,6 +585,20 @@ namespace xkfd
                     }
                 }
 
+
+                // Prüfe auf Stacheln
+                foreach (Hitbox hitbox in kollisionsListeStacheln)
+                {
+                    if (menue.spielAktiv && spieler.hitboxBeine.Intersects(hitbox.hitboxRect))
+                    {
+                        ((Sterben)spieler.sterben).aktuell = ((Sterben)spieler.sterben).pieksen;// Passt den Todeszustand an
+                        menue.spielAktiv = false; // setzt Menü nach Tod wieder auf anfang
+                        spieler.setPlayerPosition((int)hitbox.hitboxPosition.Y - 80);
+                        hud.soundGameOverSoundInstance.Play();
+                        spieler.doSterben();
+                    }
+                }
+
                 // wenn keine Kollision ist und er spieler nicht gerade am springen ist dann falle.
                 if (!kollidiert && spieler.aktuellerZustand != spieler.springen && spieler.aktuellerZustand != spieler.gleiten)
                 {
@@ -542,12 +615,14 @@ namespace xkfd
                         {
                             ((Sterben)spieler.sterben).aktuell = ((Sterben)spieler.sterben).koepfen;// Passt den Todeszustand an
                             menue.spielAktiv = false; // setzt Menü nach Tod wieder auf anfang
+                            hud.soundGameOverSoundInstance.Play();
                             spieler.doSterben();
                         }
                         if (spieler.hitboxBeine.Intersects(hitbox.hitboxRect)) // Wenn Beine kollidiert
                         {
                             ((Sterben)spieler.sterben).aktuell = ((Sterben)spieler.sterben).stolpern; // Passt den Todeszustand an
                             menue.spielAktiv = false; // setzt Menü nach Tod wieder auf anfang
+                            hud.soundGameOverSoundInstance.Play();
                             spieler.doSterben();
                         }
 
@@ -561,9 +636,10 @@ namespace xkfd
                         {
                             menue.spielAktiv = false;
                             ((Sterben)spieler.sterben).aktuell = ((Sterben)spieler.sterben).klatscher; // Passt den Todeszustand an
+                            hud.soundGameOverSoundInstance.Play();
                             spieler.doSterben();
                         }
-                        else if (spieler.hitboxKopf.Intersects(hitbox.hitboxRect) && !spieler.hitboxBeine.Intersects(hitbox.hitboxRect))
+                        else if (spieler.hitboxKopf.Intersects(hitbox.hitboxRect) )//  && !spieler.hitboxBeine.Intersects(hitbox.hitboxRect))
                         {
                             menue.spielAktiv = false;
                             Boolean kollidiertBoden = false;
@@ -577,9 +653,11 @@ namespace xkfd
                                 spieler.movePlayerDown(1);
                             }
                             ((Sterben)spieler.sterben).aktuell = ((Sterben)spieler.sterben).koepfen; // Passt den Todeszustand an
+                            hud.soundGameOverSoundInstance.Play();
+                            menue.spielAktiv = false;
                             spieler.doSterben();
                         }
-                        else if (spieler.hitboxBeine.Intersects(hitbox.hitboxRect) && !spieler.hitboxKopf.Intersects(hitbox.hitboxRect))
+                        else if (spieler.hitboxBeine.Intersects(hitbox.hitboxRect) ) //&& !spieler.hitboxKopf.Intersects(hitbox.hitboxRect))
                         {
                             spieler.setPlayerPosition(hitbox.hitboxRect.Top - 80);
                             menue.spielAktiv = false;
@@ -608,22 +686,25 @@ namespace xkfd
                 foreach (NotenHitbox notenhitbox in punkteListeDraw)
                 {
                     notenhitbox.Update();
-                    if (notenhitbox.faellt)
+                    if (notenhitbox.punkt.wertigkeit != 0)
                     {
-                        foreach (Hitbox bodenHitbox in notenhitbox.hindernis.gibHitboxen())
+                        if (notenhitbox.faellt)
                         {
-                            if (notenhitbox.faellt && notenhitbox.hitboxRect.Y < 800 && !notenhitbox.hitboxRect.Intersects(bodenHitbox.hitboxRect))
+                            foreach (Hitbox bodenHitbox in notenhitbox.hindernis.gibHitboxen())
                             {
-                                notenhitbox.moveY(-(1 + notenFallSchrittweite));
-                            }
-                            else if (notenhitbox.hitboxRect.Y >= 800)
-                            {
-                                notenhitbox.faellt = false;
-                            }
-                            else if (notenhitbox.faellt)
-                            {
-                                notenhitbox.faellt = false;
-                                notenhitbox.setPositionY((int)bodenHitbox.hitboxPosition.Y - 30);
+                                if (notenhitbox.faellt && notenhitbox.hitboxRect.Y < 800 && !notenhitbox.hitboxRect.Intersects(bodenHitbox.hitboxRect))
+                                {
+                                    notenhitbox.moveY(-(1 + notenFallSchrittweite));
+                                }
+                                else if (notenhitbox.hitboxRect.Y >= 800)
+                                {
+                                    notenhitbox.faellt = false;
+                                }
+                                else if (notenhitbox.faellt)
+                                {
+                                    notenhitbox.faellt = false;
+                                    notenhitbox.setPositionY((int)bodenHitbox.hitboxPosition.Y - 30);
+                                }
                             }
                         }
                     }
@@ -632,22 +713,25 @@ namespace xkfd
                 foreach (NotenHitbox notenhitbox in punkteListeKollisionen)
                 {
                     notenhitbox.Update();
-                    if (notenhitbox.faellt)
+                    if (notenhitbox.punkt.wertigkeit != 0)
                     {
-                        foreach (Hitbox bodenHitbox in notenhitbox.hindernis.gibHitboxen())
+                        if (notenhitbox.faellt)
                         {
-                            if (notenhitbox.faellt && notenhitbox.hitboxRect.Y < 800 && !notenhitbox.hitboxRect.Intersects(bodenHitbox.hitboxRect))
+                            foreach (Hitbox bodenHitbox in notenhitbox.hindernis.gibHitboxen())
                             {
-                                notenhitbox.moveY(-(1 + notenFallSchrittweite));
-                            }
-                            else if (notenhitbox.hitboxRect.Y >= 800)
-                            {
-                                notenhitbox.faellt = false;
-                            }
-                            else if (notenhitbox.faellt)
-                            {
-                                notenhitbox.faellt = false;
-                                notenhitbox.setPositionY((int)bodenHitbox.hitboxPosition.Y - 30);
+                                if (notenhitbox.faellt && notenhitbox.hitboxRect.Y < 800 && !notenhitbox.hitboxRect.Intersects(bodenHitbox.hitboxRect))
+                                {
+                                    notenhitbox.moveY(-(1 + notenFallSchrittweite));
+                                }
+                                else if (notenhitbox.hitboxRect.Y >= 800)
+                                {
+                                    notenhitbox.faellt = false;
+                                }
+                                else if (notenhitbox.faellt)
+                                {
+                                    notenhitbox.faellt = false;
+                                    notenhitbox.setPositionY((int)bodenHitbox.hitboxPosition.Y - 30);
+                                }
                             }
                         }
                     }
@@ -793,8 +877,7 @@ namespace xkfd
             if (gamestate == Gamestate.running)
             {
 
-                // Zeichne Spieler
-                spieler.Draw(spriteBatch);
+
                 // spriteBatch.Draw(spieler.spielerTextur, spieler.position, Color.White);
 
                 hud.Draw(spriteBatch, schrift_40,Hindernis.punkteAnzahl, gameTime);
@@ -806,6 +889,9 @@ namespace xkfd
                 spriteBatch.Draw(hindernisListe[3].hindernisTextur, hindernisListe[3].hindernisPosition, Color.White);
                 spriteBatch.Draw(hindernisListe[4].hindernisTextur, hindernisListe[4].hindernisPosition, Color.White);
                 spriteBatch.Draw(hindernisListe[5].hindernisTextur, hindernisListe[5].hindernisPosition, Color.White);
+
+
+
 
 
                 foreach (NotenHitbox notenHitbox in hindernisListe[1].gibPunkte())
@@ -845,10 +931,15 @@ namespace xkfd
                         {
                             spriteBatch.Draw(dummyTexture, hitbox.hitboxRect, Color.Red);
                         }
+
+                        foreach (Hitbox hitbox in hindernis.gibSterben())
+                        {
+                            spriteBatch.Draw(dummyTexture2, hitbox.hitboxRect, Color.Green);
+                        }
                     }
 
-
                     // Punkte/Noten Zeichnen
+
                     foreach (NotenHitbox note in punkteListeDraw)
                     {
                         spriteBatch.Draw(dummyTexture, note.hitboxRect, Color.Red);
@@ -876,6 +967,9 @@ namespace xkfd
                 }
                 #endregion
 
+
+                // Zeichne Spieler
+                spieler.Draw(spriteBatch);
 
                 #region AchievmentAnzeigen
                 if (gewonnen == 1)
@@ -952,6 +1046,7 @@ namespace xkfd
             if (standardSkin.sterbenAnimationKoepfen == null) standardSkin.sterbenAnimationKoepfen = new Animation(standardSkin.sterbenTexturKoepfen, 2, 5, 6);
             if (standardSkin.sterbenAnimationStolpern == null) standardSkin.sterbenAnimationStolpern = new Animation(standardSkin.sterbenTexturStolpern, 2, 5, 6);
             if (standardSkin.sterbenAnimationKlatscher == null) standardSkin.sterbenAnimationKlatscher = new Animation(standardSkin.sterbenTexturKlatscher, 12, 1, 7);
+            if (standardSkin.sterbenAnimationPieksen == null) standardSkin.sterbenAnimationPieksen= new Animation(standardSkin.sterbenTexturPieksen, 2, 5, 7);
 
             // Fraud Skin
             if (frauenSkin.duckenAnimation == null) frauenSkin.duckenAnimation = new Animation(frauenSkin.duckenTextur, 4, 4, 4);
@@ -1008,6 +1103,14 @@ namespace xkfd
 
             // Notenplatzer Animation
             if (notenPlatzerAnimation == null) notenPlatzerAnimation = new Animation(notenPlatzerTextur, 2, 2, 5);
+
+            // Powerup/Atom Animation
+
+            if (powerUp.punktAnimation == null) powerUp.punktAnimation = new Animation(powerUp.punktTextur, 4, 4, 4);
+
+
+            // Game Over Animation
+            if (hud.gameOverAnimation == null) hud.gameOverAnimation = new Animation(hud.gameOverTextur, 1, 4, 4);
         }
 
         public void neustart()
@@ -1026,8 +1129,9 @@ namespace xkfd
             spieler.aktuellerSkin.sterbenAnimationKlatscher.index = 0;
             spieler.aktuellerSkin.sterbenAnimationKoepfen.index = 0;
             spieler.aktuellerSkin.sterbenAnimationStolpern.index = 0;
+            spieler.aktuellerSkin.sterbenAnimationPieksen.index = 0;
 
-            hindernisListe = Hindernis.generieHindernisse(10, hindernisTexturS, hindernisTexturA, hindernisTexturB, hindernisTexturC, hindernisTexturD, hindernisTexturZ, punkt1, punkt2, punkt5, punkt10);
+            hindernisListe = Hindernis.generieHindernisse(10, hindernisTexturS, hindernisTexturA, hindernisTexturB, hindernisTexturC, hindernisTexturD, hindernisTexturE, hindernisTexturZ, punkt1, punkt2, punkt5, punkt10, powerUp);
 
         }
     }

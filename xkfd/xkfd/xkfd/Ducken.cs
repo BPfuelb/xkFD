@@ -26,8 +26,6 @@ namespace xkfd
                 spieler.gleitenResource += 1;
 
             spieler.aktuellerSkin.duckenAnimation.Update(4);
-            // ALT animation.Update(4);
-
         }
 
         public override void Draw(SpriteBatch sb)

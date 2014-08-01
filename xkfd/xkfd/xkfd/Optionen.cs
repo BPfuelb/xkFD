@@ -51,6 +51,8 @@ namespace xkfd
             sb.DrawString(schrift, "Gewonnen: " + gewonnen, new Vector2(700, 580), Color.Black);
 
             skinListe[0].laufenAnimation.Draw(sb, new Vector2(100, 50));
+
+
             sb.DrawString(schrift, "Standard Skin", new Vector2(200, 55), Color.Black);
             
             skinListe[1].laufenAnimation.Draw(sb, new Vector2(100, 170 ));

@@ -18,12 +18,13 @@ namespace xkfd
         public Vector2 hindernisPosition;
 
         public List<Hitbox> hitboxListe;
+        public List<Hitbox> hitboxListeStacheln;
         public List<NotenHitbox> notenListe;
 
         public static int punkteAnzahl = 0;
 
         // Generiert eine beliebige lange Liste von Hindernissen
-        public static List<Hindernis> generieHindernisse(int anzahl, Texture2D hindernisSTextur, Texture2D hindernisATextur, Texture2D hindernisBTextur, Texture2D hindernisCTextur, Texture2D hindernisDTextur, Texture2D hindernisZTextur, Punkt p1, Punkt p2, Punkt p5, Punkt p10)
+        public static List<Hindernis> generieHindernisse(int anzahl, Texture2D hindernisSTextur, Texture2D hindernisATextur, Texture2D hindernisBTextur, Texture2D hindernisCTextur, Texture2D hindernisDTextur, Texture2D hindernisETextur, Texture2D hindernisZTextur, Punkt p1, Punkt p2, Punkt p5, Punkt p10, PowerUp powerUp)
         {
             // Init zufallsgenerator
             Random random = new Random();
@@ -40,23 +41,28 @@ namespace xkfd
             liste.Add(new HindernisS(hindernisSTextur, new Vector2(2 * 320, 40)));
             liste.Add(new HindernisS(hindernisSTextur, new Vector2(3 * 320, 40)));
 
+            int anzahlVerschiedenerHindernisse = 5;
             // Erzeuge mit Schleife Anzahl von zufälligen Hindernissen
             for (int i = 0; i < anzahl; i++)
             {
-                switch ((int)random.Next(4))
+                switch ((int)random.Next(anzahlVerschiedenerHindernisse))
                 {
                     case 0:
-                        liste.Add(new HindernisA(hindernisATextur, new Vector2(1280, 40), p1, p2, p5, p10));
+                        liste.Add(new HindernisA(hindernisATextur, new Vector2(1280, 40), p1, p2, p5, p10, powerUp));
                         break;
                     case 1:
-                        liste.Add(new HindernisB(hindernisBTextur, new Vector2(1280, 40), p1, p2, p5, p10));
+                        liste.Add(new HindernisB(hindernisBTextur, new Vector2(1280, 40), p1, p2, p5, p10, powerUp));
                         break;
                     case 2:
-                        liste.Add(new HindernisC(hindernisCTextur, new Vector2(1280, 40), p1, p2, p5, p10));
+                        liste.Add(new HindernisC(hindernisCTextur, new Vector2(1280, 40), p1, p2, p5, p10, powerUp));
                         break;
                     case 3:
-                        liste.Add(new HindernisD(hindernisDTextur, new Vector2(1280, 40), p1, p2, p5, p10));
+                        liste.Add(new HindernisD(hindernisDTextur, new Vector2(1280, 40), p1, p2, p5, p10, powerUp));
                         break;
+                    case 4:
+                        liste.Add(new HindernisE(hindernisETextur, new Vector2(1280, 40), p1, p2, p5, p10, powerUp));
+                        break;
+                    
                 }
             }
 
@@ -79,6 +85,7 @@ namespace xkfd
             this.hindernisPosition = position;
 
             this.notenListe = new List<NotenHitbox>();
+            this.hitboxListeStacheln= new List<Hitbox>();
         }
 
         // Schiebt Hindernisse nach Links
@@ -98,6 +105,13 @@ namespace xkfd
             {
                 punkt.moveX(4);
             }
+
+            // Stacheln Hitboxen aktualisieren
+            foreach (Hitbox stachel in hitboxListeStacheln)
+            {
+                stachel.moveX(4);
+            }
+
         }
 
         public virtual List<Hitbox> gibHitboxen()
@@ -113,6 +127,11 @@ namespace xkfd
         public virtual void loescheHitboxPunkt(NotenHitbox notenhitbox)
         {
             notenListe.Remove(notenhitbox);
+        }
+
+        public virtual List<Hitbox> gibSterben()
+        {
+            return hitboxListeStacheln;
         }
     }
 }

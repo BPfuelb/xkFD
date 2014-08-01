@@ -5,6 +5,7 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
+
 namespace xkfd
 {
     class Animation
@@ -17,6 +18,7 @@ namespace xkfd
         int slowMoTimer;
         public int tileWidth;
         public int tileHeight;
+        float transparence;
 
         public Animation(Texture2D textur, int spalte, int zeile, int slowMoFactor)
         {
@@ -76,6 +78,24 @@ namespace xkfd
             rect.Y = (index / spalte) * tileHeight;
 
             sb.Draw(textur, pos, rect, Color.White);
+        }
+
+
+        public void DrawTransparent(SpriteBatch sb, Vector2 pos)
+        {
+            tileWidth = textur.Width / spalte;
+            tileHeight = textur.Height / zeile;
+
+            Rectangle rect = new Rectangle(0, 0, tileWidth, tileHeight);
+
+
+            rect.X = (index % spalte) * tileWidth;
+            rect.Y = (index / spalte) * tileHeight;
+
+            transparence = transparence + (float)0.15 %  (float)(Math.PI *2);
+
+            float trans = ((float)Math.Sin(transparence)) / 2 + 0.5f;
+            sb.Draw(textur, pos, rect, Color.White * trans);
         }
 
         public Texture2D gibTextur()
