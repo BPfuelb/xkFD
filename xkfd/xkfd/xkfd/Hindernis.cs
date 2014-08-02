@@ -28,6 +28,8 @@ namespace xkfd
 
         public static int punkteAnzahl = 0;
 
+        private static Game1 game1;
+
         // Generiert eine beliebige lange Liste von Hindernissen
         public static List<Hindernis> generieHindernisse(int anzahl, Texture2D hindernisSTextur, Texture2D hindernisATextur, Texture2D hindernisBTextur, Texture2D hindernisCTextur, Texture2D hindernisDTextur, Texture2D hindernisETextur, Texture2D hindernisZTextur, Punkt p1, Punkt p2, Punkt p5, Punkt p10, PowerUp powerUp, Texture2D special)
         {
@@ -86,6 +88,8 @@ namespace xkfd
         // Generiert eine beliebige lange Liste von Hindernissen
         public static List<Hindernis> generieHindernisse(int anzahl,Game1 game)
         {
+
+            game1 = game;
             // Init zufallsgenerator
             Random random = new Random();
 
@@ -98,7 +102,7 @@ namespace xkfd
            // Vier Startelemente nebeneinander (füllung des Bildschirms)
             liste.Add(new HindernisS(game.hindernisTexturS, new Vector2(0, 40)));
             liste.Add(new HindernisS(game.hindernisTexturS, new Vector2(320, 40)));
-            liste.Add(new HindernisS(game.hindernisTexturS, new Vector2(2 * 320, 40)));
+            liste.Add(new HindernisS(game.hindernisTexturS, new Vector2(2 * 320, 40), game.cheat_qr));
             liste.Add(new HindernisS(game.hindernisTexturS, new Vector2(3 * 320, 40)));
 
             int anzahlVerschiedenerHindernisse = 5;
@@ -209,12 +213,18 @@ namespace xkfd
             return hitboxListeStacheln;
         }
 
-        public void Draw(SpriteBatch sb)
+        public void DrawAni(SpriteBatch sb)
         {
-            if (special != null)
+            if (special == game1.zielEinlauf)
             {
-                if (specialAnimation == null) specialAnimation = new Animation(special, 2, 2, 8);
+                if (specialAnimation == null) 
+                    specialAnimation = new Animation(special, 2, 2, 8);
                 specialAnimation.Draw(sb, hindernisPosition + new Vector2(300,400));
+            }
+
+            if (special == game1.cheat_qr)
+            {
+                sb.Draw(special, hindernisPosition + new Vector2(300, 600), Color.White);
             }
         }
     }

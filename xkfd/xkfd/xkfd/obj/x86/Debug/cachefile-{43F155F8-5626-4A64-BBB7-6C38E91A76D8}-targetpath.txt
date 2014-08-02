@@ -94,3 +94,4 @@ Content\titel.xnb
 Content\titel.wma
 Content\InvertShader.xnb
 Content\SpriteFont3.xnb
+Content\cheat_qr.xnb

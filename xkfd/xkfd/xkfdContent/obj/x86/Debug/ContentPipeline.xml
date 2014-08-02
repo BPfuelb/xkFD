@@ -857,6 +857,15 @@
       <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\SpriteFont3.xnb</Output>
       <Time>2014-08-02T23:32:59.8560171+02:00</Time>
     </Item>
+    <Item>
+      <Source>cheat_qr.png</Source>
+      <Name>cheat_qr</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\cheat_qr.xnb</Output>
+      <Time>2014-08-03T00:16:47.3978962+02:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <TargetPlatform>Windows</TargetPlatform>
