@@ -524,6 +524,7 @@ namespace xkfd
                         if (hitbox.punkt.wertigkeit != 0)
                         {
                             spieler.punkte += hitbox.punkt.wertigkeit;
+                            hitbox.zielPosition += new Vector2(new Random().Next(640), 0);
                             spieler.gesammelteNoten.Add(hitbox);
                         }
                         else
@@ -661,19 +662,24 @@ namespace xkfd
                 #endregion
 
 
-            if (spieler.aktuellerZustand == spieler.sterben && spieler.gesammelteNoten.Count != 0)
+            if (spieler.aktuellerZustand == spieler.sterben)
             {
-                int zufall = new Random().Next(7)+1;
-
-                if (gameTime.TotalGameTime.Milliseconds % 500 == 0)
+                if (spieler.gesammelteNoten.Count > 0)
                 {
-                    if(spieler.gesammelteNoten.Count > zufall)
+                    int zufall = new Random().Next(spieler.gesammelteNoten.Count % 5) + 1;
+
+                    if (gameTime.TotalGameTime.Milliseconds % 500 == 0)
                     {
-                        notenFreilassen.AddRange(spieler.gesammelteNoten.GetRange(0,zufall));
-                        spieler.gesammelteNoten.RemoveRange(0,zufall);
+                        spieler.gesammelteNoten.GetRange(0, zufall).ForEach(delegate(NotenHitbox note)
+                        {
+                            spieler.punkte -= note.punkt.wertigkeit;
+                            note.setRichtung(spieler);
+                        });
+                        notenFreilassen.AddRange(spieler.gesammelteNoten.GetRange(0, zufall));
+                        spieler.gesammelteNoten.RemoveRange(0, zufall);
                     }
                 }
-                foreach(NotenHitbox note in notenFreilassen )
+                foreach (NotenHitbox note in notenFreilassen)
                 {
                     note.UpdateFreilassen();
                 }
@@ -682,7 +688,7 @@ namespace xkfd
 
 
             // Sterben wenn der Spieler auserhalb des Bildschirms ist
-            if (spieler.position.Y >= 1720 && menue.spielAktiv)
+            if (spieler.position.Y >= 800 && menue.spielAktiv)
             {
                 menue.spielAktiv = false; // setzt Menü nach Tod wieder auf anfang
                 hud.soundGameOverSoundInstance.Play();
@@ -934,7 +940,8 @@ namespace xkfd
 
                 notenPlatzerAnimation.Draw(spriteBatch, notenPlatzerPosition);
 
-                if(notenFreilassen.Count != 0){
+                if (notenFreilassen.Count != 0)
+                {
                     foreach (NotenHitbox note in notenFreilassen)
                     {
                         note.punkt.punktAnimation.Draw(spriteBatch, note.hitboxPosition);

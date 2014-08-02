@@ -22,7 +22,6 @@ namespace xkfd
 
         public Vector2 zielPosition;
         public Vector2 zielRichtung;
-        public Vector2 normalenVektor;
 
         public float rotation = 0;
 
@@ -32,9 +31,8 @@ namespace xkfd
             this.hindernis = hindernis;
             this.punkt = punkt;
             faellt = true;
-            Random rand = new Random();
             zielRichtung = new Vector2(0, 0);
-            zielPosition = new Vector2(320 + rand.Next(640), 10 + rand.Next(50));
+            zielPosition = new Vector2(320, 10);
         }
 
         public void Draw(SpriteBatch sb)
@@ -61,18 +59,23 @@ namespace xkfd
 
         public void UpdateFreilassen()
         {
-            hitboxPosition += zielRichtung;
+            hitboxPosition += zielRichtung + new Vector2((float)Math.Sin(hitboxPosition.Y / 720 * Math.PI * 2),0);
         }
 
-        public void setRichtung(Vector2 spielerPos)
+        public void setRichtung(Spieler spieler)
         {
-            zielRichtung = Vector2.Normalize(zielPosition - spielerPos);
+            if (((Sterben)spieler.sterben).aktuell != ((Sterben)spieler.sterben).klatscher)
+                hitboxPosition = spieler.position + new Vector2(80, 100);
+            else
+                hitboxPosition = new Vector2(540,800);
+
+            zielRichtung = Vector2.Normalize(zielPosition - spieler.position);
             rotation = (float)Math.Atan2(hitboxPosition.Y, hitboxPosition.X);
         }
 
         public void DrawFreilassen(SpriteBatch sb)
         {
-            sb.Draw(this.punkt.punktTextur,this.hitboxPosition,Color.White);
+            sb.Draw(this.punkt.punktTextur, this.hitboxPosition, Color.White);
         }
 
     }
