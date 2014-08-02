@@ -20,12 +20,16 @@ namespace xkfd
         public  HindernisS(Texture2D textur, Vector2 position)
             : base(textur, position)
         {
-
             bodenHitbox = new Hitbox((int)position.X, (int)position.Y + 488, 320, 200);
             hitboxListe.Add(bodenHitbox);
-
-            
         }
 
+        public HindernisS(Texture2D textur, Vector2 position, Texture2D special)
+            : base(textur, position)
+        {
+            this.special = special;
+            bodenHitbox = new Hitbox((int)position.X, (int)position.Y + 488, 320, 200);
+            hitboxListe.Add(bodenHitbox);
+        }
     }
 }

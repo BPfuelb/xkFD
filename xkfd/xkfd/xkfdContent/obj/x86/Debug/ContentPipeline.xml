@@ -785,6 +785,15 @@
       <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_gewinnen_einstein.xnb</Output>
       <Time>2014-08-02T00:03:45.3160916+02:00</Time>
     </Item>
+    <Item>
+      <Source>ani_jubelmenge.png</Source>
+      <Name>ani_jubelmenge</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_jubelmenge.xnb</Output>
+      <Time>2014-08-02T05:48:31.1847814+02:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <TargetPlatform>Windows</TargetPlatform>

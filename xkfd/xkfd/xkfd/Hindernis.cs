@@ -21,10 +21,13 @@ namespace xkfd
         public List<Hitbox> hitboxListeStacheln;
         public List<NotenHitbox> notenListe;
 
+        public Texture2D special;
+        public Animation specialAnimation;
+
         public static int punkteAnzahl = 0;
 
         // Generiert eine beliebige lange Liste von Hindernissen
-        public static List<Hindernis> generieHindernisse(int anzahl, Texture2D hindernisSTextur, Texture2D hindernisATextur, Texture2D hindernisBTextur, Texture2D hindernisCTextur, Texture2D hindernisDTextur, Texture2D hindernisETextur, Texture2D hindernisZTextur, Punkt p1, Punkt p2, Punkt p5, Punkt p10, PowerUp powerUp)
+        public static List<Hindernis> generieHindernisse(int anzahl, Texture2D hindernisSTextur, Texture2D hindernisATextur, Texture2D hindernisBTextur, Texture2D hindernisCTextur, Texture2D hindernisDTextur, Texture2D hindernisETextur, Texture2D hindernisZTextur, Punkt p1, Punkt p2, Punkt p5, Punkt p10, PowerUp powerUp, Texture2D special)
         {
             // Init zufallsgenerator
             Random random = new Random();
@@ -33,7 +36,7 @@ namespace xkfd
             List<Hindernis> liste = new List<Hindernis>();
 
             // Erstes Hindernis Links vom Bildschirm
-            liste.Add(new HindernisS(hindernisSTextur, new Vector2(-320, 40)));
+            liste.Add(new HindernisS(hindernisSTextur, new Vector2(-320, 40), special));
 
             // Vier Startelemente nebeneinander (füllung des Bildschirms)
             liste.Add(new HindernisS(hindernisSTextur, new Vector2(0, 40)));
@@ -67,7 +70,7 @@ namespace xkfd
             }
 
             // Füge zum Schluss das Ziel hinzu
-            liste.Add(new HindernisS(hindernisZTextur, new Vector2(1280, 40)));
+            liste.Add(new HindernisS(hindernisZTextur, new Vector2(1280, 40),special));
             liste.Add(new HindernisS(hindernisSTextur, new Vector2(1280, 40)));
             liste.Add(new HindernisS(hindernisSTextur, new Vector2(1280, 40)));
             liste.Add(new HindernisS(hindernisSTextur, new Vector2(1280, 40)));
@@ -112,6 +115,24 @@ namespace xkfd
                 stachel.moveX(4);
             }
 
+            if (special != null)
+            {
+                // Game Over Animation
+                if (specialAnimation == null) specialAnimation= new Animation(special, 2, 2, 4);
+                specialAnimation.Update();
+            }
+
+        }
+
+        public void UpdateAnimation()
+        {
+
+            if (special != null)
+            {
+                // Game Over Animation
+                if (specialAnimation == null) specialAnimation = new Animation(special, 2, 2, 4);
+                specialAnimation.Update();
+            }
         }
 
         public virtual List<Hitbox> gibHitboxen()
@@ -132,6 +153,15 @@ namespace xkfd
         public virtual List<Hitbox> gibSterben()
         {
             return hitboxListeStacheln;
+        }
+
+        public void Draw(SpriteBatch sb)
+        {
+            if (special != null)
+            {
+                if (specialAnimation == null) specialAnimation = new Animation(special, 2, 2, 8);
+                specialAnimation.Draw(sb, hindernisPosition + new Vector2(300,400));
+            }
         }
     }
 }

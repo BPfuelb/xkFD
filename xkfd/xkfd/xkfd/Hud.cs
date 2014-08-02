@@ -72,7 +72,7 @@ namespace xkfd
             positionTastaturbelegung = new Vector2(100, -250);
             positionCheckbox = new Vector2(1150, -12);
 
-            positionPunkte = new Vector2(200, 15);
+            positionPunkte = new Vector2(100, 15);
             positionTimer = new Vector2(1000, 640);
 
 
