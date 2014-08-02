@@ -22,6 +22,7 @@ namespace xkfd
         public Zustand sterben;
         public Zustand gewinnen;
         public Zustand fallen;
+        public Zustand cheaten;
 
         public Zustand aktuellerZustand;
 
@@ -51,7 +52,10 @@ namespace xkfd
         public Boolean teleport;
 
         public List<NotenHitbox> gesammelteNoten;
-        
+
+        // float für hitboxen
+        float count;
+
         // Konstruktor
         public Spieler()
         {
@@ -65,6 +69,7 @@ namespace xkfd
             sterben = new Sterben(this);
             gewinnen = new Gewinnen(this);
             fallen = new Fallen(this);
+            cheaten = new Cheaten(this);
 
             aktuellerZustand = laufen; // Startzustand
 
@@ -177,6 +182,24 @@ namespace xkfd
             hitboxKoerper.Y -= y * faktor;
         }
 
+        public void movePlayerUp(float y)
+        {
+            count += y;
+
+            position.Y -= y ;
+
+            if (count >= 1)
+            {
+                spielerPosition.Y -= 1;
+
+                hitboxKopf.Y -= 1;
+                hitboxFuss.Y -= 1;
+                hitboxBeine.Y -= 1;
+                hitboxKoerper.Y -= 1;
+                count--;
+            }
+        }
+
         public void movePlayerDown(int y)
         {
             const int faktor = 1;
@@ -187,6 +210,23 @@ namespace xkfd
             hitboxFuss.Y += y * faktor;
             hitboxBeine.Y += y * faktor;
             hitboxKoerper.Y += y * faktor;
+        }
+
+        public void movePlayerDown(float y)
+        {
+            position.Y += y;
+
+            count += y;
+            if (count >= 1)
+            {
+                spielerPosition.Y += 1;
+
+                hitboxKopf.Y += 1;
+                hitboxFuss.Y += 1;
+                hitboxBeine.Y += 1;
+                hitboxKoerper.Y += 1;
+                count--;
+            }
         }
 
         public void setPlayerPosition(int y)

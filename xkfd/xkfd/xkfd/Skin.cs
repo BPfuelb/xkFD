@@ -15,11 +15,11 @@ namespace xkfd
     {
         // Texturen Skin
         public Texture2D laufenTextur, duckenTextur, fallenTextur, gleitenTextur, sprignenTextur,
-            gewinnenTextur, sterbenTexturKoepfen, sterbenTexturStolpern, sterbenTexturKlatscher, sterbenTexturPieksen;
+            gewinnenTextur, cheatenTextur, sterbenTexturKoepfen, sterbenTexturStolpern, sterbenTexturKlatscher, sterbenTexturPieksen;
 
         // Animationen
         public Animation laufenAnimation, duckenAnimation, fallenAnimation, gleitenAnimation, sprignenAnimation,
-            gewinnenAnimation, sterbenAnimationKoepfen, sterbenAnimationStolpern, sterbenAnimationKlatscher, sterbenAnimationPieksen;
+            gewinnenAnimation, cheatenAnimation, sterbenAnimationKoepfen, sterbenAnimationStolpern, sterbenAnimationKlatscher, sterbenAnimationPieksen;
 
         public Skin()
         {

@@ -21,7 +21,7 @@ namespace xkfd
         Boolean debug = false;
 
         // Spiel Status
-        enum Gamestate { running, menue, options, ladebildschirm };
+        enum Gamestate { running, menue, options, ladebildschirm, cheat };
         Gamestate gamestate = Gamestate.menue;
 
         // Spieler
@@ -91,6 +91,10 @@ namespace xkfd
         PowerUp powerUp;
 
         int notenFallSchrittweite = 0;
+
+        Boolean cheat = false;
+        int flugLaenge;
+        Boolean zielInSicht = false;
 
         // Punkte Liste
         List<NotenHitbox> punkteListeDraw = new List<NotenHitbox>();
@@ -171,6 +175,8 @@ namespace xkfd
             standardSkin.gleitenTextur = Content.Load<Texture2D>("ani_gleiten_std");
             standardSkin.laufenTextur = Content.Load<Texture2D>("ani_laufen_std");
             standardSkin.sprignenTextur = Content.Load<Texture2D>("ani_springen_std");
+
+            standardSkin.cheatenTextur = Content.Load<Texture2D>("ani_laufen_std");
 
             standardSkin.sterbenTexturKoepfen = Content.Load<Texture2D>("ani_sterben1_koepfen_std");
             standardSkin.sterbenTexturStolpern = Content.Load<Texture2D>("ani_sterben2_stolpern_std");
@@ -298,7 +304,7 @@ namespace xkfd
             hindernisTexturZ = Content.Load<Texture2D>("hindernisZ");
 
             // Liste mit Hindernisse die generiert werden
-            hindernisListe = Hindernis.generieHindernisse(10, hindernisTexturS, hindernisTexturA, hindernisTexturB, hindernisTexturC, hindernisTexturD, hindernisTexturE, hindernisTexturZ, punkt1, punkt2, punkt5, punkt10, powerUp);
+           //  hindernisListe = Hindernis.generieHindernisse(10, hindernisTexturS, hindernisTexturA, hindernisTexturB, hindernisTexturC, hindernisTexturD, hindernisTexturE, hindernisTexturZ, punkt1, punkt2, punkt5, punkt10, powerUp);
 
 
             // HudTextur
@@ -441,12 +447,18 @@ namespace xkfd
                     gamestate = Gamestate.menue;
                 }
 
+                if (Keyboard.GetState().IsKeyDown(Keys.LeftControl) && Keyboard.GetState().IsKeyDown(Keys.LeftAlt) && Keyboard.GetState().IsKeyDown(Keys.Insert))
+                {
+                    spieler.aktuellerZustand = spieler.cheaten;
+                    gamestate = Gamestate.cheat;
+                    cheat = true;
+                }
+
                 if ((spieler.aktuellerZustand == spieler.sterben || spieler.aktuellerZustand == spieler.gewinnen) && Keyboard.GetState().IsKeyDown(Keys.Enter))
                 {
                     gamestate = Gamestate.menue;
                 }
                 #endregion
-
 
                 #region Aktualisierung_Hindernisse_Punkte
 
@@ -661,6 +673,7 @@ namespace xkfd
             }
                 #endregion
 
+            #region Notenfreilassen nach Tod
 
             if (spieler.aktuellerZustand == spieler.sterben)
             {
@@ -683,8 +696,10 @@ namespace xkfd
                 {
                     note.UpdateFreilassen();
                 }
-
             }
+
+            #endregion
+
 
 
             // Sterben wenn der Spieler auserhalb des Bildschirms ist
@@ -763,6 +778,141 @@ namespace xkfd
 
             #endregion
 
+            #endregion
+
+            #region GamestateCheat
+
+            if (gamestate == Gamestate.cheat)
+            {
+                // Hud Update
+                hud.Update(gameTime);
+
+                // Update spieler
+                spieler.Update();
+
+
+
+                // Escape ins Menü zurück kehren
+                if (Keyboard.GetState().IsKeyDown(Keys.Escape) && OldKeyState.IsKeyUp(Keys.Escape))
+                {
+                    menue.auswahl = 2; // Auswahl auf Forsetzen bzw. Starten setzten
+                    gamestate = Gamestate.menue;
+                }
+
+
+                #region Spieler Position
+                if (hindernisListe.Count <= 11)
+                {
+                    zielInSicht = true;
+                }
+
+                if (spieler.position.Y >= 50 && !zielInSicht)
+                {
+                    spieler.movePlayerUp((float)Math.Sin(  (spieler.position.Y - 50) / 360));
+                }
+                else if (spieler.position.Y <= 420)
+                {
+                    spieler.movePlayerDown((float)Math.Sin((1200 - spieler.position.Y)/1000));
+                }
+                else
+                    spieler.doGewinnen(); // Wenn weniger als 6 Hindernisse vorhanden sind gehe in den Gewinnenzustand über
+
+
+                #endregion
+
+                #region Aktualisierung_Hindernisse_Punkte
+
+                // Aktualisiere Hindernisse (schiebe Hindernisse Weiter)
+                if (hindernisListe.Count > 6 && spieler.aktuellerZustand != spieler.sterben)
+                {
+                    // Listen mit Punkten Clearen
+                    punkteListeDraw.Clear();
+                    punkteListeKollisionen.Clear();
+
+                    hindernisListe[0].Update();
+                    punkteListeDraw.AddRange(hindernisListe[0].gibPunkte());
+
+                    hindernisListe[1].Update();
+                    punkteListeDraw.AddRange(hindernisListe[1].gibPunkte());
+
+                    hindernisListe[2].Update();
+                    punkteListeKollisionen.AddRange(hindernisListe[2].gibPunkte());
+
+                    hindernisListe[3].Update();
+                    punkteListeKollisionen.AddRange(hindernisListe[3].gibPunkte());
+
+                    hindernisListe[4].Update();
+                    punkteListeDraw.AddRange(hindernisListe[4].gibPunkte());
+
+                    hindernisListe[5].Update();
+                    punkteListeDraw.AddRange(hindernisListe[5].gibPunkte());
+
+                    // Wenn das Hindernis an Position 1 Außerhalb des Bildes ist lösche das Hindernis an Position 0
+                    if (hindernisListe[1].hindernisPosition.X <= -320)
+                        hindernisListe.RemoveAt(0);
+                    hintergrund.Update();
+                }
+                #endregion
+
+                #region Noten/Powerup Animation  aktualisierung
+                punkt1.punktAnimation.Update();
+                punkt2.punktAnimation.Update();
+                punkt5.punktAnimation.Update();
+                punkt10.punktAnimation.Update();
+                powerUp.punktAnimation.Update();
+                #endregion
+
+
+                #region GewonnenAktionen
+                if (hindernisListe.Count == 6)
+                {
+                    if (spieler.aktuellerZustand == spieler.cheaten)
+                    {
+                        if (menue.spielAktiv)
+                        {
+                            menue.spielAktiv = false;
+                            gewonnen++;
+                            hud.gewonnen = true;
+                            konfig.WriteFile(gewonnen.ToString());
+                        }
+
+                    }
+                    if (hud.gewonnen)
+                        hud.UpdateAchievment();
+                }
+
+                #endregion
+
+
+                foreach(NotenHitbox note in punkteListeKollisionen)
+                {
+                    note.zielPosition = Vector2.Normalize(spieler.position + new Vector2(20,50) - note.hitboxPosition);
+                    note.UpdateSammeln();
+                }
+
+                #region PunkteKollisionen
+
+                foreach (NotenHitbox hitbox in punkteListeKollisionen)
+                {
+                    if (spieler.hitboxKoerper.Intersects(hitbox.hitboxRect))
+                    {
+                        notenPlatzerAnimation.index = 0;
+                        notenPlatzerPosition = hitbox.hitboxPosition - new Vector2(16, 16);
+                        if (hitbox.punkt.wertigkeit != 0)
+                        {
+                            spieler.punkte += hitbox.punkt.wertigkeit;
+                            hitbox.zielPosition += new Vector2(new Random().Next(640), 0);
+                            spieler.gesammelteNoten.Add(hitbox);
+                        }
+                        else
+                            spieler.teleport = true;
+                        hitbox.hindernis.loescheHitboxPunkt(hitbox);
+                        hitbox.punkt.playSound();
+                    }
+                }
+
+                #endregion
+            }
             #endregion
 
             #region GamestateMenue
@@ -1024,6 +1174,140 @@ namespace xkfd
             }
             #endregion
 
+
+            #region GamestateCheaten
+
+            if (gamestate == Gamestate.cheat)
+            {
+
+
+                // spriteBatch.Draw(spieler.spielerTextur, spieler.position, Color.White);
+
+                hud.Draw(spriteBatch, schrift_40, Hindernis.punkteAnzahl, gameTime);
+
+
+                // Hindernisse zeichnen
+                spriteBatch.Draw(hindernisListe[1].hindernisTextur, hindernisListe[1].hindernisPosition, Color.White);
+                spriteBatch.Draw(hindernisListe[2].hindernisTextur, hindernisListe[2].hindernisPosition, Color.White);
+                spriteBatch.Draw(hindernisListe[3].hindernisTextur, hindernisListe[3].hindernisPosition, Color.White);
+                spriteBatch.Draw(hindernisListe[4].hindernisTextur, hindernisListe[4].hindernisPosition, Color.White);
+                spriteBatch.Draw(hindernisListe[5].hindernisTextur, hindernisListe[5].hindernisPosition, Color.White);
+
+
+
+
+
+                foreach (NotenHitbox notenHitbox in hindernisListe[1].gibPunkte())
+                {
+                    notenHitbox.Draw(spriteBatch);
+                }
+
+                foreach (NotenHitbox notenHitbox in hindernisListe[2].gibPunkte())
+                {
+                    notenHitbox.Draw(spriteBatch);
+                }
+
+                foreach (NotenHitbox notenHitbox in hindernisListe[3].gibPunkte())
+                {
+                    notenHitbox.Draw(spriteBatch);
+                }
+
+                foreach (NotenHitbox notenHitbox in hindernisListe[4].gibPunkte())
+                {
+                    notenHitbox.Draw(spriteBatch);
+                }
+
+                foreach (NotenHitbox notenHitbox in hindernisListe[5].gibPunkte())
+                {
+                    notenHitbox.Draw(spriteBatch);
+                }
+
+                notenPlatzerAnimation.Draw(spriteBatch, notenPlatzerPosition);
+
+                if (notenFreilassen.Count != 0)
+                {
+                    foreach (NotenHitbox note in notenFreilassen)
+                    {
+                        note.punkt.punktAnimation.Draw(spriteBatch, note.hitboxPosition);
+                    }
+
+                }
+
+                #region Debugsection
+                if (debug)
+                {
+                    foreach (Hindernis hindernis in hindernisListe)
+                    {
+                        foreach (Hitbox hitbox in hindernis.gibHitboxen())
+                        {
+                            spriteBatch.Draw(dummyTexture, hitbox.hitboxRect, Color.Red);
+                        }
+
+                        foreach (Hitbox hitbox in hindernis.gibSterben())
+                        {
+                            spriteBatch.Draw(dummyTexture2, hitbox.hitboxRect, Color.Green);
+                        }
+                    }
+
+                    // Punkte/Noten Zeichnen
+
+                    foreach (NotenHitbox note in punkteListeDraw)
+                    {
+                        spriteBatch.Draw(dummyTexture, note.hitboxRect, Color.Red);
+                    }
+
+                    foreach (NotenHitbox note in punkteListeKollisionen)
+                    {
+                        spriteBatch.Draw(dummyTexture, note.hitboxRect, Color.Red);
+                    }
+
+
+                    // Spieler Hitbox malen zum Testen
+                    //  spriteBatch.Draw(dummyTexture2, spieler.hitboxFussRechts, Color.Green);
+                    spriteBatch.DrawString(schrift_40, "X: " + spieler.position.X + " Y: " + spieler.position.Y, new Vector2(0, 0), Color.Black);
+
+                    spriteBatch.Draw(dummyTexture2, spieler.spielerPosition, Color.Green);
+                    spriteBatch.Draw(dummyTexture2, spieler.hitboxFuss, Color.Green);
+
+                    // spriteBatch.Draw(dummyTexture2, spieler.hitboxKopf, Color.Blue);
+                    spriteBatch.Draw(dummyTexture2, spieler.hitboxKopf, Color.Green);
+                    spriteBatch.Draw(dummyTexture2, spieler.hitboxBeine, Color.Green);
+
+                    spriteBatch.Draw(dummyTexture2, spieler.hitboxKoerper, Color.Blue);
+
+                }
+                #endregion
+
+
+                // Zeichne Spieler
+                spieler.Draw(spriteBatch);
+
+                #region AchievmentAnzeigen
+                if (gewonnen == 1)
+                {
+                    hud.aktuellerUnlock = hud.skin_frau;
+                    hud.DrawAchivment(spriteBatch);
+                }
+                else if (gewonnen == 5)
+                {
+                    hud.aktuellerUnlock = hud.skin_hut;
+                    hud.DrawAchivment(spriteBatch);
+                }
+                else if (gewonnen == 10)
+                {
+                    hud.aktuellerUnlock = hud.skin_einstein;
+                    hud.DrawAchivment(spriteBatch);
+                }
+                #endregion
+
+
+
+
+                // Titel sound aus
+                MediaPlayer.Pause();
+            }
+            #endregion
+
             #region GamestateMenue
             if (gamestate == Gamestate.menue)
             {
@@ -1069,6 +1353,8 @@ namespace xkfd
             if (standardSkin.gleitenAnimation == null) standardSkin.gleitenAnimation = new Animation(standardSkin.gleitenTextur, 2, 2, 6);
             if (standardSkin.laufenAnimation == null) standardSkin.laufenAnimation = new Animation(standardSkin.laufenTextur, 4, 3, 3);
             if (standardSkin.sprignenAnimation == null) standardSkin.sprignenAnimation = new Animation(standardSkin.sprignenTextur, 4, 2, 6);
+
+            if (standardSkin.cheatenAnimation== null) standardSkin.cheatenAnimation= new Animation(standardSkin.cheatenTextur, 4, 3, 3);
 
             if (standardSkin.sterbenAnimationKoepfen == null) standardSkin.sterbenAnimationKoepfen = new Animation(standardSkin.sterbenTexturKoepfen, 2, 5, 6);
             if (standardSkin.sterbenAnimationStolpern == null) standardSkin.sterbenAnimationStolpern = new Animation(standardSkin.sterbenTexturStolpern, 2, 5, 6);
@@ -1153,6 +1439,8 @@ namespace xkfd
             notenFallSchrittweite = 0;
             ((Fallen)spieler.fallen).beschleunigung = 0;
 
+            cheat = false;
+            zielInSicht = false;
             notenFreilassen.Clear();
 
             spieler.aktuellerSkin = optionen.skinListe[optionen.auswahl];
@@ -1162,7 +1450,7 @@ namespace xkfd
             spieler.aktuellerSkin.sterbenAnimationStolpern.index = 0;
             spieler.aktuellerSkin.sterbenAnimationPieksen.index = 0;
 
-            hindernisListe = Hindernis.generieHindernisse(10, hindernisTexturS, hindernisTexturA, hindernisTexturB, hindernisTexturC, hindernisTexturD, hindernisTexturE, hindernisTexturZ, punkt1, punkt2, punkt5, punkt10, powerUp);
+            hindernisListe = Hindernis.generieHindernisse(20, hindernisTexturS, hindernisTexturA, hindernisTexturB, hindernisTexturC, hindernisTexturD, hindernisTexturE, hindernisTexturZ, punkt1, punkt2, punkt5, punkt10, powerUp);
 
         }
     }

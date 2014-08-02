@@ -109,6 +109,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Animation.cs" />
+    <Compile Include="Cheaten.cs" />
     <Compile Include="Ducken.cs" />
     <Compile Include="Fallen.cs" />
     <Compile Include="Gewinnen.cs" />

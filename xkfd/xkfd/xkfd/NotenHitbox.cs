@@ -23,8 +23,6 @@ namespace xkfd
         public Vector2 zielPosition;
         public Vector2 zielRichtung;
 
-        public float rotation = 0;
-
         public NotenHitbox(Punkt punkt, Hindernis hindernis, int posX, int posY, int width, int height)
             : base(posX, posY, width, height)
         {
@@ -62,6 +60,14 @@ namespace xkfd
             hitboxPosition += zielRichtung + new Vector2((float)Math.Sin(hitboxPosition.Y / 720 * Math.PI * 2),0);
         }
 
+        public void UpdateSammeln()
+        {
+            hitboxPosition += (zielPosition) * 7;
+
+            hitboxRect.Y += (int)(zielPosition.Y * 7)-1;
+            hitboxRect.X += (int)(zielPosition.X * 7);
+        }
+
         public void setRichtung(Spieler spieler)
         {
             if (((Sterben)spieler.sterben).aktuell != ((Sterben)spieler.sterben).klatscher)
@@ -70,8 +76,8 @@ namespace xkfd
                 hitboxPosition = new Vector2(540,800);
 
             zielRichtung = Vector2.Normalize(zielPosition - spieler.position);
-            rotation = (float)Math.Atan2(hitboxPosition.Y, hitboxPosition.X);
         }
+
 
         public void DrawFreilassen(SpriteBatch sb)
         {
