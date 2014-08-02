@@ -96,6 +96,8 @@ namespace xkfd
         List<NotenHitbox> punkteListeDraw = new List<NotenHitbox>();
         List<NotenHitbox> punkteListeKollisionen = new List<NotenHitbox>();
 
+        List<NotenHitbox> notenFreilassen = new List<NotenHitbox>();
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -122,7 +124,7 @@ namespace xkfd
             punkt2 = new Punkt(2);
             punkt5 = new Punkt(5);
             punkt10 = new Punkt(10);
-            
+
             // Powerup
             powerUp = new PowerUp();
 
@@ -135,7 +137,7 @@ namespace xkfd
             // www.xkcd.com/221
 
             return 4;   // chosen by fair dice roll.
-                        // guaranteed to be random.
+            // guaranteed to be random.
         }
 
         protected override void Initialize()
@@ -303,7 +305,7 @@ namespace xkfd
             hudTextur = new Texture2D(GraphicsDevice, 1, 1);
             hudTextur.SetData(new Color[] { Color.Gray });
 
-            
+
 
             // Logo
             logo = Content.Load<Texture2D>("logo");
@@ -519,11 +521,14 @@ namespace xkfd
                     {
                         notenPlatzerAnimation.index = 0;
                         notenPlatzerPosition = hitbox.hitboxPosition - new Vector2(16, 16);
-                        hitbox.hindernis.loescheHitboxPunkt(hitbox);
                         if (hitbox.punkt.wertigkeit != 0)
+                        {
                             spieler.punkte += hitbox.punkt.wertigkeit;
+                            spieler.gesammelteNoten.Add(hitbox);
+                        }
                         else
                             spieler.teleport = true;
+                        hitbox.hindernis.loescheHitboxPunkt(hitbox);
                         hitbox.punkt.playSound();
                     }
                 }
@@ -624,7 +629,7 @@ namespace xkfd
                             hud.soundGameOverSoundInstance.Play();
                             spieler.doSterben();
                         }
-                        else if (spieler.hitboxKopf.Intersects(hitbox.hitboxRect) )//  && !spieler.hitboxBeine.Intersects(hitbox.hitboxRect))
+                        else if (spieler.hitboxKopf.Intersects(hitbox.hitboxRect))//  && !spieler.hitboxBeine.Intersects(hitbox.hitboxRect))
                         {
                             menue.spielAktiv = false;
                             Boolean kollidiertBoden = false;
@@ -642,7 +647,7 @@ namespace xkfd
                             menue.spielAktiv = false;
                             spieler.doSterben();
                         }
-                        else if (spieler.hitboxBeine.Intersects(hitbox.hitboxRect) ) //&& !spieler.hitboxKopf.Intersects(hitbox.hitboxRect))
+                        else if (spieler.hitboxBeine.Intersects(hitbox.hitboxRect)) //&& !spieler.hitboxKopf.Intersects(hitbox.hitboxRect))
                         {
                             spieler.setPlayerPosition(hitbox.hitboxRect.Top - 80);
                             menue.spielAktiv = false;
@@ -655,6 +660,25 @@ namespace xkfd
             }
                 #endregion
 
+
+            if (spieler.aktuellerZustand == spieler.sterben && spieler.gesammelteNoten.Count != 0)
+            {
+                int zufall = new Random().Next(7)+1;
+
+                if (gameTime.TotalGameTime.Milliseconds % 500 == 0)
+                {
+                    if(spieler.gesammelteNoten.Count > zufall)
+                    {
+                        notenFreilassen.AddRange(spieler.gesammelteNoten.GetRange(0,zufall));
+                        spieler.gesammelteNoten.RemoveRange(0,zufall);
+                    }
+                }
+                foreach(NotenHitbox note in notenFreilassen )
+                {
+                    note.UpdateFreilassen();
+                }
+
+            }
 
 
             // Sterben wenn der Spieler auserhalb des Bildschirms ist
@@ -869,7 +893,7 @@ namespace xkfd
 
                 // spriteBatch.Draw(spieler.spielerTextur, spieler.position, Color.White);
 
-                hud.Draw(spriteBatch, schrift_40,Hindernis.punkteAnzahl, gameTime);
+                hud.Draw(spriteBatch, schrift_40, Hindernis.punkteAnzahl, gameTime);
 
 
                 // Hindernisse zeichnen
@@ -910,6 +934,13 @@ namespace xkfd
 
                 notenPlatzerAnimation.Draw(spriteBatch, notenPlatzerPosition);
 
+                if(notenFreilassen.Count != 0){
+                    foreach (NotenHitbox note in notenFreilassen)
+                    {
+                        note.punkt.punktAnimation.Draw(spriteBatch, note.hitboxPosition);
+                    }
+
+                }
 
                 #region Debugsection
                 if (debug)
@@ -979,7 +1010,7 @@ namespace xkfd
                 #endregion
 
 
-                
+
 
                 // Titel sound aus
                 MediaPlayer.Pause();
@@ -1035,7 +1066,7 @@ namespace xkfd
             if (standardSkin.sterbenAnimationKoepfen == null) standardSkin.sterbenAnimationKoepfen = new Animation(standardSkin.sterbenTexturKoepfen, 2, 5, 6);
             if (standardSkin.sterbenAnimationStolpern == null) standardSkin.sterbenAnimationStolpern = new Animation(standardSkin.sterbenTexturStolpern, 2, 5, 6);
             if (standardSkin.sterbenAnimationKlatscher == null) standardSkin.sterbenAnimationKlatscher = new Animation(standardSkin.sterbenTexturKlatscher, 12, 1, 7);
-            if (standardSkin.sterbenAnimationPieksen == null) standardSkin.sterbenAnimationPieksen= new Animation(standardSkin.sterbenTexturPieksen, 2, 5, 6);
+            if (standardSkin.sterbenAnimationPieksen == null) standardSkin.sterbenAnimationPieksen = new Animation(standardSkin.sterbenTexturPieksen, 2, 5, 6);
 
             // Fraud Skin
             if (frauenSkin.duckenAnimation == null) frauenSkin.duckenAnimation = new Animation(frauenSkin.duckenTextur, 4, 4, 4);
@@ -1114,7 +1145,8 @@ namespace xkfd
             Hindernis.punkteAnzahl = 0;
             notenFallSchrittweite = 0;
             ((Fallen)spieler.fallen).beschleunigung = 0;
-            
+
+            notenFreilassen.Clear();
 
             spieler.aktuellerSkin = optionen.skinListe[optionen.auswahl];
 

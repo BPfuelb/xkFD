@@ -24,12 +24,12 @@ namespace xkfd
         public SoundEffect sound;
         public SoundEffectInstance soundSoundInstance;
 
+
+
         public Punkt(int wertigkeit)
         {
             aktuelleAnimation = punktAnimation;
             this.wertigkeit = wertigkeit;
-
-
         }
 
         public void initSound(SoundEffect sound)

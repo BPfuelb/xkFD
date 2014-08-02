@@ -50,6 +50,7 @@ namespace xkfd
         // Teleport Resource
         public Boolean teleport;
 
+        public List<NotenHitbox> gesammelteNoten;
         
         // Konstruktor
         public Spieler()
@@ -76,6 +77,8 @@ namespace xkfd
             hitboxBeine = new Rectangle((int)position.X + 50, (int)position.Y +40 , 10, 40);
             hitboxFuss = new Rectangle((int)position.X+20, (int)position.Y + 110, 30, 10);
             hitboxKoerper = new Rectangle((int)position.X +10, (int)position.Y, 40, 100);
+
+            gesammelteNoten = new List<NotenHitbox>();
         }
 
 
