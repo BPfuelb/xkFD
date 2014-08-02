@@ -74,13 +74,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="hintergrund.png">
-      <Name>hintergrund</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="m_continue.png">
       <Name>m_continue</Name>
       <Importer>TextureImporter</Importer>
@@ -663,14 +656,12 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="hintergrund1.png">
-      <Name>hintergrund1</Name>
+    <Compile Include="hintergrund.jpg">
+      <Name>hintergrund</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="hintergrund_cheat_inv.png">
+    <Compile Include="hintergrund_cheat_inv.jpg">
       <Name>hintergrund_cheat_inv</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
