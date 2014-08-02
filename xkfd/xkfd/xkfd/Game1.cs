@@ -262,6 +262,7 @@ namespace xkfd
             menue.radioTexture = Content.Load<Texture2D>("radio");
 
             // Hintergrund
+            hintergrund.aktuelleTextur = Content.Load<Texture2D>("hintergrund");
             hintergrund.hintergrundTextur = Content.Load<Texture2D>("hintergrund");
             hintergrund.hintergrundTexturCheat = Content.Load<Texture2D>("hintergrund_cheat_inv");
 

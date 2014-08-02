@@ -94,4 +94,3 @@ Content\ani_cheaten_std.xnb
 Content\InvertShader.xnb
 Content\hintergrund1.xnb
 Content\hintergrund_cheat_inv.xnb
-Content\hintergrund_cheat.xnb

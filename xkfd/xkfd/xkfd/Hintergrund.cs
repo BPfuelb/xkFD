@@ -18,31 +18,41 @@ namespace xkfd
         public Texture2D hintergrundTexturCheat;
         public Texture2D aktuelleTextur;
 
-        public Vector2 hintegrundPosition;
+        /*
+        public Vector2 hintegrundPosition1;
+        public Vector2 hintegrundPosition2;
+        public Vector2 hintegrundPosition3;*/
+
+        private int xPos = 0;
+        
 
         public Hintergrund()
         {
             aktuelleTextur = hintergrundTextur;
-            hintegrundPosition = new Vector2(0, 0);
         }
 
         public void Update()
         {
-            hintegrundPosition.X -= 4 ;
-            if (hintegrundPosition.X <= -1024)
-                hintegrundPosition.X = 0;
+            xPos = (xPos - 4 + 1024) % 1024 - 1024;
         }
 
         public void Update(int geschwindigkeit)
         {
+            xPos = (xPos - geschwindigkeit + 1024) % 1024 - 1024;
+
+            /*
             hintegrundPosition.X -= geschwindigkeit;
             if (hintegrundPosition.X <= -1024)
-                hintegrundPosition.X = 0;
+                hintegrundPosition.X = 0;*/
         }
 
         public void Draw(SpriteBatch sb)
         {
-            sb.Draw(hintergrundTextur, hintegrundPosition, Color.White);
+            //sb.Draw(hintergrundTextur, hintegrundPosition, Color.White);
+            sb.Draw(aktuelleTextur, new Vector2(xPos, 0), Color.White);
+            sb.Draw(aktuelleTextur, new Vector2(xPos + 1024, 0), Color.White);
+            sb.Draw(aktuelleTextur, new Vector2(xPos + 2048, 0), Color.White);
+            sb.Draw(aktuelleTextur, new Vector2(xPos + 3072, 0), Color.White);
         }
     }
 }
