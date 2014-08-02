@@ -55,6 +55,7 @@ namespace xkfd
         public Boolean updateAchievement;
         public Boolean achievementOben;
         private int achievementDauer;
+        public Color schriftFarbe;
 
         // Zeit zähler
         int timer = 0;
@@ -82,6 +83,7 @@ namespace xkfd
             achievementDauer = 0;
 
             gameOverPosition = new Vector2(100,100);
+            schriftFarbe = Color.Black;
         }
 
 
@@ -114,23 +116,24 @@ namespace xkfd
 
         public void Draw(SpriteBatch sb, SpriteFont schrift, int maxPunkte, GameTime gt)
         {
-            sb.DrawString(schrift, "Gleiten: " + counter, positionGleitenAnzeige, Color.Black);
-            sb.DrawString(schrift, "Punkte: " + spieler.punkte + "/" + maxPunkte, positionPunkte, Color.Black);
+            sb.DrawString(schrift, "Gleiten: " + counter, positionGleitenAnzeige, schriftFarbe);
+            sb.DrawString(schrift, "Punkte: " + spieler.punkte + "/" + maxPunkte, positionPunkte, schriftFarbe);
 
             if (spieler.aktuellerZustand == spieler.sterben)
             {
                 gameOverAnimation.DrawTransparent(sb, gameOverPosition);
             }
 
-            sb.Draw(teleport, positionCheckbox + new Vector2(-10, 25), Color.White);
+            sb.Draw(teleport, positionCheckbox + new Vector2(-10, 25), schriftFarbe);
             if (spieler.teleport)
-                sb.Draw(checkBox_check, positionCheckbox, Color.White);
+                sb.Draw(checkBox_check, positionCheckbox, schriftFarbe);
             else
-                sb.Draw(checkBox_uncheck, positionCheckbox, Color.White);
+                sb.Draw(checkBox_uncheck, positionCheckbox, schriftFarbe);
 
 			// Timer in Trialsystem anzeigen
-            sb.DrawString(schrift, CalcTrial(timer), new Vector2(positionTimer.X - schrift.MeasureString(CalcTrial(timer)).Length(), positionTimer.Y), Color.Black, 0, new Vector2(0, 0), 1f, SpriteEffects.None, 0f);
+            sb.DrawString(schrift, CalcTrial(timer), new Vector2(positionTimer.X - schrift.MeasureString(CalcTrial(timer)).Length(), positionTimer.Y), schriftFarbe, 0, new Vector2(0, 0), 1f, SpriteEffects.None, 0f);
         }
+
 
         public void UpdateAchievment()
         {

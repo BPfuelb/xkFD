@@ -226,3 +226,4 @@ C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\pop.x
 C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\teleportAufladen.xnb
 C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ooh.xnb
 C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\InvertShader.xnb
+D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\SpriteFont3.xnb

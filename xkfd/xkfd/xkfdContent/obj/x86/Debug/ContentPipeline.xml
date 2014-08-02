@@ -846,7 +846,16 @@
       <Processor>EffectProcessor</Processor>
       <Options>None</Options>
       <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\InvertShader.xnb</Output>
-      <Time>2014-08-02T10:19:03.1312906+02:00</Time>
+      <Time>2014-08-02T23:57:37.3751187+02:00</Time>
+    </Item>
+    <Item>
+      <Source>SpriteFont3.spritefont</Source>
+      <Name>SpriteFont3</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\SpriteFont3.xnb</Output>
+      <Time>2014-08-02T23:32:59.8560171+02:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>

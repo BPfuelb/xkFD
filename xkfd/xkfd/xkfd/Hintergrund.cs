@@ -24,7 +24,8 @@ namespace xkfd
         public Vector2 hintegrundPosition3;*/
 
         private int xPos = 0;
-        
+        private int yPos = 0;
+
 
         public Hintergrund()
         {
@@ -34,6 +35,15 @@ namespace xkfd
         public void Update()
         {
             xPos = (xPos - 4 + 1024) % 1024 - 1024;
+        }
+
+        public void Update(GameTime gt, int geschwindigkeit)
+        {
+            Update(geschwindigkeit);
+
+            // yPos = (int) (10f * Math.Sin(((gt.TotalGameTime.Milliseconds / 1000f) * (2 * Math.PI)) ) - 170);
+
+
         }
 
         public void Update(int geschwindigkeit)
@@ -49,10 +59,10 @@ namespace xkfd
         public void Draw(SpriteBatch sb)
         {
             //sb.Draw(hintergrundTextur, hintegrundPosition, Color.White);
-            sb.Draw(aktuelleTextur, new Vector2(xPos, 0), Color.White);
-            sb.Draw(aktuelleTextur, new Vector2(xPos + 1024, 0), Color.White);
-            sb.Draw(aktuelleTextur, new Vector2(xPos + 2048, 0), Color.White);
-            sb.Draw(aktuelleTextur, new Vector2(xPos + 3072, 0), Color.White);
+            sb.Draw(aktuelleTextur, new Vector2(xPos, yPos), Color.White);
+            sb.Draw(aktuelleTextur, new Vector2(xPos + 1024, yPos), Color.White);
+            sb.Draw(aktuelleTextur, new Vector2(xPos + 2048, yPos), Color.White);
+            sb.Draw(aktuelleTextur, new Vector2(xPos + 3072, yPos), Color.White);
         }
     }
 }

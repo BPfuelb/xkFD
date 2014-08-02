@@ -30,7 +30,7 @@ namespace xkfd
         Spieler spieler;
 
         // Schriftarten
-        SpriteFont schrift_40, schrift_20;
+        SpriteFont schrift_40, schrift_20,schrift_test;
 
         // Menü 
         Menue menue;
@@ -162,6 +162,7 @@ namespace xkfd
             // Lade Schirftart
             schrift_40 = Content.Load<SpriteFont>("SpriteFont1");
             schrift_20 = Content.Load<SpriteFont>("SpriteFont2");
+            schrift_test = Content.Load<SpriteFont>("SpriteFont3");
 
             #region SkinsInitialisieren
             // Skin initialisieren
@@ -464,6 +465,7 @@ namespace xkfd
                 {
                     hintergrund.aktuelleTextur = hintergrund.hintergrundTexturCheat;
                     spieler.aktuellerZustand = spieler.cheaten;
+                    hud.schriftFarbe = Color.White;
                     gamestate = Gamestate.cheat;
                     cheat = true;
                 }
@@ -830,6 +832,7 @@ namespace xkfd
                 {
                     hintergrund.aktuelleTextur = hintergrund.hintergrundTextur;
                     cheat = false;
+                    hud.schriftFarbe = Color.Black;
                     gamestate = Gamestate.running;
                     spieler.doGewinnen(); // Wenn weniger als 6 Hindernisse vorhanden sind gehe in den Gewinnenzustand über
                 }
@@ -866,7 +869,9 @@ namespace xkfd
                     // Wenn das Hindernis an Position 1 Außerhalb des Bildes ist lösche das Hindernis an Position 0
                     if (hindernisListe[1].hindernisPosition.X <= -320)
                         hindernisListe.RemoveAt(0);
-                    hintergrund.Update();
+
+
+                    hintergrund.Update(gameTime, 1);
                 }
                 else
                     hindernisListe[hindernisListe.Count - 4].UpdateAnimation();
@@ -1519,12 +1524,6 @@ namespace xkfd
                 {
 
 
-
-                    // spriteBatch.Draw(spieler.spielerTextur, spieler.position, Color.White);
-
-                    hud.Draw(spriteBatch, schrift_40, Hindernis.punkteAnzahl, gameTime);
-
-
                     // Hindernisse zeichnen
                     spriteBatch.Draw(hindernisListe[1].hindernisTextur, hindernisListe[1].hindernisPosition, Color.White);
                     spriteBatch.Draw(hindernisListe[2].hindernisTextur, hindernisListe[2].hindernisPosition, Color.White);
@@ -1654,6 +1653,18 @@ namespace xkfd
 
 
                 spriteBatch.End();
+
+
+
+
+
+                spriteBatch.Begin(); // Begin
+
+                hud.Draw(spriteBatch, schrift_40, Hindernis.punkteAnzahl, gameTime);
+
+                spriteBatch.End(); // End
+
+
 
                 #endregion
             }

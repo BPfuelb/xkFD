@@ -93,3 +93,4 @@ Content\ooh.xnb
 Content\titel.xnb
 Content\titel.wma
 Content\InvertShader.xnb
+Content\SpriteFont3.xnb
