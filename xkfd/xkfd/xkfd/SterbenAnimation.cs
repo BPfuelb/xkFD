@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace xkfd
 {
-    abstract class SterbenAnimation
+   public abstract class SterbenAnimation
     {
         public Sterben sterben;
         // public Texture2D textur;

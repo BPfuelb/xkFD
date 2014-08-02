@@ -11,7 +11,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace xkfd
 {
-    class Skin
+    public class Skin
     {
         // Texturen Skin
         public Texture2D laufenTextur, duckenTextur, fallenTextur, gleitenTextur, sprignenTextur,

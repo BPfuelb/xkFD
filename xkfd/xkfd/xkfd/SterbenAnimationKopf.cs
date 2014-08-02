@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace xkfd 
 {
-    class SterbenAnimationKopf : SterbenAnimation
+    public class SterbenAnimationKopf : SterbenAnimation
     {
 
 

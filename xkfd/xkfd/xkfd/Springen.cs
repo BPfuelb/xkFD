@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace xkfd
 {
-    class Springen:Zustand
+    public class Springen:Zustand
     {
         int sprungHoehe = 10;
 

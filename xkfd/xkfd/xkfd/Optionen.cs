@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace xkfd
 {
-    class Optionen
+    public class Optionen
     {
         // Zurück Knopf position
         public Vector2 z_knopf_position;
