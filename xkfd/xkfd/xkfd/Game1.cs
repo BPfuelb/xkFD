@@ -460,7 +460,7 @@ namespace xkfd
                     gamestate = Gamestate.menue;
                 }
 
-                if (spieler.aktuellerZustand != spieler.sterben &&  Keyboard.GetState().IsKeyDown(Keys.LeftControl) && Keyboard.GetState().IsKeyDown(Keys.LeftAlt) && Keyboard.GetState().IsKeyDown(Keys.Back))
+                if (spieler.aktuellerZustand == spieler.laufen &&  Keyboard.GetState().IsKeyDown(Keys.LeftControl) && Keyboard.GetState().IsKeyDown(Keys.LeftAlt) && Keyboard.GetState().IsKeyDown(Keys.Back))
                 {
                     hintergrund.aktuelleTextur = hintergrund.hintergrundTexturCheat;
                     spieler.aktuellerZustand = spieler.cheaten;
@@ -810,15 +810,6 @@ namespace xkfd
 
                 // Update spieler
                 spieler.Update();
-
-
-
-                // Escape ins Menü zurück kehren
-                if (Keyboard.GetState().IsKeyDown(Keys.Escape) && OldKeyState.IsKeyUp(Keys.Escape))
-                {
-                    menue.auswahl = 2; // Auswahl auf Forsetzen bzw. Starten setzten
-                    gamestate = Gamestate.menue;
-                }
 
 
                 #region Spieler Position
@@ -1787,7 +1778,7 @@ namespace xkfd
             spieler.aktuellerSkin.sterbenAnimationStolpern.index = 0;
             spieler.aktuellerSkin.sterbenAnimationPieksen.index = 0;
 
-            hindernisListe = Hindernis.generieHindernisse(15, hindernisTexturS, hindernisTexturA, hindernisTexturB, hindernisTexturC, hindernisTexturD, hindernisTexturE, hindernisTexturZ, punkt1, punkt2, punkt5, punkt10, powerUp, zielEinlauf);
+            // hindernisListe = Hindernis.generieHindernisse(15, hindernisTexturS, hindernisTexturA, hindernisTexturB, hindernisTexturC, hindernisTexturD, hindernisTexturE, hindernisTexturZ, punkt1, punkt2, punkt5, punkt10, powerUp, zielEinlauf);
             hindernisListe = Hindernis.generieHindernisse(15, this);
         }
     }
