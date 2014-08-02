@@ -12,7 +12,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace xkfd
 {
-    class HindernisS : Hindernis
+    public class HindernisS : Hindernis
     {
         Hitbox bodenHitbox;
 

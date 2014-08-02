@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace xkfd
 {
-    class Menue
+    public class Menue
     {
         // Positionen für Knöpfe
         Vector2 startPosition;

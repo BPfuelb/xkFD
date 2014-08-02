@@ -12,7 +12,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace xkfd
 {
-    class HindernisD : Hindernis
+    public class HindernisD : Hindernis
     {
 
         public HindernisD(Texture2D textur, Vector2 position, Punkt p1, Punkt p2, Punkt p5, Punkt p10, PowerUp powerUp)

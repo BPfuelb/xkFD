@@ -6,7 +6,7 @@ using System.IO;
 
 namespace xkfd
 {
-    class KonfigDatei
+    public class KonfigDatei
     {
         string inhalt = "";
         string fileName = "config.txt";

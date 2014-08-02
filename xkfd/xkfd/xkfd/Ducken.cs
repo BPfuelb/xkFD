@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace xkfd
 {
-    class Ducken : Zustand
+    public class Ducken : Zustand
     {
         public Ducken(Spieler spieler)
             : base(spieler)

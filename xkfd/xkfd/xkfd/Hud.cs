@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework.Audio;
 
 namespace xkfd
 {
-    class Hud
+    public class Hud
     {
         public Vector2 positionGleitenAnzeige;
         public Vector2 positionTastaturbelegung;

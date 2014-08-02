@@ -12,7 +12,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace xkfd
 {
-    abstract class Zustand
+    public abstract class Zustand
     {
         public Spieler spieler;
 

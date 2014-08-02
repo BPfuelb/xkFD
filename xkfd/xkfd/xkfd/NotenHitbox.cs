@@ -12,13 +12,15 @@ using Microsoft.Xna.Framework.Media;
 
 namespace xkfd
 {
-    class NotenHitbox : Hitbox
+   public  class NotenHitbox : Hitbox
     {
         // Zugehöriges Hindernis (evlt. Object?)
         public Hindernis hindernis;
         public Punkt punkt;
         public Boolean faellt;
+        public Boolean platzen, soundAbspielen;
         public Animation haufenAnimation;
+        public Animation platzerAnimation;
 
         public Vector2 zielPosition;
         public Vector2 zielRichtung;
@@ -29,20 +31,30 @@ namespace xkfd
             this.hindernis = hindernis;
             this.punkt = punkt;
             faellt = true;
+            platzen = false;
+            soundAbspielen = true;
             zielRichtung = new Vector2(0, 0);
-            zielPosition = new Vector2(320, 10);
+            zielPosition = new Vector2(320, 100);
         }
 
         public void Draw(SpriteBatch sb)
         {
-            if (faellt)
+            if (faellt && !platzen)
+            {
                 punkt.punktAnimation.Draw(sb, hitboxPosition);
-            else
+            }
+            else if(!platzen)
             {
                 if (haufenAnimation == null)
                     haufenAnimation = new Animation(punkt.punktAnimationHaufen.gibTextur(), 2, 2, 4);
                 haufenAnimation.Draw(sb, hitboxPosition);
             }
+
+            if (platzen)
+            {
+                platzerAnimation.Draw(sb, hitboxPosition);
+            }
+           
         }
 
         public void Update()
@@ -57,7 +69,20 @@ namespace xkfd
 
         public void UpdateFreilassen()
         {
-            hitboxPosition += zielRichtung + new Vector2((float)Math.Sin(hitboxPosition.Y / 720 * Math.PI * 2),0);
+
+            if (hitboxPosition.Y <= zielPosition.Y)
+            {
+                platzen = true;
+                platzerAnimation.UpdateNoLoop();
+            }
+            else
+                hitboxPosition += zielRichtung + new Vector2((float)Math.Sin(hitboxPosition.Y / 720 * Math.PI * 2), 0);
+
+            if (platzen && soundAbspielen)
+            {
+                punkt.playSound();
+                soundAbspielen = false;
+            }
         }
 
         public void UpdateSammeln()

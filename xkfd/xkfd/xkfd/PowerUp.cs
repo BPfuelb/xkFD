@@ -5,7 +5,7 @@ using System.Text;
 
 namespace xkfd
 {
-    class PowerUp : Punkt
+    public class PowerUp : Punkt
     {
 
         public PowerUp():base(0)

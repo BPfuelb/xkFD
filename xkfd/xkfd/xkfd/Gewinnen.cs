@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace xkfd
 {
-    class Gewinnen : Zustand
+   public class Gewinnen : Zustand
     {
         public Gewinnen(Spieler spieler):base(spieler)
         {

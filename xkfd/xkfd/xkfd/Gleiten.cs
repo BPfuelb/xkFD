@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace xkfd
 {
-    class Gleiten : Zustand
+   public  class Gleiten : Zustand
     {
         public Gleiten(Spieler spieler):base(spieler)
         {

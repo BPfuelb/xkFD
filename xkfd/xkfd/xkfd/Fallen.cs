@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace xkfd
 {
-    class Fallen : Zustand
+   public  class Fallen : Zustand
     {
         public int beschleunigung;
 

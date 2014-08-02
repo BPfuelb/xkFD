@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace xkfd
 {
-    class Hintergrund
+    public class Hintergrund
     {
 
         // Textur und Position für Hintergrund

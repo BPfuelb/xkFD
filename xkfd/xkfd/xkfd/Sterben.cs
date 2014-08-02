@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace xkfd
 {
-    class Sterben : Zustand
+   public  class Sterben : Zustand
     {
         public SterbenAnimation koepfen;
         public SterbenAnimation stolpern;

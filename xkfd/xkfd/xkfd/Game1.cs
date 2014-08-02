@@ -29,9 +29,8 @@ namespace xkfd
         // Spieler
         Spieler spieler;
 
-        // Schriftart
-        SpriteFont schrift_40;
-        SpriteFont schrift_20;
+        // Schriftarten
+        SpriteFont schrift_40, schrift_20;
 
         // Menü 
         Menue menue;
@@ -59,18 +58,13 @@ namespace xkfd
         KeyboardState NewKeyState;
 
         // Hindernis Texturen
-        Texture2D hindernisTexturS;
-        Texture2D hindernisTexturA;
-        Texture2D hindernisTexturB;
-        Texture2D hindernisTexturC;
-        Texture2D hindernisTexturD;
-        Texture2D hindernisTexturE;
-        Texture2D hindernisTexturZ;
-
-        Texture2D zielEinlauf;
+        public Texture2D hindernisTexturS, hindernisTexturA, hindernisTexturB, hindernisTexturC, hindernisTexturD, hindernisTexturE, hindernisTexturZ;
+        public Texture2D zielEinlauf;
 
         // Hud Texturen
         Texture2D hudTextur;
+
+        //DebugTextur
         Texture2D dummyTexture;
         Texture2D dummyTexture2;
 
@@ -87,12 +81,13 @@ namespace xkfd
         int gewonnen;
 
         // Punkte / Noten
-        Punkt punkt1, punkt2, punkt5, punkt10;
+        public Punkt punkt1, punkt2, punkt5, punkt10;
+
         Texture2D notenPlatzerTextur;
         Animation notenPlatzerAnimation;
         Vector2 notenPlatzerPosition;
 
-        PowerUp powerUp;
+        public PowerUp powerUp;
 
         int notenFallSchrittweite = 0;
         Boolean cheat = false;
@@ -557,8 +552,9 @@ namespace xkfd
                         if (hitbox.punkt.wertigkeit != 0)
                         {
                             spieler.punkte += hitbox.punkt.wertigkeit;
-                            hitbox.zielPosition += new Vector2(new Random().Next(640), 0);
+                            hitbox.zielPosition += new Vector2(new Random().Next(640), new Random().Next(100));
                             spieler.gesammelteNoten.Add(hitbox);
+                            hitbox.platzerAnimation = new Animation(notenPlatzerTextur, 2, 2, 5);
                         }
                         else
                             spieler.teleport = true;
@@ -715,6 +711,8 @@ namespace xkfd
                 }
                 foreach (NotenHitbox note in notenFreilassen)
                 {
+                    if (note.hitboxPosition.Y <= note.zielPosition.Y)
+                        note.faellt = false;
                     note.UpdateFreilassen();
                 }
             }
@@ -1128,9 +1126,8 @@ namespace xkfd
                     {
                         foreach (NotenHitbox note in notenFreilassen)
                         {
-                            note.punkt.punktAnimation.Draw(spriteBatch, note.hitboxPosition);
+                            note.Draw(spriteBatch);
                         }
-
                     }
 
                     #region Debugsection
@@ -1791,6 +1788,7 @@ namespace xkfd
             spieler.aktuellerSkin.sterbenAnimationPieksen.index = 0;
 
             hindernisListe = Hindernis.generieHindernisse(15, hindernisTexturS, hindernisTexturA, hindernisTexturB, hindernisTexturC, hindernisTexturD, hindernisTexturE, hindernisTexturZ, punkt1, punkt2, punkt5, punkt10, powerUp, zielEinlauf);
+            hindernisListe = Hindernis.generieHindernisse(15, this);
         }
     }
 }

@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace xkfd
 {
-    class Animation
+  public   class Animation
     {
 
         Texture2D textur;

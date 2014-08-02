@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework.Audio;
 
 namespace xkfd
 {
-    class Punkt
+  public  class Punkt
     {
         public Texture2D punktTextur;
         public Animation punktAnimation;

@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework;
 
 namespace xkfd
 {
-    class Hitbox
+  public   class Hitbox
     {
 
         public Rectangle hitboxRect;

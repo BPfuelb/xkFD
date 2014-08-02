@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace xkfd
 {
-    class Laufen : Zustand
+    public class Laufen : Zustand
     {
 
         public Laufen(Spieler spieler)
