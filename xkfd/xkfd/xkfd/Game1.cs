@@ -17,6 +17,8 @@ namespace xkfd
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
+        Effect invert;
+
         // Debug
         Boolean debug = false;
 
@@ -160,6 +162,8 @@ namespace xkfd
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
+            invert = Content.Load<Effect>("InvertShader"); 
+
             // Lade Schirftart
             schrift_40 = Content.Load<SpriteFont>("SpriteFont1");
             schrift_20 = Content.Load<SpriteFont>("SpriteFont2");
@@ -176,7 +180,7 @@ namespace xkfd
             standardSkin.laufenTextur = Content.Load<Texture2D>("ani_laufen_std");
             standardSkin.sprignenTextur = Content.Load<Texture2D>("ani_springen_std");
 
-            standardSkin.cheatenTextur = Content.Load<Texture2D>("ani_laufen_std");
+            standardSkin.cheatenTextur = Content.Load<Texture2D>("ani_cheaten_std");
 
             standardSkin.sterbenTexturKoepfen = Content.Load<Texture2D>("ani_sterben1_koepfen_std");
             standardSkin.sterbenTexturStolpern = Content.Load<Texture2D>("ani_sterben2_stolpern_std");
@@ -195,6 +199,8 @@ namespace xkfd
             frauenSkin.laufenTextur = Content.Load<Texture2D>("ani_laufen_frau");
             frauenSkin.sprignenTextur = Content.Load<Texture2D>("ani_springen_frau");
 
+            frauenSkin.cheatenTextur = Content.Load<Texture2D>("ani_cheaten_frau");
+
             frauenSkin.sterbenTexturKoepfen = Content.Load<Texture2D>("ani_sterben1_koepfen_frau");
             frauenSkin.sterbenTexturStolpern = Content.Load<Texture2D>("ani_sterben2_stolpern_frau");
             frauenSkin.sterbenTexturKlatscher = Content.Load<Texture2D>("ani_sterben3_klatscher_frau");
@@ -210,6 +216,8 @@ namespace xkfd
             hutSkin.laufenTextur = Content.Load<Texture2D>("ani_laufen_hut");
             hutSkin.sprignenTextur = Content.Load<Texture2D>("ani_springen_hut");
 
+            hutSkin.cheatenTextur = Content.Load<Texture2D>("ani_cheaten_hut");
+
             hutSkin.sterbenTexturKoepfen = Content.Load<Texture2D>("ani_sterben1_koepfen_hut");
             hutSkin.sterbenTexturStolpern = Content.Load<Texture2D>("ani_sterben2_stolpern_hut");
             hutSkin.sterbenTexturKlatscher = Content.Load<Texture2D>("ani_sterben3_klatscher_hut");
@@ -224,6 +232,8 @@ namespace xkfd
             einsteinSkin.gleitenTextur = Content.Load<Texture2D>("ani_gleiten_einstein");
             einsteinSkin.laufenTextur = Content.Load<Texture2D>("ani_laufen_einstein");
             einsteinSkin.sprignenTextur = Content.Load<Texture2D>("ani_springen_einstein");
+
+            einsteinSkin.cheatenTextur = Content.Load<Texture2D>("ani_cheaten_einstein");
 
             einsteinSkin.sterbenTexturKoepfen = Content.Load<Texture2D>("ani_sterben1_koepfen_einstein");
             einsteinSkin.sterbenTexturStolpern = Content.Load<Texture2D>("ani_sterben2_stolpern_einstein");
@@ -423,7 +433,7 @@ namespace xkfd
 
 
                 // Hud Update
-                hud.Update(gameTime);
+                hud.UpdateMitTimer(gameTime);
 
                 // Update spieler
                 spieler.Update();
@@ -531,7 +541,6 @@ namespace xkfd
                 }
 
                 #endregion
-
 
                 #region PunkteKollisionen
 
@@ -793,7 +802,7 @@ namespace xkfd
             if (gamestate == Gamestate.cheat)
             {
                 // Hud Update
-                hud.Update(gameTime);
+                hud.Update();
 
                 // Update spieler
                 spieler.Update();
@@ -823,8 +832,11 @@ namespace xkfd
                     spieler.movePlayerDown((float)Math.Sin((1200 - spieler.position.Y) / 1000));
                 }
                 else
+                {
+                    cheat = false;
+                    gamestate = Gamestate.running;
                     spieler.doGewinnen(); // Wenn weniger als 6 Hindernisse vorhanden sind gehe in den Gewinnenzustand über
-
+                }
 
                 #endregion
 
@@ -1037,322 +1049,619 @@ namespace xkfd
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.White);
 
-            spriteBatch.Begin(); // Begin
-
-            // Hintergrund zeichnen
-            spriteBatch.Draw(hintergrund.hintergrundTextur, hintergrund.hintegrundPosition, Color.White);
-
-            #region GamestateLoading
-
-            if (gamestate == Gamestate.ladebildschirm)
+          
+            if (!cheat)
             {
-                hud.DrawHelp(spriteBatch, schrift_40);
-                spieler.Draw(spriteBatch);
-            }
+                spriteBatch.Begin(); // Begin
+                #region normal
+                // Hintergrund zeichnen
+                spriteBatch.Draw(hintergrund.hintergrundTextur, hintergrund.hintegrundPosition, Color.White);
 
-            #endregion
+                #region GamestateLoading
 
-            #region GamestateRunning
-
-            if (gamestate == Gamestate.running)
-            {
-                // spriteBatch.Draw(spieler.spielerTextur, spieler.position, Color.White);
-
-                hud.Draw(spriteBatch, schrift_40, Hindernis.punkteAnzahl, gameTime);
-
-                // Hindernisse zeichnen
-                spriteBatch.Draw(hindernisListe[1].hindernisTextur, hindernisListe[1].hindernisPosition, Color.White);
-                spriteBatch.Draw(hindernisListe[2].hindernisTextur, hindernisListe[2].hindernisPosition, Color.White);
-                spriteBatch.Draw(hindernisListe[3].hindernisTextur, hindernisListe[3].hindernisPosition, Color.White);
-                spriteBatch.Draw(hindernisListe[4].hindernisTextur, hindernisListe[4].hindernisPosition, Color.White);
-                spriteBatch.Draw(hindernisListe[5].hindernisTextur, hindernisListe[5].hindernisPosition, Color.White);
-
-                hindernisListe[2].Draw(spriteBatch);
-                hindernisListe[3].Draw(spriteBatch);
-                hindernisListe[4].Draw(spriteBatch);
-                hindernisListe[5].Draw(spriteBatch);
-
-
-                foreach (NotenHitbox notenHitbox in hindernisListe[1].gibPunkte())
+                if (gamestate == Gamestate.ladebildschirm)
                 {
-                    notenHitbox.Draw(spriteBatch);
+                    hud.DrawHelp(spriteBatch, schrift_40);
+                    spieler.Draw(spriteBatch);
                 }
 
-                foreach (NotenHitbox notenHitbox in hindernisListe[2].gibPunkte())
-                {
-                    notenHitbox.Draw(spriteBatch);
-                }
+                #endregion
 
-                foreach (NotenHitbox notenHitbox in hindernisListe[3].gibPunkte())
-                {
-                    notenHitbox.Draw(spriteBatch);
-                }
+                #region GamestateRunning
 
-                foreach (NotenHitbox notenHitbox in hindernisListe[4].gibPunkte())
+                if (gamestate == Gamestate.running)
                 {
-                    notenHitbox.Draw(spriteBatch);
-                }
+                    // spriteBatch.Draw(spieler.spielerTextur, spieler.position, Color.White);
 
-                foreach (NotenHitbox notenHitbox in hindernisListe[5].gibPunkte())
-                {
-                    notenHitbox.Draw(spriteBatch);
-                }
+                    hud.Draw(spriteBatch, schrift_40, Hindernis.punkteAnzahl, gameTime);
 
-                notenPlatzerAnimation.Draw(spriteBatch, notenPlatzerPosition);
+                    // Hindernisse zeichnen
+                    spriteBatch.Draw(hindernisListe[1].hindernisTextur, hindernisListe[1].hindernisPosition, Color.White);
+                    spriteBatch.Draw(hindernisListe[2].hindernisTextur, hindernisListe[2].hindernisPosition, Color.White);
+                    spriteBatch.Draw(hindernisListe[3].hindernisTextur, hindernisListe[3].hindernisPosition, Color.White);
+                    spriteBatch.Draw(hindernisListe[4].hindernisTextur, hindernisListe[4].hindernisPosition, Color.White);
+                    spriteBatch.Draw(hindernisListe[5].hindernisTextur, hindernisListe[5].hindernisPosition, Color.White);
 
-                if (notenFreilassen.Count != 0)
-                {
-                    foreach (NotenHitbox note in notenFreilassen)
+                    hindernisListe[2].Draw(spriteBatch);
+                    hindernisListe[3].Draw(spriteBatch);
+                    hindernisListe[4].Draw(spriteBatch);
+                    hindernisListe[5].Draw(spriteBatch);
+
+
+                    foreach (NotenHitbox notenHitbox in hindernisListe[1].gibPunkte())
                     {
-                        note.punkt.punktAnimation.Draw(spriteBatch, note.hitboxPosition);
+                        notenHitbox.Draw(spriteBatch);
                     }
 
-                }
-
-                #region Debugsection
-                if (debug)
-                {
-                    foreach (Hindernis hindernis in hindernisListe)
+                    foreach (NotenHitbox notenHitbox in hindernisListe[2].gibPunkte())
                     {
-                        foreach (Hitbox hitbox in hindernis.gibHitboxen())
+                        notenHitbox.Draw(spriteBatch);
+                    }
+
+                    foreach (NotenHitbox notenHitbox in hindernisListe[3].gibPunkte())
+                    {
+                        notenHitbox.Draw(spriteBatch);
+                    }
+
+                    foreach (NotenHitbox notenHitbox in hindernisListe[4].gibPunkte())
+                    {
+                        notenHitbox.Draw(spriteBatch);
+                    }
+
+                    foreach (NotenHitbox notenHitbox in hindernisListe[5].gibPunkte())
+                    {
+                        notenHitbox.Draw(spriteBatch);
+                    }
+
+                    notenPlatzerAnimation.Draw(spriteBatch, notenPlatzerPosition);
+
+                    if (notenFreilassen.Count != 0)
+                    {
+                        foreach (NotenHitbox note in notenFreilassen)
                         {
-                            spriteBatch.Draw(dummyTexture, hitbox.hitboxRect, Color.Red);
+                            note.punkt.punktAnimation.Draw(spriteBatch, note.hitboxPosition);
                         }
 
-                        foreach (Hitbox hitbox in hindernis.gibSterben())
+                    }
+
+                    #region Debugsection
+                    if (debug)
+                    {
+                        foreach (Hindernis hindernis in hindernisListe)
                         {
-                            spriteBatch.Draw(dummyTexture2, hitbox.hitboxRect, Color.Green);
+                            foreach (Hitbox hitbox in hindernis.gibHitboxen())
+                            {
+                                spriteBatch.Draw(dummyTexture, hitbox.hitboxRect, Color.Red);
+                            }
+
+                            foreach (Hitbox hitbox in hindernis.gibSterben())
+                            {
+                                spriteBatch.Draw(dummyTexture2, hitbox.hitboxRect, Color.Green);
+                            }
                         }
+
+                        // Punkte/Noten Zeichnen
+
+                        foreach (NotenHitbox note in punkteListeDraw)
+                        {
+                            spriteBatch.Draw(dummyTexture, note.hitboxRect, Color.Red);
+                        }
+
+                        foreach (NotenHitbox note in punkteListeKollisionen)
+                        {
+                            spriteBatch.Draw(dummyTexture, note.hitboxRect, Color.Red);
+                        }
+
+
+                        // Spieler Hitbox malen zum Testen
+                        //  spriteBatch.Draw(dummyTexture2, spieler.hitboxFussRechts, Color.Green);
+                        spriteBatch.DrawString(schrift_40, "X: " + spieler.position.X + " Y: " + spieler.position.Y, new Vector2(0, 0), Color.Black);
+
+                        spriteBatch.Draw(dummyTexture2, spieler.spielerPosition, Color.Green);
+                        spriteBatch.Draw(dummyTexture2, spieler.hitboxFuss, Color.Green);
+
+                        // spriteBatch.Draw(dummyTexture2, spieler.hitboxKopf, Color.Blue);
+                        spriteBatch.Draw(dummyTexture2, spieler.hitboxKopf, Color.Green);
+                        spriteBatch.Draw(dummyTexture2, spieler.hitboxBeine, Color.Green);
+
+                        spriteBatch.Draw(dummyTexture2, spieler.hitboxKoerper, Color.Blue);
+
                     }
+                    #endregion
 
-                    // Punkte/Noten Zeichnen
 
-                    foreach (NotenHitbox note in punkteListeDraw)
+                    // Zeichne Spieler
+                    spieler.Draw(spriteBatch);
+
+                    #region AchievmentAnzeigen
+                    if (gewonnen == 1)
                     {
-                        spriteBatch.Draw(dummyTexture, note.hitboxRect, Color.Red);
+                        hud.aktuellerUnlock = hud.skin_frau;
+                        hud.DrawAchivment(spriteBatch);
                     }
-
-                    foreach (NotenHitbox note in punkteListeKollisionen)
+                    else if (gewonnen == 5)
                     {
-                        spriteBatch.Draw(dummyTexture, note.hitboxRect, Color.Red);
+                        hud.aktuellerUnlock = hud.skin_hut;
+                        hud.DrawAchivment(spriteBatch);
                     }
+                    else if (gewonnen == 10)
+                    {
+                        hud.aktuellerUnlock = hud.skin_einstein;
+                        hud.DrawAchivment(spriteBatch);
+                    }
+                    #endregion
 
 
-                    // Spieler Hitbox malen zum Testen
-                    //  spriteBatch.Draw(dummyTexture2, spieler.hitboxFussRechts, Color.Green);
-                    spriteBatch.DrawString(schrift_40, "X: " + spieler.position.X + " Y: " + spieler.position.Y, new Vector2(0, 0), Color.Black);
 
-                    spriteBatch.Draw(dummyTexture2, spieler.spielerPosition, Color.Green);
-                    spriteBatch.Draw(dummyTexture2, spieler.hitboxFuss, Color.Green);
 
-                    // spriteBatch.Draw(dummyTexture2, spieler.hitboxKopf, Color.Blue);
-                    spriteBatch.Draw(dummyTexture2, spieler.hitboxKopf, Color.Green);
-                    spriteBatch.Draw(dummyTexture2, spieler.hitboxBeine, Color.Green);
-
-                    spriteBatch.Draw(dummyTexture2, spieler.hitboxKoerper, Color.Blue);
-
+                    // Titel sound aus
+                    MediaPlayer.Pause();
                 }
                 #endregion
 
 
-                // Zeichne Spieler
-                spieler.Draw(spriteBatch);
+                #region GamestateCheaten
 
-                #region AchievmentAnzeigen
-                if (gewonnen == 1)
+                if (gamestate == Gamestate.cheat)
                 {
-                    hud.aktuellerUnlock = hud.skin_frau;
-                    hud.DrawAchivment(spriteBatch);
-                }
-                else if (gewonnen == 5)
-                {
-                    hud.aktuellerUnlock = hud.skin_hut;
-                    hud.DrawAchivment(spriteBatch);
-                }
-                else if (gewonnen == 10)
-                {
-                    hud.aktuellerUnlock = hud.skin_einstein;
-                    hud.DrawAchivment(spriteBatch);
-                }
-                #endregion
 
 
 
+                    // spriteBatch.Draw(spieler.spielerTextur, spieler.position, Color.White);
 
-                // Titel sound aus
-                MediaPlayer.Pause();
-            }
-            #endregion
+                    hud.Draw(spriteBatch, schrift_40, Hindernis.punkteAnzahl, gameTime);
 
 
-            #region GamestateCheaten
-
-            if (gamestate == Gamestate.cheat)
-            {
-
-
-                // spriteBatch.Draw(spieler.spielerTextur, spieler.position, Color.White);
-
-                hud.Draw(spriteBatch, schrift_40, Hindernis.punkteAnzahl, gameTime);
-
-
-                // Hindernisse zeichnen
-                spriteBatch.Draw(hindernisListe[1].hindernisTextur, hindernisListe[1].hindernisPosition, Color.White);
-                spriteBatch.Draw(hindernisListe[2].hindernisTextur, hindernisListe[2].hindernisPosition, Color.White);
-                spriteBatch.Draw(hindernisListe[3].hindernisTextur, hindernisListe[3].hindernisPosition, Color.White);
-                spriteBatch.Draw(hindernisListe[4].hindernisTextur, hindernisListe[4].hindernisPosition, Color.White);
-                spriteBatch.Draw(hindernisListe[5].hindernisTextur, hindernisListe[5].hindernisPosition, Color.White);
+                    // Hindernisse zeichnen
+                    spriteBatch.Draw(hindernisListe[1].hindernisTextur, hindernisListe[1].hindernisPosition, Color.White);
+                    spriteBatch.Draw(hindernisListe[2].hindernisTextur, hindernisListe[2].hindernisPosition, Color.White);
+                    spriteBatch.Draw(hindernisListe[3].hindernisTextur, hindernisListe[3].hindernisPosition, Color.White);
+                    spriteBatch.Draw(hindernisListe[4].hindernisTextur, hindernisListe[4].hindernisPosition, Color.White);
+                    spriteBatch.Draw(hindernisListe[5].hindernisTextur, hindernisListe[5].hindernisPosition, Color.White);
 
 
 
-                hindernisListe[2].Draw(spriteBatch);
-                hindernisListe[3].Draw(spriteBatch);
-                hindernisListe[4].Draw(spriteBatch);
-                hindernisListe[5].Draw(spriteBatch);
+                    hindernisListe[2].Draw(spriteBatch);
+                    hindernisListe[3].Draw(spriteBatch);
+                    hindernisListe[4].Draw(spriteBatch);
+                    hindernisListe[5].Draw(spriteBatch);
 
 
 
-                foreach (NotenHitbox notenHitbox in hindernisListe[1].gibPunkte())
-                {
-                    notenHitbox.Draw(spriteBatch);
-                }
-
-                foreach (NotenHitbox notenHitbox in hindernisListe[2].gibPunkte())
-                {
-                    notenHitbox.Draw(spriteBatch);
-                }
-
-                foreach (NotenHitbox notenHitbox in hindernisListe[3].gibPunkte())
-                {
-                    notenHitbox.Draw(spriteBatch);
-                }
-
-                foreach (NotenHitbox notenHitbox in hindernisListe[4].gibPunkte())
-                {
-                    notenHitbox.Draw(spriteBatch);
-                }
-
-                foreach (NotenHitbox notenHitbox in hindernisListe[5].gibPunkte())
-                {
-                    notenHitbox.Draw(spriteBatch);
-                }
-
-                notenPlatzerAnimation.Draw(spriteBatch, notenPlatzerPosition);
-
-                if (notenFreilassen.Count != 0)
-                {
-                    foreach (NotenHitbox note in notenFreilassen)
+                    foreach (NotenHitbox notenHitbox in hindernisListe[1].gibPunkte())
                     {
-                        note.punkt.punktAnimation.Draw(spriteBatch, note.hitboxPosition);
+                        notenHitbox.Draw(spriteBatch);
                     }
 
-                }
-
-                #region Debugsection
-                if (debug)
-                {
-                    foreach (Hindernis hindernis in hindernisListe)
+                    foreach (NotenHitbox notenHitbox in hindernisListe[2].gibPunkte())
                     {
-                        foreach (Hitbox hitbox in hindernis.gibHitboxen())
+                        notenHitbox.Draw(spriteBatch);
+                    }
+
+                    foreach (NotenHitbox notenHitbox in hindernisListe[3].gibPunkte())
+                    {
+                        notenHitbox.Draw(spriteBatch);
+                    }
+
+                    foreach (NotenHitbox notenHitbox in hindernisListe[4].gibPunkte())
+                    {
+                        notenHitbox.Draw(spriteBatch);
+                    }
+
+                    foreach (NotenHitbox notenHitbox in hindernisListe[5].gibPunkte())
+                    {
+                        notenHitbox.Draw(spriteBatch);
+                    }
+
+                    notenPlatzerAnimation.Draw(spriteBatch, notenPlatzerPosition);
+
+                    if (notenFreilassen.Count != 0)
+                    {
+                        foreach (NotenHitbox note in notenFreilassen)
                         {
-                            spriteBatch.Draw(dummyTexture, hitbox.hitboxRect, Color.Red);
+                            note.punkt.punktAnimation.Draw(spriteBatch, note.hitboxPosition);
                         }
 
-                        foreach (Hitbox hitbox in hindernis.gibSterben())
+                    }
+
+                    #region Debugsection
+                    if (debug)
+                    {
+                        foreach (Hindernis hindernis in hindernisListe)
                         {
-                            spriteBatch.Draw(dummyTexture2, hitbox.hitboxRect, Color.Green);
+                            foreach (Hitbox hitbox in hindernis.gibHitboxen())
+                            {
+                                spriteBatch.Draw(dummyTexture, hitbox.hitboxRect, Color.Red);
+                            }
+
+                            foreach (Hitbox hitbox in hindernis.gibSterben())
+                            {
+                                spriteBatch.Draw(dummyTexture2, hitbox.hitboxRect, Color.Green);
+                            }
                         }
+
+                        // Punkte/Noten Zeichnen
+
+                        foreach (NotenHitbox note in punkteListeDraw)
+                        {
+                            spriteBatch.Draw(dummyTexture, note.hitboxRect, Color.Red);
+                        }
+
+                        foreach (NotenHitbox note in punkteListeKollisionen)
+                        {
+                            spriteBatch.Draw(dummyTexture, note.hitboxRect, Color.Red);
+                        }
+
+
+                        // Spieler Hitbox malen zum Testen
+                        //  spriteBatch.Draw(dummyTexture2, spieler.hitboxFussRechts, Color.Green);
+                        spriteBatch.DrawString(schrift_40, "X: " + spieler.position.X + " Y: " + spieler.position.Y, new Vector2(0, 0), Color.Black);
+
+                        spriteBatch.Draw(dummyTexture2, spieler.spielerPosition, Color.Green);
+                        spriteBatch.Draw(dummyTexture2, spieler.hitboxFuss, Color.Green);
+
+                        // spriteBatch.Draw(dummyTexture2, spieler.hitboxKopf, Color.Blue);
+                        spriteBatch.Draw(dummyTexture2, spieler.hitboxKopf, Color.Green);
+                        spriteBatch.Draw(dummyTexture2, spieler.hitboxBeine, Color.Green);
+
+                        spriteBatch.Draw(dummyTexture2, spieler.hitboxKoerper, Color.Blue);
+
                     }
+                    #endregion
 
-                    // Punkte/Noten Zeichnen
 
-                    foreach (NotenHitbox note in punkteListeDraw)
+                    // Zeichne Spieler
+                    spieler.Draw(spriteBatch);
+
+                    #region AchievmentAnzeigen
+                    if (gewonnen == 1)
                     {
-                        spriteBatch.Draw(dummyTexture, note.hitboxRect, Color.Red);
+                        hud.aktuellerUnlock = hud.skin_frau;
+                        hud.DrawAchivment(spriteBatch);
                     }
-
-                    foreach (NotenHitbox note in punkteListeKollisionen)
+                    else if (gewonnen == 5)
                     {
-                        spriteBatch.Draw(dummyTexture, note.hitboxRect, Color.Red);
+                        hud.aktuellerUnlock = hud.skin_hut;
+                        hud.DrawAchivment(spriteBatch);
                     }
+                    else if (gewonnen == 10)
+                    {
+                        hud.aktuellerUnlock = hud.skin_einstein;
+                        hud.DrawAchivment(spriteBatch);
+                    }
+                    #endregion
 
 
-                    // Spieler Hitbox malen zum Testen
-                    //  spriteBatch.Draw(dummyTexture2, spieler.hitboxFussRechts, Color.Green);
-                    spriteBatch.DrawString(schrift_40, "X: " + spieler.position.X + " Y: " + spieler.position.Y, new Vector2(0, 0), Color.Black);
 
-                    spriteBatch.Draw(dummyTexture2, spieler.spielerPosition, Color.Green);
-                    spriteBatch.Draw(dummyTexture2, spieler.hitboxFuss, Color.Green);
 
-                    // spriteBatch.Draw(dummyTexture2, spieler.hitboxKopf, Color.Blue);
-                    spriteBatch.Draw(dummyTexture2, spieler.hitboxKopf, Color.Green);
-                    spriteBatch.Draw(dummyTexture2, spieler.hitboxBeine, Color.Green);
+                    // Titel sound aus
+                    MediaPlayer.Pause();
+                }
+                #endregion
 
-                    spriteBatch.Draw(dummyTexture2, spieler.hitboxKoerper, Color.Blue);
+                #region GamestateMenue
+
+
+                if (gamestate == Gamestate.menue)
+                {
+                    // Malt alle Animationen des Menüs
+                    menue.Draw(spriteBatch);
+
+                    // Titel Musik spielen
+                    if (MediaPlayer.State != MediaState.Playing)
+                        MediaPlayer.Play(titel);
 
                 }
                 #endregion
 
+                #region GamestateOptions
 
-                // Zeichne Spieler
-                spieler.Draw(spriteBatch);
+                if (gamestate == Gamestate.options)
+                {
+                    // Malt alle Animationen des Menüs
+                    optionen.Draw(spriteBatch, schrift_40, gewonnen);
+                }
 
-                #region AchievmentAnzeigen
-                if (gewonnen == 1)
+                #endregion
+
+                // Logo Zeichnen
+                spriteBatch.Draw(logo, new Vector2(0, 720 - 83),Color.White);
+
+                #endregion
+
+
+                spriteBatch.End(); // End
+            }
+            else
+            {
+
+                #region Invertiert
+                spriteBatch.Begin(0, BlendState.NonPremultiplied, null, null, null, invert);
+                invert.CurrentTechnique = invert.Techniques[0];
+
+                // Hintergrund zeichnen
+                spriteBatch.Draw(hintergrund.hintergrundTextur, hintergrund.hintegrundPosition, Color.White);
+
+
+                #region GamestateRunning
+
+                if (gamestate == Gamestate.running)
                 {
-                    hud.aktuellerUnlock = hud.skin_frau;
-                    hud.DrawAchivment(spriteBatch);
-                }
-                else if (gewonnen == 5)
-                {
-                    hud.aktuellerUnlock = hud.skin_hut;
-                    hud.DrawAchivment(spriteBatch);
-                }
-                else if (gewonnen == 10)
-                {
-                    hud.aktuellerUnlock = hud.skin_einstein;
-                    hud.DrawAchivment(spriteBatch);
+                    // spriteBatch.Draw(spieler.spielerTextur, spieler.position, Color.White);
+
+                    hud.Draw(spriteBatch, schrift_40, Hindernis.punkteAnzahl, gameTime);
+
+                    // Hindernisse zeichnen
+                    spriteBatch.Draw(hindernisListe[1].hindernisTextur, hindernisListe[1].hindernisPosition, Color.White);
+                    spriteBatch.Draw(hindernisListe[2].hindernisTextur, hindernisListe[2].hindernisPosition, Color.White);
+                    spriteBatch.Draw(hindernisListe[3].hindernisTextur, hindernisListe[3].hindernisPosition, Color.White);
+                    spriteBatch.Draw(hindernisListe[4].hindernisTextur, hindernisListe[4].hindernisPosition, Color.White);
+                    spriteBatch.Draw(hindernisListe[5].hindernisTextur, hindernisListe[5].hindernisPosition, Color.White);
+
+                    hindernisListe[2].Draw(spriteBatch);
+                    hindernisListe[3].Draw(spriteBatch);
+                    hindernisListe[4].Draw(spriteBatch);
+                    hindernisListe[5].Draw(spriteBatch);
+
+
+                    foreach (NotenHitbox notenHitbox in hindernisListe[1].gibPunkte())
+                    {
+                        notenHitbox.Draw(spriteBatch);
+                    }
+
+                    foreach (NotenHitbox notenHitbox in hindernisListe[2].gibPunkte())
+                    {
+                        notenHitbox.Draw(spriteBatch);
+                    }
+
+                    foreach (NotenHitbox notenHitbox in hindernisListe[3].gibPunkte())
+                    {
+                        notenHitbox.Draw(spriteBatch);
+                    }
+
+                    foreach (NotenHitbox notenHitbox in hindernisListe[4].gibPunkte())
+                    {
+                        notenHitbox.Draw(spriteBatch);
+                    }
+
+                    foreach (NotenHitbox notenHitbox in hindernisListe[5].gibPunkte())
+                    {
+                        notenHitbox.Draw(spriteBatch);
+                    }
+
+                    notenPlatzerAnimation.Draw(spriteBatch, notenPlatzerPosition);
+
+                    if (notenFreilassen.Count != 0)
+                    {
+                        foreach (NotenHitbox note in notenFreilassen)
+                        {
+                            note.punkt.punktAnimation.Draw(spriteBatch, note.hitboxPosition);
+                        }
+
+                    }
+
+                    #region Debugsection
+                    if (debug)
+                    {
+                        foreach (Hindernis hindernis in hindernisListe)
+                        {
+                            foreach (Hitbox hitbox in hindernis.gibHitboxen())
+                            {
+                                spriteBatch.Draw(dummyTexture, hitbox.hitboxRect, Color.Red);
+                            }
+
+                            foreach (Hitbox hitbox in hindernis.gibSterben())
+                            {
+                                spriteBatch.Draw(dummyTexture2, hitbox.hitboxRect, Color.Green);
+                            }
+                        }
+
+                        // Punkte/Noten Zeichnen
+
+                        foreach (NotenHitbox note in punkteListeDraw)
+                        {
+                            spriteBatch.Draw(dummyTexture, note.hitboxRect, Color.Red);
+                        }
+
+                        foreach (NotenHitbox note in punkteListeKollisionen)
+                        {
+                            spriteBatch.Draw(dummyTexture, note.hitboxRect, Color.Red);
+                        }
+
+
+                        // Spieler Hitbox malen zum Testen
+                        //  spriteBatch.Draw(dummyTexture2, spieler.hitboxFussRechts, Color.Green);
+                        spriteBatch.DrawString(schrift_40, "X: " + spieler.position.X + " Y: " + spieler.position.Y, new Vector2(0, 0), Color.Black);
+
+                        spriteBatch.Draw(dummyTexture2, spieler.spielerPosition, Color.Green);
+                        spriteBatch.Draw(dummyTexture2, spieler.hitboxFuss, Color.Green);
+
+                        // spriteBatch.Draw(dummyTexture2, spieler.hitboxKopf, Color.Blue);
+                        spriteBatch.Draw(dummyTexture2, spieler.hitboxKopf, Color.Green);
+                        spriteBatch.Draw(dummyTexture2, spieler.hitboxBeine, Color.Green);
+
+                        spriteBatch.Draw(dummyTexture2, spieler.hitboxKoerper, Color.Blue);
+
+                    }
+                    #endregion
+
+
+                    // Zeichne Spieler
+                    spieler.Draw(spriteBatch);
+
+                    #region AchievmentAnzeigen
+                    if (gewonnen == 1)
+                    {
+                        hud.aktuellerUnlock = hud.skin_frau;
+                        hud.DrawAchivment(spriteBatch);
+                    }
+                    else if (gewonnen == 5)
+                    {
+                        hud.aktuellerUnlock = hud.skin_hut;
+                        hud.DrawAchivment(spriteBatch);
+                    }
+                    else if (gewonnen == 10)
+                    {
+                        hud.aktuellerUnlock = hud.skin_einstein;
+                        hud.DrawAchivment(spriteBatch);
+                    }
+                    #endregion
+
+
+
+
+                    // Titel sound aus
+                    MediaPlayer.Pause();
                 }
                 #endregion
 
 
+                #region GamestateCheaten
+
+                if (gamestate == Gamestate.cheat)
+                {
 
 
-                // Titel sound aus
-                MediaPlayer.Pause();
+
+                    // spriteBatch.Draw(spieler.spielerTextur, spieler.position, Color.White);
+
+                    hud.Draw(spriteBatch, schrift_40, Hindernis.punkteAnzahl, gameTime);
+
+
+                    // Hindernisse zeichnen
+                    spriteBatch.Draw(hindernisListe[1].hindernisTextur, hindernisListe[1].hindernisPosition, Color.White);
+                    spriteBatch.Draw(hindernisListe[2].hindernisTextur, hindernisListe[2].hindernisPosition, Color.White);
+                    spriteBatch.Draw(hindernisListe[3].hindernisTextur, hindernisListe[3].hindernisPosition, Color.White);
+                    spriteBatch.Draw(hindernisListe[4].hindernisTextur, hindernisListe[4].hindernisPosition, Color.White);
+                    spriteBatch.Draw(hindernisListe[5].hindernisTextur, hindernisListe[5].hindernisPosition, Color.White);
+
+
+
+                    hindernisListe[2].Draw(spriteBatch);
+                    hindernisListe[3].Draw(spriteBatch);
+                    hindernisListe[4].Draw(spriteBatch);
+                    hindernisListe[5].Draw(spriteBatch);
+
+
+
+                    foreach (NotenHitbox notenHitbox in hindernisListe[1].gibPunkte())
+                    {
+                        notenHitbox.Draw(spriteBatch);
+                    }
+
+                    foreach (NotenHitbox notenHitbox in hindernisListe[2].gibPunkte())
+                    {
+                        notenHitbox.Draw(spriteBatch);
+                    }
+
+                    foreach (NotenHitbox notenHitbox in hindernisListe[3].gibPunkte())
+                    {
+                        notenHitbox.Draw(spriteBatch);
+                    }
+
+                    foreach (NotenHitbox notenHitbox in hindernisListe[4].gibPunkte())
+                    {
+                        notenHitbox.Draw(spriteBatch);
+                    }
+
+                    foreach (NotenHitbox notenHitbox in hindernisListe[5].gibPunkte())
+                    {
+                        notenHitbox.Draw(spriteBatch);
+                    }
+
+                    notenPlatzerAnimation.Draw(spriteBatch, notenPlatzerPosition);
+
+                    if (notenFreilassen.Count != 0)
+                    {
+                        foreach (NotenHitbox note in notenFreilassen)
+                        {
+                            note.punkt.punktAnimation.Draw(spriteBatch, note.hitboxPosition);
+                        }
+
+                    }
+
+                    #region Debugsection
+                    if (debug)
+                    {
+                        foreach (Hindernis hindernis in hindernisListe)
+                        {
+                            foreach (Hitbox hitbox in hindernis.gibHitboxen())
+                            {
+                                spriteBatch.Draw(dummyTexture, hitbox.hitboxRect, Color.Red);
+                            }
+
+                            foreach (Hitbox hitbox in hindernis.gibSterben())
+                            {
+                                spriteBatch.Draw(dummyTexture2, hitbox.hitboxRect, Color.Green);
+                            }
+                        }
+
+                        // Punkte/Noten Zeichnen
+
+                        foreach (NotenHitbox note in punkteListeDraw)
+                        {
+                            spriteBatch.Draw(dummyTexture, note.hitboxRect, Color.Red);
+                        }
+
+                        foreach (NotenHitbox note in punkteListeKollisionen)
+                        {
+                            spriteBatch.Draw(dummyTexture, note.hitboxRect, Color.Red);
+                        }
+
+
+                        // Spieler Hitbox malen zum Testen
+                        //  spriteBatch.Draw(dummyTexture2, spieler.hitboxFussRechts, Color.Green);
+                        spriteBatch.DrawString(schrift_40, "X: " + spieler.position.X + " Y: " + spieler.position.Y, new Vector2(0, 0), Color.Black);
+
+                        spriteBatch.Draw(dummyTexture2, spieler.spielerPosition, Color.Green);
+                        spriteBatch.Draw(dummyTexture2, spieler.hitboxFuss, Color.Green);
+
+                        // spriteBatch.Draw(dummyTexture2, spieler.hitboxKopf, Color.Blue);
+                        spriteBatch.Draw(dummyTexture2, spieler.hitboxKopf, Color.Green);
+                        spriteBatch.Draw(dummyTexture2, spieler.hitboxBeine, Color.Green);
+
+                        spriteBatch.Draw(dummyTexture2, spieler.hitboxKoerper, Color.Blue);
+
+                    }
+                    #endregion
+
+
+                    // Zeichne Spieler
+                    spieler.Draw(spriteBatch);
+
+                    #region AchievmentAnzeigen
+                    if (gewonnen == 1)
+                    {
+                        hud.aktuellerUnlock = hud.skin_frau;
+                        hud.DrawAchivment(spriteBatch);
+                    }
+                    else if (gewonnen == 5)
+                    {
+                        hud.aktuellerUnlock = hud.skin_hut;
+                        hud.DrawAchivment(spriteBatch);
+                    }
+                    else if (gewonnen == 10)
+                    {
+                        hud.aktuellerUnlock = hud.skin_einstein;
+                        hud.DrawAchivment(spriteBatch);
+                    }
+                    #endregion
+
+
+
+
+                    // Titel sound aus
+                    MediaPlayer.Pause();
+                }
+                #endregion
+
+
+                spriteBatch.End();
+
+                #endregion
             }
-            #endregion
-
-            #region GamestateMenue
-            if (gamestate == Gamestate.menue)
-            {
-                // Malt alle Animationen des Menüs
-                menue.Draw(spriteBatch);
-
-                // Titel Musik spielen
-                if (MediaPlayer.State != MediaState.Playing)
-                    MediaPlayer.Play(titel);
-
-            }
-            #endregion
-
-            #region GamestateOptions
-
-            if (gamestate == Gamestate.options)
-            {
-                // Malt alle Animationen des Menüs
-                optionen.Draw(spriteBatch, schrift_40, gewonnen);
-            }
-
-            #endregion
-
-            // Logo Zeichnen
-            spriteBatch.Draw(logo, new Vector2(0, 720 - 83), Color.White);
-
-            spriteBatch.End(); // End
-
             base.Draw(gameTime);
         }
 
@@ -1371,7 +1680,7 @@ namespace xkfd
             if (standardSkin.laufenAnimation == null) standardSkin.laufenAnimation = new Animation(standardSkin.laufenTextur, 4, 3, 3);
             if (standardSkin.sprignenAnimation == null) standardSkin.sprignenAnimation = new Animation(standardSkin.sprignenTextur, 4, 2, 6);
 
-            if (standardSkin.cheatenAnimation == null) standardSkin.cheatenAnimation = new Animation(standardSkin.cheatenTextur, 4, 3, 3);
+            if (standardSkin.cheatenAnimation == null) standardSkin.cheatenAnimation = new Animation(standardSkin.cheatenTextur, 4, 2, 6);
 
             if (standardSkin.sterbenAnimationKoepfen == null) standardSkin.sterbenAnimationKoepfen = new Animation(standardSkin.sterbenTexturKoepfen, 2, 5, 6);
             if (standardSkin.sterbenAnimationStolpern == null) standardSkin.sterbenAnimationStolpern = new Animation(standardSkin.sterbenTexturStolpern, 2, 5, 6);
@@ -1386,6 +1695,8 @@ namespace xkfd
             if (frauenSkin.laufenAnimation == null) frauenSkin.laufenAnimation = new Animation(frauenSkin.laufenTextur, 4, 3, 3);
             if (frauenSkin.sprignenAnimation == null) frauenSkin.sprignenAnimation = new Animation(frauenSkin.sprignenTextur, 4, 2, 6);
 
+            if (frauenSkin.cheatenAnimation == null) frauenSkin.cheatenAnimation = new Animation(frauenSkin.cheatenTextur, 4, 2, 6);
+
             if (frauenSkin.sterbenAnimationKoepfen == null) frauenSkin.sterbenAnimationKoepfen = new Animation(frauenSkin.sterbenTexturKoepfen, 2, 5, 6);
             if (frauenSkin.sterbenAnimationStolpern == null) frauenSkin.sterbenAnimationStolpern = new Animation(frauenSkin.sterbenTexturStolpern, 2, 5, 6);
             if (frauenSkin.sterbenAnimationKlatscher == null) frauenSkin.sterbenAnimationKlatscher = new Animation(frauenSkin.sterbenTexturKlatscher, 12, 1, 7);
@@ -1399,6 +1710,8 @@ namespace xkfd
             if (hutSkin.laufenAnimation == null) hutSkin.laufenAnimation = new Animation(hutSkin.laufenTextur, 4, 3, 3);
             if (hutSkin.sprignenAnimation == null) hutSkin.sprignenAnimation = new Animation(hutSkin.sprignenTextur, 4, 2, 6);
 
+            if (hutSkin.cheatenAnimation == null) hutSkin.cheatenAnimation = new Animation(hutSkin.cheatenTextur, 4, 2, 6);
+
             if (hutSkin.sterbenAnimationKoepfen == null) hutSkin.sterbenAnimationKoepfen = new Animation(hutSkin.sterbenTexturKoepfen, 2, 5, 6);
             if (hutSkin.sterbenAnimationStolpern == null) hutSkin.sterbenAnimationStolpern = new Animation(hutSkin.sterbenTexturStolpern, 2, 5, 6);
             if (hutSkin.sterbenAnimationKlatscher == null) hutSkin.sterbenAnimationKlatscher = new Animation(hutSkin.sterbenTexturKlatscher, 12, 1, 7);
@@ -1411,6 +1724,8 @@ namespace xkfd
             if (einsteinSkin.gleitenAnimation == null) einsteinSkin.gleitenAnimation = new Animation(einsteinSkin.gleitenTextur, 2, 2, 6);
             if (einsteinSkin.laufenAnimation == null) einsteinSkin.laufenAnimation = new Animation(einsteinSkin.laufenTextur, 4, 3, 3);
             if (einsteinSkin.sprignenAnimation == null) einsteinSkin.sprignenAnimation = new Animation(einsteinSkin.sprignenTextur, 4, 2, 6);
+
+            if (einsteinSkin.cheatenAnimation == null) einsteinSkin.cheatenAnimation = new Animation(einsteinSkin.cheatenTextur, 4, 2, 6);
 
             if (einsteinSkin.sterbenAnimationKoepfen == null) einsteinSkin.sterbenAnimationKoepfen = new Animation(einsteinSkin.sterbenTexturKoepfen, 2, 5, 6);
             if (einsteinSkin.sterbenAnimationStolpern == null) einsteinSkin.sterbenAnimationStolpern = new Animation(einsteinSkin.sterbenTexturStolpern, 2, 5, 6);
@@ -1468,7 +1783,7 @@ namespace xkfd
             spieler.aktuellerSkin.sterbenAnimationStolpern.index = 0;
             spieler.aktuellerSkin.sterbenAnimationPieksen.index = 0;
 
-            hindernisListe = Hindernis.generieHindernisse(6, hindernisTexturS, hindernisTexturA, hindernisTexturB, hindernisTexturC, hindernisTexturD, hindernisTexturE, hindernisTexturZ, punkt1, punkt2, punkt5, punkt10, powerUp, zielEinlauf);
+            hindernisListe = Hindernis.generieHindernisse(15, hindernisTexturS, hindernisTexturA, hindernisTexturB, hindernisTexturC, hindernisTexturD, hindernisTexturE, hindernisTexturZ, punkt1, punkt2, punkt5, punkt10, powerUp, zielEinlauf);
         }
     }
 }

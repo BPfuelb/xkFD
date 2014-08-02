@@ -22,7 +22,7 @@ namespace xkfd
 
         public override void update()
         {
-            spieler.aktuellerSkin.cheatenAnimation.Update(5);
+            spieler.aktuellerSkin.cheatenAnimation.Update(4);
         }
 
         public override void Draw(SpriteBatch sb)

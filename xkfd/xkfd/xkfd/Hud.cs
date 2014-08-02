@@ -85,14 +85,8 @@ namespace xkfd
         }
 
 
-        public void Update(GameTime gt)
+        public void Update()
         {
-            if (gt.TotalGameTime.Seconds != gameTimeTmp)
-            {
-                timer++;
-                gameTimeTmp = gt.TotalGameTime.Seconds;
-            }
-
             counter = "";
             for (int i = 0; i < spieler.gleitenResource / 2; i++)
             {
@@ -100,6 +94,17 @@ namespace xkfd
             }
 
             gameOverAnimation.Update();
+        }
+
+        public void UpdateMitTimer(GameTime gt)
+        {
+            if (gt.TotalGameTime.Seconds != gameTimeTmp)
+            {
+                timer++;
+                gameTimeTmp = gt.TotalGameTime.Seconds;
+            }
+
+            Update();
         }
 
         public void UpdateHelp()
@@ -122,10 +127,9 @@ namespace xkfd
                 sb.Draw(checkBox_check, positionCheckbox, Color.White);
             else
                 sb.Draw(checkBox_uncheck, positionCheckbox, Color.White);
-			
+
 			// Timer in Trialsystem anzeigen
-            // sb.DrawString(schrift, CalcTrial(timer), new Vector2(sb.Viewport.Width / 2 - mFont.MeasureString("YourText").Length() / 2, 0), Color.White, 0, new Vector2(0, 0), 1f, SpriteEffects.None, 0f);
-            sb.DrawString(schrift, CalcTrial(timer), positionTimer, Color.Black);
+            sb.DrawString(schrift, CalcTrial(timer), new Vector2(positionTimer.X - schrift.MeasureString(CalcTrial(timer)).Length(), positionTimer.Y), Color.Black, 0, new Vector2(0, 0), 1f, SpriteEffects.None, 0f);
         }
 
         public void UpdateAchievment()

@@ -794,6 +794,51 @@
       <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_jubelmenge.xnb</Output>
       <Time>2014-08-02T05:48:31.1847814+02:00</Time>
     </Item>
+    <Item>
+      <Source>ani_cheaten_einstein.png</Source>
+      <Name>ani_cheaten_einstein</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_cheaten_einstein.xnb</Output>
+      <Time>2014-08-02T07:21:21.4955762+02:00</Time>
+    </Item>
+    <Item>
+      <Source>ani_cheaten_frau.png</Source>
+      <Name>ani_cheaten_frau</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_cheaten_frau.xnb</Output>
+      <Time>2014-08-02T07:21:21.4965763+02:00</Time>
+    </Item>
+    <Item>
+      <Source>ani_cheaten_hut.png</Source>
+      <Name>ani_cheaten_hut</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_cheaten_hut.xnb</Output>
+      <Time>2014-08-02T07:21:21.4975763+02:00</Time>
+    </Item>
+    <Item>
+      <Source>ani_cheaten_std.png</Source>
+      <Name>ani_cheaten_std</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_cheaten_std.xnb</Output>
+      <Time>2014-08-02T07:21:21.4985764+02:00</Time>
+    </Item>
+    <Item>
+      <Source>InvertShader.fx</Source>
+      <Name>InvertShader</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\InvertShader.xnb</Output>
+      <Time>2014-08-02T10:19:03.1312906+02:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <TargetPlatform>Windows</TargetPlatform>
