@@ -15,25 +15,34 @@ namespace xkfd
 
         // Textur und Position für Hintergrund
         public Texture2D hintergrundTextur;
+        public Texture2D hintergrundTexturCheat;
+        public Texture2D aktuelleTextur;
+
         public Vector2 hintegrundPosition;
 
         public Hintergrund()
         {
+            aktuelleTextur = hintergrundTextur;
             hintegrundPosition = new Vector2(0, 0);
         }
 
         public void Update()
         {
             hintegrundPosition.X -= 4 ;
-            if (hintegrundPosition.X <= -282)
+            if (hintegrundPosition.X <= -1024)
                 hintegrundPosition.X = 0;
         }
 
         public void Update(int geschwindigkeit)
         {
             hintegrundPosition.X -= geschwindigkeit;
-            if (hintegrundPosition.X <= -282)
+            if (hintegrundPosition.X <= -1024)
                 hintegrundPosition.X = 0;
+        }
+
+        public void Draw(SpriteBatch sb)
+        {
+            sb.Draw(hintergrundTextur, hintegrundPosition, Color.White);
         }
     }
 }

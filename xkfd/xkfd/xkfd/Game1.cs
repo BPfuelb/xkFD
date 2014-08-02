@@ -263,6 +263,8 @@ namespace xkfd
 
             // Hintergrund
             hintergrund.hintergrundTextur = Content.Load<Texture2D>("hintergrund");
+            hintergrund.hintergrundTexturCheat = Content.Load<Texture2D>("hintergrund_cheat_inv");
+
 
             // Optionen Zurück Knopf
             optionen.z_knopf_Textur = Content.Load<Texture2D>("o_zurueck");
@@ -464,6 +466,7 @@ namespace xkfd
 
                 if (spieler.aktuellerZustand != spieler.sterben &&  Keyboard.GetState().IsKeyDown(Keys.LeftControl) && Keyboard.GetState().IsKeyDown(Keys.LeftAlt) && Keyboard.GetState().IsKeyDown(Keys.Insert))
                 {
+                    hintergrund.aktuelleTextur = hintergrund.hintergrundTexturCheat;
                     spieler.aktuellerZustand = spieler.cheaten;
                     gamestate = Gamestate.cheat;
                     cheat = true;
@@ -801,6 +804,8 @@ namespace xkfd
 
             if (gamestate == Gamestate.cheat)
             {
+                
+
                 // Hud Update
                 hud.Update();
 
@@ -833,6 +838,7 @@ namespace xkfd
                 }
                 else
                 {
+                    hintergrund.aktuelleTextur = hintergrund.hintergrundTextur;
                     cheat = false;
                     gamestate = Gamestate.running;
                     spieler.doGewinnen(); // Wenn weniger als 6 Hindernisse vorhanden sind gehe in den Gewinnenzustand über
@@ -1057,7 +1063,7 @@ namespace xkfd
                 spriteBatch.Begin(); // Begin
                 #region normal
                 // Hintergrund zeichnen
-                spriteBatch.Draw(hintergrund.hintergrundTextur, hintergrund.hintegrundPosition, Color.White);
+                hintergrund.Draw(spriteBatch);
 
                 #region GamestateLoading
 
@@ -1382,8 +1388,8 @@ namespace xkfd
                 invert.CurrentTechnique = invert.Techniques[0];
 
                 // Hintergrund zeichnen
-                spriteBatch.Draw(hintergrund.hintergrundTextur, hintergrund.hintegrundPosition, Color.White);
-
+                hintergrund.Draw(spriteBatch);
+                
 
                 #region GamestateRunning
 
