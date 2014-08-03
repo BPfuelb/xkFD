@@ -20,7 +20,7 @@ namespace xkfd
         Effect invert;
 
         // Debug
-        Boolean debug = true;
+        Boolean debug = false;
 
         // Spiel Status
         enum Gamestate { running, menue, options, ladebildschirm, cheat };
