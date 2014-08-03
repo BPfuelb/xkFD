@@ -1277,19 +1277,27 @@ namespace xkfd
 
 
                     // Hindernisse zeichnen
-                    spriteBatch.Draw(hindernisListe[1].hindernisTextur, hindernisListe[1].hindernisPosition, Color.White);
-                    spriteBatch.Draw(hindernisListe[2].hindernisTextur, hindernisListe[2].hindernisPosition, Color.White);
-                    spriteBatch.Draw(hindernisListe[3].hindernisTextur, hindernisListe[3].hindernisPosition, Color.White);
-                    spriteBatch.Draw(hindernisListe[4].hindernisTextur, hindernisListe[4].hindernisPosition, Color.White);
-                    spriteBatch.Draw(hindernisListe[5].hindernisTextur, hindernisListe[5].hindernisPosition, Color.White);
+                    foreach(Hindernis hindernis in hindernisListe.GetRange(1,5))
+                    {
+                        spriteBatch.Draw(hindernis.hindernisTextur, hindernis.hindernisPosition, Color.White);
+                        hindernis.DrawAni(spriteBatch);
+                    }
 
+
+                    /*
+                    spriteBatch.Draw(hindernisListe[1].hindernisTexturCheat, hindernisListe[1].hindernisPosition, Color.White);
+                    spriteBatch.Draw(hindernisListe[2].hindernisTexturCheat, hindernisListe[2].hindernisPosition, Color.White);
+                    spriteBatch.Draw(hindernisListe[3].hindernisTexturCheat, hindernisListe[3].hindernisPosition, Color.White);
+                    spriteBatch.Draw(hindernisListe[4].hindernisTexturCheat, hindernisListe[4].hindernisPosition, Color.White);
+                    spriteBatch.Draw(hindernisListe[5].hindernisTexturCheat, hindernisListe[5].hindernisPosition, Color.White);
+                    
 
                     hindernisListe[1].DrawAni(spriteBatch);
                     hindernisListe[2].DrawAni(spriteBatch);
                     hindernisListe[3].DrawAni(spriteBatch);
                     hindernisListe[4].DrawAni(spriteBatch);
                     hindernisListe[5].DrawAni(spriteBatch);
-
+                    */
 
 
                     foreach (NotenHitbox notenHitbox in hindernisListe[1].gibPunkte())
