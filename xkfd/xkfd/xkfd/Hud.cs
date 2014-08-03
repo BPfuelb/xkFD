@@ -160,7 +160,7 @@ namespace xkfd
                 sb.Draw(checkBox_uncheck, positionCheckbox + new Vector2(170, -30), schriftFarbe);
 
             // Timer in Trialsystem anzeigen
-            sb.DrawString(schrift, zeit, new Vector2(positionTimer.X - schrift.MeasureString(CalcTrial(timer)).Length(), positionTimer.Y), schriftFarbe, 0, new Vector2(0, 0), 1f, SpriteEffects.None, 0f);
+            // sb.DrawString(schrift, zeit, new Vector2(positionTimer.X - schrift.MeasureString(CalcTrial(timer)).Length(), positionTimer.Y), schriftFarbe, 0, new Vector2(0, 0), 1f, SpriteEffects.None, 0f);
         }
 
 
