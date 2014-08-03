@@ -578,7 +578,6 @@ namespace xkfd
                             hud.gewonnen = true;
                             konfig.WriteFile(gewonnen.ToString());
                         }
-
                     }
                     if (hud.gewonnen)
                         hud.UpdateAchievment();
@@ -912,6 +911,7 @@ namespace xkfd
                 {
                     hintergrund.aktuelleTextur = hintergrund.hintergrundTextur;
                     cheat = false;
+                    menue.spielAktiv = false;
                     hud.schriftFarbe = Color.Black;
                     gamestate = Gamestate.running;
                     spieler.doGewinnen(); // Wenn weniger als 6 Hindernisse vorhanden sind gehe in den Gewinnenzustand über
@@ -951,7 +951,6 @@ namespace xkfd
                     if (hindernisListe[1].hindernisPosition.X <= -320)
                         hindernisListe.RemoveAt(0);
 
-
                     hintergrund.Update(gameTime, 1);
                 }
                 else // Wenn Spieler im Ziel, nur noch Zielanimation updaten
@@ -970,26 +969,6 @@ namespace xkfd
                 #endregion
 
 
-                #region GewonnenAktionen
-                if (hindernisListe.Count == 6)
-                {
-                    if (spieler.aktuellerZustand == spieler.cheaten)
-                    {
-                        if (menue.spielAktiv)
-                        {
-                            menue.spielAktiv = false;
-                            if (!cheat)
-                                gewonnen++;
-                            hud.gewonnen = true;
-                            konfig.WriteFile(gewonnen.ToString());
-                        }
-
-                    }
-                    if (hud.gewonnen)
-                        hud.UpdateAchievment();
-                }
-
-                #endregion
 
                 // Berechne Vektor für Zielbestimmung der Noten
                 foreach (NotenHitbox note in punkteListeKollisionen)
