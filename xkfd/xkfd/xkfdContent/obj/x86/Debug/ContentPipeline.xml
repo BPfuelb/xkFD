@@ -170,7 +170,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\checkbox_check.xnb</Output>
-      <Time>2014-07-30T03:10:43.9442869+02:00</Time>
+      <Time>2014-08-03T22:15:57.2431443+02:00</Time>
     </Item>
     <Item>
       <Source>checkbox_uncheck.png</Source>
@@ -179,7 +179,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\checkbox_uncheck.xnb</Output>
-      <Time>2014-07-30T03:10:46.9893337+02:00</Time>
+      <Time>2014-08-03T22:15:57.2441443+02:00</Time>
     </Item>
     <Item>
       <Source>teleport.png</Source>
@@ -818,7 +818,7 @@
       <Processor>FontDescriptionProcessor</Processor>
       <Options>None</Options>
       <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\SpriteFont1.xnb</Output>
-      <Time>2014-08-03T20:51:01.736698+02:00</Time>
+      <Time>2014-08-03T22:15:58.7502305+02:00</Time>
     </Item>
     <Item>
       <Source>SpriteFont2.spritefont</Source>

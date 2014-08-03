@@ -20,7 +20,7 @@ namespace xkfd
         Effect invert;
 
         // Debug
-        Boolean debug = false;
+        Boolean debug = true;
 
         // Spiel Status
         enum Gamestate { running, menue, options, ladebildschirm, cheat };
@@ -467,7 +467,7 @@ namespace xkfd
 
                 if (Keyboard.GetState().IsKeyDown(Keys.Enter) && OldKeyState.IsKeyUp(Keys.Enter))
                 {
-                    spieler.setPlayerPosition(512);
+                    spieler.position.X = 1280 / 2 - 128;
                     start = true;
                     gamestate = Gamestate.running;
                 }
@@ -492,15 +492,7 @@ namespace xkfd
                 if (spieler.aktuellerZustand == spieler.gleiten && Keyboard.GetState().IsKeyUp(Keys.Space))
                     spieler.doFallen();
 
-
-                if (spieler.aktuellerZustand == spieler.laufen && Keyboard.GetState().IsKeyDown(Keys.LeftControl) && Keyboard.GetState().IsKeyDown(Keys.LeftAlt) && Keyboard.GetState().IsKeyDown(Keys.Back))
-                {
-                    hintergrund.aktuelleTextur = hintergrund.hintergrundTexturCheat;
-                    spieler.aktuellerZustand = spieler.cheaten;
-                    hud.schriftFarbe = Color.White;
-                    gamestate = Gamestate.cheat;
-                    cheat = true;
-                }
+               
 
                 #endregion
 
