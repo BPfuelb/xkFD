@@ -120,6 +120,7 @@
     <Compile Include="HindernisC.cs" />
     <Compile Include="HindernisD.cs" />
     <Compile Include="HindernisE.cs" />
+    <Compile Include="HindernisF.cs" />
     <Compile Include="HindernisS.cs" />
     <Compile Include="Hintergrund.cs" />
     <Compile Include="Hitbox.cs" />
@@ -141,6 +142,7 @@
     <Compile Include="SterbenAnimation.cs" />
     <Compile Include="SterbenAnimationBeine.cs" />
     <Compile Include="SterbenAnimationKlatscher.cs" />
+    <Compile Include="SterbenAnimationKlatscherOben.cs" />
     <Compile Include="SterbenAnimationKopf.cs" />
     <Compile Include="SterbenAnimationPieksen.cs" />
     <Compile Include="Zustand.cs" />

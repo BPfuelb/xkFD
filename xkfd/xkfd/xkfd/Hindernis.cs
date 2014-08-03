@@ -55,7 +55,7 @@ namespace xkfd
             liste.Add(new HindernisS(game.hindernisTexturS, game.hindernisTexturS_cheat, new Vector2(2 * 320, 0), game.cheat_qr));
             liste.Add(new HindernisS(game.hindernisTexturS, game.hindernisTexturS_cheat, new Vector2(3 * 320, 0)));
 
-            int anzahlVerschiedenerHindernisse = 5;
+            int anzahlVerschiedenerHindernisse = 6;
             // Erzeuge mit Schleife Anzahl von zufälligen Hindernissen
             for (int i = 0; i < anzahl; i++)
             {
@@ -84,6 +84,9 @@ namespace xkfd
                         break;
                     case 4:
                         liste.Add(new HindernisE(game.hindernisTexturE, game.hindernisTexturE_cheat, new Vector2(1280, 0), game.punkt1, game.punkt2, game.punkt5, game.punkt10, game.powerUp));
+                        break;
+                    case 5:
+                        liste.Add(new HindernisF(game.hindernisTexturF, game.hindernisTexturF_cheat, new Vector2(1280, 0), game.punkt1, game.punkt2, game.punkt5, game.punkt10, game.powerUp));
                         break;
 
                 }
@@ -173,13 +176,13 @@ namespace xkfd
             return hitboxListeStacheln;
         }
 
-        public void DrawAni(SpriteBatch sb)
+        public virtual void DrawAni(SpriteBatch sb)
         {
             if (special == game1.zielEinlauf)
             {
                 if (specialAnimation == null)
                     specialAnimation = new Animation(special, 2, 2, 8);
-                specialAnimation.Draw(sb, hindernisPosition + new Vector2(300, 400));
+                specialAnimation.Draw(sb, hindernisPosition + new Vector2(300, 397));
             }
 
             if (special == game1.cheat_qr)

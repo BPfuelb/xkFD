@@ -15,6 +15,7 @@ namespace xkfd
         public SterbenAnimation koepfen;
         public SterbenAnimation stolpern;
         public SterbenAnimation klatscher;
+        public SterbenAnimation klatscher_oben;
         public SterbenAnimation pieksen;
 
 
@@ -29,6 +30,7 @@ namespace xkfd
             koepfen = new SterbenAnimationKopf(this);
             stolpern = new SterbenAnimationBeine(this);
             klatscher = new SterbenAnimationKlatscher(this);
+            klatscher_oben = new SterbenAnimationKlatscherOben(this);
             pieksen = new SterbenAnimationPieksen(this);
             aktuell = koepfen;
 

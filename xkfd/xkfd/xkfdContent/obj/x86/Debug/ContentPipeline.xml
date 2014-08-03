@@ -539,7 +539,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\GameOver.xnb</Output>
-      <Time>2014-08-01T20:01:52.5985101+02:00</Time>
+      <Time>2014-08-03T18:51:55.5399589+02:00</Time>
     </Item>
     <Item>
       <Source>ani_sterben1_koepfen_einstein.png</Source>
@@ -836,7 +836,7 @@
       <Processor>FontDescriptionProcessor</Processor>
       <Options>None</Options>
       <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\SpriteFont3.xnb</Output>
-      <Time>2014-08-02T23:32:59.8560171+02:00</Time>
+      <Time>2014-08-03T18:20:03.1285752+02:00</Time>
     </Item>
     <Item>
       <Source>jump.wav</Source>
@@ -910,6 +910,33 @@
       <Options>None</Options>
       <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\InvertShader.xnb</Output>
       <Time>2014-08-02T23:57:37.3751187+02:00</Time>
+    </Item>
+    <Item>
+      <Source>HindernisF.png</Source>
+      <Name>HindernisF</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\HindernisF.xnb</Output>
+      <Time>2014-08-03T19:01:51.3580377+02:00</Time>
+    </Item>
+    <Item>
+      <Source>HindernisF_cheat.png</Source>
+      <Name>HindernisF_cheat</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\HindernisF_cheat.xnb</Output>
+      <Time>2014-08-03T17:38:08.8707679+02:00</Time>
+    </Item>
+    <Item>
+      <Source>ani_sterben3_klatscher_oben_std.png</Source>
+      <Name>ani_sterben3_klatscher_oben_std</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_sterben3_klatscher_oben_std.xnb</Output>
+      <Time>2014-08-03T19:21:01.5118228+02:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>

@@ -30,7 +30,7 @@ namespace xkfd
         Spieler spieler;
 
         // Schriftarten
-        SpriteFont schrift_40, schrift_20, schrift_test;
+       public  SpriteFont schrift_40, schrift_20, schrift_rechner;
 
         // Menü 
         Menue menue;
@@ -49,7 +49,7 @@ namespace xkfd
         List<Hindernis> hindernisListe;
 
         // Hud
-        Hud hud;
+        public Hud hud;
 
         // Tutorial starten
         Boolean start = true;
@@ -64,6 +64,7 @@ namespace xkfd
                             hindernisTexturC,
                             hindernisTexturD,
                             hindernisTexturE,
+                            hindernisTexturF,
                             hindernisTexturZ;
         public Texture2D hindernisTexturS_cheat,
                             hindernisTexturA_cheat,
@@ -71,6 +72,7 @@ namespace xkfd
                             hindernisTexturC_cheat,
                             hindernisTexturD_cheat,
                             hindernisTexturE_cheat,
+                            hindernisTexturF_cheat,
                             hindernisTexturZ_cheat;
         public Texture2D zielEinlauf, cheat_qr;
 
@@ -107,8 +109,8 @@ namespace xkfd
         Boolean zielInSicht = false;
 
         // Punkte Liste
-        List<NotenHitbox> punkteListeDraw = new List<NotenHitbox>();
-        List<NotenHitbox> punkteListeKollisionen = new List<NotenHitbox>();
+        public List<NotenHitbox> punkteListeDraw = new List<NotenHitbox>();
+        public List<NotenHitbox> punkteListeKollisionen = new List<NotenHitbox>();
 
         List<NotenHitbox> notenFreilassen = new List<NotenHitbox>();
 
@@ -177,7 +179,7 @@ namespace xkfd
             // Lade Schirftart
             schrift_40 = Content.Load<SpriteFont>("SpriteFont1");
             schrift_20 = Content.Load<SpriteFont>("SpriteFont2");
-            schrift_test = Content.Load<SpriteFont>("SpriteFont3");
+            schrift_rechner = Content.Load<SpriteFont>("SpriteFont3");
 
             #region SkinsInitialisieren
             // Skin initialisieren
@@ -196,6 +198,7 @@ namespace xkfd
             standardSkin.sterbenTexturKoepfen = Content.Load<Texture2D>("ani_sterben1_koepfen_std");
             standardSkin.sterbenTexturStolpern = Content.Load<Texture2D>("ani_sterben2_stolpern_std");
             standardSkin.sterbenTexturKlatscher = Content.Load<Texture2D>("ani_sterben3_klatscher_std");
+            standardSkin.sterbenTexturKlatscherOben = Content.Load<Texture2D>("ani_sterben3_klatscher_oben_std");
             standardSkin.sterbenTexturPieksen = Content.Load<Texture2D>("ani_sterben4_pieksen_std");
 
 
@@ -319,6 +322,9 @@ namespace xkfd
             ((Sterben)spieler.sterben).klatscher.soundTod = Content.Load<SoundEffect>("dsskedth");
             ((Sterben)spieler.sterben).klatscher.soundSoundInstance = ((Sterben)spieler.sterben).klatscher.soundTod.CreateInstance();
 
+            // Sterben Sound beim klatschen Oben
+            ((Sterben)spieler.sterben).klatscher_oben.soundTod = Content.Load<SoundEffect>("dsskedth");
+            ((Sterben)spieler.sterben).klatscher_oben.soundSoundInstance = ((Sterben)spieler.sterben).klatscher_oben.soundTod.CreateInstance();
 
             // Sterben Sound beim pieksen
             ((Sterben)spieler.sterben).pieksen.soundTod = Content.Load<SoundEffect>("dsskedth");
@@ -335,6 +341,8 @@ namespace xkfd
             hindernisTexturC = Content.Load<Texture2D>("hindernisC");
             hindernisTexturD = Content.Load<Texture2D>("hindernisD");
             hindernisTexturE = Content.Load<Texture2D>("hindernisE");
+            hindernisTexturF = Content.Load<Texture2D>("hindernisF");
+            hindernisTexturF = Content.Load<Texture2D>("hindernisF");
             hindernisTexturZ = Content.Load<Texture2D>("linie");
 
             // Textur für Hindernisse
@@ -344,6 +352,7 @@ namespace xkfd
             hindernisTexturC_cheat = Content.Load<Texture2D>("hindernisC_cheat");
             hindernisTexturD_cheat = Content.Load<Texture2D>("hindernisD_cheat");
             hindernisTexturE_cheat = Content.Load<Texture2D>("hindernisE_cheat");
+            hindernisTexturF_cheat = Content.Load<Texture2D>("hindernisF_cheat");
             hindernisTexturZ_cheat = Content.Load<Texture2D>("hindernisZ_cheat");
 
             //
@@ -579,26 +588,28 @@ namespace xkfd
 
                 #region PunkteKollisionen
 
-                foreach (NotenHitbox hitbox in punkteListeKollisionen)
+                if (spieler.aktuellerZustand != spieler.sterben)
                 {
-                    if (spieler.hitboxKoerper.Intersects(hitbox.hitboxRect))
+                    foreach (NotenHitbox hitbox in punkteListeKollisionen)
                     {
-                        notenPlatzerAnimation.index = 0;
-                        notenPlatzerPosition = hitbox.hitboxPosition - new Vector2(16, 16);
-                        if (hitbox.punkt.wertigkeit != 0)
+                        if (spieler.hitboxKoerper.Intersects(hitbox.hitboxRect))
                         {
-                            spieler.punkte += hitbox.punkt.wertigkeit;
-                            hitbox.zielPosition += new Vector2(new Random().Next(640), new Random().Next(100));
-                            spieler.gesammelteNoten.Add(hitbox);
-                            hitbox.platzerAnimation = new Animation(notenPlatzerTextur, 2, 2, 5);
+                            notenPlatzerAnimation.index = 0;
+                            notenPlatzerPosition = hitbox.hitboxPosition - new Vector2(16, 16);
+                            if (hitbox.punkt.wertigkeit != 0)
+                            {
+                                spieler.punkte += hitbox.punkt.wertigkeit;
+                                hitbox.zielPosition += new Vector2(new Random().Next(640), new Random().Next(100));
+                                spieler.gesammelteNoten.Add(hitbox);
+                                hitbox.platzerAnimation = new Animation(notenPlatzerTextur, 2, 2, 5);
+                            }
+                            else
+                                spieler.teleport = true;
+                            hitbox.hindernis.loescheHitboxPunkt(hitbox);
+                            hitbox.punkt.playSound();
                         }
-                        else
-                            spieler.teleport = true;
-                        hitbox.hindernis.loescheHitboxPunkt(hitbox);
-                        hitbox.punkt.playSound();
                     }
                 }
-
                 #endregion
 
                 #region Kollisionserkennung
@@ -700,6 +711,28 @@ namespace xkfd
                             ((Sterben)spieler.sterben).aktuell = ((Sterben)spieler.sterben).klatscher; // Passt den Todeszustand an
                             hud.soundGameOverSoundInstance.Play();
                             spieler.doSterben();
+                        }
+                        else if (spieler.position.Y < 500 && spieler.hitboxKopf.Intersects(hitbox.hitboxRect) && spieler.hitboxBeine.Intersects(hitbox.hitboxRect)) // Spieler gegen Taschenrechner
+                        {
+                            menue.spielAktiv = false;
+                            Boolean kollidiertBoden = false;
+                            ((Sterben)spieler.sterben).aktuell.soundTod.Play();
+                            while (!kollidiertBoden)
+                            {
+                                foreach (Hitbox hb in kollisionsListe)
+                                {
+                                    if (spieler.hitboxFuss.Intersects(hb.hitboxRect))
+                                    { kollidiertBoden = true; }
+                                }
+                                spieler.movePlayerDown(1);
+                            }
+                            spieler.setPlayerPositionRelativ(-256);
+                            ((Sterben)spieler.sterben).aktuell = ((Sterben)spieler.sterben).klatscher_oben; // Passt den Todeszustand an
+                            hud.soundGameOverSoundInstance.Play();
+                            menue.spielAktiv = false;
+                            spieler.doSterben();
+
+                            
                         }
                         else if (spieler.hitboxKopf.Intersects(hitbox.hitboxRect))//  && !spieler.hitboxBeine.Intersects(hitbox.hitboxRect))
                         {
@@ -1118,7 +1151,7 @@ namespace xkfd
                 {
                     // spriteBatch.Draw(spieler.spielerTextur, spieler.position, Color.White);
 
-                    hud.Draw(spriteBatch, schrift_40, Hindernis.punkteAnzahl, gameTime);
+                    
 
 
                     // Hindernisse zeichnen
@@ -1146,6 +1179,8 @@ namespace xkfd
                             note.Draw(spriteBatch);
                         }
                     }
+
+                    hud.Draw(spriteBatch, schrift_40, Hindernis.punkteAnzahl, gameTime);
 
                     #region Debugsection
                     if (debug)
@@ -1339,6 +1374,7 @@ namespace xkfd
             if (standardSkin.sterbenAnimationKoepfen == null) standardSkin.sterbenAnimationKoepfen = new Animation(standardSkin.sterbenTexturKoepfen, 2, 5, 6);
             if (standardSkin.sterbenAnimationStolpern == null) standardSkin.sterbenAnimationStolpern = new Animation(standardSkin.sterbenTexturStolpern, 2, 5, 6);
             if (standardSkin.sterbenAnimationKlatscher == null) standardSkin.sterbenAnimationKlatscher = new Animation(standardSkin.sterbenTexturKlatscher, 12, 1, 7);
+            if (standardSkin.sterbenAnimationKlatscherOben == null) standardSkin.sterbenAnimationKlatscherOben = new Animation(standardSkin.sterbenTexturKlatscherOben, 12, 1, 7);
             if (standardSkin.sterbenAnimationPieksen == null) standardSkin.sterbenAnimationPieksen = new Animation(standardSkin.sterbenTexturPieksen, 2, 5, 6);
 
             // Fraud Skin
@@ -1440,5 +1476,6 @@ namespace xkfd
             // hindernisListe = Hindernis.generieHindernisse(15, hindernisTexturS, hindernisTexturA, hindernisTexturB, hindernisTexturC, hindernisTexturD, hindernisTexturE, hindernisTexturZ, punkt1, punkt2, punkt5, punkt10, powerUp, zielEinlauf);
             hindernisListe = Hindernis.generieHindernisse(15, this);
         }
+
     }
 }

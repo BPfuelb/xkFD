@@ -57,6 +57,8 @@ namespace xkfd
         private int achievementDauer;
         public Color schriftFarbe;
 
+        public string zeit = "";
+
         // Zeit zähler
         int timer = 0;
         int gameTimeTmp = 0;
@@ -82,7 +84,7 @@ namespace xkfd
             achievementOben = false;
             achievementDauer = 0;
 
-            gameOverPosition = new Vector2(100,100);
+            gameOverPosition = new Vector2(100, 100);
             schriftFarbe = Color.Black;
         }
 
@@ -105,7 +107,7 @@ namespace xkfd
                 timer++;
                 gameTimeTmp = gt.TotalGameTime.Seconds;
             }
-
+            zeit = CalcTrial(timer);
             Update();
         }
 
@@ -130,8 +132,8 @@ namespace xkfd
             else
                 sb.Draw(checkBox_uncheck, positionCheckbox, schriftFarbe);
 
-			// Timer in Trialsystem anzeigen
-            sb.DrawString(schrift, CalcTrial(timer), new Vector2(positionTimer.X - schrift.MeasureString(CalcTrial(timer)).Length(), positionTimer.Y), schriftFarbe, 0, new Vector2(0, 0), 1f, SpriteEffects.None, 0f);
+            // Timer in Trialsystem anzeigen
+            sb.DrawString(schrift, zeit, new Vector2(positionTimer.X - schrift.MeasureString(CalcTrial(timer)).Length(), positionTimer.Y), schriftFarbe, 0, new Vector2(0, 0), 1f, SpriteEffects.None, 0f);
         }
 
 
@@ -173,15 +175,15 @@ namespace xkfd
 
             float trans = ((float)Math.Sin(transparence)) / 2 + 0.5f;
 
-            sb.DrawString(schrift, "Zum Starten Enter drücken", new Vector2(300, 600), Color.Black * trans );
+            sb.DrawString(schrift, "Zum Starten Enter drücken", new Vector2(300, 600), Color.Black * trans);
 
         }
 
-		public string CalcTrial(int zahl)
-		{
+        public string CalcTrial(int zahl)
+        {
             if (zahl == 0)
                 return "";
-			return "" + CalcTrial(zahl/3) + zahl%3;
-		}
+            return "" + CalcTrial(zahl / 3) + zahl % 3;
+        }
     }
 }
