@@ -101,7 +101,18 @@ namespace xkfd
             else
                 hitboxPosition = new Vector2(540,800);
 
+
+
             zielRichtung = Vector2.Normalize(zielPosition - spieler.position);
+        }
+        public void setRichtung(Spieler spieler, Vector2 zusatz)
+        {
+            if (((Sterben)spieler.sterben).aktuell != ((Sterben)spieler.sterben).klatscher)
+                hitboxPosition = spieler.position + new Vector2(80, 100) + zusatz;
+            else
+                hitboxPosition = new Vector2(540, 800);
+
+            zielRichtung = Vector2.Normalize(zielPosition - (spieler.position + new Vector2(0,256)));
         }
 
 

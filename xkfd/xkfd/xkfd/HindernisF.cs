@@ -23,7 +23,7 @@ namespace xkfd
             Vector2 notePos2 = new Vector2((int)position.X + 275, (int)position.Y + 280);
 
             hitboxListe.Add(new Hitbox((int)position.X, (int)position.Y + 488, 320, 200));
-            hitboxListe.Add(new Hitbox((int)position.X + 62, (int)position.Y + 100, 180, 305));
+            hitboxListe.Add(new Hitbox((int)position.X + 65, (int)position.Y + 100, 180, 305));
 
             double zufallPowerUp = .8;
 

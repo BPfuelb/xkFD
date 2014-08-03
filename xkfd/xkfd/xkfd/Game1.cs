@@ -705,24 +705,27 @@ namespace xkfd
                 {
                     foreach (Hitbox hitbox in kollisionsListe) // für Sonstige Kollisionen in Zuständen die oben noch nicht abgefangen werden
                     {
-                        if (spieler.position.Y > 500 && spieler.hitboxKopf.Intersects(hitbox.hitboxRect) && spieler.hitboxBeine.Intersects(hitbox.hitboxRect))
+                        if (spieler.position.Y > 378 && spieler.hitboxKopf.Intersects(hitbox.hitboxRect) && spieler.hitboxBeine.Intersects(hitbox.hitboxRect))
                         {
                             menue.spielAktiv = false;
                             ((Sterben)spieler.sterben).aktuell = ((Sterben)spieler.sterben).klatscher; // Passt den Todeszustand an
                             hud.soundGameOverSoundInstance.Play();
                             spieler.doSterben();
                         }
-                        else if (spieler.position.Y < 500 && spieler.hitboxKopf.Intersects(hitbox.hitboxRect) && spieler.hitboxBeine.Intersects(hitbox.hitboxRect)) // Spieler gegen Taschenrechner
+                        else if (spieler.position.Y <= 378 && spieler.hitboxKopf.Intersects(hitbox.hitboxRect) && spieler.hitboxBeine.Intersects(hitbox.hitboxRect)) // Spieler gegen Taschenrechner
                         {
+                            Console.WriteLine("Taschenrechner");
                             menue.spielAktiv = false;
                             Boolean kollidiertBoden = false;
                             ((Sterben)spieler.sterben).aktuell.soundTod.Play();
-                            while (!kollidiertBoden)
+                            while (!kollidiertBoden && spieler.position.Y < 900)
                             {
                                 foreach (Hitbox hb in kollisionsListe)
                                 {
                                     if (spieler.hitboxFuss.Intersects(hb.hitboxRect))
-                                    { kollidiertBoden = true; }
+                                    {
+                                        kollidiertBoden = true; 
+                                    }
                                 }
                                 spieler.movePlayerDown(1);
                             }
@@ -777,7 +780,12 @@ namespace xkfd
                     {
                         spieler.gesammelteNoten.GetRange(0, zufall).ForEach(delegate(NotenHitbox note)
                         {
-                            note.setRichtung(spieler);
+                            if (spieler.position.Y > 120)
+                            {
+                                note.setRichtung(spieler);
+                            }
+                            else
+                                note.setRichtung(spieler, new Vector2(0,256));
                         });
                         notenFreilassen.AddRange(spieler.gesammelteNoten.GetRange(0, zufall));
                         spieler.gesammelteNoten.RemoveRange(0, zufall);
@@ -830,7 +838,7 @@ namespace xkfd
                                 else if (notenhitbox.faellt)
                                 {
                                     notenhitbox.faellt = false;
-                                    notenhitbox.setPositionY((int)bodenHitbox.hitboxPosition.Y - 30);
+                                    notenhitbox.setPositionY((int)bodenHitbox.hitboxPosition.Y - 33);
                                 }
                             }
                         }
@@ -1180,6 +1188,9 @@ namespace xkfd
                         }
                     }
 
+                    // Zeichne Spieler
+                    spieler.Draw(spriteBatch);
+
                     hud.Draw(spriteBatch, schrift_40, Hindernis.punkteAnzahl, gameTime);
 
                     #region Debugsection
@@ -1228,8 +1239,7 @@ namespace xkfd
                     #endregion
 
 
-                    // Zeichne Spieler
-                    spieler.Draw(spriteBatch);
+
 
                     #region AchievmentAnzeigen
                     if (gewonnen == 1)
@@ -1469,6 +1479,7 @@ namespace xkfd
             spieler.aktuellerSkin = optionen.skinListe[optionen.auswahl];
 
             spieler.aktuellerSkin.sterbenAnimationKlatscher.index = 0;
+            spieler.aktuellerSkin.sterbenAnimationKlatscherOben.index = 0;
             spieler.aktuellerSkin.sterbenAnimationKoepfen.index = 0;
             spieler.aktuellerSkin.sterbenAnimationStolpern.index = 0;
             spieler.aktuellerSkin.sterbenAnimationPieksen.index = 0;

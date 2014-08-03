@@ -247,18 +247,19 @@ namespace xkfd
 
         public void setPlayerPositionRelativ(int y)
         {
-            position.Y += y;
             spielerPosition.Y += y;
+            position.Y = spielerPosition.Y;
+            
 
 
             if (aktuellerZustand != ducken)
-                hitboxKopf.Y += (int)position.Y;
+                hitboxKopf.Y = (int)position.Y;
             else
-                hitboxKopf.Y += (int)position.Y + 40;
+                hitboxKopf.Y = (int)position.Y + 40 ;
 
-            hitboxFuss.Y += (int)position.Y + 110;
-            hitboxBeine.Y += (int)position.Y + 60;
-            hitboxKoerper.Y += (int)position.Y + 5;
+            hitboxFuss.Y = (int)position.Y + 110;
+            hitboxBeine.Y = (int)position.Y + 60 ;
+            hitboxKoerper.Y = (int)position.Y + 5 ;
         }
     }
 }
