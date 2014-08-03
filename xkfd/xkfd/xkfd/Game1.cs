@@ -112,6 +112,8 @@ namespace xkfd
 
         List<NotenHitbox> notenFreilassen = new List<NotenHitbox>();
 
+        public Random rand = new Random();
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -742,7 +744,6 @@ namespace xkfd
                     {
                         spieler.gesammelteNoten.GetRange(0, zufall).ForEach(delegate(NotenHitbox note)
                         {
-                            spieler.punkte -= note.punkt.wertigkeit;
                             note.setRichtung(spieler);
                         });
                         notenFreilassen.AddRange(spieler.gesammelteNoten.GetRange(0, zufall));
@@ -753,7 +754,7 @@ namespace xkfd
                 {
                     if (note.hitboxPosition.Y <= note.zielPosition.Y)
                         note.faellt = false;
-                    note.UpdateFreilassen();
+                    note.UpdateFreilassen(spieler);
                 }
             }
 

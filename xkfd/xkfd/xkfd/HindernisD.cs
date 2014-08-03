@@ -15,16 +15,56 @@ namespace xkfd
     public class HindernisD : Hindernis
     {
 
+
+
         public HindernisD(Texture2D textur, Texture2D texturCheat, Vector2 position, Punkt p1, Punkt p2, Punkt p5, Punkt p10, PowerUp powerUp)
             : base(textur, position, texturCheat)
         {
 
+            Vector2 notePos1 = new Vector2((int)position.X + 130, (int)position.Y + 450);
+            Vector2 notePos2 = new Vector2((int)position.X + 150, (int)position.Y + 580);
+
             hitboxListe.Add(new Hitbox((int)position.X, (int)position.Y + 488, 50, 200));
             hitboxListe.Add(new Hitbox((int)position.X + 270, (int)position.Y + 488, 50, 200));
+            // Noten zufällig zuweisen
+            for (int i = 0; i < 2; i++)
+            {
+                switch ((int)game1.rand.Next(5))
+                {
+                    case 0:
+                        if (i == 0)
+                            notenListe.Add(new NotenHitbox(p1, this, (int)notePos1.X, (int)notePos1.Y, 32, 32));
+                        else
+                            notenListe.Add(new NotenHitbox(p1, this, (int)notePos2.X, (int)notePos2.Y, 32, 32));
+                        break;
+                    case 1:
+                        if (i == 0)
+                            notenListe.Add(new NotenHitbox(p2, this, (int)notePos1.X, (int)notePos1.Y, 32, 32));
+                        else
+                            notenListe.Add(new NotenHitbox(p2, this, (int)notePos2.X, (int)notePos2.Y, 32, 32));
+                        break;
+                    case 2:
+                        if (i == 0)
+                            notenListe.Add(new NotenHitbox(p5, this, (int)notePos1.X, (int)notePos1.Y, 32, 32));
+                        else
+                            notenListe.Add(new NotenHitbox(p5, this, (int)notePos2.X, (int)notePos2.Y, 32, 32));
+                        break;
+                    case 3:
+                        if (i == 0)
+                            notenListe.Add(new NotenHitbox(p10, this, (int)notePos1.X, (int)notePos1.Y, 32, 32));
+                        else
+                            notenListe.Add(new NotenHitbox(p10, this, (int)notePos2.X, (int)notePos2.Y, 32, 32));
+                        break;
+                    case 4:
+                        if (i == 0 && game1.rand.Next() > zufallPowerUp)
+                            notenListe.Add(new NotenHitbox(powerUp, this, (int)notePos1.X, (int)notePos1.Y, 32, 32));
+                        else if(game1.rand.Next() > zufallPowerUp)
+                            notenListe.Add(new NotenHitbox(powerUp, this, (int)notePos2.X, (int)notePos2.Y, 32, 32));
+                        break;
+                }
+            }
 
-            notenListe.Add(new NotenHitbox(p5,this, (int)position.X + 130, (int)position.Y + 450, 32, 32));
-            notenListe.Add(new NotenHitbox(p2,this, (int)position.X + 150, (int)position.Y + 580, 32, 32));
-           
+
             foreach (NotenHitbox noteHitbox in notenListe)
             {
                 punkteAnzahl += noteHitbox.punkt.wertigkeit;

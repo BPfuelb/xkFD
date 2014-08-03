@@ -27,17 +27,21 @@ namespace xkfd
         public Animation specialAnimation;
 
         public static int punkteAnzahl = 0;
+        protected static Game1 game1;
 
-        private static Game1 game1;
-
+        public double zufallPowerUp = .8;
 
         // Generiert eine beliebige lange Liste von Hindernissen
         public static List<Hindernis> generieHindernisse(int anzahl, Game1 game)
         {
-
+            // Zugriff auf Texturen
             game1 = game;
+
             // Init zufallsgenerator
             Random random = new Random();
+
+            // Vgl. Vorgehender Random Wert
+            int vorgaenger = 10;
 
             // Init Liste
             List<Hindernis> liste = new List<Hindernis>();
@@ -45,7 +49,7 @@ namespace xkfd
             // Erstes Hindernis Links vom Bildschirm
             liste.Add(new HindernisS(game.hindernisTexturS, game.hindernisTexturS_cheat, new Vector2(-320, 0), game.zielEinlauf));
 
-           // Vier Startelemente nebeneinander (füllung des Bildschirms)
+            // Vier Startelemente nebeneinander (füllung des Bildschirms)
             liste.Add(new HindernisS(game.hindernisTexturS, game.hindernisTexturS_cheat, new Vector2(0, 0)));
             liste.Add(new HindernisS(game.hindernisTexturS, game.hindernisTexturS_cheat, new Vector2(320, 0)));
             liste.Add(new HindernisS(game.hindernisTexturS, game.hindernisTexturS_cheat, new Vector2(2 * 320, 0), game.cheat_qr));
@@ -55,10 +59,19 @@ namespace xkfd
             // Erzeuge mit Schleife Anzahl von zufälligen Hindernissen
             for (int i = 0; i < anzahl; i++)
             {
-                switch ((int)random.Next(anzahlVerschiedenerHindernisse))
+                int zufall = (int)game1.rand.Next(anzahlVerschiedenerHindernisse);
+
+                // Keine Doppelten Hindernisse
+                while (zufall == vorgaenger)
+                {
+                    zufall = (int)random.Next(anzahlVerschiedenerHindernisse);
+                }
+
+                vorgaenger = zufall;
+                switch (zufall)
                 {
                     case 0:
-                        liste.Add(new HindernisA(game.hindernisTexturA,game.hindernisTexturA_cheat ,new Vector2(1280, 0), game.punkt1, game.punkt2, game.punkt5, game.punkt10, game.powerUp));
+                        liste.Add(new HindernisA(game.hindernisTexturA, game.hindernisTexturA_cheat, new Vector2(1280, 0), game.punkt1, game.punkt2, game.punkt5, game.punkt10, game.powerUp));
                         break;
                     case 1:
                         liste.Add(new HindernisB(game.hindernisTexturB, game.hindernisTexturB_cheat, new Vector2(1280, 0), game.punkt1, game.punkt2, game.punkt5, game.punkt10, game.powerUp));
@@ -94,7 +107,7 @@ namespace xkfd
             this.hindernisPosition = position;
 
             this.notenListe = new List<NotenHitbox>();
-            this.hitboxListeStacheln= new List<Hitbox>();
+            this.hitboxListeStacheln = new List<Hitbox>();
         }
 
         // Schiebt Hindernisse nach Links
@@ -124,7 +137,7 @@ namespace xkfd
             if (special != null)
             {
                 // Zieleinlauf Animation
-                if (specialAnimation == null) specialAnimation= new Animation(special, 2, 2, 4);
+                if (specialAnimation == null) specialAnimation = new Animation(special, 2, 2, 4);
                 specialAnimation.Update();
             }
 
@@ -164,9 +177,9 @@ namespace xkfd
         {
             if (special == game1.zielEinlauf)
             {
-                if (specialAnimation == null) 
+                if (specialAnimation == null)
                     specialAnimation = new Animation(special, 2, 2, 8);
-                specialAnimation.Draw(sb, hindernisPosition + new Vector2(300,400));
+                specialAnimation.Draw(sb, hindernisPosition + new Vector2(300, 400));
             }
 
             if (special == game1.cheat_qr)

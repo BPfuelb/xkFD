@@ -67,7 +67,7 @@ namespace xkfd
             }
         }
 
-        public void UpdateFreilassen()
+        public void UpdateFreilassen(Spieler spieler)
         {
 
             if (hitboxPosition.Y <= zielPosition.Y)
@@ -80,6 +80,7 @@ namespace xkfd
 
             if (platzen && soundAbspielen)
             {
+                spieler.punkte -= punkt.wertigkeit;
                 punkt.playSound();
                 soundAbspielen = false;
             }
