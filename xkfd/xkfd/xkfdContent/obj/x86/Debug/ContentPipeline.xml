@@ -938,16 +938,6 @@
       <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_sterben3_klatscher_oben_std.xnb</Output>
       <Time>2014-08-03T19:21:01.5118228+02:00</Time>
     </Item>
-    <Item>
-      <Source>skysand.mp3</Source>
-      <Name>skysand</Name>
-      <Importer>Mp3Importer</Importer>
-      <Processor>SongProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\skysand.xnb</Output>
-      <Extra>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\skysand.wma</Extra>
-      <Time>2014-08-03T23:36:44.2899033+02:00</Time>
-    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <TargetPlatform>Windows</TargetPlatform>

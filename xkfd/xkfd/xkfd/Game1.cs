@@ -90,7 +90,7 @@ namespace xkfd
         Texture2D logo;
 
         // Konfig Datei
-        DateiHandler konfig;
+        KonfigDatei konfig;
 
         // Anzal der Gewonnen spiele
         int gewonnen;
@@ -113,7 +113,7 @@ namespace xkfd
         public List<NotenHitbox> punkteListeKollisionen = new List<NotenHitbox>();
 
         List<NotenHitbox> notenFreilassen = new List<NotenHitbox>();
-        
+
         public Random rand = new Random();
 
         public Game1()
@@ -134,8 +134,8 @@ namespace xkfd
             optionen = new Optionen();
 
             // Konfig Datei;
-            konfig = new DateiHandler();
-            gewonnen = int.Parse(konfig.ReadFileConfig("config.txt"));
+            konfig = new KonfigDatei();
+            gewonnen = int.Parse(konfig.ReadFile());
 
             // Punkte Initialisierung
             punkt1 = new Punkt(1);
@@ -167,7 +167,7 @@ namespace xkfd
 
             base.Initialize();
 
-            konfig.ReadFileConfig("config.txt");
+            konfig.ReadFile();
         }
 
         protected override void LoadContent()
@@ -688,7 +688,7 @@ namespace xkfd
                             menue.spielAktiv = false;
                             gewonnen++;
                             hud.gewonnen = true;
-                            konfig.WriteFileConfig(gewonnen.ToString());
+                            konfig.WriteFile(gewonnen.ToString());
                         }
                     }
                     if (hud.gewonnen)
