@@ -16,6 +16,8 @@ namespace xkfd
 
     public class Game1 : Microsoft.Xna.Framework.Game
     {
+
+        #region Vor Sound Analyse
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
@@ -32,7 +34,7 @@ namespace xkfd
         Spieler spieler;
 
         // Schriftarten
-       public  SpriteFont schrift_40, schrift_20, schrift_rechner;
+        public SpriteFont schrift_40, schrift_20, schrift_rechner;
 
         // Menü 
         Menue menue;
@@ -118,6 +120,19 @@ namespace xkfd
 
         public Random rand = new Random();
 
+        #endregion
+
+        // Sound Analyse
+
+        // Lied Länge in MS
+        public int liedlaenge = 0;
+        public List<int> liedWerte = new List<int>();
+
+        public List<NotenHitbox> liedNoten = new List<NotenHitbox>();
+
+
+        Song musik;
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -137,7 +152,7 @@ namespace xkfd
 
             // Konfig Datei;
             konfig = new KonfigDatei();
-            gewonnen = int.Parse(konfig.ReadFile());
+            gewonnen = int.Parse(konfig.ReadFile("config.txt"));
 
             // Punkte Initialisierung
             punkt1 = new Punkt(1);
@@ -147,8 +162,6 @@ namespace xkfd
 
             // Powerup
             powerUp = new PowerUp();
-
-            // Noten Platzer Größe init
         }
 
         int getRandomNumber()
@@ -169,9 +182,10 @@ namespace xkfd
 
             base.Initialize();
 
-            Process.Start(@"calc");
+            // Process.Start(@"calc");
 
-            konfig.ReadFile();
+            konfig.ReadFile("config.txt");
+
         }
 
         protected override void LoadContent()
@@ -294,11 +308,12 @@ namespace xkfd
             hintergrund.hintergrundTextur = Content.Load<Texture2D>("hintergrund");
             hintergrund.hintergrundTexturCheat = Content.Load<Texture2D>("hintergrund_cheat_inv");
 
-            #endregion 
+            #endregion
 
             #region Sounds
             // Sound
             titel = Content.Load<Song>("titel");
+            musik = Content.Load<Song>("skysand");
 
             // Spring Sounds
             spieler.springen.sound = Content.Load<SoundEffect>("jump");
@@ -397,7 +412,7 @@ namespace xkfd
             hud.linieListe.Add(new HindernisS(hindernisTexturS, hindernisTexturS_cheat, new Vector2(2 * 320, 0)));
             hud.linieListe.Add(new HindernisS(hindernisTexturS, hindernisTexturS_cheat, new Vector2(3 * 320, 0)));
             hud.linieListe.Add(new HindernisS(hindernisTexturS, hindernisTexturS_cheat, new Vector2(1280, 0)));
-            
+
 
             #endregion
 
@@ -420,7 +435,7 @@ namespace xkfd
 
             // PowerUp Textur
             powerUp.punktTextur = Content.Load<Texture2D>("powerup");
-            #endregion 
+            #endregion
 
             // Logo
             logo = Content.Load<Texture2D>("logo");
@@ -432,6 +447,8 @@ namespace xkfd
 
             dummyTexture2 = new Texture2D(GraphicsDevice, 1, 1);
             dummyTexture2.SetData(new Color[] { Color.Green });
+
+            konfig.ReadFileAnalyse("analyse.txt", this);
         }
 
 
@@ -471,6 +488,7 @@ namespace xkfd
 
                 if (Keyboard.GetState().IsKeyDown(Keys.Enter) && OldKeyState.IsKeyUp(Keys.Enter))
                 {
+                    MediaPlayer.Pause();
                     spieler.position.X = 1280 / 2 - 128;
                     start = true;
                     gamestate = Gamestate.running;
@@ -479,7 +497,7 @@ namespace xkfd
 
                 #region Tastaturabfrage
                 // Teleport bei Curser Taste nach Oben
-                if (spieler.teleport && Keyboard.GetState().IsKeyDown(Keys.Up) )
+                if (spieler.teleport && Keyboard.GetState().IsKeyDown(Keys.Up))
                 {
                     spieler.teleport = false;
                     ((Fallen)spieler.fallen).beschleunigung = 0;
@@ -496,7 +514,7 @@ namespace xkfd
                 if (spieler.aktuellerZustand == spieler.gleiten && Keyboard.GetState().IsKeyUp(Keys.Space))
                     spieler.doFallen();
 
-               
+
 
                 #endregion
 
@@ -518,7 +536,7 @@ namespace xkfd
                     // Stacheln Liste erstellen
                     foreach (Hitbox hitbox in hindernis.gibSterben())
                     {
-                        kollisionsListeStacheln.Add(hitbox);      
+                        kollisionsListeStacheln.Add(hitbox);
                     }
 
                     //Boden Liste erstellen
@@ -529,8 +547,8 @@ namespace xkfd
                 }
 
 
-                
-                
+
+
 
                 // Boolean Werte für Kollisionserkennung (für Füße)
                 Boolean kollidiert = false;
@@ -543,7 +561,7 @@ namespace xkfd
                     if (spieler.hitboxFuss.Intersects(hitbox.hitboxRect))
                     {
                         kollidiert = true;
-                        
+
                         // Spieler kann sich nur ducken wenn er Läuft
                         if (Keyboard.GetState().IsKeyDown(Keys.Down) && spieler.aktuellerZustand != spieler.fallen)
                             spieler.doDucken();
@@ -575,7 +593,7 @@ namespace xkfd
                 {
                     spieler.doFallen();
                 }
-            
+
                 #endregion
 
 
@@ -589,6 +607,14 @@ namespace xkfd
             if (gamestate == Gamestate.running)
             {
 
+
+
+
+
+                foreach (NotenHitbox note in liedNoten)
+                {
+                    note.UpdatePosition();
+                }
 
                 // Hud Update
                 hud.UpdateMitTimer(gameTime);
@@ -739,7 +765,7 @@ namespace xkfd
                     // Stacheln Liste erstellen
                     foreach (Hitbox hitbox in hindernis.gibSterben())
                     {
-                        kollisionsListeStacheln.Add(hitbox);      
+                        kollisionsListeStacheln.Add(hitbox);
                     }
 
                     //Boden Liste erstellen
@@ -750,8 +776,8 @@ namespace xkfd
                 }
 
 
-                
-                
+
+
 
                 // Boolean Werte für Kollisionserkennung (für Füße)
                 Boolean kollidiert = false;
@@ -839,7 +865,7 @@ namespace xkfd
                                 {
                                     if (spieler.hitboxFuss.Intersects(hb.hitboxRect))
                                     {
-                                        kollidiertBoden = true; 
+                                        kollidiertBoden = true;
                                     }
                                 }
                                 spieler.movePlayerDown(1);
@@ -850,7 +876,7 @@ namespace xkfd
                             menue.spielAktiv = false;
                             spieler.doSterben();
 
-                            
+
                         }
                         else if (spieler.hitboxKopf.Intersects(hitbox.hitboxRect))//  && !spieler.hitboxBeine.Intersects(hitbox.hitboxRect))
                         {
@@ -883,7 +909,7 @@ namespace xkfd
             }
                 #endregion
 
-               #region Notenfreilassen nach Tod
+            #region Notenfreilassen nach Tod
 
             if (spieler.aktuellerZustand == spieler.sterben)
             {
@@ -900,7 +926,7 @@ namespace xkfd
                                 note.setRichtung(spieler);
                             }
                             else
-                                note.setRichtung(spieler, new Vector2(0,256));
+                                note.setRichtung(spieler, new Vector2(0, 256));
                         });
                         notenFreilassen.AddRange(spieler.gesammelteNoten.GetRange(0, zufall));
                         spieler.gesammelteNoten.RemoveRange(0, zufall);
@@ -1017,9 +1043,9 @@ namespace xkfd
                 // Spieler hochschieben
                 if (spieler.position.Y >= 50 && !zielInSicht)
                 {
-                    spieler.movePlayerUp(1.5f *(float)Math.Sin((spieler.position.Y ) / 360));
+                    spieler.movePlayerUp(1.5f * (float)Math.Sin((spieler.position.Y) / 360));
                 }
-                else if (spieler.position.Y <= hindernisListe[hindernisListe.Count-1].hitboxListe[0].hitboxPosition.Y - 110) // Spieler runterschieben
+                else if (spieler.position.Y <= hindernisListe[hindernisListe.Count - 1].hitboxListe[0].hitboxPosition.Y - 110) // Spieler runterschieben
                 {
                     spieler.movePlayerDown((float)Math.Sin((1200 - spieler.position.Y) / 1000));
                 }
@@ -1296,7 +1322,7 @@ namespace xkfd
 
                 }
 
-                
+
 
                 #endregion
 
@@ -1304,10 +1330,18 @@ namespace xkfd
 
                 if (gamestate == Gamestate.running)
                 {
-                    // spriteBatch.Draw(spieler.spielerTextur, spieler.position, Color.White);
 
-                    
+                    // Song Musik spielen
 
+                    if (MediaPlayer.State != MediaState.Playing)
+                        MediaPlayer.Play(musik);
+
+
+                    foreach (NotenHitbox note in liedNoten)
+                    {
+                        note.punkt.punktAnimation.Draw(spriteBatch, note.hitboxPosition);
+                        //spriteBatch.Draw(note.punkt.punktTextur, note.hitboxPosition, Color.White);
+                    }
 
                     // Hindernisse zeichnen
                     foreach (Hindernis hindernis in hindernisListe.GetRange(1, 5))
@@ -1410,7 +1444,7 @@ namespace xkfd
 
 
                     // Titel sound aus
-                    MediaPlayer.Pause();
+                    // MediaPlayer.Pause();
                 }
                 #endregion
 
@@ -1633,6 +1667,13 @@ namespace xkfd
 
             // hindernisListe = Hindernis.generieHindernisse(15, hindernisTexturS, hindernisTexturA, hindernisTexturB, hindernisTexturC, hindernisTexturD, hindernisTexturE, hindernisTexturZ, punkt1, punkt2, punkt5, punkt10, powerUp, zielEinlauf);
             hindernisListe = Hindernis.generieHindernisse(15, this);
+
+            liedNoten.Clear();
+            foreach (int i in liedWerte)
+            {
+                liedNoten.Add(new NotenHitbox(punkt1, null, i, 300, 32, 32));
+            }
+
         }
 
     }

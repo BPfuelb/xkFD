@@ -121,5 +121,10 @@ namespace xkfd
             sb.Draw(this.punkt.punktTextur, this.hitboxPosition, Color.White);
         }
 
+
+        public void UpdatePosition()
+        {
+            hitboxPosition.X -= 4;
+        }
     }
 }
