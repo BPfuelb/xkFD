@@ -27,7 +27,7 @@ namespace xkfd
 
         public override void Draw(SpriteBatch sb)
         {
-            sterben.spieler.aktuellerSkin.sterbenAnimationKlatscherOben.Draw(sb, this.sterben.spieler.position + new Vector2(16, 8));
+            sterben.spieler.aktuellerSkin.sterbenAnimationKlatscherOben.Draw(sb, this.sterben.spieler.position + new Vector2(16, 152));
             // ALT animationTod.Draw(sb, this.sterben.spieler.position + new Vector2(16, 8));
         }
     }

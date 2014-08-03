@@ -88,6 +88,9 @@ Content\hindernisE.xnb
 Content\hindernisE_cheat.xnb
 Content\hindernisZ_cheat.xnb
 Content\linie.xnb
+Content\HindernisF.xnb
+Content\HindernisF_cheat.xnb
+Content\ani_sterben3_klatscher_oben_std.xnb
 Content\SpriteFont1.xnb
 Content\SpriteFont2.xnb
 Content\SpriteFont3.xnb
@@ -100,6 +103,6 @@ Content\ooh.xnb
 Content\titel.xnb
 Content\titel.wma
 Content\InvertShader.xnb
-Content\HindernisF.xnb
-Content\HindernisF_cheat.xnb
-Content\ani_sterben3_klatscher_oben_std.xnb
+Content\ani_sterben3_klatscher_oben_einstein.xnb
+Content\ani_sterben3_klatscher_oben_frau.xnb
+Content\ani_sterben3_klatscher_oben_hut.xnb
