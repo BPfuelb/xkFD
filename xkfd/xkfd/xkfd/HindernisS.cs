@@ -17,15 +17,15 @@ namespace xkfd
         Hitbox bodenHitbox;
 
 
-        public  HindernisS(Texture2D textur, Vector2 position)
-            : base(textur, position)
+        public HindernisS(Texture2D textur, Texture2D texturCheat, Vector2 position)
+            : base(textur, position,texturCheat)
         {
             bodenHitbox = new Hitbox((int)position.X, (int)position.Y + 488, 320, 200);
             hitboxListe.Add(bodenHitbox);
         }
 
-        public HindernisS(Texture2D textur, Vector2 position, Texture2D special)
-            : base(textur, position)
+        public HindernisS(Texture2D textur, Texture2D texturCheat, Vector2 position, Texture2D special)
+            : base(textur, position, texturCheat)
         {
             this.special = special;
             bodenHitbox = new Hitbox((int)position.X, (int)position.Y + 488, 320, 200);

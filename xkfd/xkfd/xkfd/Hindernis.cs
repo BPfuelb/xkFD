@@ -43,13 +43,13 @@ namespace xkfd
             List<Hindernis> liste = new List<Hindernis>();
 
             // Erstes Hindernis Links vom Bildschirm
-            liste.Add(new HindernisS(game.hindernisTexturS, new Vector2(-320, 40), game.zielEinlauf));
+            liste.Add(new HindernisS(game.hindernisTexturS, game.hindernisTexturS_cheat, new Vector2(-320, 0), game.zielEinlauf));
 
            // Vier Startelemente nebeneinander (füllung des Bildschirms)
-            liste.Add(new HindernisS(game.hindernisTexturS, new Vector2(0, 40)));
-            liste.Add(new HindernisS(game.hindernisTexturS, new Vector2(320, 40)));
-            liste.Add(new HindernisS(game.hindernisTexturS, new Vector2(2 * 320, 40), game.cheat_qr));
-            liste.Add(new HindernisS(game.hindernisTexturS, new Vector2(3 * 320, 40)));
+            liste.Add(new HindernisS(game.hindernisTexturS, game.hindernisTexturS_cheat, new Vector2(0, 0)));
+            liste.Add(new HindernisS(game.hindernisTexturS, game.hindernisTexturS_cheat, new Vector2(320, 0)));
+            liste.Add(new HindernisS(game.hindernisTexturS, game.hindernisTexturS_cheat, new Vector2(2 * 320, 0), game.cheat_qr));
+            liste.Add(new HindernisS(game.hindernisTexturS, game.hindernisTexturS_cheat, new Vector2(3 * 320, 0)));
 
             int anzahlVerschiedenerHindernisse = 5;
             // Erzeuge mit Schleife Anzahl von zufälligen Hindernissen
@@ -58,38 +58,39 @@ namespace xkfd
                 switch ((int)random.Next(anzahlVerschiedenerHindernisse))
                 {
                     case 0:
-                        liste.Add(new HindernisA(game.hindernisTexturA, new Vector2(1280, 40), game.punkt1, game.punkt2, game.punkt5, game.punkt10, game.powerUp));
+                        liste.Add(new HindernisA(game.hindernisTexturA,game.hindernisTexturA_cheat ,new Vector2(1280, 0), game.punkt1, game.punkt2, game.punkt5, game.punkt10, game.powerUp));
                         break;
                     case 1:
-                        liste.Add(new HindernisB(game.hindernisTexturB, new Vector2(1280, 40), game.punkt1, game.punkt2, game.punkt5, game.punkt10, game.powerUp));
+                        liste.Add(new HindernisB(game.hindernisTexturB, game.hindernisTexturB_cheat, new Vector2(1280, 0), game.punkt1, game.punkt2, game.punkt5, game.punkt10, game.powerUp));
                         break;
                     case 2:
-                        liste.Add(new HindernisC(game.hindernisTexturC, new Vector2(1280, 40), game.punkt1, game.punkt2, game.punkt5, game.punkt10, game.powerUp));
+                        liste.Add(new HindernisC(game.hindernisTexturC, game.hindernisTexturC_cheat, new Vector2(1280, 0), game.punkt1, game.punkt2, game.punkt5, game.punkt10, game.powerUp));
                         break;
                     case 3:
-                        liste.Add(new HindernisD(game.hindernisTexturD, new Vector2(1280, 40), game.punkt1, game.punkt2, game.punkt5, game.punkt10, game.powerUp));
+                        liste.Add(new HindernisD(game.hindernisTexturD, game.hindernisTexturD_cheat, new Vector2(1280, 0), game.punkt1, game.punkt2, game.punkt5, game.punkt10, game.powerUp));
                         break;
                     case 4:
-                        liste.Add(new HindernisE(game.hindernisTexturE, new Vector2(1280, 40), game.punkt1, game.punkt2, game.punkt5, game.punkt10, game.powerUp));
+                        liste.Add(new HindernisE(game.hindernisTexturE, game.hindernisTexturE_cheat, new Vector2(1280, 0), game.punkt1, game.punkt2, game.punkt5, game.punkt10, game.powerUp));
                         break;
 
                 }
             }
 
             // Füge zum Schluss das Ziel hinzu
-            liste.Add(new HindernisS(game.hindernisTexturZ, new Vector2(1280, 40), game.zielEinlauf));
-            liste.Add(new HindernisS(game.hindernisTexturS, new Vector2(1280, 40)));
-            liste.Add(new HindernisS(game.hindernisTexturS, new Vector2(1280, 40)));
-            liste.Add(new HindernisS(game.hindernisTexturS, new Vector2(1280, 40)));
+            liste.Add(new HindernisS(game.hindernisTexturZ, game.hindernisTexturZ_cheat, new Vector2(1280, 0), game.zielEinlauf));
+            liste.Add(new HindernisS(game.hindernisTexturS, game.hindernisTexturS_cheat, new Vector2(1280, 0)));
+            liste.Add(new HindernisS(game.hindernisTexturS, game.hindernisTexturS_cheat, new Vector2(1280, 0)));
+            liste.Add(new HindernisS(game.hindernisTexturS, game.hindernisTexturS_cheat, new Vector2(1280, 0)));
 
             return liste;
         }
 
         // Konstrukter für StartHindernis
-        public Hindernis(Texture2D textur, Vector2 position)
+        public Hindernis(Texture2D textur, Vector2 position, Texture2D texturCheat)
         {
             this.hitboxListe = new List<Hitbox>();
             this.hindernisTextur = textur;
+            this.hindernisTexturCheat = texturCheat;
             this.hindernisPosition = position;
 
             this.notenListe = new List<NotenHitbox>();

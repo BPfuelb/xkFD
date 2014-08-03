@@ -15,8 +15,8 @@ namespace xkfd
     public class HindernisB : Hindernis
     {
 
-        public HindernisB(Texture2D textur, Vector2 position, Punkt p1, Punkt p2, Punkt p5, Punkt p10, PowerUp powerUp)
-            : base(textur, position)
+        public HindernisB(Texture2D textur,Texture2D texturCheat, Vector2 position, Punkt p1, Punkt p2, Punkt p5, Punkt p10, PowerUp powerUp)
+            : base(textur, position, texturCheat)
         {
             
             hitboxListe.Add(new Hitbox((int)position.X, (int)position.Y + 488, 320, 200));

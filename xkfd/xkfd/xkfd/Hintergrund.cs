@@ -18,11 +18,6 @@ namespace xkfd
         public Texture2D hintergrundTexturCheat;
         public Texture2D aktuelleTextur;
 
-        /*
-        public Vector2 hintegrundPosition1;
-        public Vector2 hintegrundPosition2;
-        public Vector2 hintegrundPosition3;*/
-
         private int xPos = 0;
         private int yPos = 0;
 
@@ -42,18 +37,11 @@ namespace xkfd
             Update(geschwindigkeit);
 
             // yPos = (int) (10f * Math.Sin(((gt.TotalGameTime.Milliseconds / 1000f) * (2 * Math.PI)) ) - 170);
-
-
         }
 
         public void Update(int geschwindigkeit)
         {
             xPos = (xPos - geschwindigkeit + 1024) % 1024 - 1024;
-
-            /*
-            hintegrundPosition.X -= geschwindigkeit;
-            if (hintegrundPosition.X <= -1024)
-                hintegrundPosition.X = 0;*/
         }
 
         public void Draw(SpriteBatch sb)
