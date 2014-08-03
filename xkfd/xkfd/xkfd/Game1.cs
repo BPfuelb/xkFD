@@ -386,6 +386,15 @@ namespace xkfd
             hud.soundGameOver = Content.Load<SoundEffect>("ooh");
             hud.soundGameOverSoundInstance = hud.soundGameOver.CreateInstance();
 
+
+            // Hud Linie
+            hud.linieListe.Add(new HindernisS(hindernisTexturS, hindernisTexturS_cheat, new Vector2(0, 0)));
+            hud.linieListe.Add(new HindernisS(hindernisTexturS, hindernisTexturS_cheat, new Vector2(320, 0)));
+            hud.linieListe.Add(new HindernisS(hindernisTexturS, hindernisTexturS_cheat, new Vector2(2 * 320, 0)));
+            hud.linieListe.Add(new HindernisS(hindernisTexturS, hindernisTexturS_cheat, new Vector2(3 * 320, 0)));
+            hud.linieListe.Add(new HindernisS(hindernisTexturS, hindernisTexturS_cheat, new Vector2(1280, 0)));
+            
+
             #endregion
 
             #region Noten/Punkte und PowerUp
@@ -458,12 +467,123 @@ namespace xkfd
 
                 if (Keyboard.GetState().IsKeyDown(Keys.Enter) && OldKeyState.IsKeyUp(Keys.Enter))
                 {
-                    spieler.position.X = 512;
+                    spieler.setPlayerPosition(512);
                     start = true;
                     gamestate = Gamestate.running;
                 }
 
+
+                #region Tastaturabfrage
+                // Teleport bei Curser Taste nach Oben
+                if (spieler.teleport && Keyboard.GetState().IsKeyDown(Keys.Up) )
+                {
+                    spieler.teleport = false;
+                    ((Fallen)spieler.fallen).beschleunigung = 0;
+                    spieler.setPlayerPosition(10);
+                }
+
+                // Leertaste zum Springen
+                if (Keyboard.GetState().IsKeyDown(Keys.Space))
+                {
+                    spieler.doSpringen();
+                }
+
+                // Wenn Gleiten und Leertaste loslassen dann Fallen
+                if (spieler.aktuellerZustand == spieler.gleiten && Keyboard.GetState().IsKeyUp(Keys.Space))
+                    spieler.doFallen();
+
+
+                if (spieler.aktuellerZustand == spieler.laufen && Keyboard.GetState().IsKeyDown(Keys.LeftControl) && Keyboard.GetState().IsKeyDown(Keys.LeftAlt) && Keyboard.GetState().IsKeyDown(Keys.Back))
+                {
+                    hintergrund.aktuelleTextur = hintergrund.hintergrundTexturCheat;
+                    spieler.aktuellerZustand = spieler.cheaten;
+                    hud.schriftFarbe = Color.White;
+                    gamestate = Gamestate.cheat;
+                    cheat = true;
+                }
+
+                #endregion
+
+
                 OldKeyState = NewKeyState;
+
+
+
+
+                #region Kollisionserkennung
+
+                // Erstellen einer Liste mit Hitboxen aus Bereich 2 & 3
+                List<Hitbox> kollisionsListe = new List<Hitbox>();
+                List<Hitbox> kollisionsListeStacheln = new List<Hitbox>();
+
+                // Hitbox Listen aufbauen
+                foreach (Hindernis hindernis in hindernisListe.GetRange(2, 3))
+                {
+                    // Stacheln Liste erstellen
+                    foreach (Hitbox hitbox in hindernis.gibSterben())
+                    {
+                        kollisionsListeStacheln.Add(hitbox);      
+                    }
+
+                    //Boden Liste erstellen
+                    foreach (Hitbox hitbox in hindernis.gibHitboxen())
+                    {
+                        kollisionsListe.Add(hitbox);
+                    }
+                }
+
+
+                
+                
+
+                // Boolean Werte für Kollisionserkennung (für Füße)
+                Boolean kollidiert = false;
+
+                // Boden Kollisionserkennung mit allen Hitboxen
+                // Prüfe erst alle hitboxen ab ob eine Kollision entstanden ist
+                // siehe boolean kollidiert
+                foreach (Hitbox hitbox in kollisionsListe)
+                {
+                    if (spieler.hitboxFuss.Intersects(hitbox.hitboxRect))
+                    {
+                        kollidiert = true;
+                        
+                        // Spieler kann sich nur ducken wenn er Läuft
+                        if (Keyboard.GetState().IsKeyDown(Keys.Down) && spieler.aktuellerZustand != spieler.fallen)
+                            spieler.doDucken();
+                        else
+                        {
+                            spieler.teleport = true;
+                            spieler.doLaufen();
+                        }
+                        spieler.setPlayerPosition(hitbox.hitboxRect.Y - 110);
+                    }
+                }
+
+
+                // Prüfe auf Stacheln
+                foreach (Hitbox hitbox in kollisionsListeStacheln)
+                {
+                    if (menue.spielAktiv && spieler.hitboxBeine.Intersects(hitbox.hitboxRect))
+                    {
+                        ((Sterben)spieler.sterben).aktuell = ((Sterben)spieler.sterben).pieksen;// Passt den Todeszustand an
+                        menue.spielAktiv = false; // setzt Menü nach Tod wieder auf anfang
+                        spieler.setPlayerPosition((int)hitbox.hitboxPosition.Y - 80);
+                        hud.soundGameOverSoundInstance.Play();
+                        spieler.doSterben();
+                    }
+                }
+
+                // wenn keine Kollision ist und er spieler nicht gerade am springen ist dann falle.
+                if (!kollidiert && spieler.aktuellerZustand != spieler.springen && spieler.aktuellerZustand != spieler.gleiten)
+                {
+                    spieler.doFallen();
+                }
+            
+                #endregion
+
+
+
             }
 
             #endregion
@@ -1127,8 +1247,60 @@ namespace xkfd
                 if (gamestate == Gamestate.ladebildschirm)
                 {
                     hud.DrawHelp(spriteBatch, schrift_40);
+                    //spieler.position = new Vector2(1280 / 2 - 128, 720 / 2 +20);
                     spieler.Draw(spriteBatch);
+                    hud.Draw(spriteBatch);
+
+                    #region Debugsection
+                    if (debug)
+                    {
+                        foreach (Hindernis hindernis in hindernisListe)
+                        {
+                            foreach (Hitbox hitbox in hindernis.gibHitboxen())
+                            {
+                                spriteBatch.Draw(dummyTexture, hitbox.hitboxRect, Color.Red);
+                            }
+
+                            foreach (Hitbox hitbox in hindernis.gibSterben())
+                            {
+                                spriteBatch.Draw(dummyTexture2, hitbox.hitboxRect, Color.Green);
+                            }
+                        }
+
+                        // Punkte/Noten Zeichnen
+
+                        foreach (NotenHitbox note in punkteListeDraw)
+                        {
+                            spriteBatch.Draw(dummyTexture, note.hitboxRect, Color.Red);
+                        }
+
+                        foreach (NotenHitbox note in punkteListeKollisionen)
+                        {
+                            spriteBatch.Draw(dummyTexture, note.hitboxRect, Color.Red);
+                        }
+
+
+                        // Spieler Hitbox malen zum Testen
+                        //  spriteBatch.Draw(dummyTexture2, spieler.hitboxFussRechts, Color.Green);
+                        spriteBatch.DrawString(schrift_40, "X: " + spieler.position.X + " Y: " + spieler.position.Y, new Vector2(0, 0), Color.Black);
+
+                        spriteBatch.Draw(dummyTexture2, spieler.spielerPosition, Color.Green);
+                        spriteBatch.Draw(dummyTexture2, spieler.hitboxFuss, Color.Green);
+
+                        // spriteBatch.Draw(dummyTexture2, spieler.hitboxKopf, Color.Blue);
+                        spriteBatch.Draw(dummyTexture2, spieler.hitboxKopf, Color.Green);
+                        spriteBatch.Draw(dummyTexture2, spieler.hitboxBeine, Color.Green);
+
+                        spriteBatch.Draw(dummyTexture2, spieler.hitboxKoerper, Color.Blue);
+
+                    }
+                    #endregion
+
+
+
                 }
+
+                
 
                 #endregion
 

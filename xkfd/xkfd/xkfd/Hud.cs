@@ -64,6 +64,8 @@ namespace xkfd
         int gameTimeTmp = 0;
 
 
+        public List<Hindernis> linieListe;
+
         float transparence = 0;
 
         public Hud(Spieler spieler, Texture2D hudTextur)
@@ -71,11 +73,11 @@ namespace xkfd
             this.spieler = spieler;
             this.hudTextur = hudTextur;
 
-            positionGleitenAnzeige = new Vector2(600, 15);
+            positionGleitenAnzeige = new Vector2(400, 15);
             positionTastaturbelegung = new Vector2(100, -250);
-            positionCheckbox = new Vector2(1150, -12);
+            positionCheckbox = new Vector2(800, 15);
 
-            positionPunkte = new Vector2(100, 15);
+            positionPunkte = new Vector2(50, 15);
             positionTimer = new Vector2(1000, 640);
 
 
@@ -86,6 +88,8 @@ namespace xkfd
 
             gameOverPosition = new Vector2(100, 100);
             schriftFarbe = Color.Black;
+
+            linieListe = new List<Hindernis>();
         }
 
 
@@ -113,24 +117,47 @@ namespace xkfd
 
         public void UpdateHelp()
         {
-            // tastaturAnimation.Update();
+            Hindernis helper = null;
+
+            foreach (Hindernis hindernis in linieListe)
+            {
+                hindernis.Update();
+                if (linieListe[0].hindernisPosition.X <= -320)
+                {
+                    linieListe[0].hindernisPosition.X = 1280;
+                    helper = linieListe[0];
+                }
+            }
+            linieListe.Add(helper);
+            linieListe.Remove(helper);
+
         }
+
+        public void Draw(SpriteBatch sb)
+        {
+            foreach (Hindernis hindernis in linieListe)
+            {
+                sb.Draw(hindernis.hindernisTextur, hindernis.hindernisPosition, Color.White);
+            }
+        }
+
 
         public void Draw(SpriteBatch sb, SpriteFont schrift, int maxPunkte, GameTime gt)
         {
             sb.DrawString(schrift, "Gleiten: " + counter, positionGleitenAnzeige, schriftFarbe);
             sb.DrawString(schrift, "Punkte: " + spieler.punkte + "/" + maxPunkte, positionPunkte, schriftFarbe);
+            sb.DrawString(schrift, "Teleport: ", positionCheckbox, schriftFarbe);
 
             if (spieler.aktuellerZustand == spieler.sterben)
             {
-                gameOverAnimation.DrawTransparent(sb, gameOverPosition);
+                gameOverAnimation.DrawTransparent(sb, gameOverPosition + new Vector2(-10, 25));
             }
 
-            sb.Draw(teleport, positionCheckbox + new Vector2(-10, 25), schriftFarbe);
+
             if (spieler.teleport)
-                sb.Draw(checkBox_check, positionCheckbox, schriftFarbe);
+                sb.Draw(checkBox_check, positionCheckbox + new Vector2(150, -40), schriftFarbe);
             else
-                sb.Draw(checkBox_uncheck, positionCheckbox, schriftFarbe);
+                sb.Draw(checkBox_uncheck, positionCheckbox + new Vector2(150, -40), schriftFarbe);
 
             // Timer in Trialsystem anzeigen
             sb.DrawString(schrift, zeit, new Vector2(positionTimer.X - schrift.MeasureString(CalcTrial(timer)).Length(), positionTimer.Y), schriftFarbe, 0, new Vector2(0, 0), 1f, SpriteEffects.None, 0f);
@@ -168,7 +195,9 @@ namespace xkfd
             sb.Draw(tastaturTextur, positionTastaturbelegung, Color.White);
 
             // Strich auf dem Gelaufen wird (TODO vllt etwas anderes?)
-            sb.Draw(hudTextur, new Rectangle(0, 530, 1280, 2), Color.Black);
+            // sb.Draw(hudTextur, new Rectangle(0, 530, 1280, 2), Color.Black);
+
+
 
             // Text zum starten
             transparence = transparence + (float)0.15 % (float)(Math.PI * 2);
