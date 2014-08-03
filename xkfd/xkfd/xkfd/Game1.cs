@@ -58,8 +58,21 @@ namespace xkfd
         KeyboardState NewKeyState;
 
         // Hindernis Texturen
-        public Texture2D hindernisTexturS, hindernisTexturA, hindernisTexturB, hindernisTexturC, hindernisTexturD, hindernisTexturE, hindernisTexturZ, cheat_qr;
-        public Texture2D zielEinlauf;
+        public Texture2D    hindernisTexturS, 
+                            hindernisTexturA, 
+                            hindernisTexturB, 
+                            hindernisTexturC, 
+                            hindernisTexturD, 
+                            hindernisTexturE, 
+                            hindernisTexturZ;
+        public Texture2D    hindernisTexturS_cheat, 
+                            hindernisTexturA_cheat, 
+                            hindernisTexturB_cheat, 
+                            hindernisTexturC_cheat, 
+                            hindernisTexturD_cheat, 
+                            hindernisTexturE_cheat,
+                            hindernisTexturZ_cheat;
+        public Texture2D zielEinlauf, cheat_qr;
 
         // Hud Texturen
         Texture2D hudTextur;
@@ -304,13 +317,22 @@ namespace xkfd
 
 
             // Textur für Hindernisse
-            hindernisTexturS = Content.Load<Texture2D>("hindernisS");
+            hindernisTexturS = Content.Load<Texture2D>("linie");
             hindernisTexturA = Content.Load<Texture2D>("hindernisA");
             hindernisTexturB = Content.Load<Texture2D>("hindernisB");
             hindernisTexturC = Content.Load<Texture2D>("hindernisC");
             hindernisTexturD = Content.Load<Texture2D>("hindernisD");
             hindernisTexturE = Content.Load<Texture2D>("hindernisE");
-            hindernisTexturZ = Content.Load<Texture2D>("hindernisZ");
+            hindernisTexturZ = Content.Load<Texture2D>("linie");
+
+            // Textur für Hindernisse
+            hindernisTexturS_cheat = Content.Load<Texture2D>("linie");
+            hindernisTexturA_cheat = Content.Load<Texture2D>("hindernisA_cheat");
+            hindernisTexturB_cheat = Content.Load<Texture2D>("hindernisB_cheat");
+            hindernisTexturC_cheat = Content.Load<Texture2D>("hindernisC_cheat");
+            hindernisTexturD_cheat = Content.Load<Texture2D>("hindernisD_cheat");
+            hindernisTexturE_cheat = Content.Load<Texture2D>("hindernisE_cheat");
+            hindernisTexturZ_cheat = Content.Load<Texture2D>("hindernisZ_cheat");
 
             //
             zielEinlauf = Content.Load<Texture2D>("ani_jubelmenge");

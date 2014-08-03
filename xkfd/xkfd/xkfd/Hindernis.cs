@@ -30,63 +30,9 @@ namespace xkfd
 
         private static Game1 game1;
 
-        // Generiert eine beliebige lange Liste von Hindernissen
-        public static List<Hindernis> generieHindernisse(int anzahl, Texture2D hindernisSTextur, Texture2D hindernisATextur, Texture2D hindernisBTextur, Texture2D hindernisCTextur, Texture2D hindernisDTextur, Texture2D hindernisETextur, Texture2D hindernisZTextur, Punkt p1, Punkt p2, Punkt p5, Punkt p10, PowerUp powerUp, Texture2D special)
-        {
-            // Init zufallsgenerator
-            Random random = new Random();
-
-            // Init Liste
-            List<Hindernis> liste = new List<Hindernis>();
-
-            // Erstes Hindernis Links vom Bildschirm
-            liste.Add(new HindernisS(hindernisSTextur, new Vector2(-320, 40), special));
-
-            // Vier Startelemente nebeneinander (füllung des Bildschirms)
-            liste.Add(new HindernisS(hindernisSTextur, new Vector2(0, 40)));
-            liste.Add(new HindernisS(hindernisSTextur, new Vector2(320, 40)));
-            liste.Add(new HindernisS(hindernisSTextur, new Vector2(2 * 320, 40)));
-            liste.Add(new HindernisS(hindernisSTextur, new Vector2(3 * 320, 40)));
-
-            int anzahlVerschiedenerHindernisse = 5;
-            // Erzeuge mit Schleife Anzahl von zufälligen Hindernissen
-            for (int i = 0; i < anzahl; i++)
-            {
-                switch ((int)random.Next(anzahlVerschiedenerHindernisse))
-                {
-                    case 0:
-                        liste.Add(new HindernisA(hindernisATextur, new Vector2(1280, 40), p1, p2, p5, p10, powerUp));
-                        break;
-                    case 1:
-                        liste.Add(new HindernisB(hindernisBTextur, new Vector2(1280, 40), p1, p2, p5, p10, powerUp));
-                        break;
-                    case 2:
-                        liste.Add(new HindernisC(hindernisCTextur, new Vector2(1280, 40), p1, p2, p5, p10, powerUp));
-                        break;
-                    case 3:
-                        liste.Add(new HindernisD(hindernisDTextur, new Vector2(1280, 40), p1, p2, p5, p10, powerUp));
-                        break;
-                    case 4:
-                        liste.Add(new HindernisE(hindernisETextur, new Vector2(1280, 40), p1, p2, p5, p10, powerUp));
-                        break;
-                    
-                }
-            }
-
-            // Füge zum Schluss das Ziel hinzu
-            liste.Add(new HindernisS(hindernisZTextur, new Vector2(1280, 40),special));
-            liste.Add(new HindernisS(hindernisSTextur, new Vector2(1280, 40)));
-            liste.Add(new HindernisS(hindernisSTextur, new Vector2(1280, 40)));
-            liste.Add(new HindernisS(hindernisSTextur, new Vector2(1280, 40)));
-
-            // null Elemente damit die Schliefe zum weiterschieben nicht auf null pointer Exeception läuft
-
-            return liste;
-        }
-
 
         // Generiert eine beliebige lange Liste von Hindernissen
-        public static List<Hindernis> generieHindernisse(int anzahl,Game1 game)
+        public static List<Hindernis> generieHindernisse(int anzahl, Game1 game)
         {
 
             game1 = game;

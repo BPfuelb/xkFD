@@ -82,8 +82,10 @@ Content\ani_cheaten_hut.xnb
 Content\ani_cheaten_std.xnb
 Content\hintergrund.xnb
 Content\hintergrund_cheat_inv.xnb
+Content\cheat_qr.xnb
 Content\SpriteFont1.xnb
 Content\SpriteFont2.xnb
+Content\SpriteFont3.xnb
 Content\jump.xnb
 Content\dsslop.xnb
 Content\dsskedth.xnb
@@ -92,6 +94,4 @@ Content\teleportAufladen.xnb
 Content\ooh.xnb
 Content\titel.xnb
 Content\InvertShader.xnb
-Content\SpriteFont3.xnb
-Content\cheat_qr.xnb
 Content\titel.wma

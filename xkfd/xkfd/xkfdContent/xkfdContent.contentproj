@@ -160,48 +160,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="hindernisA.png">
-      <Name>hindernisA</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="hindernisS.png">
-      <Name>hindernisS</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="HindernisB.png">
-      <Name>HindernisB</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="hindernisC.png">
-      <Name>hindernisC</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="HindernisZ.png">
-      <Name>HindernisZ</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="hindernisD.png">
-      <Name>hindernisD</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="ani_tastatur.png">
       <Name>ani_tastatur</Name>
       <Importer>TextureImporter</Importer>
@@ -518,13 +476,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="hindernisE.png">
-      <Name>hindernisE</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="ani_sterben4_pieksen_std.png">
       <Name>ani_sterben4_pieksen_std</Name>
       <Importer>TextureImporter</Importer>
@@ -678,6 +629,68 @@
   <ItemGroup>
     <Compile Include="cheat_qr.png">
       <Name>cheat_qr</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="hindernisA.png">
+      <Name>hindernisA</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="hindernisA_cheat.png">
+      <Name>hindernisA_cheat</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="hindernisB.png">
+      <Name>hindernisB</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="hindernisB_cheat.png">
+      <Name>hindernisB_cheat</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="hindernisC.png">
+      <Name>hindernisC</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="hindernisC_cheat.png">
+      <Name>hindernisC_cheat</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="hindernisD.png">
+      <Name>hindernisD</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="hindernisD_cheat.png">
+      <Name>hindernisD_cheat</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="hindernisE.png">
+      <Name>hindernisE</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="hindernisE_cheat.png">
+      <Name>hindernisE_cheat</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="hindernisZ_cheat.png">
+      <Name>hindernisZ_cheat</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="linie.png">
+      <Name>linie</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
