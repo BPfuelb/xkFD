@@ -73,11 +73,11 @@ namespace xkfd
             this.spieler = spieler;
             this.hudTextur = hudTextur;
 
-            positionGleitenAnzeige = new Vector2(400, 15);
+            positionGleitenAnzeige = new Vector2(400, 35);
             positionTastaturbelegung = new Vector2(100, -250);
-            positionCheckbox = new Vector2(800, 15);
+            positionCheckbox = new Vector2(800, 35);
 
-            positionPunkte = new Vector2(50, 15);
+            positionPunkte = new Vector2(50, 35);
             positionTimer = new Vector2(1000, 640);
 
 
@@ -155,9 +155,9 @@ namespace xkfd
 
 
             if (spieler.teleport)
-                sb.Draw(checkBox_check, positionCheckbox + new Vector2(150, -40), schriftFarbe);
+                sb.Draw(checkBox_check, positionCheckbox + new Vector2(170, -30), schriftFarbe);
             else
-                sb.Draw(checkBox_uncheck, positionCheckbox + new Vector2(150, -40), schriftFarbe);
+                sb.Draw(checkBox_uncheck, positionCheckbox + new Vector2(170, -30), schriftFarbe);
 
             // Timer in Trialsystem anzeigen
             sb.DrawString(schrift, zeit, new Vector2(positionTimer.X - schrift.MeasureString(CalcTrial(timer)).Length(), positionTimer.Y), schriftFarbe, 0, new Vector2(0, 0), 1f, SpriteEffects.None, 0f);
