@@ -5,6 +5,7 @@ Minim minim;
 //AudioInput input;
 AudioPlayer input;
 AudioMetaData meta;
+int position, dauer;
 
 BeatDetect beat;
 
@@ -13,20 +14,35 @@ PrintWriter output;
 int[] beats;
 int index;
 
+////// GUI
+PImage hintergrund;
+PFont font32, font24;
+int punkte = 0;
+
 void setup()
 {
-  size(100, 100);
+  size(439, 146);
+  
+  //////  GUI init
+  hintergrund = loadImage("hintergrund.jpg");
+  font32 = loadFont("ComicJensFreePro-32.vlw");
+  font24 = loadFont("ComicJensFreePro-24.vlw");
+  textFont(font32, 32);
 
   frameRate(44000);
   
+  //////  Beat-Detection init
   beats = new int[10];
   index = 0;
 
   minim = new Minim(this);
 
-  input = minim.loadFile("test.mp3");
+  input = minim.loadFile("song.mp3");
   meta = input.getMetaData();
-  String filename = meta.author() + " - " + meta.title();
+//  String filename = meta.author() + " - " + meta.title();
+  String filename = "analyse";
+  dauer = input.length();
+  position = 0;
   
   beat = new BeatDetect();
   
@@ -36,14 +52,32 @@ void setup()
   
   ////// Neue Datei erzeugen
   output = createWriter(filename + ".txt");
-  
-  
   input.play();
 }
 
 void draw()
 {
-  if(input.isPlaying()){
+  
+  if(input.isPlaying())
+  {
+    //////  Nur jeden 1000sten Frame zeichnen 
+    if (frameCount % 1000 == 0)
+    {
+      image(hintergrund, 0, 0);
+      fill(0);
+      textFont(font32, 32);
+      textAlign(LEFT, TOP);
+      text("Lied wird analysiert", 50, 47);
+      for(int i = 0; i < punkte; i++){
+        text(".", 345 + i*10, 47);
+      }
+      textFont(font24, 24);
+      textAlign(LEFT, BOTTOM);
+      position = int(map(input.position(), 0, dauer, 0, 340));
+      for(int i = 0; i < position; i+=5){
+        text("|", 49 + i, 127);
+      }
+    }
       
     beat.detect(input.mix);
   
@@ -57,6 +91,7 @@ void draw()
       if(index > 0 && beats[index] - beats[index-1] > 500)
       {
         index++;
+        punkte = (punkte + 1)%4;
         //println(millis());
         chkArray();
       }
@@ -68,28 +103,20 @@ void draw()
       }
 
     }
-    /*
-    if (frameCount % 1000 == 0) {
-      fill(0,0,0,32);
-      rect(0,0,100,100);
-    }*/
-    //////
     
   }
+  //////  Wenn Lied zu Ende, Programm schliessen
   else
   {
     ende();
   }
 }
 
-void keyPressed() {
-  ende();
-}
-
 void chkArray() {
   if(index == beats.length)
   {
     //println("Array vergroessern");
+    println(frameRate);
     int[] neuesArray = new int[beats.length * 2];
     
     for(int i = 0; i < beats.length; i++)
@@ -105,7 +132,7 @@ void ende() {
   input.close();
   
   ////  Laenge des Liedes in Millisekunden in erste Zeile schreiben
-  output.println(input.length()); 
+  output.println(); 
   
   ////  Anzahl der registrierten Beats in zweite Zeile schreiben, danach Leerzeile
   output.println(index);
@@ -123,5 +150,6 @@ void ende() {
   
   println(index + " Beats in Datei geschrieben.");
   
+  println("exit");
   exit(); // Stops the program
 }
