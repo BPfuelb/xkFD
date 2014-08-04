@@ -1798,11 +1798,11 @@ namespace xkfd
             // Pixelverschiebungen  * 60 Updates Pro sekunde     / 1000 = Pixel pro Millisekunde
             //    4                * 60                         / 1000 = 0,24            
 
-
+            int hindernisIndex = 0;
             foreach (int k in liedWerte)
             {
                 int i = k; // + 512;
-                int hindernisIndex = (int)(i * 0.24f) / 320;
+                hindernisIndex = (int)(i * 0.24f) / 320;
                 int notenPosition = (int)(i * 0.24f) - 320 * hindernisIndex;
 
                 switch ((int)rand.Next(5))
@@ -1834,6 +1834,11 @@ namespace xkfd
                         break;
                 }
 
+            }
+
+            foreach (Hindernis hindernis in hindernisListe.GetRange(hindernisIndex - 6, 6))
+            {
+                hindernis.notenListe.Clear();
             }
 
             liedWerte.Clear();

@@ -76,7 +76,7 @@ namespace xkfd
                 {
 
                     int zeilenInhalt = int.Parse(myFile.ReadLine());
-                    if (zeilenInhalt > 5000)
+                    if (zeilenInhalt > 7000)
                         game1.liedWerte.Add(zeilenInhalt);
                 }
                 myFile.Close();
