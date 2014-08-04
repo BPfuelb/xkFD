@@ -948,6 +948,15 @@
       <Extra>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\skysand.wma</Extra>
       <Time>2014-08-04T02:10:31.0862868+02:00</Time>
     </Item>
+    <Item>
+      <Source>abspann.png</Source>
+      <Name>abspann</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\abspann.xnb</Output>
+      <Time>2014-08-04T07:49:46.589555+02:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <TargetPlatform>Windows</TargetPlatform>

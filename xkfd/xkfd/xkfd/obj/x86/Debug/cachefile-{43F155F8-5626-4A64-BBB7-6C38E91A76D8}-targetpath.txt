@@ -105,3 +105,4 @@ Content\HindernisF_cheat.xnb
 Content\ani_sterben3_klatscher_oben_std.xnb
 Content\skysand.xnb
 Content\skysand.wma
+Content\abspann.xnb

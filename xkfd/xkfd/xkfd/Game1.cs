@@ -9,6 +9,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using System.Diagnostics;
+using System.IO;
 
 
 namespace xkfd
@@ -26,10 +27,11 @@ namespace xkfd
 
         Effect invert;
 
-
+        // AbspannTimer
+        int abspann = 120;
 
         // Spiel Status
-        enum Gamestate { running, menue, options, ladebildschirm, cheat };
+        enum Gamestate { running, menue, options, ladebildschirm, cheat, abspann };
         Gamestate gamestate = Gamestate.menue;
 
         // Spieler
@@ -132,6 +134,9 @@ namespace xkfd
         public int liedlaenge = 0;
         public List<int> liedWerte = new List<int>();
 
+        // Abspann
+
+        Texture2D abspannTextur;
 
         public Game1()
         {
@@ -181,6 +186,10 @@ namespace xkfd
             graphics.ApplyChanges();
 
             base.Initialize();
+
+
+
+
 
             // Process.Start(@"calc");
 
@@ -444,6 +453,9 @@ namespace xkfd
             // Logo
             logo = Content.Load<Texture2D>("logo");
 
+
+            // Abspann
+            abspannTextur = Content.Load<Texture2D>("abspann");
 
             // Test textur
             dummyTexture = new Texture2D(GraphicsDevice, 1, 1);
@@ -1143,6 +1155,7 @@ namespace xkfd
             }
             #endregion
 
+
             #region GamestateMenue
 
             if (gamestate == Gamestate.menue)
@@ -1183,7 +1196,8 @@ namespace xkfd
                     switch (menue.auswahl)
                     {
                         case 0: // Beenden
-                            this.Exit();
+                            cheat = true;
+                            gamestate = Gamestate.abspann;
                             break;
                         case 1: // Optionen
                             gamestate = Gamestate.options;
@@ -1198,6 +1212,7 @@ namespace xkfd
                             {
                                 MediaPlayer.Resume();
                                 gamestate = Gamestate.running;
+                                NewKeyState = Keyboard.GetState();
                             }
                             menue.spielAktiv = true;
                             break;
@@ -1234,6 +1249,13 @@ namespace xkfd
                 if (gewonnen >= 10)
                     freischalten++;
 
+                // FileAuswahl
+                if (Keyboard.GetState().IsKeyDown(Keys.O) && OldKeyState.IsKeyUp(Keys.O))
+                {
+                    // TODO
+                }
+
+
                 if (Keyboard.GetState().IsKeyDown(Keys.Down) && OldKeyState.IsKeyUp(Keys.Down))
                     optionen.auswahl = (optionen.auswahl + 1) % freischalten;
 
@@ -1253,6 +1275,16 @@ namespace xkfd
                     gamestate = Gamestate.menue;
             }
 
+            #endregion
+
+
+            #region GamestateAbspann
+            if (gamestate == Gamestate.abspann)
+            {
+                if(abspann == 0)
+                Exit();
+                abspann--;
+            }
             #endregion
 
             base.Update(gameTime);
@@ -1463,6 +1495,8 @@ namespace xkfd
 
                 #endregion
 
+
+
                 // Logo Zeichnen
                 spriteBatch.Draw(logo, new Vector2(0, 720 - 83), Color.White);
 
@@ -1529,6 +1563,23 @@ namespace xkfd
 
                 #endregion
             }
+
+
+
+            #region GamestateAbspann
+            spriteBatch.Begin(0, BlendState.NonPremultiplied, null, null, null, invert);
+            invert.CurrentTechnique = invert.Techniques[0];
+            if (gamestate == Gamestate.abspann)
+            {
+                hintergrund.aktuelleTextur = hintergrund.hintergrundTexturCheat;
+                hintergrund.Draw(spriteBatch);
+
+                spriteBatch.Draw(abspannTextur, new Vector2(400, 400), Color.White);
+            }
+            spriteBatch.End();
+            #endregion
+
+
             base.Draw(gameTime);
         }
 
