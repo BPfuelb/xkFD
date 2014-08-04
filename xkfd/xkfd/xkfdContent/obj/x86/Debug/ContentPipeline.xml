@@ -936,7 +936,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_sterben3_klatscher_oben_std.xnb</Output>
-      <Time>2014-08-04T01:01:01.8311781+02:00</Time>
+      <Time>2014-08-04T02:07:44.9047818+02:00</Time>
     </Item>
     <Item>
       <Source>skysand.mp3</Source>
@@ -946,7 +946,7 @@
       <Options>None</Options>
       <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\skysand.xnb</Output>
       <Extra>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\skysand.wma</Extra>
-      <Time>2014-08-04T01:01:15.4279558+02:00</Time>
+      <Time>2014-08-04T02:10:31.0862868+02:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
