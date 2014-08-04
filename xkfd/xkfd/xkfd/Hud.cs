@@ -142,7 +142,7 @@ namespace xkfd
         }
 
 
-        public void Draw(SpriteBatch sb, SpriteFont schrift, int maxPunkte, GameTime gt)
+        public void Draw(SpriteBatch sb, SpriteFont schrift, int maxPunkte, GameTime gt, Boolean cheat, Effect invert)
         {
             sb.DrawString(schrift, "Gleiten: " + counter, positionGleitenAnzeige, schriftFarbe);
             sb.DrawString(schrift, "Punkte: " + spieler.punkte + "/" + maxPunkte, positionPunkte, schriftFarbe);
@@ -153,11 +153,28 @@ namespace xkfd
                 gameOverAnimation.DrawTransparent(sb, gameOverPosition + new Vector2(-10, 25));
             }
 
-
-            if (spieler.teleport)
-                sb.Draw(checkBox_check, positionCheckbox + new Vector2(170, -30), schriftFarbe);
+            if (!cheat)
+            {
+                if (spieler.teleport)
+                    sb.Draw(checkBox_check, positionCheckbox + new Vector2(170, -30), schriftFarbe);
+                else
+                    sb.Draw(checkBox_uncheck, positionCheckbox + new Vector2(170, -30), schriftFarbe);
+            }
             else
-                sb.Draw(checkBox_uncheck, positionCheckbox + new Vector2(170, -30), schriftFarbe);
+            {
+                sb.End(); // End
+
+                sb.Begin(0, BlendState.NonPremultiplied, null, null, null, invert);
+                
+                if (spieler.teleport)
+                    sb.Draw(checkBox_check, positionCheckbox + new Vector2(170, -30), schriftFarbe);
+                else
+                    sb.Draw(checkBox_uncheck, positionCheckbox + new Vector2(170, -30), schriftFarbe);
+
+                sb.End();
+
+                sb.Begin(); // Begin
+            }
 
             // Timer in Trialsystem anzeigen
             // sb.DrawString(schrift, zeit, new Vector2(positionTimer.X - schrift.MeasureString(CalcTrial(timer)).Length(), positionTimer.Y), schriftFarbe, 0, new Vector2(0, 0), 1f, SpriteEffects.None, 0f);
