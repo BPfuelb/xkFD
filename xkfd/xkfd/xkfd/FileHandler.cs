@@ -10,19 +10,14 @@ namespace xkfd
     {
         string inhalt = "";
 
-        public Boolean FileCheck(String fertig, String abbruch)
+        public Boolean FileVorhanden(String fileName)
         {
-            if (File.Exists(fertig))
+            if (File.Exists(fileName))
             {
-                return false;
+                return true;
             }
-            else
-            {
-                if (File.Exists(abbruch))
-                    return false;
-                else
-                    return true;
-            }
+            return false;
+
                 
         }
 
@@ -66,8 +61,6 @@ namespace xkfd
             myFile.Write(sLines);
             myFile.Close();
         }
-
-
 
         // Analyse Lesen
         public string ReadFileAnalyse(String fileName, Game1 game1)

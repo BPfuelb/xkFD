@@ -1222,6 +1222,9 @@ namespace xkfd
                             gamestate = Gamestate.abspann;
                             break;
                         case 1: // Optionen
+                            neustart();
+                            MediaPlayer.Play(titel);
+                            menue.spielAktiv = false;
                             gamestate = Gamestate.options;
                             break;
                         case 2: // Starten/Fortsetzen
@@ -1275,6 +1278,8 @@ namespace xkfd
                 if (Keyboard.GetState().IsKeyDown(Keys.O) && OldKeyState.IsKeyUp(Keys.O))
                 {
 
+                    Boolean allesOK = true;
+
                     System.IO.File.Copy(@"LevelGenerator/song.xnb", @"Content/song.xnb", true);
 
 
@@ -1288,25 +1293,37 @@ namespace xkfd
                     generator.StartInfo.FileName = @"LevelGenerator\LevelGenerator.exe";
 
                     generator.Start();
+                    generator.WaitForExit();
 
-                    while (konfig.FileCheck(@"LevelGenerator\fertig.txt", @"LevelGenerator\abbruch.txt"))
-                    { }
+                    while (!konfig.FileVorhanden(@"LevelGenerator\fertig.txt") && allesOK)
+                    {
+                        allesOK = !(konfig.FileVorhanden(@"LevelGenerator\abbruch.txt"));
+                    }
 
-                    // Verschiebe Analsyse File
-                    //konfig.FileDelete(@"analyse.txt");
-                    string sourceFileAnalyse = @"LevelGenerator\analyse.txt";
-                    string destinationFileAnalyse = @"analyse.txt";
-                    System.IO.File.Copy(sourceFileAnalyse, destinationFileAnalyse,true);
+                    if (allesOK)
+                    {
+                        // Verschiebe Analsyse File
+                        string sourceFileAnalyse = @"LevelGenerator\analyse.txt";
+                        string destinationFileAnalyse = @"analyse.txt";
+                        System.IO.File.Copy(sourceFileAnalyse, destinationFileAnalyse, true);
 
-                    // Verschiebe SoundFile
-                    // konfig.FileDelete(@"Content\song.wav");
-                    string sourceFileSound= @"LevelGenerator\analyse.wav";
-                    string destinationFileSound = @"Content\song.wav";
-                    System.IO.File.Copy(sourceFileSound, destinationFileSound, true);
+                        // Verschiebe SoundFile
+                        string sourceFileSound = @"LevelGenerator\analyse.wav";
+                        string destinationFileSound = @"Content\song.wav";
 
-
-                    // Verschiebe File
-                    // System.IO.File.Move(sourceFileAnalyse, destinationFileAnalyse);
+                        while (true)
+                        {
+                            try
+                            {
+                                System.IO.File.Copy(sourceFileSound, destinationFileSound, true);
+                                break;
+                            }
+                            catch (Exception ex)
+                            {
+                                Console.WriteLine("Hänge in der Schliefe");
+                            }
+                        }
+                    }
 
                     musik = Content.Load<Song>("song");
                     MediaPlayer.Resume();
