@@ -1,3 +1,15 @@
+/**
+ *  LevelGenerator für das Spiel xkfd
+ *  Eine Musik-Datei kann ausgewaehlt werden, um es in eine 
+ *  Wav-Datei umzuwandeln und gleichzeitig zu analysieren.
+ *  Fuer jeden Beat wird in einer Text-Datei der Millisekunden-
+ *  Wert gespeichert.
+ *
+ *  Author:  Sebastian Schulz
+ *  2014 - 08 - 04
+ */
+
+
 import ddf.minim.analysis.BeatDetect;
 import ddf.minim.*;
 
@@ -15,6 +27,7 @@ PrintWriter output;
 int[] beats;
 int index;
 boolean gestartet;
+int millistart;
 int status;
 final static int OK = 0;
 final static int UNGUELTIG = 1;
@@ -43,6 +56,7 @@ void setup()
   beats = new int[10];
   index = 0;
   gestartet = false;
+  millistart = 0;
   status = OK;
 
   minim = new Minim(this);
@@ -122,7 +136,7 @@ void draw()
       //println("Beat");
       
       //output.println(millis());
-      beats[index] = millis();
+      beats[index] = millis() - millistart;
       if(index > 0 && beats[index] - beats[index-1] > 500)
       {
         index++;
@@ -270,6 +284,7 @@ void dateiGewaehlt(File auswahl)
     recorder = minim.createRecorder(input, filename + ".wav", true);
     
     gestartet = true;
+    millistart = millis();
     loop();
     input.play();
     recorder.beginRecord();
