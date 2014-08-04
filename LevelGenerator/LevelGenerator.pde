@@ -2,10 +2,11 @@ import ddf.minim.analysis.BeatDetect;
 import ddf.minim.*;
 
 Minim minim;  
-//AudioInput input;
 AudioPlayer input;
+AudioRecorder recorder;
 AudioMetaData meta;
 int position, dauer, mindestDauer;
+String filename;
 
 BeatDetect beat;
 
@@ -46,10 +47,10 @@ void setup()
 
   minim = new Minim(this);
 
-  //input = minim.loadFile("song.mp3");
   position = 0;
   dauer = 0;
   mindestDauer = 10000;  //  10 Sekunden
+  filename = "analyse";
   
   beat = new BeatDetect();
   
@@ -70,15 +71,19 @@ void draw()
       case OK:
         textFont(font32, 32);
         text("Bitte Lied waehlen", 50, 24);
+        textFont(font12, 12);
+        text("Je kuerzer das Lied desto kuerzer das Level", 51, 63);
         los();
         break;
       case UNGUELTIG:
+        textFont(font32, 32);
         text("Falscher Dateityp.", 50, 24);
         textFont(font12, 12);
         text("Erlaubt sind WAV-, AIFF-, AU-, SND-, und MP3-Dateien.", 51, 63);
         los();
         break;
       case ZUKURZ:
+        textFont(font32, 32);
         text("Lied zu kurz.", 50, 24);
         textFont(font12, 12);
         text("Das Lied muss mindestens " + mindestDauer + " Sekunden lang sein.", 51, 63);
@@ -142,6 +147,9 @@ void draw()
   }
 }
 
+
+//////  chkArray()
+//  erweitert bei Bedarf das Array
 void chkArray() {
   if(index == beats.length)
   {
@@ -158,13 +166,26 @@ void chkArray() {
   }
 }
 
+
+//////  los()
+//  startet das Datei-Waehl-Fenster
 void los()
 {
   selectInput("Datei waehlen:", "dateiGewaehlt");
 }
 
+
+////// ende()
+//  schreibt die gesammelten Informationen in die Datei,
+//  schliesst txt- und sound-Dateien,
+//  erzeugt eine fertig-Datei, wenn erfolgreich Datei erzeugt
 void ende() {
+  recorder.endRecord();
+  recorder.save();
+  
   input.close();
+  
+  minim.stop();
   
   ////  Laenge des Liedes in Millisekunden in erste Zeile schreiben
   output.println(dauer); 
@@ -185,16 +206,35 @@ void ende() {
   
   println(index + " Beats in Datei geschrieben.");
   
+  
+  ////  fertig-Datei erzeugen
+  output = createWriter("fertig.txt");
+  output.println(index + " Beats in Datei geschrieben.");
+  output.flush();
+  output.close();
+  
+  
   println("exit");
   exit(); // Stops the program
 }
 
+
+////// dateiGewaehlt()
+//  wenn Datei-Waehl-Dialog geschlossen wurde
 void dateiGewaehlt(File auswahl)
 {
   if (auswahl == null)
   {
     println("Fenster wurde geschlossen oder der Benutzer hat Cancel " 
           + "geklickt. Abbruch.");
+    
+    ////  fertig-Datei erzeugen
+    output = createWriter("abbruch.txt");
+    output.println("Fenster wurde geschlossen oder "
+          + "der Benutzer hat Cancel geklickt.");
+    output.flush();
+    output.close();
+  
     println("cancel");
     exit();
   }
@@ -213,8 +253,6 @@ void dateiGewaehlt(File auswahl)
     println("User selected " + auswahl.getAbsolutePath());
     input = minim.loadFile(auswahl.getAbsolutePath());
     meta = input.getMetaData();
-  //  String filename = meta.author() + " - " + meta.title();
-    String filename = "analyse";
     dauer = input.length();
     if (dauer < mindestDauer)
     {
@@ -223,12 +261,14 @@ void dateiGewaehlt(File auswahl)
       return;
     }
   
-    ////// Neue Datei erzeugen
+    ////// Neue txt-Datei erzeugen
     output = createWriter(filename + ".txt");
+    recorder = minim.createRecorder(input, filename + ".wav", true);
     
     gestartet = true;
     loop();
     input.play();
+    recorder.beginRecord();
   }
   else
   {
