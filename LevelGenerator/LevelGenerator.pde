@@ -186,6 +186,7 @@ void ende() {
   input.close();
   
   minim.stop();
+  super.stop();
   
   
   ////// Neue txt-Datei erzeugen
