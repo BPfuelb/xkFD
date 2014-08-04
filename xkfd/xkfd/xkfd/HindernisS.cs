@@ -16,7 +16,6 @@ namespace xkfd
     {
         Hitbox bodenHitbox;
 
-
         public HindernisS(Texture2D textur, Texture2D texturCheat, Vector2 position)
             : base(textur, position,texturCheat)
         {
@@ -30,6 +29,27 @@ namespace xkfd
             this.special = special;
             bodenHitbox = new Hitbox((int)position.X, (int)position.Y + 488, 320, 200);
             hitboxListe.Add(bodenHitbox);
+        }
+
+        public HindernisS(Texture2D textur, Texture2D texturCheat, Vector2 position, Punkt p1, Punkt p2, Punkt p5, Punkt p10, PowerUp powerUp)
+            : base(textur, position, texturCheat)
+        {
+            this.special = special;
+            bodenHitbox = new Hitbox((int)position.X, (int)position.Y + 488, 320, 200);
+            hitboxListe.Add(bodenHitbox);
+        }
+
+
+        public override void noteHinzufuegen(NotenHitbox note)
+        {
+            note.setPositionY(325);
+
+            note.hindernis = this;
+            notenListe.Add(note);
+
+            note.hitboxPosition.X += 1280;
+            note.hitboxRect.X += 1280;
+
         }
     }
 }

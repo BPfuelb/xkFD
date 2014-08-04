@@ -73,6 +73,31 @@ namespace xkfd
             }
         }
 
+                public HindernisC(Texture2D textur, Texture2D texturCheat, Vector2 position)
+            : base(textur, position, texturCheat)
+        {
+            hitboxListe.Add(new Hitbox((int)position.X, (int)position.Y + 488, 320, 200));
+            hitboxListe.Add(new Hitbox((int)position.X + 90, (int)position.Y + 458, 150, 200));
+        }
 
+
+
+        public override void noteHinzufuegen(NotenHitbox note)
+        {
+            if (note.hitboxPosition.X > 320 || note.hitboxPosition.X < 0)
+                Console.WriteLine("Fehlerhafte Position: " + note.hitboxPosition);
+            else if (note.hitboxPosition.X <= 84)
+                note.setPositionY(340);
+            else if (note.hitboxPosition.X >= 235)
+                note.setPositionY(340);
+            else
+                note.setPositionY(280);
+
+            note.hitboxPosition.X += 1280;
+            note.hitboxRect.X += 1280;
+
+            note.hindernis = this;
+            notenListe.Add(note);
+        }
     }
 }

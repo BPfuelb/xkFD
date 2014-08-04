@@ -41,7 +41,7 @@ namespace xkfd
             Random random = new Random();
 
             // Vgl. Vorgehender Random Wert
-            int vorgaenger = 10;
+             int vorgaenger = -1;
 
             // Init Liste
             List<Hindernis> liste = new List<Hindernis>();
@@ -55,7 +55,7 @@ namespace xkfd
             liste.Add(new HindernisS(game.hindernisTexturS, game.hindernisTexturS_cheat, new Vector2(2 * 320, 0), game.cheat_qr));
             liste.Add(new HindernisS(game.hindernisTexturS, game.hindernisTexturS_cheat, new Vector2(3 * 320, 0)));
 
-            int anzahlVerschiedenerHindernisse = 6;
+            int anzahlVerschiedenerHindernisse = 7;
             // Erzeuge mit Schleife Anzahl von zufälligen Hindernissen
             for (int i = 0; i < anzahl; i++)
             {
@@ -71,22 +71,25 @@ namespace xkfd
                 switch (zufall)
                 {
                     case 0:
-                        liste.Add(new HindernisA(game.hindernisTexturA, game.hindernisTexturA_cheat, new Vector2(1280, 0), game.punkt1, game.punkt2, game.punkt5, game.punkt10, game.powerUp));
+                        liste.Add(new HindernisA(game.hindernisTexturA, game.hindernisTexturA_cheat, new Vector2(1280, 0)));
                         break;
                     case 1:
-                        liste.Add(new HindernisB(game.hindernisTexturB, game.hindernisTexturB_cheat, new Vector2(1280, 0), game.punkt1, game.punkt2, game.punkt5, game.punkt10, game.powerUp));
+                        liste.Add(new HindernisB(game.hindernisTexturB, game.hindernisTexturB_cheat, new Vector2(1280, 0)));
                         break;
                     case 2:
-                        liste.Add(new HindernisC(game.hindernisTexturC, game.hindernisTexturC_cheat, new Vector2(1280, 0), game.punkt1, game.punkt2, game.punkt5, game.punkt10, game.powerUp));
+                        liste.Add(new HindernisC(game.hindernisTexturC, game.hindernisTexturC_cheat, new Vector2(1280, 0)));
                         break;
                     case 3:
-                        liste.Add(new HindernisD(game.hindernisTexturD, game.hindernisTexturD_cheat, new Vector2(1280, 0), game.punkt1, game.punkt2, game.punkt5, game.punkt10, game.powerUp));
+                        liste.Add(new HindernisD(game.hindernisTexturD, game.hindernisTexturD_cheat, new Vector2(1280, 0)));
                         break;
                     case 4:
-                        liste.Add(new HindernisE(game.hindernisTexturE, game.hindernisTexturE_cheat, new Vector2(1280, 0), game.punkt1, game.punkt2, game.punkt5, game.punkt10, game.powerUp));
+                        liste.Add(new HindernisE(game.hindernisTexturE, game.hindernisTexturE_cheat, new Vector2(1280, 0)));
                         break;
                     case 5:
-                        liste.Add(new HindernisF(game.hindernisTexturF, game.hindernisTexturF_cheat, new Vector2(1280, 0), game.punkt1, game.punkt2, game.punkt5, game.punkt10, game.powerUp));
+                        liste.Add(new HindernisF(game.hindernisTexturF, game.hindernisTexturF_cheat, new Vector2(1280, 0)));
+                        break;
+                    case 6:
+                        liste.Add(new HindernisS(game.hindernisTexturS, game.hindernisTexturS_cheat, new Vector2(1280, 0)));
                         break;
 
                 }
@@ -156,7 +159,7 @@ namespace xkfd
             }
         }
 
-        public virtual List<Hitbox> gibHitboxen()
+        public List<Hitbox> gibHitboxen()
         {
             return hitboxListe;
         }
@@ -190,5 +193,9 @@ namespace xkfd
                 sb.Draw(special, hindernisPosition + new Vector2(300, 600), Color.White);
             }
         }
+
+
+        public virtual void noteHinzufuegen(NotenHitbox note)
+        { }
     }
 }

@@ -60,7 +60,7 @@ namespace xkfd
         public Spieler()
         {
             /*                     x-Pos           y-Pos = Mitte + Hoehe der Laufen-Textur */
-            position = new Vector2(1280 / 2 - 128, 720 / 2 + 60);
+            position = new Vector2(512, 420);
 
             laufen = new Laufen(this);
             springen = new Springen(this);

@@ -14,7 +14,7 @@ namespace xkfd
 {
     public class HindernisF : Hindernis
     {
-        Vector2 taschenRechernPos = new Vector2(80,153);
+        Vector2 taschenRechernPos = new Vector2(80, 153);
 
         public HindernisF(Texture2D textur, Texture2D texturCheat, Vector2 position, Punkt p1, Punkt p2, Punkt p5, Punkt p10, PowerUp powerUp)
             : base(textur, position, texturCheat)
@@ -74,10 +74,20 @@ namespace xkfd
             }
         }
 
+
+        public HindernisF(Texture2D textur, Texture2D texturCheat, Vector2 position)
+            : base(textur, position, texturCheat)
+        {
+            hitboxListe.Add(new Hitbox((int)position.X, (int)position.Y + 488, 320, 200));
+            hitboxListe.Add(new Hitbox((int)position.X + 65, (int)position.Y + 100, 180, 305));
+        }
+
+
+
         public override void DrawAni(SpriteBatch sb)
         {
             if (game1.schrift_rechner.MeasureString(game1.hud.zeit).X < 143)
-                sb.DrawString(game1.schrift_rechner, game1.hud.zeit, hindernisPosition + taschenRechernPos , Color.Black);
+                sb.DrawString(game1.schrift_rechner, game1.hud.zeit, hindernisPosition + taschenRechernPos, Color.Black);
             else
                 sb.DrawString(game1.schrift_rechner, "ERROR", hindernisPosition + taschenRechernPos, Color.Black);
 
@@ -90,5 +100,25 @@ namespace xkfd
             }
         }
 
+
+        public override void noteHinzufuegen(NotenHitbox note)
+        {
+            if (note.hitboxPosition.X > 320 || note.hitboxPosition.X < 0)
+                Console.WriteLine("Fehlerhafte Position: " + note.hitboxPosition);
+            else if (note.hitboxPosition.X <= 40)
+                note.setPositionY(320);
+            else if (note.hitboxPosition.X >= 275)
+                note.setPositionY(320);
+            else if (note.hitboxPosition.X > 130 && note.hitboxPosition.Y < 180)
+                note.setPositionY(72);
+            else
+                note.setPositionY(447);
+
+            note.hitboxPosition.X += 1280;
+            note.hitboxRect.X += 1280;
+
+            note.hindernis = this;
+            notenListe.Add(note);
+        }
     }
 }

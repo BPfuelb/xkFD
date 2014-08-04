@@ -14,7 +14,6 @@ namespace xkfd
 {
    public  class NotenHitbox : Hitbox
     {
-        // Zugehöriges Hindernis (evlt. Object?)
         public Hindernis hindernis;
         public Punkt punkt;
         public Boolean faellt;
@@ -125,6 +124,7 @@ namespace xkfd
         public void UpdatePosition()
         {
             hitboxPosition.X -= 4;
+            hitboxRect.X -= 4;
         }
     }
 }

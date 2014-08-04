@@ -17,14 +17,16 @@ namespace xkfd
     public class Game1 : Microsoft.Xna.Framework.Game
     {
 
+        // Debug
+        Boolean debug = false;
+
         #region Vor Sound Analyse
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
         Effect invert;
 
-        // Debug
-        Boolean debug = false;
+
 
         // Spiel Status
         enum Gamestate { running, menue, options, ladebildschirm, cheat };
@@ -129,10 +131,6 @@ namespace xkfd
         // Lied Länge in MS
         public int liedlaenge = 0;
         public List<int> liedWerte = new List<int>();
-
-        // Liste für die generierten Positionen
-        public List<NotenHitbox> liedNoten = new List<NotenHitbox>();
-
 
 
         public Game1()
@@ -454,7 +452,7 @@ namespace xkfd
             dummyTexture2 = new Texture2D(GraphicsDevice, 1, 1);
             dummyTexture2.SetData(new Color[] { Color.Green });
 
-            konfig.ReadFileAnalyse("analyse.txt", this);
+
         }
 
 
@@ -614,11 +612,6 @@ namespace xkfd
             {
 
 
-                foreach (NotenHitbox note in liedNoten)
-                {
-                    note.UpdatePosition();
-                }
-
                 // Hud Update
                 hud.UpdateMitTimer(gameTime);
 
@@ -662,7 +655,7 @@ namespace xkfd
                 if ((spieler.aktuellerZustand == spieler.sterben || spieler.aktuellerZustand == spieler.gewinnen) && Keyboard.GetState().IsKeyDown(Keys.Enter))
                 {
                     // Song Musik spielen
-                        MediaPlayer.Play(titel);
+                    MediaPlayer.Play(titel);
 
                     gamestate = Gamestate.menue;
                 }
@@ -712,7 +705,6 @@ namespace xkfd
                 punkt10.punktAnimation.Update();
                 powerUp.punktAnimation.Update();
                 #endregion
-
 
                 #region GewonnenAktionen
                 if (hindernisListe.Count == 6)
@@ -1344,11 +1336,7 @@ namespace xkfd
 
                 if (gamestate == Gamestate.running)
                 {
-                    foreach (NotenHitbox note in liedNoten)
-                    {
-                        note.punkt.punktAnimation.Draw(spriteBatch, note.hitboxPosition);
-                        //spriteBatch.Draw(note.punkt.punktTextur, note.hitboxPosition, Color.White);
-                    }
+
 
                     // Hindernisse zeichnen
                     foreach (Hindernis hindernis in hindernisListe.GetRange(1, 5))
@@ -1667,15 +1655,63 @@ namespace xkfd
             spieler.aktuellerSkin.sterbenAnimationStolpern.index = 0;
             spieler.aktuellerSkin.sterbenAnimationPieksen.index = 0;
 
-            // hindernisListe = Hindernis.generieHindernisse(15, hindernisTexturS, hindernisTexturA, hindernisTexturB, hindernisTexturC, hindernisTexturD, hindernisTexturE, hindernisTexturZ, punkt1, punkt2, punkt5, punkt10, powerUp, zielEinlauf);
-            hindernisListe = Hindernis.generieHindernisse(15, this);
+            konfig.ReadFileAnalyse("analyse.txt", this);
+            // HindernisListe generieren
 
-            liedNoten.Clear();
-            foreach (int i in liedWerte)
+
+            // Anzahl der Pixel pro Hindernis / Pixel Verschiebungen Pro update / 60 Updates Pro Sekunde = Zeit für Hindernis um in den Bildschirm geschoben zu werden in Sekunden
+            // 320                              /       4                       /       60              = 1,3333 sekunden = 1333,3333
+
+            // Millisekunden pro Lied   /  Millisekunden pro Hindernis  = Notwendige Hindernisse
+            // 239621                   /            1333 = 179
+
+            // 
+
+            hindernisListe = Hindernis.generieHindernisse(liedlaenge / 1334 - 10, this);
+
+
+            // Pixelverschiebungen  * 60 Updates Pro sekunde     / 1000 = Pixel pro Millisekunde
+            //    4                * 60                         / 1000 = 0,24            
+
+
+            foreach (int k in liedWerte)
             {
-                liedNoten.Add(new NotenHitbox(punkt1, null, i, 300, 32, 32));
+                int i = k + 512;
+                int hindernisIndex = (int)(i * 0.24f) / 320;
+                int notenPosition = (int)(i * 0.24f) - 320 * hindernisIndex;
+
+                switch ((int)rand.Next(5))
+                {
+                    case 0:
+                        hindernisListe[hindernisIndex].noteHinzufuegen(new NotenHitbox(punkt1, null, notenPosition, 300, 32, 32));
+                        Hindernis.punkteAnzahl += 1;
+                        break;
+                    case 1:
+                        hindernisListe[hindernisIndex].noteHinzufuegen(new NotenHitbox(punkt2, null, notenPosition, 300, 32, 32));
+                        Hindernis.punkteAnzahl += 2;
+                        break;
+                    case 2:
+                        hindernisListe[hindernisIndex].noteHinzufuegen(new NotenHitbox(punkt5, null, notenPosition, 300, 32, 32));
+                        Hindernis.punkteAnzahl += 5;
+                        break;
+                    case 3:
+                        hindernisListe[hindernisIndex].noteHinzufuegen(new NotenHitbox(punkt10, null, notenPosition, 300, 32, 32));
+                        Hindernis.punkteAnzahl += 10;
+                        break;
+                    case 4:
+                        if (rand.Next() > 0.9)
+                            hindernisListe[hindernisIndex].noteHinzufuegen(new NotenHitbox(powerUp, null, notenPosition, 300, 32, 32));
+                        else
+                        {
+                            hindernisListe[hindernisIndex].noteHinzufuegen(new NotenHitbox(punkt5, null, notenPosition, 300, 32, 32));
+                            Hindernis.punkteAnzahl += 5;
+                        }
+                        break;
+                }
+
             }
 
+            liedWerte.Clear();
         }
 
     }
