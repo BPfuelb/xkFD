@@ -7,8 +7,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\spieler_textur.xnb</Output>
-      <Time>2014-07-22T16:03:57.4604479+02:00</Time>
+      <Output>C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\spieler_textur.xnb</Output>
+      <Time>2014-07-22T19:33:03.3695211+02:00</Time>
     </Item>
     <Item>
       <Source>m_exit.png</Source>
@@ -16,8 +16,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\m_exit.xnb</Output>
-      <Time>2014-08-03T22:52:41.2022035+02:00</Time>
+      <Output>C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\m_exit.xnb</Output>
+      <Time>2014-08-04T00:17:39.2317193+02:00</Time>
     </Item>
     <Item>
       <Source>m_optionen.png</Source>
@@ -25,8 +25,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\m_optionen.xnb</Output>
-      <Time>2014-08-03T22:52:42.1642585+02:00</Time>
+      <Output>C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\m_optionen.xnb</Output>
+      <Time>2014-08-04T00:17:39.2397198+02:00</Time>
     </Item>
     <Item>
       <Source>m_start.png</Source>
@@ -34,8 +34,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\m_start.xnb</Output>
-      <Time>2014-08-03T22:52:40.6961746+02:00</Time>
+      <Output>C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\m_start.xnb</Output>
+      <Time>2014-08-04T00:17:39.24272+02:00</Time>
     </Item>
     <Item>
       <Source>m_continue.png</Source>
@@ -43,8 +43,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\m_continue.xnb</Output>
-      <Time>2014-08-03T22:52:41.6262278+02:00</Time>
+      <Output>C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\m_continue.xnb</Output>
+      <Time>2014-08-04T00:17:39.2277191+02:00</Time>
     </Item>
     <Item>
       <Source>m_new.png</Source>
@@ -52,8 +52,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\m_new.xnb</Output>
-      <Time>2014-08-03T22:52:39.8421257+02:00</Time>
+      <Output>C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\m_new.xnb</Output>
+      <Time>2014-08-04T00:17:39.2367196+02:00</Time>
     </Item>
     <Item>
       <Source>o_zurueck.png</Source>
@@ -61,8 +61,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\o_zurueck.xnb</Output>
-      <Time>2014-07-23T01:33:34.5102633+02:00</Time>
+      <Output>C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\o_zurueck.xnb</Output>
+      <Time>2014-07-23T16:42:31.2959814+02:00</Time>
     </Item>
     <Item>
       <Source>ani_laufen.png</Source>
@@ -70,8 +70,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_laufen.xnb</Output>
-      <Time>2014-07-24T15:38:17.3268615+02:00</Time>
+      <Output>C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_laufen.xnb</Output>
+      <Time>2014-07-24T16:14:31.3035045+02:00</Time>
     </Item>
     <Item>
       <Source>ziel.png</Source>
@@ -79,8 +79,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ziel.xnb</Output>
-      <Time>2014-07-24T23:24:19.4662027+02:00</Time>
+      <Output>C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ziel.xnb</Output>
+      <Time>2014-07-25T09:07:26.4651746+02:00</Time>
     </Item>
     <Item>
       <Source>ani_laufen_std.png</Source>
@@ -88,8 +88,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_laufen_std.xnb</Output>
-      <Time>2014-07-29T20:21:27.6492844+02:00</Time>
+      <Output>C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_laufen_std.xnb</Output>
+      <Time>2014-07-30T00:58:44.6241767+02:00</Time>
     </Item>
     <Item>
       <Source>ani_ducken_std.png</Source>
@@ -97,8 +97,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_ducken_std.xnb</Output>
-      <Time>2014-07-30T01:18:27.3557326+02:00</Time>
+      <Output>C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_ducken_std.xnb</Output>
+      <Time>2014-07-30T04:49:34.3433353+02:00</Time>
     </Item>
     <Item>
       <Source>ani_fallen_std.png</Source>
@@ -106,8 +106,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_fallen_std.xnb</Output>
-      <Time>2014-08-01T23:05:35.5662064+02:00</Time>
+      <Output>C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_fallen_std.xnb</Output>
+      <Time>2014-08-01T23:01:55.4187978+02:00</Time>
     </Item>
     <Item>
       <Source>ani_gewinnen_std.png</Source>
@@ -115,8 +115,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_gewinnen_std.xnb</Output>
-      <Time>2014-07-30T19:43:37.1849118+02:00</Time>
+      <Output>C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_gewinnen_std.xnb</Output>
+      <Time>2014-07-30T23:27:59.9740421+02:00</Time>
     </Item>
     <Item>
       <Source>ani_gleiten_std.png</Source>
@@ -124,8 +124,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_gleiten_std.xnb</Output>
-      <Time>2014-08-01T23:05:35.5702066+02:00</Time>
+      <Output>C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_gleiten_std.xnb</Output>
+      <Time>2014-08-01T23:01:55.4287984+02:00</Time>
     </Item>
     <Item>
       <Source>ani_springen_std.png</Source>
@@ -133,8 +133,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_springen_std.xnb</Output>
-      <Time>2014-07-29T21:08:06.7633846+02:00</Time>
+      <Output>C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_springen_std.xnb</Output>
+      <Time>2014-07-30T00:58:44.6281769+02:00</Time>
     </Item>
     <Item>
       <Source>ani_sterben_std.png</Source>
@@ -142,8 +142,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_sterben_std.xnb</Output>
-      <Time>2014-07-28T16:40:59.3604873+02:00</Time>
+      <Output>C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_sterben_std.xnb</Output>
+      <Time>2014-07-24T16:47:01.3286065+02:00</Time>
     </Item>
     <Item>
       <Source>ani_tastatur.png</Source>
@@ -151,8 +151,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_tastatur.xnb</Output>
-      <Time>2014-07-30T19:26:28.0950513+02:00</Time>
+      <Output>C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_tastatur.xnb</Output>
+      <Time>2014-07-30T23:28:00.0120442+02:00</Time>
     </Item>
     <Item>
       <Source>logo.png</Source>
@@ -160,8 +160,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\logo.xnb</Output>
-      <Time>2014-07-22T21:47:47.8524388+02:00</Time>
+      <Output>C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\logo.xnb</Output>
+      <Time>2014-07-22T20:51:49.1408198+02:00</Time>
     </Item>
     <Item>
       <Source>checkbox_check.png</Source>
@@ -169,8 +169,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\checkbox_check.xnb</Output>
-      <Time>2014-08-03T22:15:57.2431443+02:00</Time>
+      <Output>C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\checkbox_check.xnb</Output>
+      <Time>2014-08-03T20:57:27.0101473+02:00</Time>
     </Item>
     <Item>
       <Source>checkbox_uncheck.png</Source>
@@ -178,8 +178,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\checkbox_uncheck.xnb</Output>
-      <Time>2014-08-03T22:15:57.2441443+02:00</Time>
+      <Output>C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\checkbox_uncheck.xnb</Output>
+      <Time>2014-08-03T20:57:44.5586162+02:00</Time>
     </Item>
     <Item>
       <Source>teleport.png</Source>
@@ -187,8 +187,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\teleport.xnb</Output>
-      <Time>2014-07-30T03:31:44.7168728+02:00</Time>
+      <Output>C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\teleport.xnb</Output>
+      <Time>2014-07-30T04:49:34.4063389+02:00</Time>
     </Item>
     <Item>
       <Source>ani_sterben1_koepfen_std.png</Source>
@@ -196,8 +196,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_sterben1_koepfen_std.xnb</Output>
-      <Time>2014-07-30T04:25:49.8860639+02:00</Time>
+      <Output>C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_sterben1_koepfen_std.xnb</Output>
+      <Time>2014-07-30T04:25:11.0256383+02:00</Time>
     </Item>
     <Item>
       <Source>radio.png</Source>
@@ -205,8 +205,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\radio.xnb</Output>
-      <Time>2014-07-30T16:32:32.7181819+02:00</Time>
+      <Output>C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\radio.xnb</Output>
+      <Time>2014-07-30T23:28:00.025045+02:00</Time>
     </Item>
     <Item>
       <Source>ani_sterben2_stolpern_std.png</Source>
@@ -214,8 +214,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_sterben2_stolpern_std.xnb</Output>
-      <Time>2014-08-01T23:05:35.577207+02:00</Time>
+      <Output>C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_sterben2_stolpern_std.xnb</Output>
+      <Time>2014-08-01T23:01:55.4417991+02:00</Time>
     </Item>
     <Item>
       <Source>ani_gleiten_frau.png</Source>
@@ -223,8 +223,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_gleiten_frau.xnb</Output>
-      <Time>2014-08-01T23:05:35.5682065+02:00</Time>
+      <Output>C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_gleiten_frau.xnb</Output>
+      <Time>2014-08-01T23:01:55.4257982+02:00</Time>
     </Item>
     <Item>
       <Source>ani_laufen_frau.png</Source>
@@ -232,8 +232,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_laufen_frau.xnb</Output>
-      <Time>2014-07-31T17:23:40.6954284+02:00</Time>
+      <Output>C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_laufen_frau.xnb</Output>
+      <Time>2014-07-31T16:19:15.9819771+02:00</Time>
     </Item>
     <Item>
       <Source>ani_fallen_frau.png</Source>
@@ -241,8 +241,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_fallen_frau.xnb</Output>
-      <Time>2014-08-01T23:05:35.5482054+02:00</Time>
+      <Output>C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_fallen_frau.xnb</Output>
+      <Time>2014-08-01T23:01:55.4137975+02:00</Time>
     </Item>
     <Item>
       <Source>ani_springen_frau.png</Source>
@@ -250,8 +250,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_springen_frau.xnb</Output>
-      <Time>2014-07-30T22:17:09.1081151+02:00</Time>
+      <Output>C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_springen_frau.xnb</Output>
+      <Time>2014-07-30T22:03:20+02:00</Time>
     </Item>
     <Item>
       <Source>ani_ducken_frau.png</Source>
@@ -259,8 +259,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_ducken_frau.xnb</Output>
-      <Time>2014-07-30T22:53:02.1112598+02:00</Time>
+      <Output>C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_ducken_frau.xnb</Output>
+      <Time>2014-07-30T23:27:59.9680417+02:00</Time>
     </Item>
     <Item>
       <Source>ani_sterben1_koepfen_frau.png</Source>
@@ -268,8 +268,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_sterben1_koepfen_frau.xnb</Output>
-      <Time>2014-07-31T23:09:30.0712077+02:00</Time>
+      <Output>C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_sterben1_koepfen_frau.xnb</Output>
+      <Time>2014-07-31T18:07:04.6531656+02:00</Time>
     </Item>
     <Item>
       <Source>ani_sterben2_stolpern_frau.png</Source>
@@ -277,8 +277,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_sterben2_stolpern_frau.xnb</Output>
-      <Time>2014-08-01T23:05:35.5742068+02:00</Time>
+      <Output>C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_sterben2_stolpern_frau.xnb</Output>
+      <Time>2014-08-01T23:01:55.4357988+02:00</Time>
     </Item>
     <Item>
       <Source>ani_gewinnen_frau.png</Source>
@@ -286,8 +286,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_gewinnen_frau.xnb</Output>
-      <Time>2014-07-31T02:36:19.6665561+02:00</Time>
+      <Output>C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_gewinnen_frau.xnb</Output>
+      <Time>2014-07-31T05:17:37.7609028+02:00</Time>
     </Item>
     <Item>
       <Source>ani_sterben3_klatscher_std.png</Source>
@@ -295,8 +295,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_sterben3_klatscher_std.xnb</Output>
-      <Time>2014-07-31T17:26:02.2744193+02:00</Time>
+      <Output>C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_sterben3_klatscher_std.xnb</Output>
+      <Time>2014-07-31T14:01:34.5245849+02:00</Time>
     </Item>
     <Item>
       <Source>unlock_skin_frau.png</Source>
@@ -304,8 +304,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\unlock_skin_frau.xnb</Output>
-      <Time>2014-07-31T15:48:06.2457355+02:00</Time>
+      <Output>C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\unlock_skin_frau.xnb</Output>
+      <Time>2014-07-31T18:08:43.9665285+02:00</Time>
     </Item>
     <Item>
       <Source>unlock_skin_hut.png</Source>
@@ -313,8 +313,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\unlock_skin_hut.xnb</Output>
-      <Time>2014-07-31T17:21:19.1447679+02:00</Time>
+      <Output>C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\unlock_skin_hut.xnb</Output>
+      <Time>2014-07-31T18:08:43.9695286+02:00</Time>
     </Item>
     <Item>
       <Source>unlock_skin_einstein.png</Source>
@@ -322,8 +322,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\unlock_skin_einstein.xnb</Output>
-      <Time>2014-08-02T00:03:47.9662432+02:00</Time>
+      <Output>C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\unlock_skin_einstein.xnb</Output>
+      <Time>2014-08-02T00:17:56.7509988+02:00</Time>
     </Item>
     <Item>
       <Source>ani_sterben3_klatscher_frau.png</Source>
@@ -331,8 +331,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_sterben3_klatscher_frau.xnb</Output>
-      <Time>2014-07-31T17:26:02.2734193+02:00</Time>
+      <Output>C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_sterben3_klatscher_frau.xnb</Output>
+      <Time>2014-07-31T14:00:12.9909724+02:00</Time>
     </Item>
     <Item>
       <Source>ani_springen_hut.png</Source>
@@ -340,8 +340,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_springen_hut.xnb</Output>
-      <Time>2014-07-31T17:22:35.06524+02:00</Time>
+      <Output>C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_springen_hut.xnb</Output>
+      <Time>2014-07-31T16:30:59+02:00</Time>
     </Item>
     <Item>
       <Source>ani_ducken_hut.png</Source>
@@ -349,8 +349,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_ducken_hut.xnb</Output>
-      <Time>2014-07-31T17:21:42.4146229+02:00</Time>
+      <Output>C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_ducken_hut.xnb</Output>
+      <Time>2014-07-31T17:16:19+02:00</Time>
     </Item>
     <Item>
       <Source>ani_laufen_hut.png</Source>
@@ -358,8 +358,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_laufen_hut.xnb</Output>
-      <Time>2014-07-31T17:21:45.0659247+02:00</Time>
+      <Output>C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_laufen_hut.xnb</Output>
+      <Time>2014-07-31T16:35:29.3985032+02:00</Time>
     </Item>
     <Item>
       <Source>ani_gleiten_hut.png</Source>
@@ -367,8 +367,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_gleiten_hut.xnb</Output>
-      <Time>2014-08-01T23:05:35.5692066+02:00</Time>
+      <Output>C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_gleiten_hut.xnb</Output>
+      <Time>2014-08-01T23:01:55.4267983+02:00</Time>
     </Item>
     <Item>
       <Source>note1.png</Source>
@@ -376,8 +376,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\note1.xnb</Output>
-      <Time>2014-07-31T23:09:30.0742079+02:00</Time>
+      <Output>C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\note1.xnb</Output>
+      <Time>2014-07-31T23:02:12+02:00</Time>
     </Item>
     <Item>
       <Source>note2.png</Source>
@@ -385,8 +385,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\note2.xnb</Output>
-      <Time>2014-07-31T23:09:30.0752079+02:00</Time>
+      <Output>C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\note2.xnb</Output>
+      <Time>2014-07-31T23:02:29+02:00</Time>
     </Item>
     <Item>
       <Source>note5.png</Source>
@@ -394,8 +394,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\note5.xnb</Output>
-      <Time>2014-07-31T23:09:30.076208+02:00</Time>
+      <Output>C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\note5.xnb</Output>
+      <Time>2014-07-31T23:02:43+02:00</Time>
     </Item>
     <Item>
       <Source>note10.png</Source>
@@ -403,8 +403,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\note10.xnb</Output>
-      <Time>2014-07-31T23:09:30.0742079+02:00</Time>
+      <Output>C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\note10.xnb</Output>
+      <Time>2014-07-31T23:03:17+02:00</Time>
     </Item>
     <Item>
       <Source>ani_notenpuff.png</Source>
@@ -412,8 +412,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_notenpuff.xnb</Output>
-      <Time>2014-08-01T01:40:47.908525+02:00</Time>
+      <Output>C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_notenpuff.xnb</Output>
+      <Time>2014-08-01T01:08:04+02:00</Time>
     </Item>
     <Item>
       <Source>note1_haufen.png</Source>
@@ -421,8 +421,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\note1_haufen.xnb</Output>
-      <Time>2014-08-01T02:33:14.7105117+02:00</Time>
+      <Output>C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\note1_haufen.xnb</Output>
+      <Time>2014-08-01T02:32:48.8928641+02:00</Time>
     </Item>
     <Item>
       <Source>note2_haufen.png</Source>
@@ -430,8 +430,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\note2_haufen.xnb</Output>
-      <Time>2014-08-01T02:33:18.7737442+02:00</Time>
+      <Output>C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\note2_haufen.xnb</Output>
+      <Time>2014-08-01T02:32:48.8938642+02:00</Time>
     </Item>
     <Item>
       <Source>note5_haufen.png</Source>
@@ -439,8 +439,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\note5_haufen.xnb</Output>
-      <Time>2014-08-01T02:33:21.5809047+02:00</Time>
+      <Output>C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\note5_haufen.xnb</Output>
+      <Time>2014-08-01T02:32:48.8958643+02:00</Time>
     </Item>
     <Item>
       <Source>note10_haufen.png</Source>
@@ -448,8 +448,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\note10_haufen.xnb</Output>
-      <Time>2014-08-01T02:33:24.4490688+02:00</Time>
+      <Output>C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\note10_haufen.xnb</Output>
+      <Time>2014-08-01T02:32:48.8918641+02:00</Time>
     </Item>
     <Item>
       <Source>ani_sterben2_stolpern_hut.png</Source>
@@ -457,8 +457,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_sterben2_stolpern_hut.xnb</Output>
-      <Time>2014-08-01T23:05:35.576207+02:00</Time>
+      <Output>C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_sterben2_stolpern_hut.xnb</Output>
+      <Time>2014-08-01T23:01:55.439799+02:00</Time>
     </Item>
     <Item>
       <Source>ani_sterben1_koepfen_hut.png</Source>
@@ -466,8 +466,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_sterben1_koepfen_hut.xnb</Output>
-      <Time>2014-08-01T03:34:06.9984107+02:00</Time>
+      <Output>C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_sterben1_koepfen_hut.xnb</Output>
+      <Time>2014-08-01T04:31:17.1951155+02:00</Time>
     </Item>
     <Item>
       <Source>ani_fallen_hut.png</Source>
@@ -475,8 +475,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_fallen_hut.xnb</Output>
-      <Time>2014-08-01T23:05:35.5492054+02:00</Time>
+      <Output>C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_fallen_hut.xnb</Output>
+      <Time>2014-08-01T23:01:55.4157976+02:00</Time>
     </Item>
     <Item>
       <Source>ani_gewinnen_hut.png</Source>
@@ -484,8 +484,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_gewinnen_hut.xnb</Output>
-      <Time>2014-08-01T03:41:25.4264873+02:00</Time>
+      <Output>C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_gewinnen_hut.xnb</Output>
+      <Time>2014-07-31T18:05:30+02:00</Time>
     </Item>
     <Item>
       <Source>ani_sterben3_klatscher_hut.png</Source>
@@ -493,8 +493,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_sterben3_klatscher_hut.xnb</Output>
-      <Time>2014-08-01T03:41:39.2882802+02:00</Time>
+      <Output>C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_sterben3_klatscher_hut.xnb</Output>
+      <Time>2014-08-01T02:57:17+02:00</Time>
     </Item>
     <Item>
       <Source>ani_laufen_einstein.png</Source>
@@ -502,8 +502,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_laufen_einstein.xnb</Output>
-      <Time>2014-08-02T00:18:42.4883832+02:00</Time>
+      <Output>C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_laufen_einstein.xnb</Output>
+      <Time>2014-08-02T00:15:44.3624266+02:00</Time>
     </Item>
     <Item>
       <Source>ani_springen_einstein.png</Source>
@@ -511,8 +511,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_springen_einstein.xnb</Output>
-      <Time>2014-08-01T04:34:16.3048512+02:00</Time>
+      <Output>C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_springen_einstein.xnb</Output>
+      <Time>2014-08-01T04:31:20.8133225+02:00</Time>
     </Item>
     <Item>
       <Source>ani_sterben4_pieksen_std.png</Source>
@@ -520,8 +520,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_sterben4_pieksen_std.xnb</Output>
-      <Time>2014-08-01T23:05:35.5852075+02:00</Time>
+      <Output>C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_sterben4_pieksen_std.xnb</Output>
+      <Time>2014-08-01T23:01:58.0229468+02:00</Time>
     </Item>
     <Item>
       <Source>powerUp.png</Source>
@@ -529,8 +529,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\powerUp.xnb</Output>
-      <Time>2014-08-01T19:48:21.8621386+02:00</Time>
+      <Output>C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\powerUp.xnb</Output>
+      <Time>2014-08-01T23:01:57.9549429+02:00</Time>
     </Item>
     <Item>
       <Source>GameOver.png</Source>
@@ -538,8 +538,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\GameOver.xnb</Output>
-      <Time>2014-08-03T18:51:55.5399589+02:00</Time>
+      <Output>C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\GameOver.xnb</Output>
+      <Time>2014-08-03T20:30:40.5028425+02:00</Time>
     </Item>
     <Item>
       <Source>ani_sterben1_koepfen_einstein.png</Source>
@@ -547,8 +547,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_sterben1_koepfen_einstein.xnb</Output>
-      <Time>2014-08-01T23:05:35.5712067+02:00</Time>
+      <Output>C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_sterben1_koepfen_einstein.xnb</Output>
+      <Time>2014-08-01T23:01:55.4307985+02:00</Time>
     </Item>
     <Item>
       <Source>ani_sterben2_stolpern_einstein.png</Source>
@@ -556,8 +556,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_sterben2_stolpern_einstein.xnb</Output>
-      <Time>2014-08-01T23:05:35.5732068+02:00</Time>
+      <Output>C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_sterben2_stolpern_einstein.xnb</Output>
+      <Time>2014-08-01T23:01:55.4337987+02:00</Time>
     </Item>
     <Item>
       <Source>ani_fallen_einstein.png</Source>
@@ -565,8 +565,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_fallen_einstein.xnb</Output>
-      <Time>2014-08-01T23:05:35.5322044+02:00</Time>
+      <Output>C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_fallen_einstein.xnb</Output>
+      <Time>2014-08-01T23:01:55.4117974+02:00</Time>
     </Item>
     <Item>
       <Source>ani_gleiten_einstein.png</Source>
@@ -574,8 +574,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_gleiten_einstein.xnb</Output>
-      <Time>2014-08-01T23:05:35.5672064+02:00</Time>
+      <Output>C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_gleiten_einstein.xnb</Output>
+      <Time>2014-08-01T23:01:55.421798+02:00</Time>
     </Item>
     <Item>
       <Source>ani_sterben3_klatscher_einstein.png</Source>
@@ -583,8 +583,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_sterben3_klatscher_einstein.xnb</Output>
-      <Time>2014-08-01T23:05:35.5792071+02:00</Time>
+      <Output>C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_sterben3_klatscher_einstein.xnb</Output>
+      <Time>2014-08-01T23:01:55.4447993+02:00</Time>
     </Item>
     <Item>
       <Source>ani_sterben4_pieksen_einstein.png</Source>
@@ -592,8 +592,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_sterben4_pieksen_einstein.xnb</Output>
-      <Time>2014-08-01T23:05:35.5812072+02:00</Time>
+      <Output>C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_sterben4_pieksen_einstein.xnb</Output>
+      <Time>2014-08-01T23:01:55.4477995+02:00</Time>
     </Item>
     <Item>
       <Source>ani_sterben4_pieksen_frau.png</Source>
@@ -601,8 +601,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_sterben4_pieksen_frau.xnb</Output>
-      <Time>2014-08-01T23:05:35.5822073+02:00</Time>
+      <Output>C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_sterben4_pieksen_frau.xnb</Output>
+      <Time>2014-08-01T23:01:55.4497996+02:00</Time>
     </Item>
     <Item>
       <Source>ani_sterben4_pieksen_hut.png</Source>
@@ -610,8 +610,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_sterben4_pieksen_hut.xnb</Output>
-      <Time>2014-08-01T23:05:35.5842074+02:00</Time>
+      <Output>C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_sterben4_pieksen_hut.xnb</Output>
+      <Time>2014-08-01T23:01:55.4517997+02:00</Time>
     </Item>
     <Item>
       <Source>ani_ducken_einstein.png</Source>
@@ -619,8 +619,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_ducken_einstein.xnb</Output>
-      <Time>2014-08-01T23:09:59.0183007+02:00</Time>
+      <Output>C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_ducken_einstein.xnb</Output>
+      <Time>2014-08-01T17:40:20+02:00</Time>
     </Item>
     <Item>
       <Source>ani_gewinnen_einstein.png</Source>
@@ -628,8 +628,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_gewinnen_einstein.xnb</Output>
-      <Time>2014-08-02T00:03:45.3160916+02:00</Time>
+      <Output>C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_gewinnen_einstein.xnb</Output>
+      <Time>2014-08-01T23:59:26.8905184+02:00</Time>
     </Item>
     <Item>
       <Source>ani_jubelmenge.png</Source>
@@ -637,8 +637,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_jubelmenge.xnb</Output>
-      <Time>2014-08-02T05:48:31.1847814+02:00</Time>
+      <Output>C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_jubelmenge.xnb</Output>
+      <Time>2014-08-02T05:31:29.8319634+02:00</Time>
     </Item>
     <Item>
       <Source>ani_cheaten_einstein.png</Source>
@@ -646,8 +646,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_cheaten_einstein.xnb</Output>
-      <Time>2014-08-02T07:21:21.4955762+02:00</Time>
+      <Output>C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_cheaten_einstein.xnb</Output>
+      <Time>2014-08-02T07:20:36.3743939+02:00</Time>
     </Item>
     <Item>
       <Source>ani_cheaten_frau.png</Source>
@@ -655,8 +655,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_cheaten_frau.xnb</Output>
-      <Time>2014-08-02T07:21:21.4965763+02:00</Time>
+      <Output>C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_cheaten_frau.xnb</Output>
+      <Time>2014-08-02T07:20:36.376394+02:00</Time>
     </Item>
     <Item>
       <Source>ani_cheaten_hut.png</Source>
@@ -664,8 +664,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_cheaten_hut.xnb</Output>
-      <Time>2014-08-02T07:21:21.4975763+02:00</Time>
+      <Output>C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_cheaten_hut.xnb</Output>
+      <Time>2014-08-02T07:20:36.3773941+02:00</Time>
     </Item>
     <Item>
       <Source>ani_cheaten_std.png</Source>
@@ -673,8 +673,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_cheaten_std.xnb</Output>
-      <Time>2014-08-02T07:21:21.4985764+02:00</Time>
+      <Output>C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_cheaten_std.xnb</Output>
+      <Time>2014-08-02T07:20:36.3793942+02:00</Time>
     </Item>
     <Item>
       <Source>hintergrund.jpg</Source>
@@ -682,8 +682,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\hintergrund.xnb</Output>
-      <Time>2014-08-02T11:10:58.7594943+02:00</Time>
+      <Output>C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\hintergrund.xnb</Output>
+      <Time>2014-08-02T11:04:38.7896188+02:00</Time>
     </Item>
     <Item>
       <Source>hintergrund_cheat_inv.jpg</Source>
@@ -691,8 +691,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\hintergrund_cheat_inv.xnb</Output>
-      <Time>2014-08-02T11:10:58.770495+02:00</Time>
+      <Output>C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\hintergrund_cheat_inv.xnb</Output>
+      <Time>2014-08-02T11:04:57.9485051+02:00</Time>
     </Item>
     <Item>
       <Source>cheat_qr.png</Source>
@@ -700,8 +700,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\cheat_qr.xnb</Output>
-      <Time>2014-08-03T00:16:47.3978962+02:00</Time>
+      <Output>C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\cheat_qr.xnb</Output>
+      <Time>2014-08-03T01:27:37.6647648+02:00</Time>
     </Item>
     <Item>
       <Source>hindernisA.png</Source>
@@ -709,8 +709,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\hindernisA.xnb</Output>
-      <Time>2014-08-03T03:07:10.8305256+02:00</Time>
+      <Output>C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\hindernisA.xnb</Output>
+      <Time>2014-08-03T02:55:58.030264+02:00</Time>
     </Item>
     <Item>
       <Source>hindernisA_cheat.png</Source>
@@ -718,8 +718,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\hindernisA_cheat.xnb</Output>
-      <Time>2014-08-03T03:07:10.8305256+02:00</Time>
+      <Output>C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\hindernisA_cheat.xnb</Output>
+      <Time>2014-08-03T02:55:58.060264+02:00</Time>
     </Item>
     <Item>
       <Source>hindernisB.png</Source>
@@ -727,8 +727,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\hindernisB.xnb</Output>
-      <Time>2014-08-03T20:32:20.4525642+02:00</Time>
+      <Output>C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\hindernisB.xnb</Output>
+      <Time>2014-08-03T20:16:10.8951607+02:00</Time>
     </Item>
     <Item>
       <Source>hindernisB_cheat.png</Source>
@@ -736,8 +736,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\hindernisB_cheat.xnb</Output>
-      <Time>2014-08-03T03:07:10.8315257+02:00</Time>
+      <Output>C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\hindernisB_cheat.xnb</Output>
+      <Time>2014-08-03T02:55:58.055264+02:00</Time>
     </Item>
     <Item>
       <Source>hindernisC.png</Source>
@@ -745,8 +745,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\hindernisC.xnb</Output>
-      <Time>2014-08-03T03:07:10.8395261+02:00</Time>
+      <Output>C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\hindernisC.xnb</Output>
+      <Time>2014-08-03T02:55:58.020264+02:00</Time>
     </Item>
     <Item>
       <Source>hindernisC_cheat.png</Source>
@@ -754,8 +754,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\hindernisC_cheat.xnb</Output>
-      <Time>2014-08-03T04:10:34.2624388+02:00</Time>
+      <Output>C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\hindernisC_cheat.xnb</Output>
+      <Time>2014-08-03T03:44:58.8993349+02:00</Time>
     </Item>
     <Item>
       <Source>hindernisD.png</Source>
@@ -763,8 +763,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\hindernisD.xnb</Output>
-      <Time>2014-08-03T03:07:10.8645276+02:00</Time>
+      <Output>C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\hindernisD.xnb</Output>
+      <Time>2014-08-03T02:55:58.015264+02:00</Time>
     </Item>
     <Item>
       <Source>hindernisD_cheat.png</Source>
@@ -772,8 +772,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\hindernisD_cheat.xnb</Output>
-      <Time>2014-08-03T03:07:10.8655276+02:00</Time>
+      <Output>C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\hindernisD_cheat.xnb</Output>
+      <Time>2014-08-03T02:55:58.045264+02:00</Time>
     </Item>
     <Item>
       <Source>hindernisE.png</Source>
@@ -781,8 +781,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\hindernisE.xnb</Output>
-      <Time>2014-08-03T20:32:20.4565644+02:00</Time>
+      <Output>C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\hindernisE.xnb</Output>
+      <Time>2014-08-03T20:27:24.8891114+02:00</Time>
     </Item>
     <Item>
       <Source>hindernisE_cheat.png</Source>
@@ -790,8 +790,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\hindernisE_cheat.xnb</Output>
-      <Time>2014-08-03T20:32:20.4575645+02:00</Time>
+      <Output>C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\hindernisE_cheat.xnb</Output>
+      <Time>2014-08-03T19:42:36.1332892+02:00</Time>
     </Item>
     <Item>
       <Source>hindernisZ_cheat.png</Source>
@@ -799,8 +799,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\hindernisZ_cheat.xnb</Output>
-      <Time>2014-08-03T20:47:04.5061292+02:00</Time>
+      <Output>C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\hindernisZ_cheat.xnb</Output>
+      <Time>2014-08-03T20:36:50.0011276+02:00</Time>
     </Item>
     <Item>
       <Source>linie.png</Source>
@@ -808,108 +808,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\linie.xnb</Output>
-      <Time>2014-08-03T03:07:10.9095301+02:00</Time>
-    </Item>
-    <Item>
-      <Source>SpriteFont1.spritefont</Source>
-      <Name>SpriteFont1</Name>
-      <Importer>FontDescriptionImporter</Importer>
-      <Processor>FontDescriptionProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\SpriteFont1.xnb</Output>
-      <Time>2014-08-03T22:15:58.7502305+02:00</Time>
-    </Item>
-    <Item>
-      <Source>SpriteFont2.spritefont</Source>
-      <Name>SpriteFont2</Name>
-      <Importer>FontDescriptionImporter</Importer>
-      <Processor>FontDescriptionProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\SpriteFont2.xnb</Output>
-      <Time>2014-07-31T04:31:00.3461085+02:00</Time>
-    </Item>
-    <Item>
-      <Source>SpriteFont3.spritefont</Source>
-      <Name>SpriteFont3</Name>
-      <Importer>FontDescriptionImporter</Importer>
-      <Processor>FontDescriptionProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\SpriteFont3.xnb</Output>
-      <Time>2014-08-03T18:20:03.1285752+02:00</Time>
-    </Item>
-    <Item>
-      <Source>jump.wav</Source>
-      <Name>jump</Name>
-      <Importer>WavImporter</Importer>
-      <Processor>SoundEffectProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\jump.xnb</Output>
-      <Time>2014-07-23T20:49:19.8097949+02:00</Time>
-    </Item>
-    <Item>
-      <Source>dsslop.wav</Source>
-      <Name>dsslop</Name>
-      <Importer>WavImporter</Importer>
-      <Processor>SoundEffectProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\dsslop.xnb</Output>
-      <Time>2014-07-30T04:31:18.9410982+02:00</Time>
-    </Item>
-    <Item>
-      <Source>dsskedth.wav</Source>
-      <Name>dsskedth</Name>
-      <Importer>WavImporter</Importer>
-      <Processor>SoundEffectProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\dsskedth.xnb</Output>
-      <Time>2014-07-30T15:14:02.5327747+02:00</Time>
-    </Item>
-    <Item>
-      <Source>pop.wav</Source>
-      <Name>pop</Name>
-      <Importer>WavImporter</Importer>
-      <Processor>SoundEffectProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\pop.xnb</Output>
-      <Time>2014-08-01T05:15:45.8776743+02:00</Time>
-    </Item>
-    <Item>
-      <Source>teleportAufladen.wav</Source>
-      <Name>teleportAufladen</Name>
-      <Importer>WavImporter</Importer>
-      <Processor>SoundEffectProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\teleportAufladen.xnb</Output>
-      <Time>2014-08-01T19:55:04.0731438+02:00</Time>
-    </Item>
-    <Item>
-      <Source>ooh.wav</Source>
-      <Name>ooh</Name>
-      <Importer>WavImporter</Importer>
-      <Processor>SoundEffectProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ooh.xnb</Output>
-      <Time>2014-08-01T20:36:48.2964607+02:00</Time>
-    </Item>
-    <Item>
-      <Source>titel.mp3</Source>
-      <Name>titel</Name>
-      <Importer>Mp3Importer</Importer>
-      <Processor>SongProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\titel.xnb</Output>
-      <Extra>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\titel.wma</Extra>
-      <Time>2014-07-24T16:47:48.4854381+02:00</Time>
-    </Item>
-    <Item>
-      <Source>InvertShader.fx</Source>
-      <Name>InvertShader</Name>
-      <Importer>EffectImporter</Importer>
-      <Processor>EffectProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\InvertShader.xnb</Output>
-      <Time>2014-08-02T23:57:37.3751187+02:00</Time>
+      <Output>C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\linie.xnb</Output>
+      <Time>2014-08-03T02:55:58.030264+02:00</Time>
     </Item>
     <Item>
       <Source>HindernisF.png</Source>
@@ -917,8 +817,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\HindernisF.xnb</Output>
-      <Time>2014-08-03T20:32:20.4535642+02:00</Time>
+      <Output>C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\HindernisF.xnb</Output>
+      <Time>2014-08-03T20:08:55.8073074+02:00</Time>
     </Item>
     <Item>
       <Source>HindernisF_cheat.png</Source>
@@ -926,8 +826,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\HindernisF_cheat.xnb</Output>
-      <Time>2014-08-03T20:32:20.4545643+02:00</Time>
+      <Output>C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\HindernisF_cheat.xnb</Output>
+      <Time>2014-08-03T20:08:10.1568445+02:00</Time>
     </Item>
     <Item>
       <Source>ani_sterben3_klatscher_oben_std.png</Source>
@@ -935,8 +835,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_sterben3_klatscher_oben_std.xnb</Output>
-      <Time>2014-08-04T02:07:44.9047818+02:00</Time>
+      <Output>C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_sterben3_klatscher_oben_std.xnb</Output>
+      <Time>2014-08-04T02:06:32.6250775+02:00</Time>
     </Item>
     <Item>
       <Source>abspann.png</Source>
@@ -944,8 +844,99 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\abspann.xnb</Output>
-      <Time>2014-08-04T08:13:04.1184891+02:00</Time>
+      <Output>C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\abspann.xnb</Output>
+      <Time>2014-08-04T10:51:03.348096+02:00</Time>
+    </Item>
+    <Item>
+      <Source>SpriteFont1.spritefont</Source>
+      <Name>SpriteFont1</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\SpriteFont1.xnb</Output>
+      <Time>2014-08-03T22:47:10.6228431+02:00</Time>
+    </Item>
+    <Item>
+      <Source>SpriteFont2.spritefont</Source>
+      <Name>SpriteFont2</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\SpriteFont2.xnb</Output>
+      <Time>2014-07-31T05:17:37.7589027+02:00</Time>
+    </Item>
+    <Item>
+      <Source>SpriteFont3.spritefont</Source>
+      <Name>SpriteFont3</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\SpriteFont3.xnb</Output>
+      <Time>2014-08-03T20:30:40.5158433+02:00</Time>
+    </Item>
+    <Item>
+      <Source>jump.wav</Source>
+      <Name>jump</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\jump.xnb</Output>
+      <Time>2014-07-24T09:51:32.2133969+02:00</Time>
+    </Item>
+    <Item>
+      <Source>dsslop.wav</Source>
+      <Name>dsslop</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\dsslop.xnb</Output>
+      <Time>2014-07-30T04:49:34.3923381+02:00</Time>
+    </Item>
+    <Item>
+      <Source>dsskedth.wav</Source>
+      <Name>dsskedth</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\dsskedth.xnb</Output>
+      <Time>2014-07-30T23:28:00.0140444+02:00</Time>
+    </Item>
+    <Item>
+      <Source>pop.wav</Source>
+      <Name>pop</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\pop.xnb</Output>
+      <Time>2014-08-01T17:06:49.8283109+02:00</Time>
+    </Item>
+    <Item>
+      <Source>teleportAufladen.wav</Source>
+      <Name>teleportAufladen</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\teleportAufladen.xnb</Output>
+      <Time>2014-08-01T23:01:57.956943+02:00</Time>
+    </Item>
+    <Item>
+      <Source>ooh.wav</Source>
+      <Name>ooh</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ooh.xnb</Output>
+      <Time>2014-08-01T23:01:57.9529428+02:00</Time>
+    </Item>
+    <Item>
+      <Source>titel.mp3</Source>
+      <Name>titel</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SongProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\titel.xnb</Output>
+      <Extra>C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\titel.wma</Extra>
+      <Time>2014-07-24T17:25:19.1824638+02:00</Time>
     </Item>
     <Item>
       <Source>song.mp3</Source>
@@ -953,9 +944,18 @@
       <Importer>Mp3Importer</Importer>
       <Processor>SongProcessor</Processor>
       <Options>None</Options>
-      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\song.xnb</Output>
-      <Extra>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\song.wma</Extra>
-      <Time>2014-08-04T20:10:40.5750476+02:00</Time>
+      <Output>C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\song.xnb</Output>
+      <Extra>C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\song.wma</Extra>
+      <Time>2014-08-04T10:51:09.1094256+02:00</Time>
+    </Item>
+    <Item>
+      <Source>InvertShader.fx</Source>
+      <Name>InvertShader</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\InvertShader.xnb</Output>
+      <Time>2014-08-03T01:27:37.6557643+02:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
@@ -963,10 +963,10 @@
       <TargetProfile>HiDef</TargetProfile>
       <BuildConfiguration>Debug</BuildConfiguration>
       <CompressContent>false</CompressContent>
-      <RootDirectory>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfdContent\</RootDirectory>
-      <LoggerRootDirectory>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\</LoggerRootDirectory>
-      <IntermediateDirectory>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfdContent\obj\x86\Debug\</IntermediateDirectory>
-      <OutputDirectory>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\</OutputDirectory>
+      <RootDirectory>C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfdContent\</RootDirectory>
+      <LoggerRootDirectory>C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\</LoggerRootDirectory>
+      <IntermediateDirectory>C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfdContent\obj\x86\Debug\</IntermediateDirectory>
+      <OutputDirectory>C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\</OutputDirectory>
     </Settings>
     <Assemblies>
       <Assembly>
@@ -995,7 +995,7 @@
       </Assembly>
       <Assembly>
         <Key>C:\Windows\Microsoft.Net\assembly\GAC_32\Microsoft.Xna.Framework.Content.Pipeline\v4.0_4.0.0.0__842cf8be1de50553\Microsoft.Xna.Framework.Content.Pipeline.dll</Key>
-        <Value>2014-07-21T22:18:45.6327076+02:00</Value>
+        <Value>2014-05-06T00:13:32.0239032+02:00</Value>
       </Assembly>
     </Assemblies>
   </Asset>

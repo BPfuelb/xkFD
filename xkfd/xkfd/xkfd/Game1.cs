@@ -1,3 +1,15 @@
+/**
+ * xkfd
+ * Platformer, inspiriert von xkcd.com
+ * 
+ * Projekt fuer das Modul "Entwicklung von Computerspielen"
+ * an der Hochschule Fulda, Fachbereich Angewandte Informatik
+ * 4. Semester
+ * 
+ * Authoren:    Benedikt Pfülb, Sebastian Schulz
+ * 2014 - 08 - 04
+ */
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -1788,7 +1800,7 @@ namespace xkfd
             // 320                              /       4                       /       60              = 1,3333 sekunden = 1333,3333
 
             // Millisekunden pro Lied   /  Millisekunden pro Hindernis  = Notwendige Hindernisse
-            // 239621                   /            1333 = 179
+            // 239621                   /            1333               = 179
 
             // 
 
@@ -1799,44 +1811,46 @@ namespace xkfd
             //    4                * 60                         / 1000 = 0,24            
 
             int hindernisIndex = 0;
-            foreach (int k in liedWerte)
+            foreach (int i in liedWerte)
             {
-                int i = k; // + 512;
                 hindernisIndex = (int)(i * 0.24f) / 320;
                 int notenPosition = (int)(i * 0.24f) - 320 * hindernisIndex;
 
-                switch ((int)rand.Next(5))
+                if(hindernisIndex < hindernisListe.Count)
                 {
-                    case 0:
-                        hindernisListe[hindernisIndex].noteHinzufuegen(new NotenHitbox(punkt1, null, notenPosition, 300, 32, 32));
-                        Hindernis.punkteAnzahl += 1;
-                        break;
-                    case 1:
-                        hindernisListe[hindernisIndex].noteHinzufuegen(new NotenHitbox(punkt2, null, notenPosition, 300, 32, 32));
-                        Hindernis.punkteAnzahl += 2;
-                        break;
-                    case 2:
-                        hindernisListe[hindernisIndex].noteHinzufuegen(new NotenHitbox(punkt5, null, notenPosition, 300, 32, 32));
-                        Hindernis.punkteAnzahl += 5;
-                        break;
-                    case 3:
-                        hindernisListe[hindernisIndex].noteHinzufuegen(new NotenHitbox(punkt10, null, notenPosition, 300, 32, 32));
-                        Hindernis.punkteAnzahl += 10;
-                        break;
-                    case 4:
-                        if (rand.Next() > 0.9)
-                            hindernisListe[hindernisIndex].noteHinzufuegen(new NotenHitbox(powerUp, null, notenPosition, 300, 32, 32));
-                        else
-                        {
+                    switch ((int)rand.Next(5))
+                    {
+                        case 0:
+                            hindernisListe[hindernisIndex].noteHinzufuegen(new NotenHitbox(punkt1, null, notenPosition, 300, 32, 32));
+                            Hindernis.punkteAnzahl += 1;
+                            break;
+                        case 1:
+                            hindernisListe[hindernisIndex].noteHinzufuegen(new NotenHitbox(punkt2, null, notenPosition, 300, 32, 32));
+                            Hindernis.punkteAnzahl += 2;
+                            break;
+                        case 2:
                             hindernisListe[hindernisIndex].noteHinzufuegen(new NotenHitbox(punkt5, null, notenPosition, 300, 32, 32));
                             Hindernis.punkteAnzahl += 5;
-                        }
-                        break;
+                            break;
+                        case 3:
+                            hindernisListe[hindernisIndex].noteHinzufuegen(new NotenHitbox(punkt10, null, notenPosition, 300, 32, 32));
+                            Hindernis.punkteAnzahl += 10;
+                            break;
+                        case 4:
+                            if (rand.Next() > 0.9)
+                                hindernisListe[hindernisIndex].noteHinzufuegen(new NotenHitbox(powerUp, null, notenPosition, 300, 32, 32));
+                            else
+                            {
+                                hindernisListe[hindernisIndex].noteHinzufuegen(new NotenHitbox(punkt5, null, notenPosition, 300, 32, 32));
+                                Hindernis.punkteAnzahl += 5;
+                            }
+                            break;
+                    }
                 }
 
             }
 
-            foreach (Hindernis hindernis in hindernisListe.GetRange(hindernisIndex - 6, 6))
+            foreach (Hindernis hindernis in hindernisListe.GetRange(hindernisListe.Count-4, 4))
             {
                 hindernis.notenListe.Clear();
             }

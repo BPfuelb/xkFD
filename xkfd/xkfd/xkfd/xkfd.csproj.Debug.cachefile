@@ -88,6 +88,10 @@ Content\hindernisE.xnb
 Content\hindernisE_cheat.xnb
 Content\hindernisZ_cheat.xnb
 Content\linie.xnb
+Content\HindernisF.xnb
+Content\HindernisF_cheat.xnb
+Content\ani_sterben3_klatscher_oben_std.xnb
+Content\abspann.xnb
 Content\SpriteFont1.xnb
 Content\SpriteFont2.xnb
 Content\SpriteFont3.xnb
@@ -98,11 +102,7 @@ Content\pop.xnb
 Content\teleportAufladen.xnb
 Content\ooh.xnb
 Content\titel.xnb
-Content\InvertShader.xnb
-Content\HindernisF.xnb
-Content\HindernisF_cheat.xnb
-Content\ani_sterben3_klatscher_oben_std.xnb
-Content\abspann.xnb
 Content\song.xnb
+Content\InvertShader.xnb
 Content\titel.wma
 Content\song.wma
