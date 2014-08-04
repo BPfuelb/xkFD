@@ -836,7 +836,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_sterben3_klatscher_oben_std.xnb</Output>
-      <Time>2014-08-04T01:13:03.8587508+02:00</Time>
+      <Time>2014-08-04T01:46:39.6068483+02:00</Time>
     </Item>
     <Item>
       <Source>SpriteFont1.spritefont</Source>
@@ -945,7 +945,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_sterben3_klatscher_oben_einstein.xnb</Output>
-      <Time>2014-08-04T01:19:40+02:00</Time>
+      <Time>2014-08-04T01:46:39.5968478+02:00</Time>
     </Item>
     <Item>
       <Source>ani_sterben3_klatscher_oben_frau.png</Source>
@@ -954,7 +954,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_sterben3_klatscher_oben_frau.xnb</Output>
-      <Time>2014-08-04T01:16:39+02:00</Time>
+      <Time>2014-08-04T01:46:39.5988479+02:00</Time>
     </Item>
     <Item>
       <Source>ani_sterben3_klatscher_oben_hut.png</Source>
@@ -963,7 +963,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\Sebtop\Documents\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\ani_sterben3_klatscher_oben_hut.xnb</Output>
-      <Time>2014-08-04T01:15:02+02:00</Time>
+      <Time>2014-08-04T01:46:39.601848+02:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>

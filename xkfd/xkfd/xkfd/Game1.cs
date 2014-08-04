@@ -1014,7 +1014,7 @@ namespace xkfd
                 }
 
                 // Spieler hochschieben
-                if (spieler.position.Y >= 50 && !zielInSicht)
+                if (spieler.position.Y >= 80 && !zielInSicht)
                 {
                     spieler.movePlayerUp(1.5f *(float)Math.Sin((spieler.position.Y ) / 360));
                 }
@@ -1337,7 +1337,7 @@ namespace xkfd
                     // Zeichne Spieler
                     spieler.Draw(spriteBatch);
 
-                    hud.Draw(spriteBatch, schrift_40, Hindernis.punkteAnzahl, gameTime);
+                    hud.Draw(spriteBatch, schrift_40, Hindernis.punkteAnzahl, gameTime, cheat, invert);
 
                     #region Debugsection
                     if (debug)
@@ -1463,7 +1463,7 @@ namespace xkfd
                     foreach (Hindernis hindernis in hindernisListe.GetRange(1, 5))
                     {
                         spriteBatch.Draw(hindernis.hindernisTexturCheat, hindernis.hindernisPosition, Color.White);
-                        hindernis.DrawAni(spriteBatch);
+                        //hindernis.DrawAni(spriteBatch);
 
                         foreach (NotenHitbox notenHitbox in hindernis.gibPunkte())
                         {
@@ -1499,7 +1499,7 @@ namespace xkfd
 
                 spriteBatch.Begin(); // Begin
 
-                hud.Draw(spriteBatch, schrift_40, Hindernis.punkteAnzahl, gameTime);
+                hud.Draw(spriteBatch, schrift_40, Hindernis.punkteAnzahl, gameTime, cheat, invert);
 
                 spriteBatch.End(); // End
 
