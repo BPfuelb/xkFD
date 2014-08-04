@@ -187,6 +187,10 @@ void ende() {
   
   minim.stop();
   
+  
+  ////// Neue txt-Datei erzeugen
+  output = createWriter(filename + ".txt");
+  
   ////  Laenge des Liedes in Millisekunden in erste Zeile schreiben
   output.println(dauer); 
   
@@ -260,9 +264,8 @@ void dateiGewaehlt(File auswahl)
       redraw();
       return;
     }
-  
-    ////// Neue txt-Datei erzeugen
-    output = createWriter(filename + ".txt");
+    
+    ////  Neuen Rekorder erzeugen
     recorder = minim.createRecorder(input, filename + ".wav", true);
     
     gestartet = true;
