@@ -939,16 +939,6 @@
       <Time>2014-08-04T02:07:44.9047818+02:00</Time>
     </Item>
     <Item>
-      <Source>skysand.mp3</Source>
-      <Name>skysand</Name>
-      <Importer>Mp3Importer</Importer>
-      <Processor>SongProcessor</Processor>
-      <Options>None</Options>
-      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\skysand.xnb</Output>
-      <Extra>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\skysand.wma</Extra>
-      <Time>2014-08-04T02:10:31.0862868+02:00</Time>
-    </Item>
-    <Item>
       <Source>abspann.png</Source>
       <Name>abspann</Name>
       <Importer>TextureImporter</Importer>
@@ -965,7 +955,7 @@
       <Options>None</Options>
       <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\song.xnb</Output>
       <Extra>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\song.wma</Extra>
-      <Time>2014-08-04T18:14:56.6454074+02:00</Time>
+      <Time>2014-08-04T20:10:40.5750476+02:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>

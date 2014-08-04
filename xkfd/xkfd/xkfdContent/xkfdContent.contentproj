@@ -717,13 +717,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="skysand.mp3">
-      <Name>skysand</Name>
-      <Importer>Mp3Importer</Importer>
-      <Processor>SongProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="abspann.png">
       <Name>abspann</Name>
       <Importer>TextureImporter</Importer>

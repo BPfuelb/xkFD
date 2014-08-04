@@ -72,6 +72,9 @@ namespace xkfd
                 sb.DrawString(schrift, "Einstein Skin", new Vector2(200, 415), Color.Black);
             else
                 sb.DrawString(schrift, "noch " + (10 - gewonnen) + " mal Gewinnen", new Vector2(200, 415), Color.Black);
+
+            sb.DrawString(schrift, "Drücke \"O\" für Soundauswahl\n\n Achtung!!! \n Die Analysezeit entspricht\n der Liedlänge!", new Vector2(600, 100), Color.Black);
+            
         }
     }
 

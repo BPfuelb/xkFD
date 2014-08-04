@@ -1274,8 +1274,12 @@ namespace xkfd
                 // FileAuswahl
                 if (Keyboard.GetState().IsKeyDown(Keys.O) && OldKeyState.IsKeyUp(Keys.O))
                 {
-                    konfig.FileDelete(@"LevelGenerator\fertig");
-                    konfig.FileDelete(@"LevelGenerator\abbruch");
+
+                    System.IO.File.Copy(@"LevelGenerator/song.xnb", @"Content/song.xnb", true);
+
+
+                    konfig.FileDelete(@"LevelGenerator\fertig.txt");
+                    konfig.FileDelete(@"LevelGenerator\abbruch.txt");
 
                     MediaPlayer.Pause();
                     Process generator = new Process();
@@ -1285,9 +1289,24 @@ namespace xkfd
 
                     generator.Start();
 
-                    while (konfig.FileCheck(@"LevelGenerator\fertig", @"LevelGenerator\abbruch"))
+                    while (konfig.FileCheck(@"LevelGenerator\fertig.txt", @"LevelGenerator\abbruch.txt"))
                     { }
 
+                    // Verschiebe Analsyse File
+                    //konfig.FileDelete(@"analyse.txt");
+                    string sourceFileAnalyse = @"LevelGenerator\analyse.txt";
+                    string destinationFileAnalyse = @"analyse.txt";
+                    System.IO.File.Copy(sourceFileAnalyse, destinationFileAnalyse,true);
+
+                    // Verschiebe SoundFile
+                    // konfig.FileDelete(@"Content\song.wav");
+                    string sourceFileSound= @"LevelGenerator\analyse.wav";
+                    string destinationFileSound = @"Content\song.wav";
+                    System.IO.File.Copy(sourceFileSound, destinationFileSound, true);
+
+
+                    // Verschiebe File
+                    // System.IO.File.Move(sourceFileAnalyse, destinationFileAnalyse);
 
                     musik = Content.Load<Song>("song");
                     MediaPlayer.Resume();
