@@ -105,7 +105,7 @@ namespace xkfd
         {
             if (note.hitboxPosition.X > 320 || note.hitboxPosition.X < 0)
                 Console.WriteLine("Fehlerhafte Position: " + note.hitboxPosition);
-            else if (note.hitboxPosition.X <= 40)
+            else if (note.hitboxPosition.X <= 30)
                 note.setPositionY(320);
             else if (note.hitboxPosition.X >= 275)
                 note.setPositionY(320);

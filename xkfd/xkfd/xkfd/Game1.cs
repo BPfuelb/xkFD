@@ -326,7 +326,7 @@ namespace xkfd
             #region Sounds
             // Sound
             titel = Content.Load<Song>("titel");
-            musik = Content.Load<Song>("skysand");
+            musik = Content.Load<Song>("song");
 
             // Spring Sounds
             spieler.springen.sound = Content.Load<SoundEffect>("jump");
@@ -1134,7 +1134,9 @@ namespace xkfd
 
                 foreach (NotenHitbox hitbox in punkteListeKollisionen)
                 {
-                    if (spieler.hitboxKoerper.Intersects(hitbox.hitboxRect))
+                    int groesser = 50;
+                    Rectangle hbRect = new Rectangle(hitbox.hitboxRect.X - groesser, hitbox.hitboxRect.Y, hitbox.hitboxRect.Width + 2 * groesser, hitbox.hitboxRect.Height);
+                    if (spieler.hitboxKoerper.Intersects(hbRect))
                     {
                         notenPlatzerAnimation.index = 0;
                         notenPlatzerPosition = hitbox.hitboxPosition - new Vector2(16, 16);
@@ -1143,6 +1145,7 @@ namespace xkfd
                             spieler.punkte += hitbox.punkt.wertigkeit;
                             hitbox.zielPosition += new Vector2(new Random().Next(640), 0);
                             spieler.gesammelteNoten.Add(hitbox);
+                            hitbox.platzerAnimation = new Animation(notenPlatzerTextur, 2, 2, 5);
                         }
                         else
                             spieler.teleport = true;
@@ -1718,7 +1721,7 @@ namespace xkfd
 
             // 
 
-            hindernisListe = Hindernis.generieHindernisse(liedlaenge / 1334 - 10, this);
+            hindernisListe = Hindernis.generieHindernisse(liedlaenge / 1334 - 5, this);
 
 
             // Pixelverschiebungen  * 60 Updates Pro sekunde     / 1000 = Pixel pro Millisekunde
@@ -1727,7 +1730,7 @@ namespace xkfd
 
             foreach (int k in liedWerte)
             {
-                int i = k + 512;
+                int i = k; // + 512;
                 int hindernisIndex = (int)(i * 0.24f) / 320;
                 int notenPosition = (int)(i * 0.24f) - 320 * hindernisIndex;
 

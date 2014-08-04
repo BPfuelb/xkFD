@@ -49,6 +49,7 @@ namespace xkfd
                 StreamReader myFile = new StreamReader(fileName, System.Text.Encoding.Default);
                 game1.liedlaenge = int.Parse(myFile.ReadLine());
                 myFile.ReadLine(); // Anzahl der Beats
+                myFile.ReadLine(); // Leerzeile
                 
                 while(!myFile.EndOfStream)
                 {
