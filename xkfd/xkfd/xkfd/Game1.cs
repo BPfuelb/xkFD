@@ -124,14 +124,16 @@ namespace xkfd
 
         // Sound Analyse
 
+        Song musik;
+
         // Lied Länge in MS
         public int liedlaenge = 0;
         public List<int> liedWerte = new List<int>();
 
+        // Liste für die generierten Positionen
         public List<NotenHitbox> liedNoten = new List<NotenHitbox>();
 
 
-        Song musik;
 
         public Game1()
         {
@@ -185,6 +187,7 @@ namespace xkfd
             // Process.Start(@"calc");
 
             konfig.ReadFile("config.txt");
+            MediaPlayer.Stop();
 
         }
 
@@ -488,7 +491,7 @@ namespace xkfd
 
                 if (Keyboard.GetState().IsKeyDown(Keys.Enter) && OldKeyState.IsKeyUp(Keys.Enter))
                 {
-                    MediaPlayer.Pause();
+                    MediaPlayer.Play(musik);
                     spieler.position.X = 1280 / 2 - 128;
                     start = true;
                     gamestate = Gamestate.running;
@@ -608,9 +611,6 @@ namespace xkfd
             {
 
 
-
-
-
                 foreach (NotenHitbox note in liedNoten)
                 {
                     note.UpdatePosition();
@@ -642,6 +642,7 @@ namespace xkfd
                 // Escape ins Menü zurück kehren
                 if (Keyboard.GetState().IsKeyDown(Keys.Escape) && OldKeyState.IsKeyUp(Keys.Escape))
                 {
+                    MediaPlayer.Pause();
                     menue.auswahl = 2; // Auswahl auf Forsetzen bzw. Starten setzten
                     gamestate = Gamestate.menue;
                 }
@@ -657,6 +658,9 @@ namespace xkfd
 
                 if ((spieler.aktuellerZustand == spieler.sterben || spieler.aktuellerZustand == spieler.gewinnen) && Keyboard.GetState().IsKeyDown(Keys.Enter))
                 {
+                    // Song Musik spielen
+                        MediaPlayer.Play(titel);
+
                     gamestate = Gamestate.menue;
                 }
                 #endregion
@@ -1156,6 +1160,11 @@ namespace xkfd
                 if (menue.fortsetzen_m_ani == null) menue.fortsetzen_m_ani = new Animation(menue.fortsetzenTexture, 1, 4, 6);
 
 
+                if (MediaPlayer.State == MediaState.Stopped)
+                {
+                    MediaPlayer.Play(titel);
+                }
+
                 // Auswahl im Menü ber Tastatur (Pfeiltasten)
                 NewKeyState = Keyboard.GetState();
 
@@ -1191,7 +1200,10 @@ namespace xkfd
                                 gamestate = Gamestate.ladebildschirm;
                             }
                             else
+                            {
+                                MediaPlayer.Resume();
                                 gamestate = Gamestate.running;
+                            }
                             menue.spielAktiv = true;
                             break;
                         case 3: // Spieler zurücksetzen (TODO)
@@ -1269,7 +1281,6 @@ namespace xkfd
                 if (gamestate == Gamestate.ladebildschirm)
                 {
                     hud.DrawHelp(spriteBatch, schrift_40);
-                    //spieler.position = new Vector2(1280 / 2 - 128, 720 / 2 +20);
                     spieler.Draw(spriteBatch);
                     hud.Draw(spriteBatch);
 
@@ -1330,13 +1341,6 @@ namespace xkfd
 
                 if (gamestate == Gamestate.running)
                 {
-
-                    // Song Musik spielen
-
-                    if (MediaPlayer.State != MediaState.Playing)
-                        MediaPlayer.Play(musik);
-
-
                     foreach (NotenHitbox note in liedNoten)
                     {
                         note.punkt.punktAnimation.Draw(spriteBatch, note.hitboxPosition);
@@ -1455,11 +1459,6 @@ namespace xkfd
                 {
                     // Malt alle Animationen des Menüs
                     menue.Draw(spriteBatch);
-
-                    // Titel Musik spielen
-                    if (MediaPlayer.State != MediaState.Playing)
-                        MediaPlayer.Play(titel);
-
                 }
                 #endregion
 
@@ -1520,9 +1519,6 @@ namespace xkfd
 
                     // Zeichne Spieler
                     spieler.Draw(spriteBatch);
-
-                    // Titel sound aus
-                    MediaPlayer.Pause();
                 }
                 #endregion
 
