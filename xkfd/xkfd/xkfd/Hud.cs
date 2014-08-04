@@ -147,6 +147,7 @@ namespace xkfd
             sb.DrawString(schrift, "Gleiten: " + counter, positionGleitenAnzeige, schriftFarbe);
             sb.DrawString(schrift, "Punkte: " + spieler.punkte + "/" + maxPunkte, positionPunkte, schriftFarbe);
             sb.DrawString(schrift, "Teleport: ", positionCheckbox, schriftFarbe);
+            sb.DrawString(schrift, "Leben: " + spieler.leben, positionCheckbox + new Vector2(260,0), schriftFarbe);
 
             if (spieler.aktuellerZustand == spieler.sterben)
             {

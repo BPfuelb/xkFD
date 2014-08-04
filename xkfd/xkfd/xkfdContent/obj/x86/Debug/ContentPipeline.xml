@@ -955,7 +955,17 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\abspann.xnb</Output>
-      <Time>2014-08-04T07:49:46.589555+02:00</Time>
+      <Time>2014-08-04T08:13:04.1184891+02:00</Time>
+    </Item>
+    <Item>
+      <Source>song.mp3</Source>
+      <Name>song</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SongProcessor</Processor>
+      <Options>None</Options>
+      <Output>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\song.xnb</Output>
+      <Extra>D:\Users\Benedikt\Eigene Dokumente\GitHub\xkFD\xkfd\xkfd\xkfd\bin\x86\Debug\Content\song.wma</Extra>
+      <Time>2014-08-04T18:14:56.6454074+02:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>

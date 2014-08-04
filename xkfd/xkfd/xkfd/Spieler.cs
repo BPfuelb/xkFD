@@ -27,7 +27,6 @@ namespace xkfd
         public Zustand aktuellerZustand;
 
         // Skin
-
         public Skin aktuellerSkin; 
 
         // Punktestand
@@ -55,6 +54,9 @@ namespace xkfd
 
         // float für hitboxen
         float count;
+
+        // Anzahl leben
+        public int leben = 3;
 
         // Konstruktor
         public Spieler()
@@ -139,7 +141,16 @@ namespace xkfd
 
         public void doSterben()
         {
-            aktuellerZustand.sterben();
+            if (leben > 0)
+            {
+                ((Fallen)fallen).beschleunigung = 0;
+                setPlayerPosition(0);
+                leben--;
+                // ((Sterben)aktuellerZustand).aktuell.soundTod.Play();
+                aktuellerZustand = laufen;
+            }
+            else
+                 aktuellerZustand.sterben();
         }
 
         public void doGewinnen()

@@ -10,6 +10,34 @@ namespace xkfd
     {
         string inhalt = "";
 
+        public Boolean FileCheck(String fertig, String abbruch)
+        {
+            if (File.Exists(fertig))
+            {
+                return false;
+            }
+            else
+            {
+                if (File.Exists(abbruch))
+                    return false;
+                else
+                    return true;
+            }
+                
+        }
+
+        public void FileDelete(String fileName)
+        {
+            System.IO.FileInfo fi = new System.IO.FileInfo(fileName);
+            try
+            {
+                fi.Delete();
+            }
+            catch (System.IO.IOException e)
+            {
+                Console.WriteLine(e.Message);
+            }
+        }
 
         // Wins Lesen
         public string ReadFile(String fileName)
@@ -27,7 +55,7 @@ namespace xkfd
                 myFile.Write("0");
                 myFile.Close();
                 inhalt = "0";
-                
+
             }
             return inhalt;
         }
@@ -50,12 +78,12 @@ namespace xkfd
                 game1.liedlaenge = int.Parse(myFile.ReadLine());
                 myFile.ReadLine(); // Anzahl der Beats
                 myFile.ReadLine(); // Leerzeile
-                
-                while(!myFile.EndOfStream)
+
+                while (!myFile.EndOfStream)
                 {
 
                     int zeilenInhalt = int.Parse(myFile.ReadLine());
-                    if(zeilenInhalt > 5000)
+                    if (zeilenInhalt > 5000)
                         game1.liedWerte.Add(zeilenInhalt);
                 }
                 myFile.Close();

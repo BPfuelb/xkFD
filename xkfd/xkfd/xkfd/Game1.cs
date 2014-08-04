@@ -596,9 +596,13 @@ namespace xkfd
                 {
                     if (menue.spielAktiv && spieler.hitboxBeine.Intersects(hitbox.hitboxRect))
                     {
-                        ((Sterben)spieler.sterben).aktuell = ((Sterben)spieler.sterben).pieksen;// Passt den Todeszustand an
-                        menue.spielAktiv = false; // setzt Menü nach Tod wieder auf anfang
                         spieler.setPlayerPosition((int)hitbox.hitboxPosition.Y - 80);
+                        ((Sterben)spieler.sterben).aktuell = ((Sterben)spieler.sterben).pieksen;// Passt den Todeszustand an
+
+                        if (spieler.leben == 0)
+                        {
+                            menue.spielAktiv = false; // setzt Menü nach Tod wieder auf anfang
+                        }
                         hud.soundGameOverSoundInstance.Play();
                         spieler.doSterben();
                     }
@@ -817,8 +821,10 @@ namespace xkfd
                     if (menue.spielAktiv && spieler.hitboxBeine.Intersects(hitbox.hitboxRect))
                     {
                         ((Sterben)spieler.sterben).aktuell = ((Sterben)spieler.sterben).pieksen;// Passt den Todeszustand an
-                        menue.spielAktiv = false; // setzt Menü nach Tod wieder auf anfang
-                        spieler.setPlayerPosition((int)hitbox.hitboxPosition.Y - 80);
+                        if (spieler.leben == 0)
+                            menue.spielAktiv = false; // setzt Menü nach Tod wieder auf anfang
+                        else
+                            spieler.setPlayerPosition((int)hitbox.hitboxPosition.Y - 80);
                         hud.soundGameOverSoundInstance.Play();
                         spieler.doSterben();
                     }
@@ -839,14 +845,16 @@ namespace xkfd
                         if (spieler.hitboxKopf.Intersects(hitbox.hitboxRect)) // Wenn Kopf kollidiert
                         {
                             ((Sterben)spieler.sterben).aktuell = ((Sterben)spieler.sterben).koepfen;// Passt den Todeszustand an
-                            menue.spielAktiv = false; // setzt Menü nach Tod wieder auf anfang
+                            if (spieler.leben == 0)
+                                menue.spielAktiv = false; // setzt Menü nach Tod wieder auf anfang
                             hud.soundGameOverSoundInstance.Play();
                             spieler.doSterben();
                         }
                         if (spieler.hitboxBeine.Intersects(hitbox.hitboxRect)) // Wenn Beine kollidiert
                         {
                             ((Sterben)spieler.sterben).aktuell = ((Sterben)spieler.sterben).stolpern; // Passt den Todeszustand an
-                            menue.spielAktiv = false; // setzt Menü nach Tod wieder auf anfang
+                            if (spieler.leben == 0)
+                                menue.spielAktiv = false; // setzt Menü nach Tod wieder auf anfang
                             hud.soundGameOverSoundInstance.Play();
                             spieler.doSterben();
                         }
@@ -859,17 +867,16 @@ namespace xkfd
                     {
                         if (spieler.position.Y > 378 && spieler.hitboxKopf.Intersects(hitbox.hitboxRect) && spieler.hitboxBeine.Intersects(hitbox.hitboxRect))
                         {
-                            menue.spielAktiv = false;
-                            ((Sterben)spieler.sterben).aktuell = ((Sterben)spieler.sterben).klatscher; // Passt den Todeszustand an
+                            if (spieler.leben == 0)
+                                menue.spielAktiv = false;
                             hud.soundGameOverSoundInstance.Play();
+                            ((Sterben)spieler.sterben).aktuell = ((Sterben)spieler.sterben).klatscher; // Passt den Todeszustand an
                             spieler.doSterben();
                         }
                         else if (spieler.position.Y <= 378 && spieler.hitboxKopf.Intersects(hitbox.hitboxRect) && spieler.hitboxBeine.Intersects(hitbox.hitboxRect)) // Spieler gegen Taschenrechner
                         {
-                            Console.WriteLine("Taschenrechner");
-                            menue.spielAktiv = false;
                             Boolean kollidiertBoden = false;
-                            ((Sterben)spieler.sterben).aktuell.soundTod.Play();
+                            // ((Sterben)spieler.sterben).aktuell.soundTod.Play();
                             while (!kollidiertBoden && spieler.position.Y < 900)
                             {
                                 foreach (Hitbox hb in kollisionsListe)
@@ -883,8 +890,11 @@ namespace xkfd
                             }
                             spieler.setPlayerPositionRelativ(-256);
                             ((Sterben)spieler.sterben).aktuell = ((Sterben)spieler.sterben).klatscher_oben; // Passt den Todeszustand an
+                            if (spieler.leben == 0)
+                            {
+                                menue.spielAktiv = false;
+                            }
                             hud.soundGameOverSoundInstance.Play();
-                            menue.spielAktiv = false;
                             spieler.doSterben();
 
 
@@ -903,14 +913,20 @@ namespace xkfd
                                 spieler.movePlayerDown(1);
                             }
                             ((Sterben)spieler.sterben).aktuell = ((Sterben)spieler.sterben).koepfen; // Passt den Todeszustand an
+                            if (spieler.leben == 0)
+                            {
+                                menue.spielAktiv = false;
+                            }
                             hud.soundGameOverSoundInstance.Play();
-                            menue.spielAktiv = false;
                             spieler.doSterben();
                         }
                         else if (spieler.hitboxBeine.Intersects(hitbox.hitboxRect)) //&& !spieler.hitboxKopf.Intersects(hitbox.hitboxRect))
                         {
                             spieler.setPlayerPosition(hitbox.hitboxRect.Top - 80);
-                            menue.spielAktiv = false;
+                            if (spieler.leben == 0)
+                            {
+                                menue.spielAktiv = false;
+                            }
                             ((Sterben)spieler.sterben).aktuell = ((Sterben)spieler.sterben).stolpern; // Passt den Todeszustand an
                             spieler.doSterben();
                         }
@@ -958,7 +974,10 @@ namespace xkfd
             // Sterben wenn der Spieler auserhalb des Bildschirms ist
             if (spieler.position.Y >= 800 && menue.spielAktiv)
             {
-                menue.spielAktiv = false; // setzt Menü nach Tod wieder auf anfang
+                if (spieler.leben == 0)
+                {
+                    menue.spielAktiv = false; // setzt Menü nach Tod wieder auf anfang
+                }
                 hud.soundGameOverSoundInstance.Play();
                 spieler.doSterben();
             }
@@ -1255,7 +1274,23 @@ namespace xkfd
                 // FileAuswahl
                 if (Keyboard.GetState().IsKeyDown(Keys.O) && OldKeyState.IsKeyUp(Keys.O))
                 {
-                    // TODO
+                    konfig.FileDelete(@"LevelGenerator\fertig");
+                    konfig.FileDelete(@"LevelGenerator\abbruch");
+
+                    MediaPlayer.Pause();
+                    Process generator = new Process();
+                    generator.StartInfo.UseShellExecute = false;
+                    generator.StartInfo.RedirectStandardOutput = true;
+                    generator.StartInfo.FileName = @"LevelGenerator\LevelGenerator.exe";
+
+                    generator.Start();
+
+                    while (konfig.FileCheck(@"LevelGenerator\fertig", @"LevelGenerator\abbruch"))
+                    { }
+
+
+                    musik = Content.Load<Song>("song");
+                    MediaPlayer.Resume();
                 }
 
 
@@ -1284,8 +1319,8 @@ namespace xkfd
             #region GamestateAbspann
             if (gamestate == Gamestate.abspann)
             {
-                if(abspann == 0)
-                Exit();
+                if (abspann == 0)
+                    Exit();
                 abspann--;
             }
             #endregion
